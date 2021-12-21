@@ -11,8 +11,8 @@
 <body>
     <h1>Welcome to HOME PHARMACIST</h1>
     <hr><br>
-    <a href="login.php?role=customer">Login as a User</a><br>
-    <a href="login.php?role=pharmacy">Login as a Pharmacy</a>
+    <a href="<?=SROOT?>register/login/customer">Login as a User</a><br>
+    <a href="<?=SROOT?>register/login/pharmacy">Login as a Pharmacy</a>
     <br><br>
     <a href="register.php">New to HOME PHARMACIST.? Sign up for free.</a>
     <br><br>

@@ -6,7 +6,7 @@ define('DB_PASSWORD','');
 define('HOST','127.0.0.1');
 
 define('DEFAULT_CONTROLLER','Home');// default controller
-define('SROOT','/HOME_PHARMASIST/');
+define('SROOT','/home_pharmasist/');
 
 define('DEFAULT_LAYOUT','default');
 define('SITE_TITLE','Home Pharmasist');
