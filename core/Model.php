@@ -2,7 +2,7 @@
 
 class Model
 {
-    protected $_db, $_table, $_modelName, $_softDelete = false, $_columnNames = [];
+    protected $_db, $_table, $_modelName, $_columnNames = [];
 
     public $id;
 
@@ -11,7 +11,7 @@ class Model
         $this->_db = DB::getInstance(HOST,DB_NAME,DB_USER,DB_PASSWORD);
         $this->_table = $table;
         $this->_setTableColumns();
-        $this->_modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $this->_table)));
+        $this->_modelName = ucwords(rtrim($this->_table,'table'));
     }
 
     protected function _setTableColumns()
@@ -47,11 +47,11 @@ class Model
     public function findFirst($params = [])
     {
         $resultsQuery = $this->_db->findFirst($this->_table, $params);
-        $result = new $this->_modelName($this->_table);
+        // $result = new $this->_modelName($this->_table);
         if ($resultsQuery) {
-            $result->populateObjData($resultsQuery);
+            $this->populateObjData($resultsQuery);
         }
-        return $result;
+        // return $this;
     }
 
     protected function populateObjData($results)
@@ -106,9 +106,7 @@ class Model
         if ($id == '' && $this->id == '') return false;
         $id = ($id == '') ? $this->id : $id;
 
-        if ($this->_softDelete) {
-            $this->update($id, ['deleted' => 1]);
-        }
+        $this->update($id, ['deleted' => 1]);
 
         return $this->_db->delete($this->table, $id);
     }

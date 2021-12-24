@@ -10,3 +10,5 @@ define('SROOT','/home_pharmasist/');
 
 define('DEFAULT_LAYOUT','default');
 define('SITE_TITLE','Home Pharmasist');
+
+define('CURRENT_USER_SESSION_NAME','home_pharmasist_current_user'); // session name for logged in user
