@@ -5,7 +5,7 @@ class User extends Model
     private $_isLoggedIn, $_sessionName;
     public static $currentLoggedInUser = null;
 
-    public function __construct($user = '')
+    public function __construct()
     {
         $table = 'usertable';
         parent::__construct($table);
@@ -54,7 +54,6 @@ class User extends Model
 
     public function registerNewUser($params){
         $this->assign($params);
-        $this->deleted = 0;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->save();
     }

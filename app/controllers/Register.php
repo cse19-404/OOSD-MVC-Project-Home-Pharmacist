@@ -32,7 +32,7 @@
                 if ($role === 'pharmacy'){
                     echo('<br><a href="">Apply For a Pharmacy Account</a>');
                 }else{
-                    echo('<br><label>Need an account? <a href="">Sign up</a></label>');    
+                    echo('<br><label>Need an account? <a href="<?=SROOT?>register/signup/customer">Sign up</a></label>');    
                 }    
             }
             
@@ -46,6 +46,23 @@
             }
             
             Router::redirect('home/index');
+        }
+
+        public function signupAction($role){
+            self::$_role = $role;
+            if ($_POST){
+                if ($role === 'customer'){
+                    $this->UserModel = new User();
+                    $this->UserModel->registerNewUser($_POST);
+                    $this->UserModel->login();
+
+                    $this->view->render('user/dashboard');
+                }
+            }else {
+                $this->view->render('register/signup');
+            }
+           
+            
         }
 
         public static function getCurrentRole(){
