@@ -14,7 +14,9 @@
         <div class="registration-form">
             <form action="<?=SROOT?>register/signup/customer" method="post">
                 <div class='bg-danger'>
-                    <?= $this->displayErrors ?>
+                    <?php if(isset($this->displayErrors)) {
+                        echo $this->displayErrors;
+                    } ?>
                 </div>
                 <lable class="name">Name:</lable>
                 <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($_POST['name'] ?? '', ENT_QUOTES); ?>" required><br><br>

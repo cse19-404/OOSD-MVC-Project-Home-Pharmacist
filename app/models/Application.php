@@ -28,4 +28,16 @@ class Application extends Model{
         }
 
     }
+
+    public function changeStatus($id,$status){
+        $this->_db->update($this->_table,$id,[
+            'application_status'=>$status
+        ]);
+    }
+
+    public function deleteApplication($id){
+        $this->_db->update($this->_table,$id,[
+            'deleted'=>1
+        ]);
+    }
 }

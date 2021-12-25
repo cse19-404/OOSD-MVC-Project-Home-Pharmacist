@@ -10,18 +10,6 @@ class User extends Model
         $table = 'usertable';
         parent::__construct($table);
         $this->_sessionName = CURRENT_USER_SESSION_NAME;
-        // if ($user != '') {
-        //     if (is_int($user)) {
-        //         $u = $this->_db->findFirst('users', ['conditions' => 'id=?', 'bind' => [$user]]);
-        //     } else {
-        //         $u = $this->_db->findFirst('users', ['conditions' => 'username=?', 'bind' => [$user]]);
-        //     }
-        // }
-        // if ($u) {
-        //     foreach ($u as $key => $value) {
-        //         $this->$key = $value;
-        //     }
-        // }
     }
 
     public function findByUserName($username)
@@ -31,9 +19,10 @@ class User extends Model
 
     public static function currentLoggedInUser()
     {
-        if (!isset(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
-            $u = new Pharmacy((int)Session::get(CURRENT_USER_SESSION_NAME));
-            self::$currentLoggedInUser = $u;
+        if (!(self::$currentLoggedInUser) && Session::exists(CURRENT_USER_SESSION_NAME)) {
+            $user = new User();
+            $user->findByUserName(Session::get('username'));
+            self::$currentLoggedInUser = $user;
         }
         return self::$currentLoggedInUser;
     }
@@ -56,5 +45,9 @@ class User extends Model
         $this->assign($params);
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->save();
+    }
+
+    public function findAllApplications(){
+        return $this->_db->find('applicationtable',['conditions'=>'deleted=?','bind' => [0]]);
     }
 }

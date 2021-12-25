@@ -19,12 +19,14 @@
                     $this->UserModel->findByUserName($_POST['username']);
                     if ($this->UserModel && password_verify(Input::get('password'),$this->UserModel->password)){
                         $this->UserModel->login();
+                        self::$_role = 'customer';
                         $this->view->render('user/dashboard');
                     }
                 }else{
                     $this->PharmacyModel->findByUserName($_POST['username']);
                     if ($this->PharmacyModel && password_verify(Input::get('password'),$this->PharmacyModel->password)){
                         $this->PharmacyModel->login();
+                        self::$_role = 'pharmacy';
                         $this->view->render('user/dashboard');
                     }
                 }                

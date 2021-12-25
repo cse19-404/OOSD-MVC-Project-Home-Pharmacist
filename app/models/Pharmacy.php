@@ -19,8 +19,9 @@ class Pharmacy extends Model{
     public static function currentLoggedInPharmacy()
     {
         if (!isset(self::$currentLoggedInPharmacy) && Session::exists(CURRENT_USER_SESSION_NAME)) {
-            $u = new User((int)Session::get(CURRENT_USER_SESSION_NAME));
-            self::$currentLoggedInPharmacy = $u;
+            $user = new Pharmacy();
+            $user->findByUserName(Session::get('username'));
+            self::$currentLoggedInPharmacy = $user;
         }
         return self::$currentLoggedInPharmacy;
     }

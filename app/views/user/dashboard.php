@@ -1,6 +1,6 @@
 <?php
 if (isset($_SESSION['username'])) {
-    if (Register::getCurrentRole() == 'customer'){
+    if ($_SESSION['role'] === 'customer' || $_SESSION['role'] === 'super_admin'){
         echo "<h1>Hi " . User::currentLoggedInUser()->name . "</h1>";
     }else{
         echo "<h1>Hi " . Pharmacy::currentLoggedInPharmacy()->name . "</h1>";
@@ -26,7 +26,7 @@ if (isset($_SESSION['username'])) {
 <body>
 <hr><br>
         <?php if ($_SESSION['role']==='super_admin') { ?>
-        <a href="view_applications.php"><h2>View Applications</h2></a>
+        <a href="<?=SROOT?>ApplicationHandler/view"><h2>View Applications</h2></a>
         <a href="view_users.php"><h2>View Users</h2></a>
         <a href="approved_applications.php"><h2>Pharmacy Account Creation</h2></a>
         <?php } ?>
