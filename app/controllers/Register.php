@@ -21,6 +21,9 @@
                         $this->UserModel->login();
                         self::$_role = 'customer';
                         $this->view->render('user/dashboard');
+                    }else {
+                        $this->view->errcreditionals = '<li class=bg-danger> Wrong Creditionals </li>';
+                        $this->view->render('register/login');
                     }
                 }else{
                     $this->PharmacyModel->findByUserName($_POST['username']);
@@ -28,6 +31,9 @@
                         $this->PharmacyModel->login();
                         self::$_role = 'pharmacy';
                         $this->view->render('user/dashboard');
+                    }else {
+                        $this->view->errcreditionals = '<li class=bg-danger> Wrong Creditionals </li>';
+                        $this->view->render('register/login');
                     }
                 }                
             }else {
