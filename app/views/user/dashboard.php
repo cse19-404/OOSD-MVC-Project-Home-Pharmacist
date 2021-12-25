@@ -28,7 +28,7 @@ if (isset($_SESSION['username'])) {
         <?php if ($_SESSION['role']==='super_admin') { ?>
         <a href="<?=SROOT?>ApplicationHandler/view"><h2>View Applications</h2></a>
         <a href="view_users.php"><h2>View Users</h2></a>
-        <a href="approved_applications.php"><h2>Pharmacy Account Creation</h2></a>
+        <a href="<?=SROOT?>ApplicationHandler/viewApproved"><h2>Pharmacy Account Creation</h2></a>
         <?php } ?>
         <?php if ($_SESSION['role']==='pharmacy') { ?>
         <a href="inventory.php"><h2>View Inventory</h2></a><br>

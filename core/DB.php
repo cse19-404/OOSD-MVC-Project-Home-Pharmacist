@@ -14,6 +14,7 @@
             }
         }
 
+        //Singleton Pattern
         public static function getInstance($host,$dbname,$dbuser,$dbpassword)
         {
             if (!isset(self::$_instance)){

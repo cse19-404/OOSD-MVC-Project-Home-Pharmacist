@@ -68,7 +68,7 @@
 
         </table>
     </div>
-    <br><br><a href='<?=SROOT?>CustomerDashboard'>Go to dashboard</a>
+    <br><br>
     <?php }
     else {
         echo "<h3>No Applications to display</h3>";
