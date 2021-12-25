@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
-    .error {color: #FF0000;}
+    .bg-danger {color: #FF0000;}
     </style>
 </head>
 <body>
     <h1>Sign Up...!</h1>
         <div class="registration-form">
             <form action="<?=SROOT?>register/signup/customer" method="post">
+                <div class='bg-danger'>
+                    <?= $this->displayErrors ?>
+                </div>
                 <lable class="name">Name:</lable>
                 <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($_POST['name'] ?? '', ENT_QUOTES); ?>" required><br><br>
                 <lable class="nic">NIC:</lable>
@@ -24,8 +27,8 @@
                 <lable class="mobile_number">Contact Number:</lable>
                 <input type="text" name="mobile_number" id="mobile_number" value="<?php echo htmlspecialchars($_POST['mobile_number'] ?? '', ENT_QUOTES); ?>" required><br><br>                
                 <label>Location:</label>
-                <label>Latitude</label><input type="text" name="latitude" id="lat" value="<?php echo htmlspecialchars($_POST['lat'] ?? '', ENT_QUOTES); ?>" required>
-                <label>Longitude</label><input type="text" name="longitude" id="lat" value="<?php echo htmlspecialchars($_POST['long'] ?? '', ENT_QUOTES); ?>" required><br><br>
+                <label>Latitude</label><input type="text" name="latitude" id="lat" value="<?php echo htmlspecialchars($_POST['latitude'] ?? '', ENT_QUOTES); ?>" required>
+                <label>Longitude</label><input type="text" name="longitude" id="lat" value="<?php echo htmlspecialchars($_POST['longitude'] ?? '', ENT_QUOTES); ?>" required><br><br>
                 <lable class="username">Username:</lable>
                 <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($_POST['username'] ?? '', ENT_QUOTES); ?>" required><br><br>
                 <lable class="password">Password:</lable>

@@ -51,13 +51,35 @@
 
         public function signupAction($role){
             self::$_role = $role;
+            $validation = new Validate();
             if ($_POST){
                 if ($role === 'customer'){
+                    $validation->check($_POST,[
+                        'password'=>[
+                            'display'=>'Password',
+                            'min'=>6
+                        ],
+                        'username'=>[
+                            'display'=>'Username',
+                            'min'=>4
+                        ],
+                        'repassword'=>[
+                            'display'=>'Confirm Password',
+                            'matches'=>'password'
+                        ]
+                    ]);
+
+                if ($validation->passed()){
                     $this->UserModel = new User();
                     $this->UserModel->registerNewUser($_POST);
                     $this->UserModel->login();
 
                     $this->view->render('user/dashboard');
+                }else {
+                    $this->view->displayErrors = $validation->displayErrors();
+                    $this->view->render('register/signup');
+                }
+                    
                 }elseif ($role === 'pharmacy') {
                     $this->ApplicationModel = new Application();
                     $this->ApplicationModel->saveApplication($_POST);
