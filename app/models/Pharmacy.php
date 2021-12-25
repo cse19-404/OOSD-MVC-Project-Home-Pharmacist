@@ -36,4 +36,5 @@ class Pharmacy extends Model{
         self::$currentLoggedInPharmacy = null;
         return true;
     }
+
 }

@@ -16,7 +16,7 @@
     <br><br>
     <a href="<?=SROOT?>register/signup/customer">New to HOME PHARMACIST.? Sign up for free.</a>
     <br><br>
-    <a href="phram_reg.php">Apply For a Pharmacy Account</a>
+    <a href="<?=SROOT?>register/signup/pharmacy">Apply For a Pharmacy Account</a>
     <br><br>
     <h3><?php if (isset($_GET['msg'])) {
             echo $_GET['msg'];

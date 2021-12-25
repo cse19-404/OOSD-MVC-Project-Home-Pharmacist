@@ -9,6 +9,7 @@
             parent::__construct($controller,$action);
             $this->load_model('User');
             $this->load_model('Pharmacy');
+            $this->load_model('Application');
         }
 
         public function loginAction($role){
@@ -30,9 +31,9 @@
             }else {
                 $this->view->render('register/login');
                 if ($role === 'pharmacy'){
-                    echo('<br><a href="">Apply For a Pharmacy Account</a>');
+                    echo('<br><a href='.SROOT.'register/signup/pharmacy>Apply For a Pharmacy Account</a>');
                 }else{
-                    echo('<br><label>Need an account? <a href="<?=SROOT?>register/signup/customer">Sign up</a></label>');    
+                    echo('<br><label>Need an account? <a href='.SROOT.'register/signup/customer>Sign up</a></label>');    
                 }    
             }
             
@@ -57,9 +58,20 @@
                     $this->UserModel->login();
 
                     $this->view->render('user/dashboard');
+                }elseif ($role === 'pharmacy') {
+                    $this->ApplicationModel = new Application();
+                    $this->ApplicationModel->saveApplication($_POST);
+
+                    $this->view->render('home/index');
+                    echo ('<h2>Application succesfully submitted</h2>');
                 }
             }else {
-                $this->view->render('register/signup');
+                if ($role === 'customer'){
+                    $this->view->render('register/signup');
+                }elseif ($role === 'pharmacy') {
+                    $this->view->render('register/pharmacyApplication');
+                }
+                
             }
            
             
