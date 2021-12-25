@@ -54,4 +54,11 @@ class User extends Model
     public function findApprovedApplications(){
         return $this->_db->find('applicationtable',['conditions'=>'deleted=? AND application_status=? AND acc_created=?','bind' => [0, 'approved', 0]]);
     }
+        public function findAllUsers(){
+        return $this->_db->find('usertable',['conditions'=>'role=?','bind' => ['customer']]);
+    }
+
+    public function findAllPharmacies(){
+        return $this->_db->find('pharmacytable');
+    }
 }
