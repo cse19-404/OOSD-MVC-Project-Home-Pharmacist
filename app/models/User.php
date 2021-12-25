@@ -50,4 +50,12 @@ class User extends Model
     public function findAllApplications(){
         return $this->_db->find('applicationtable',['conditions'=>'deleted=?','bind' => [0]]);
     }
+
+    public function findAllUsers(){
+        return $this->_db->find('usertable',['conditions'=>'role=?','bind' => ['customer']]);
+    }
+
+    public function findAllPharmacies(){
+        return $this->_db->find('pharmacytable');
+    }
 }
