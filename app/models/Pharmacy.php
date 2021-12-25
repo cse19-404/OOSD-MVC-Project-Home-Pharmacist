@@ -11,6 +11,20 @@ class Pharmacy extends Model{
         $this->_sessionName = CURRENT_USER_SESSION_NAME;
     }
 
+    public function registerNewPharmacy($params, $id){
+        if (isset($params['delivery_supported']) && $params['delivery_supported']=="on"){
+            $params['delivery_supported'] = 1;
+        }else{
+            $params['delivery_supported'] = 0;
+        }
+        $this->assign($params);
+        $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+        $this->save();
+        $this->_db->update('applicationtable',$id,[
+            'acc_created'=>1
+        ]);
+    }
+
     public function findByUserName($username)
     {
         $this->findFirst(['conditions' => 'username=?', 'bind' => [$username]]);

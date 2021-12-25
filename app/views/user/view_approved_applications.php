@@ -41,7 +41,7 @@
                 }
                 echo "<td> <a href=" . $row['documents'] . " download>" . basename($row['documents']) . "</a>";
             ?>
-                <td><a href=<?php echo "pharm_acc_create.php?id=".$row['id']?>>Create Account</a></td>
+                <td><a href=<?php echo SROOT."UserHandler/pharmAccCreat/".$row['id'];?>>Create Account</a></td>
                 </tr>
             <?php } ?>
 
