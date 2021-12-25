@@ -16,6 +16,13 @@
             $this->view->render('user/view_applications');
         }
 
+        public function viewApprovedAction(){
+            $this->UserModel = User::currentLoggedInUser();
+            $result = $this->UserModel->findApprovedApplications();
+            $this->view->approvedApplications = $result;
+            $this->view->render('user/view_approved_applications');
+        }
+
         public function changeStatusAction(){
             $this->ApplicationModel->changeStatus($_POST['id'],$_POST['status']);
             Router::redirect('ApplicationHandler/view');
