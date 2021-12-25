@@ -9,8 +9,7 @@
 <body>
     <?php if(isset($_SESSION['role']) && !strcmp($_SESSION['role'],'super_admin')) { ?>
     <h2>Customer Details<hr></h2>
-    
-    <?php if (count($this->$results_customers)> 0) { ?>
+    <?php if (count($this->result_customer)> 0) { ?>
     <div class="table-div">
         <table class="table">
             <thead>
@@ -24,7 +23,7 @@
             </thead>
             <?php 
             
-            foreach ($this->results_customers as $row) {
+            foreach ($this->result_customer as $row) {
                 $row = (array) $row;
                 echo "<tr>";
                 echo "<td>" . $row["username"] . "</td>";
@@ -45,7 +44,7 @@
 
     <h2>Pharmacy Details<hr></h2>
     
-    <?php if (count($this->$results_pharmacies) > 0) { ?>
+    <?php if (count($this->result_pharmacies) > 0) { ?>
     <div class="table-div">
         <table class="table">
             <thead>
@@ -59,7 +58,7 @@
             </thead>
             <?php 
             
-            foreach ($this->results_pharmacies as $row) {
+            foreach ($this->result_pharmacies as $row) {
                 $row = (array) $row;
                 echo "<tr>";
                 echo "<td>" . $row["username"] . "</td>";
