@@ -6,6 +6,7 @@ class Item extends Model{
     {
         $table = 'itemtable';
         parent::__construct($table);
+        $multiton = [];
     }
 
     public function saveApplication($params){
@@ -40,4 +41,5 @@ class Item extends Model{
             'deleted'=>1
         ]);
     }
+
 }
