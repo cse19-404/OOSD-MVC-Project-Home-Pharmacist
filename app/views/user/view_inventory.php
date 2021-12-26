@@ -53,7 +53,9 @@
         <form method="POST" action="<?=SROOT?>ItemHandler/viewItem/add">
             <input type="submit" name="Add" value="Add new Item">
         </form>
-        <br><br><a href="dashboard.php">Go to dashboard</a>
+        <br>
+        <br>
+        <a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
 
     <?php } else {
         echo "<h1> <a href='index.php'> Log in first </a> </h1>";

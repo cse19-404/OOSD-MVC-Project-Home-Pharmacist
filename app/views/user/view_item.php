@@ -37,7 +37,7 @@
         <br><br>
         <input type="submit" name="submit" value="Submit">
     </form>
-    <br><br><a href="inventory.php">Go to inventory</a>
+    <br><br><a href="<?=SROOT?>ItemHandler/view">Go to inventory</a>
 </body>
 
 </html>

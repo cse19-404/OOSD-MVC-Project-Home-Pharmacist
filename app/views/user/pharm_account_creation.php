@@ -43,7 +43,7 @@
   <br><br>
   <input type="submit" name="submit" value="Submit">
 </form>
-<br><br><a href="dashboard.php">Go to Dashboard</a>
+<br><br><a href="<?=SROOT?>ApplicationHandler/viewApproved">Go to Approved Applications</a>
 <?php } else {
     header('Location: index.php');
 }?>
