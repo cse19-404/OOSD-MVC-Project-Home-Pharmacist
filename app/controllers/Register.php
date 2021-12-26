@@ -20,7 +20,7 @@
                     if ($this->UserModel && password_verify(Input::get('password'),$this->UserModel->password)){
                         $this->UserModel->login();
                         self::$_role = 'customer';
-                        $this->view->render('user/dashboard');
+                        Router::redirect('CustomerDashboard');
                     }else {
                         $this->view->errcreditionals = '<li class=bg-danger> Wrong Creditionals </li>';
                         $this->view->render('register/login');
@@ -30,7 +30,7 @@
                     if ($this->PharmacyModel && password_verify(Input::get('password'),$this->PharmacyModel->password)){
                         $this->PharmacyModel->login();
                         self::$_role = 'pharmacy';
-                        $this->view->render('user/dashboard');
+                        Router::redirect('PharmacyDashboard');
                     }else {
                         $this->view->errcreditionals = '<li class=bg-danger> Wrong Creditionals </li>';
                         $this->view->render('register/login');
