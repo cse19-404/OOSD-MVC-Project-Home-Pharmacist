@@ -120,9 +120,8 @@ class Model
     {
         $data = new stdClass();
         foreach ($this->_columnNames as $column) {
-            $data->column = $this->column;
+            $data->{$column} = $this->{$column};
         }
-
         return $data;
     }
 

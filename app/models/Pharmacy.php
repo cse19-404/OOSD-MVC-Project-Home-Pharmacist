@@ -52,4 +52,8 @@ class Pharmacy extends Model{
         return true;
     }
 
+    public function findAllItems(){
+        return $this->_db->find('itemtable',['conditions'=>'pharmacy_id=? AND status=?','bind' => [$this->id,0]]);
+    }
+
 }

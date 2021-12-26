@@ -31,7 +31,7 @@ if (isset($_SESSION['username'])) {
         <a href="<?=SROOT?>ApplicationHandler/viewApproved"><h2>Pharmacy Account Creation</h2></a>
         <?php } ?>
         <?php if ($_SESSION['role']==='pharmacy') { ?>
-        <a href="inventory.php"><h2>View Inventory</h2></a><br>
+        <a href="<?=SROOT?>ItemHandler/view"><h2>View Inventory</h2></a><br>
         <?php } ?>
         <a href="<?=SROOT?>register/logout"><h2>Logout</h2></a><br><br>
         <h3><?php if(isset($_GET['msg'])){echo $_GET['msg'];} ?></h3>
