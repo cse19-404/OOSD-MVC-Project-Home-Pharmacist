@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2021 at 05:13 PM
+-- Generation Time: Dec 28, 2021 at 06:42 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.19
 
@@ -51,17 +51,17 @@ INSERT INTO `applicationtable` (`id`, `email`, `pharmacy_name`, `latitude`, `lon
 (2, 'jayapharm99@gmail.com', 'Jaya Pharmacy', 6.03575, 80.2384, 0, 'uploads/Evidence02.docx', 'declined', 0, 'No.9,Akuressa Rd,Galle', '012-1212124', 0),
 (3, 'lankapharmacy00@gmail.com', 'Lanka Pharmacy', 6.88842, 81.3439, 1, 'uploads/Evidence03.txt', 'approved', 0, 'No.7,Colombo Rd,Monaragala', '012-1212178', 0),
 (4, 'unitedpharm23@yahoo.com', 'United Pharmacy', 6.98862, 81.0574, 1, 'uploads/Evidence04.txt', 'pending', 0, 'No.23,Bandarawela Rd,Badulla', '012-1911913', 0),
-(5, 'lankapharmacy66@gmail.com', 'Lanka Pharmacy', 7.16491, 80.5694, 0, 'uploads/Evidence05.txt', 'pending', 0, 'No.78,Kandy Rd,Gampola', '099-1212998', 0),
+(5, 'lankapharmacy66@gmail.com', 'Lanka Pharmacy', 7.16491, 80.5694, 0, 'uploads/Evidence05.txt', 'pending', 0, 'No.78,Kandy Rd,Gampola', '099-1212998', 1),
 (6, 'citypharmacy404@gmail.com', ' City Pharmacy', 7.33816, 80.9989, 1, 'uploads/Evidence06.txt', 'pending', 0, 'No.22,Badulla Rd,Mahiyanganaya', '099-1212001', 1),
 (7, 'asiri@gmil.com', 'Asiri Pharmacy', 1.23, 80, 1, 'uploads/Evidence07.txt', 'declined', 0, 'no 12, Colombo', '011 - 1234333', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `inventory`
+-- Table structure for table `itemtable`
 --
 
-CREATE TABLE `inventory` (
+CREATE TABLE `itemtable` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
@@ -74,11 +74,11 @@ CREATE TABLE `inventory` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `inventory`
+-- Dumping data for table `itemtable`
 --
 
-INSERT INTO `inventory` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `price_per_unit_quantity`, `prescription_needed`, `pharmacy_id`, `status`) VALUES
-(1, 'KLODIC', 'R3475M', 'TABLETS', 1350, 10, 1, 1, 0),
+INSERT INTO `itemtable` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `price_per_unit_quantity`, `prescription_needed`, `pharmacy_id`, `status`) VALUES
+(1, 'KLODIC', 'R3475M', 'TABLETS', 1350, 1000, 1, 1, 0),
 (2, 'SILOCIN 4', 'NP1403M', 'CAPSULES', 1200, 16, 1, 1, 0),
 (3, 'SITALO  100', 'NP3863M', 'FILM COA', 920, 120, 1, 1, 0),
 (4, 'PANADOL', 'NP3383M', 'CARDS', 539, 20, 0, 1, 0),
@@ -156,9 +156,9 @@ ALTER TABLE `applicationtable`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `inventory`
+-- Indexes for table `itemtable`
 --
-ALTER TABLE `inventory`
+ALTER TABLE `itemtable`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -184,9 +184,9 @@ ALTER TABLE `applicationtable`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT for table `inventory`
+-- AUTO_INCREMENT for table `itemtable`
 --
-ALTER TABLE `inventory`
+ALTER TABLE `itemtable`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
