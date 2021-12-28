@@ -37,6 +37,8 @@ class User extends Model
 
     public function logout(){
         Session::delete(CURRENT_USER_SESSION_NAME);
+        Session::delete('role');
+        Session::delete('username');
         self::$currentLoggedInUser = null;
         return true;
     }
@@ -65,7 +67,7 @@ class User extends Model
     }
 
     public function getAllNearByPharmacies(){
-        $pharmacies = $this->_db->find('pharmacytable');
+        $pharmacies = $this->findAllPharmacies();
         foreach ($pharmacies as $pharmacy) {
             $pharmacy= (array) $pharmacy;
             $distance = distance($this->latitude,$this->longitude,$pharmacy['latitude'],$pharmacy['longitude']);
