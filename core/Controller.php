@@ -12,9 +12,13 @@ class Controller
         $this->view = new View();
     }
 
-    protected function load_model($model){
+    protected function load_model($model,$id=-2){
         if (class_exists($model)){
-            $this->{$model.'Model'} = new $model();
+            if($id==-2){
+                $this->{$model.'Model'} = new $model();
+            } else{
+                $this->{$model.'Model'} = new $model(DummyItem::getInstance($id));
+            }        
         }
     }
 }

@@ -2,11 +2,13 @@
 
     class ItemHandler extends Controller{
 
+
         public function __construct($controller,$action)
         {
             parent::__construct($controller,$action);
             $this->load_model('Pharmacy');
-            $this->load_model('Item');
+            //var_dump($GLOBALS);
+            $this->load_model('Item',-1);
         }
 
         public function viewAction(){
@@ -16,14 +18,17 @@
             $this->view->render('user/view_inventory');
         }
 
-        public function viewItemAction($mode,$id=''){
+        public function viewItemAction($mode,$id=-1){
+            
             if($mode==='edit'){
+                $this->load_model('Item',$id);
                 $this->ItemModel->findFirst(['conditions'=>'id=?','bind' => [$id]]);
                 //dnd($this->ItemModel);
                 $this->view->itemData = (array)$this->ItemModel->data();
                 //dnd($this->view->itemData);
                 $this->view->mode = $mode;
                 $this->view->render('user/view_item');
+                
             }else{
                 $this->view->itemData = (array)$this->ItemModel->data();
                 $this->view->mode = $mode;
@@ -69,7 +74,7 @@
         }
 
         public function deleteItemAction($id){
-            $this->ItemModel->update($id,['status'=> 1]);
+            $this->ItemModel->deleteItem($id);
             $this->view->render('user/view_inventory');
             Router::redirect('ItemHandler/view');
         }

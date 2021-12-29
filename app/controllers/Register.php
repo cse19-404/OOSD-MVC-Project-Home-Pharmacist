@@ -30,6 +30,7 @@
                     if ($this->PharmacyModel && password_verify(Input::get('password'),$this->PharmacyModel->password)){
                         $this->PharmacyModel->login();
                         self::$_role = 'pharmacy';
+                        //dnd($GLOBALS['multiton']);
                         Router::redirect('PharmacyDashboard');
                     }else {
                         $this->view->errcreditionals = '<li class=bg-danger> Wrong Creditionals </li>';
