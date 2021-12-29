@@ -26,7 +26,7 @@ class PrefilledformHandler extends Controller{
         $this->getValues($formId, $PharmId);
         $this->view->processed = true;
         //dnd($this->view->result);
-        $this->getItemModels(array_keys($_SESSION['tempItemId']));
+        if(isset($_SESSION['tempItemId'])){$this->getItemModels(array_keys($_SESSION['tempItemId']));}
         $this->view->render('search/prefilled_form');
     }
 
