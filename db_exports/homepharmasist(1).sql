@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2021 at 10:10 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.19
+-- Generation Time: Dec 29, 2021 at 11:29 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -78,14 +78,15 @@ CREATE TABLE `itemtable` (
 --
 
 INSERT INTO `itemtable` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `price_per_unit_quantity`, `prescription_needed`, `pharmacy_id`, `status`) VALUES
-(1, 'KLODIC', 'R3475M', 'TABLETS', 1350, 1000, 1, 1, 0),
+(1, 'KLODIC', 'R3475M', 'TABLETS', 1350, 1000, 1, 1, 1),
 (2, 'SILOCIN 4', 'NP1403M', 'CAPSULES', 1200, 16, 1, 1, 0),
 (3, 'SITALO  100', 'NP3863M', 'FILM COA', 920, 120, 1, 1, 0),
 (4, 'PANADOL', 'NP3383M', 'CARDS', 539, 20, 0, 1, 0),
 (5, 'SAMAHAN', 'R3214M', 'PACKET', 770, 15, 0, 1, 0),
 (6, 'SUSTAGEN', 'NP2239M', 'TIN', 50, 2300, 0, 1, 0),
 (7, 'URIMAX 0.4 mg', 'R2406M', 'TABLETS', 390, 8.5, 1, 1, 0),
-(8, 'GEFTIWEL 250', 'NP2043M', 'TABLETS', 589, 4.75, 1, 1, 0);
+(8, 'GEFTIWEL 250', 'NP2043M', 'TABLETS', 589, 4.75, 1, 1, 0),
+(9, 'PANADOL', 'NP3383M', 'BOTTLE', 539, 20, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -115,6 +116,24 @@ INSERT INTO `pharmacytable` (`id`, `username`, `password`, `name`, `License_no`,
 (1, 'New Pharmacy', '$2y$10$SUkO0oGEyWXL7CPHyIH4V.mfXEpxSUJJGif6qbtn64OUtNVdfn/rO', 'New Pharmacy', '1234E', '12\\2,Kandy road,Kurunegala', '012-1212123', 'newpharmacy123@gmail.com', 7.4818, 80.3609, 1),
 (2, 'Lanka Pharmacy', '$2y$10$i6uod78BtGhd.qZvN5nO/./wwBbn/6C42HRCNOC6xkXejax.IDU4W', 'Lanka Pharmacy', 'abcd', 'No.7,Colombo Rd,Monaragala', '012-1212178', 'lankapharmacy00@gmail.com', 6.88842, 81.3439, 1),
 (3, 'Asiri Pharmacy', '$2y$10$AEjqDR8/oItigkSIXBRutOYNq89mmUiZcl9DGGJrNUH6p.f2LEeZG', 'Asiri Pharmacy', '12345', 'no 12, Colombo', '011 - 1234333', 'asiri@gmil.com', 1.23, 80, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prefilledformtable`
+--
+
+CREATE TABLE `prefilledformtable` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `pharmacy_id` int(11) NOT NULL,
+  `no_of_items` varchar(255) NOT NULL,
+  `items` varchar(255) NOT NULL,
+  `unit_prices` varchar(255) NOT NULL,
+  `quantities` varchar(255) NOT NULL,
+  `prescription` varchar(255) NOT NULL,
+  `total` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -173,6 +192,12 @@ ALTER TABLE `pharmacytable`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `prefilledformtable`
+--
+ALTER TABLE `prefilledformtable`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `usertable`
 --
 ALTER TABLE `usertable`
@@ -192,13 +217,19 @@ ALTER TABLE `applicationtable`
 -- AUTO_INCREMENT for table `itemtable`
 --
 ALTER TABLE `itemtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pharmacytable`
 --
 ALTER TABLE `pharmacytable`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `prefilledformtable`
+--
+ALTER TABLE `prefilledformtable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `usertable`

@@ -32,9 +32,9 @@ class Model
     {
         $results = [];
         $resultsQuery = $this->_db->find($this->_table, $params);
-
+        //dnd($resultsQuery);
         foreach ($resultsQuery as $result) {
-            $obj = new $this->_modelName($this->_table);
+            $obj = ($this->_modelName === 'Item')? new $this->_modelName(DummyItem::getInstance(-1)) :new $this->_modelName($this->_table);
             $obj->populateObjData($result);
             $results[] = $obj;
         }
@@ -61,7 +61,7 @@ class Model
 
     public function findById($id)
     {
-        return $this->findFirst([
+        $this->findFirst([
             'conditions' => ['id=?'],
             'bind' => [$id]
         ]);

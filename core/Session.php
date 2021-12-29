@@ -14,10 +14,8 @@
             return $_SESSION[$name] = $value;
         }
 
-        public static function delete($name){
-            if (self::exists($name)){
-                unset($_SESSION[$name]);
-            }
+        public static function delete(){
+            session_unset();
         }
     
     }

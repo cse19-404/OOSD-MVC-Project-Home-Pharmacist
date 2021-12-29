@@ -152,7 +152,7 @@
             }
 
             $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
-            // dnd($sql);
+            //dnd($sql);
             
 
             if ($this->query($sql,$bind)){

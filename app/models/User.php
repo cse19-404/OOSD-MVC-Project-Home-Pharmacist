@@ -32,13 +32,12 @@ class User extends Model
         Session::set($this->_sessionName, $this->id);
         Session::set('role',$this->role);
         Session::set('username',$this->username);
+        Session::set('multiton',[]);
         self::$currentLoggedInUser = $this;
     }
 
     public function logout(){
-        Session::delete(CURRENT_USER_SESSION_NAME);
-        Session::delete('role');
-        Session::delete('username');
+        Session::delete();
         self::$currentLoggedInUser = null;
         return true;
     }
@@ -76,5 +75,16 @@ class User extends Model
         asort($distance_list);
         $distance_list = array_slice($distance_list,0,10);       
         return (join(',',array_keys($distance_list)));
+    }
+
+    public function searchPharmacy($pharmName){
+        $resPharms = [];
+        $results = $this->findAllPharmacies();
+        foreach($results as $row){
+            if(str_contains(strtoupper($row->name),strtoupper($pharmName))){
+                $resPharms[] = $row;
+            }
+        }
+        return $resPharms;
     }
 }
