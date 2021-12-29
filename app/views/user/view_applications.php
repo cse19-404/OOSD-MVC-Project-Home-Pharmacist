@@ -41,7 +41,7 @@
                 <td>
                     <?php $statuses = ['pending', 'approved', 'declined'] ?>
                     <form action='<?=SROOT?>ApplicationHandler/changeStatus' method='post'>
-                        <select name='status'>
+                        <select name='status' onchange='this.form.submit()'>
                             <?php
                             for ($i = 0; $i < 3; $i++) {
                                 if ($statuses[$i] == $row['application_status']) {
@@ -53,8 +53,6 @@
                             ?>
                         </select>
                         <?php echo "<input type='text' value='" . $row['id'] . "' name='id' hidden>" ?>
-                        <input type='submit' value='Update'>
-
                     </form>
                 </td>
                 <td>
