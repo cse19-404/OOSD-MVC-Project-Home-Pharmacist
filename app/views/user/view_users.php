@@ -9,7 +9,7 @@
 <body>
     <?php if(isset($_SESSION['role']) && !strcmp($_SESSION['role'],'super_admin')) { ?>
     <h2>Customer Details<hr></h2>
-    <?php if (count($this->result_customer)> 0) { ?>
+    <?php if (is_array($this->result_customer) && count($this->result_customer)> 0) { ?>
     <div class="table-div">
         <table class="table">
             <thead>
@@ -44,7 +44,7 @@
 
     <h2>Pharmacy Details<hr></h2>
     
-    <?php if (count($this->result_pharmacies) > 0) { ?>
+    <?php if (is_array($this->result_pharmacies) && count($this->result_pharmacies) > 0) { ?>
     <div class="table-div">
         <table class="table">
             <thead>

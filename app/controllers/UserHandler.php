@@ -54,4 +54,17 @@
 
         }
 
+        public function updatenearbypharmaciesAction(){
+            $user = User::currentLoggedInUser();
+            $users = $user->find();
+            
+            foreach ($users as $user) {
+                $nearbypharmacies = $user->getAllNearByPharmacies($user->latitude,$user->longitude);
+                $user->nearbypharmacies = $nearbypharmacies;
+                $user->save();
+            }
+            
+            $this->view->render('user/waiting');
+        }
+
     }

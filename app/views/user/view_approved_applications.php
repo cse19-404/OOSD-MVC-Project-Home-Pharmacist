@@ -11,7 +11,7 @@
 <body>
     <h1>Approved Applications<hr></h1>
     <?php if(isset($_SESSION['role']) && !strcmp($_SESSION['role'],'super_admin')) { ?>
-        <?php if (count($this->approvedApplications) > 0) { ?>
+        <?php if (is_array($this->approvedApplications) && count($this->approvedApplications) > 0) { ?>
         <div class="table-div">
         <table class='table'>
             <thread>

@@ -49,6 +49,8 @@ class Pharmacy extends Model{
 
     public function logout(){
         Session::delete(CURRENT_USER_SESSION_NAME);
+        Session::delete('role');
+        Session::delete('username');
         self::$currentLoggedInPharmacy = null;
         return true;
     }

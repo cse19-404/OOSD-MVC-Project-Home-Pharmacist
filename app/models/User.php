@@ -37,12 +37,16 @@ class User extends Model
 
     public function logout(){
         Session::delete(CURRENT_USER_SESSION_NAME);
+        Session::delete('role');
+        Session::delete('username');
         self::$currentLoggedInUser = null;
         return true;
     }
 
     public function registerNewUser($params){
         $this->assign($params);
+        $nearbypharmacies = $this->getAllNearByPharmacies($this->latitude,$this->longitude);
+        $this->nearbypharmacies = $nearbypharmacies;
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->save();
     }
@@ -60,5 +64,17 @@ class User extends Model
 
     public function findAllPharmacies(){
         return $this->_db->find('pharmacytable');
+    }
+
+    public function getAllNearByPharmacies(){
+        $pharmacies = $this->findAllPharmacies();
+        foreach ($pharmacies as $pharmacy) {
+            $pharmacy= (array) $pharmacy;
+            $distance = distance($this->latitude,$this->longitude,$pharmacy['latitude'],$pharmacy['longitude']);
+            $distance_list[$pharmacy['name']] = $distance;
+        }
+        asort($distance_list);
+        $distance_list = array_slice($distance_list,0,10);       
+        return (join(',',array_keys($distance_list)));
     }
 }

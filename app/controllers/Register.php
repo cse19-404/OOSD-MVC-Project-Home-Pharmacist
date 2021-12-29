@@ -49,7 +49,8 @@
         }
 
         public function logoutAction(){
-            if (self::$_role === 'customer'){
+            $user = User::currentLoggedInUser();
+            if ($user->role === 'customer' || $user->role  === 'super_admin'){
                 $this->UserModel->logout();
             }else{
                 $this->PharmacyModel->logout();
