@@ -31,6 +31,14 @@ if (isset($_SESSION['username'])) {
         <a href="<?=SROOT?>ApplicationHandler/viewApproved"><h2>Pharmacy Account Creation</h2></a>
         <a href="<?=SROOT?>UserHandler/updatenearbypharmacies"><h2>Update Near By Pharmacies List</h2></a>
         <?php } ?>
+
+        <?php if ($_SESSION['role']==='customer') { ?>
+        <a href="<?=SROOT?>CustomerDashboard/search"><h2>Search</h2></a>
+        <a href="<?=SROOT?>"><h2>Order</h2></a>
+        <a href="<?=SROOT?>"><h2>Seasonal Offers</h2></a>
+        <a href="<?=SROOT?>"><h2>Purchase Hisorty</h2></a>
+        <?php } ?>  
+
         <?php if ($_SESSION['role']==='pharmacy') { ?>
         <a href="<?=SROOT?>ItemHandler/view"><h2>View Inventory</h2></a><br>
         <?php } ?>

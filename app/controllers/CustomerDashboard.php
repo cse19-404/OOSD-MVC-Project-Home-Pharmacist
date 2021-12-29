@@ -9,4 +9,8 @@ class CustomerDashboard extends Controller{
     public function indexAction() {
         $this->view->render('user/dashboard');
     }
+
+    public function searchAction(){
+        $this->view->render('user/select_search');
+    }
 }
