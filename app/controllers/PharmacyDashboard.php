@@ -7,6 +7,6 @@ class PharmacyDashboard extends Controller{
     }
 
     public function indexAction() {
-        $this->view->render('user/dashboard');
+        $this->view->render('user/dashboard');       
     }
 }

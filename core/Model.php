@@ -4,8 +4,6 @@ class Model
 {
     protected $_db, $_table, $_modelName, $_columnNames = [];
 
-    public $id;
-
     public function __construct($table)
     {
         $this->_db = DB::getInstance(HOST,DB_NAME,DB_USER,DB_PASSWORD);

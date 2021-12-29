@@ -1,0 +1,6 @@
+Singelton -->
+    DB class
+
+Multiton -->
+    DummyItem Class
+    Multiton Array in $_SESSION[] super global

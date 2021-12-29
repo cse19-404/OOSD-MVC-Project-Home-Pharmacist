@@ -43,6 +43,7 @@ class Pharmacy extends Model{
         Session::set($this->_sessionName, $this->id);
         Session::set('role','pharmacy');
         Session::set('username',$this->username);
+        Session::set('multiton',[]);
         self::$currentLoggedInPharmacy = $this;
     }
 
