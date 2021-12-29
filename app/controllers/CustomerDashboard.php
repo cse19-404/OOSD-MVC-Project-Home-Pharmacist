@@ -11,6 +11,6 @@ class CustomerDashboard extends Controller{
     }
 
     public function searchAction(){
-        $this->view->render('user/select_search');
+        $this->view->render('search/select_search');
     }
 }
