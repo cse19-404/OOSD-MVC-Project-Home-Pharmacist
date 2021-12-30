@@ -43,11 +43,21 @@ class PrefilledformHandler extends Controller{
     }
 
     public function addQuantityAction($itemId, $formId, $PharmId){
-        $_SESSION['tempItemId'][$itemId] = $_POST['quantity'];
+        $quantity = $_POST['quantity'];
+        $status = $this->checkAvailability($quantity,$itemId,$PharmId);
+        $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
         $this->getValues($formId, $PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
-        
         $this->view->render('search/prefilled_form');
+    }
+    
+    public function checkAvailability($quantity,$itemId,$PharmId){
+        $this->ItemModel->findById($itemId);
+        if($this->ItemModel->quantity >= $quantity){
+            return 'Available';
+        }else {
+            return 'Not Available';
+        }    
     }
 
     private function getValues($formId, $PharmId){
@@ -63,7 +73,7 @@ class PrefilledformHandler extends Controller{
             $cond .= 'id=' . $id . ' OR ';
         }
         $cond = rtrim($cond, ' OR ');
-        //dnd($cond);
+        //  dnd($cond);
         $this->view->items = $this->ItemModel->find(['conditions'=>$cond]);
     }
 

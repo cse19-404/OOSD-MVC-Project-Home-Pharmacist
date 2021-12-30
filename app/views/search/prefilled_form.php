@@ -45,9 +45,10 @@
                     <tr>
                         <td><?=$row->name?></td>
                         <td><?=$row->price_per_unit_quantity?></td>
-                        <td><form action="<?=SROOT?>PrefilledformHandler/addQuantity/<?=$row->getId()?>/<?=$this->formId?>/<?=$this->pharmId?>" method="post"><input type="text" onchange='this.form.submit()' name='quantity' placeholder="_" value=<?php if($_SESSION['tempItemId'][$row->getId()]>0){echo $_SESSION['tempItemId'][$row->getId()];}?>></form></td>
-                        <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0){echo $row->price_per_unit_quantity * $_SESSION['tempItemId'][$row->getId()];}else{echo '-';}?></td>
-                        <td>-</td>
+                        <?php if($_SESSION['tempItemId'][$row->getId()] > 0){$var = explode(",",$_SESSION['tempItemId'][$row->getId()]);}?>
+                        <td><form action="<?=SROOT?>PrefilledformHandler/addQuantity/<?=$row->getId()?>/<?=$this->formId?>/<?=$this->pharmId?>" method="post"><input type="text" onchange='this.form.submit()' name='quantity' placeholder="_" value=<?php if($_SESSION['tempItemId'][$row->getId()]>0){echo $var[0];}?>></form></td>
+                        <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0){ echo $row->price_per_unit_quantity * $var[0];}else{echo '-';}?></td>
+                        <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0){ echo $var[1];}else{echo '-';}?></td>
                     </tr>
                 <?php }}?>
             </tr>
