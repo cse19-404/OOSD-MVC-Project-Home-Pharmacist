@@ -57,4 +57,21 @@ class Pharmacy extends Model{
         return $this->_db->find('itemtable',['conditions'=>'pharmacy_id=? AND status=?','bind' => [$this->id,0]]);
     }
 
+    public function getavailabity($items){
+        $results = $this->findAllItems();
+        $count = 0;
+        $price = 0;
+        foreach($items as $item=>$quantity){
+            foreach($results as $row){
+                if(str_contains(strtoupper($row->name),strtoupper($item)) && $row->quantity>$quantity){
+                    $count+=1;
+                    $price += $row->price_per_unit_quantity*$quantity;
+                    break;
+                }
+            }     
+        }
+
+        return [$count,$price];
+    }
+
 }
