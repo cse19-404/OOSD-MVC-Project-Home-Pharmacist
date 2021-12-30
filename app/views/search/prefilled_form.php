@@ -53,5 +53,10 @@
             </tr>
         </table>
     </div>
+    <?php if($this->pharmId==-1){?>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1">Select Another Form</a>
+    <?php }else {?>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>">Go Back</a>
+    <?php } ?>
 </body>
 </html>

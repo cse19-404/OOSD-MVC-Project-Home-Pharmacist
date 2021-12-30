@@ -27,5 +27,6 @@
         echo "All Pharmacies Found 0 out of ".$count;}?>
 
     </div>
+    <br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
 </body>
 </html>
