@@ -43,14 +43,14 @@ class PrefilledformHandler extends Controller{
 
     public function addQuantityAction($itemId, $PharmId){
         $quantity = $_POST['quantity'];
-        $status = $this->checkAvailability($quantity,$itemId,$PharmId);
+        $status = $this->checkAvailability($quantity,$itemId);
         $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
         $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
         $this->view->render('search/prefilled_form');
     }
     
-    public function checkAvailability($quantity,$itemId,$PharmId){
+    public function checkAvailability($quantity,$itemId){
         $this->ItemModel->findById($itemId);
         if($this->ItemModel->quantity >= $quantity){
             return 'Available';
@@ -115,12 +115,14 @@ class PrefilledformHandler extends Controller{
                 if ($result){
                     $result = $result[0];
                     $itemId = $result->id;
+                    $quantity = $value;
+                    $status = $this->checkAvailability($quantity,$itemId);
                     if(isset($_SESSION['tempItemId'])){
                         if(!in_array($itemId, $_SESSION['tempItemId'])){
-                            $_SESSION['tempItemId'][$itemId] = $value;
+                            $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
                         }
                     }else{
-                        $_SESSION['tempItemId'][$itemId] = $value;
+                        $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
                     }
                 }               
             }
