@@ -28,7 +28,7 @@
                     <table>
                         <?php foreach($this->result as $row){?>
                             <tr>
-                                <td><a href="<?=SROOT?>PrefilledformHandler/loadForm/<?=$row->id?>"><?php echo $row->name . '   ' . $row->address?></a></td>
+                                <td><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$row->id?>"><?php echo $row->name . '   ' . $row->address?></a></td>
                             </tr>
                         <?php }?>
                     </table>

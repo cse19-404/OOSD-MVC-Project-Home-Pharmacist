@@ -14,39 +14,38 @@ class PrefilledformHandler extends Controller{
     public function loadFormAction($PharmId){
         $this->PharmacyModel->findById($PharmId);
         $this->view->pharmName = $this->PharmacyModel->name;
-        $this->view->formId = $this->PrefilledformModel->getLastId()+1;
         $this->view->pharmId = $PharmId;
         //dnd($this->view->formId);
         $this->view->render('search/prefilled_form');
     }
 
-    public function searchItemAction($formId, $PharmId){
+    public function searchItemAction($PharmId){
         $results = $this->ItemModel->searchItem($_POST["item-name"], $PharmId);
         $this->view->result = $results;
-        $this->getValues($formId, $PharmId);
+        $this->getValues($PharmId);
         $this->view->processed = true;
         //dnd($this->view->result);
         if(isset($_SESSION['tempItemId'])){$this->getItemModels(array_keys($_SESSION['tempItemId']));}
         $this->view->render('search/prefilled_form');
     }
 
-    public function addItemAction($itemId, $formId, $PharmId){
+    public function addItemAction($itemId, $PharmId){
         if(isset($_SESSION['tempItemId'])){
             if(!in_array($itemId, $_SESSION['tempItemId'])){$_SESSION['tempItemId'][$itemId] = 0;}
         }else{$_SESSION['tempItemId'][$itemId] = 0;}
         //dnd($_SESSION['tempItemId']);
-        $this->getValues($formId, $PharmId);
+        $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
         
 
         $this->view->render('search/prefilled_form');
     }
 
-    public function addQuantityAction($itemId, $formId, $PharmId){
+    public function addQuantityAction($itemId, $PharmId){
         $quantity = $_POST['quantity'];
         $status = $this->checkAvailability($quantity,$itemId,$PharmId);
         $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
-        $this->getValues($formId, $PharmId);
+        $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
         $this->view->render('search/prefilled_form');
     }
@@ -60,10 +59,9 @@ class PrefilledformHandler extends Controller{
         }    
     }
 
-    private function getValues($formId, $PharmId){
+    private function getValues($PharmId){
         $this->PharmacyModel->findById($PharmId);
         $this->view->pharmName = $this->PharmacyModel->name;
-        $this->view->formId = $formId;
         $this->view->pharmId = $PharmId;
     }
 
@@ -75,6 +73,56 @@ class PrefilledformHandler extends Controller{
         $cond = rtrim($cond, ' OR ');
         //  dnd($cond);
         $this->view->items = $this->ItemModel->find(['conditions'=>$cond]);
+    }
+
+    public function loadSearchFormAction($pharmId){
+        if ($pharmId != -1){
+            $this->PharmacyModel->findById($pharmId);
+            $this->view->pharmName = $this->PharmacyModel->name;
+            $this->view->pharmId = $pharmId;
+        }else {
+            $this->view->pharmName = 'Nearby Pharmacies';
+        }
+       
+        $this->view->render('search/searchform');
+    }
+
+    public function addRawItemAction($pharmId){
+        if ($pharmId != -1){
+            $this->PharmacyModel->findById($pharmId);
+            $this->view->pharmName = $this->PharmacyModel->name;
+            $this->view->pharmId = $pharmId;
+        }else {
+            $this->view->pharmName = 'Nearby Pharmacies';
+        }
+        $_SESSION['rawData'][$_POST['item-name']] = $_POST['quantity'];
+        $this->view->render('search/searchform');
+    }
+
+    public function processItemsAction ($pharmId){
+        $rawData = $_SESSION['rawData'];
+        unset($_SESSION['rawData']);
+        if ($pharmId != -1){
+            $this->PharmacyModel->findById($pharmId);
+            $this->view->pharmName = $this->PharmacyModel->name;
+            $this->view->pharmId = $pharmId;
+            foreach ($rawData as $key => $value) {
+                $result = $this->ItemModel->searchItem($key, $pharmId);
+                if ($result){
+                    $result = $result[0];
+                    $itemId = $result->id;
+                    if(isset($_SESSION['tempItemId'])){
+                        if(!in_array($itemId, $_SESSION['tempItemId'])){
+                            $_SESSION['tempItemId'][$itemId] = $value;
+                        }
+                    }else{
+                        $_SESSION['tempItemId'][$itemId] = $value;
+                    }
+                }               
+            }
+        }
+        $this->getItemModels(array_keys($_SESSION['tempItemId']));
+        $this->view->render('search/prefilled_form');
     }
 
 }
