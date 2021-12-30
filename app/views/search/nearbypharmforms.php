@@ -18,7 +18,7 @@
             </tr>
             <?php }?>
         </table>
-        <?php }?>
+        <?php }else{"All Pharmacies Found 0 out of ".count($this->items);}?>
     </div>
 </body>
 </html>

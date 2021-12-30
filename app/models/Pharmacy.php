@@ -61,6 +61,9 @@ class Pharmacy extends Model{
         $results = $this->findAllItems();
         $count = 0;
         $price = 0;
+        if (!$results) {
+            return [$count,$price];
+        }
         foreach($items as $item=>$quantity){
             foreach($results as $row){
                 if(str_contains(strtoupper($row->name),strtoupper($item)) && $row->quantity>$quantity){

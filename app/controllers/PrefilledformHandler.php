@@ -105,7 +105,6 @@ class PrefilledformHandler extends Controller{
             unset($_SESSION['tempItemId']);
         }
         $rawData = $_SESSION['rawData'];
-        // unset($_SESSION['rawData']);
         if ($pharmId != -1){
             $this->PharmacyModel->findById($pharmId);
             $this->view->pharmName = $this->PharmacyModel->name;
@@ -126,7 +125,7 @@ class PrefilledformHandler extends Controller{
                     }
                 }               
             }
-            $this->getItemModels(array_keys($_SESSION['tempItemId']));
+            if(isset($_SESSION['tempItemId'])){$this->getItemModels(array_keys($_SESSION['tempItemId']));}
             $this->view->render('search/prefilled_form');
         }else {
             $this->searchFromNearbyPharmacies($rawData);
@@ -142,22 +141,28 @@ class PrefilledformHandler extends Controller{
 
     private function searchFromNearbyPharmacies($items){
         $user = User::currentLoggedInUser();
-        $pharmacyNames = explode(',',$user->nearbypharmacies);
-        foreach ($pharmacyNames as $pharmacy) {
-            $pharmacies [] = $user->searchPharmacy($pharmacy)[0];
+        $pharmacyIds = explode(',',$user->nearbypharmacies);
+        $cond = '';
+        $pharmacies = [];
+        foreach($pharmacyIds as $id){
+            $cond .= 'id=' . $id . ' OR ';
         }
-
+        $cond = rtrim($cond, ' OR ');
+        //dnd($cond);
+        $pharmacies = $this->PharmacyModel->find(['conditions'=>$cond]);
+        $availabilty = [];
+        $pharm_map = [];
         foreach ($pharmacies as $pharmacy) {
             $pharm = new Pharmacy();
             $pharm->findById($pharmacy->id);
-            $pharm->getavailabity($items);
-            $availabilty[$pharmacy->id] = $pharm->getavailabity($items);
-            $pharm_map [$pharmacy->id] = $pharmacy->name;
+            if ($pharm->getavailabity($items)[0] > 0) {
+                $availabilty[$pharmacy->id] = $pharm->getavailabity($items);
+                $pharm_map [$pharmacy->id] = $pharmacy->name;
+            }
         }
-        // usort($availabilty,function($a,$b){
-        //     return $b[0] <=> $a[0];
-        // });
+
         arsort($availabilty);
+
         $this->view->availabilty = $availabilty;
         $this->view->pharm_map = $pharm_map;
         $this->view->items = $items;
