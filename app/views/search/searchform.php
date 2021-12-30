@@ -36,9 +36,15 @@
     </div>
     <div>
         <form action="<?=SROOT?>PrefilledformHandler/processItems/<?=$this->pharmId ?>" method="post">
-            <input type="submit" value="Submit">
+            <br><br><input type="submit" value="Submit">
         </form>
     </div>
+    <form action="<?=SROOT?>PrefilledformHandler/<?php if($this->pharmId == -1)
+        {echo 'nearBy';} 
+        else {echo 'loadSearchForm/'.$this->pharmId ;}  ?>/clear" method="post">
+        <br><br><input type="submit" value="Clear Items">
+    </form>
+    <br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
 </body>
 
 </html>

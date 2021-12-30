@@ -75,7 +75,12 @@ class PrefilledformHandler extends Controller{
         $this->view->items = $this->ItemModel->find(['conditions'=>$cond]);
     }
 
-    public function loadSearchFormAction($pharmId){
+    public function loadSearchFormAction($pharmId,$clear=''){
+        if ($clear === 'clear'){
+            if (isset($_SESSION['rawData'])){
+                unset($_SESSION['rawData']);
+            }
+        }
         if ($pharmId != -1){
             $this->PharmacyModel->findById($pharmId);
             $this->view->pharmName = $this->PharmacyModel->name;
@@ -133,7 +138,12 @@ class PrefilledformHandler extends Controller{
        
     }
 
-    public function nearByAction(){
+    public function nearByAction($clear=''){
+        if ($clear === 'clear'){
+            if (isset($_SESSION['rawData'])){
+                unset($_SESSION['rawData']);
+            }
+        }
         $this->view->pharmId = -1;
         $this->view->pharmName = 'Near By Pharmacies';
         $this->view->render('search/searchform');
@@ -166,9 +176,17 @@ class PrefilledformHandler extends Controller{
         $this->view->availabilty = $availabilty;
         $this->view->pharm_map = $pharm_map;
         $this->view->items = $items;
+        $this->view->pharmName = 'nearBy';
         $_SESSION['rawData'] = $items;
         $this->view->render('search/nearbypharmforms');
         
+    }
+
+    public function clearItemsAction($pharmID,$pharmName){
+        unset($_SESSION['rawData']);
+        $this->pharmID = $pharmID;
+        $this->pharmName = $pharmName;
+        $this->view->render('search/searchform');
     }
 
 }

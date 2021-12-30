@@ -57,5 +57,7 @@
         }
     }?>
 
+    <br><br><a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+
 </body>
 </html>

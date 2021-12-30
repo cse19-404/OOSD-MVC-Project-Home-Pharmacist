@@ -18,7 +18,14 @@
             </tr>
             <?php }?>
         </table>
-        <?php }else{"All Pharmacies Found 0 out of ".count($this->items);}?>
+        <?php }else{
+        if(isset($this->items)){
+            $count = count($this->items);
+        }else {
+            $count = 0;
+        }
+        echo "All Pharmacies Found 0 out of ".$count;}?>
+
     </div>
 </body>
 </html>

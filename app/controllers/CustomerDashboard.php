@@ -12,6 +12,9 @@ class CustomerDashboard extends Controller{
     }
 
     public function searchAction(){
+        if (isset($_SESSION['rawData'])){
+            unset($_SESSION['rawData']);
+        }
         $this->view->render('search/select_search');
     }
 

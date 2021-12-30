@@ -61,7 +61,7 @@ class Pharmacy extends Model{
         $results = $this->findAllItems();
         $count = 0;
         $price = 0;
-        if (!$results) {
+        if (!$results || !$items) {
             return [$count,$price];
         }
         foreach($items as $item=>$quantity){
