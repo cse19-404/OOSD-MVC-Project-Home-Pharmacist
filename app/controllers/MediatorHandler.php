@@ -11,9 +11,15 @@ class MediatorHandler extends Controller{
 
     }
 
-    public function receivePharmacyMessageAction($mode,$id){
-        $this->UserModel = User::currentLoggedInUser();
-        $from = $this->UserModel->username;
+    public function receiveMessageAction($mode,$id){
+
+        if ($_SESSION['role']==='pharmacy') {
+            $this->PharmacyModel = Pharmacy::currentLoggedInPharmacy();
+            $from = $this->PharmacyModel->username;
+        }else{
+            $this->UserModel = User::currentLoggedInUser();
+            $from = $this->UserModel->username;
+        }
         if ($mode === 'pharmacy') {
             $this->PharmacyModel->findById($id);
             $to = $this->PharmacyModel->username;
@@ -23,6 +29,9 @@ class MediatorHandler extends Controller{
         }
 
         $this->MediatorModel = new Mediator();
-        $this->MediatorModel->savePharmacyMessage($_POST,$to,$from);
+        $this->MediatorModel->saveMessage($_POST,$to,$from);
+
+        $this->view->render('mediator/sucess');
+
     }
 }

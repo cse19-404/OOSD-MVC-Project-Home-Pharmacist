@@ -37,7 +37,12 @@ class CustomerDashboard extends Controller{
 
     public function selectContactAction($mode){
         $this->view->mode = $mode;
-        $this->view->render('mediator/contact');
+        if ($mode === 'us') {
+            $this->loadMailFormAction($mode,1);
+        }else {
+            $this->view->render('mediator/contact');
+        }
+        
     }
 
     public function searchPharmacyAction(){

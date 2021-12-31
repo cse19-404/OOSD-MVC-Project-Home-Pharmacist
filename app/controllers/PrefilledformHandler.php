@@ -109,6 +109,9 @@ class PrefilledformHandler extends Controller{
         if (isset($_SESSION['tempItemId'])){
             unset($_SESSION['tempItemId']);
         }
+        if (!isset($_SESSION['rawData'])) {
+            $_SESSION['rawData'] = [];
+        }
         $rawData = $_SESSION['rawData'];
         if ($pharmId != -1){
             $this->PharmacyModel->findById($pharmId);
