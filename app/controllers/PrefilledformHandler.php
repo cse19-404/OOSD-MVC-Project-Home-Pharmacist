@@ -50,11 +50,18 @@ class PrefilledformHandler extends Controller{
     
     public function checkAvailability($quantity,$itemId){
         $this->ItemModel->findById($itemId);
-        if($this->ItemModel->quantity >= $quantity){
-            return 'Available';
-        }else {
-            return 'Not Available';
-        }    
+        if($itemId != -1){
+            if($this->ItemModel->quantity >= $quantity){
+                if ($this->ItemModel->prescription_needed) {
+                    return 'Prescription Needed';
+                }
+                return 'In Stock';
+            }else{
+                return 'Out of Stock';
+            }
+        }else{
+            return 'No Such Item';
+        }
     }
 
     private function getValues($PharmId){
@@ -66,7 +73,7 @@ class PrefilledformHandler extends Controller{
     private function getItemModels($idArr){
         $cond = '';
         foreach($idArr as $id){
-            $cond .= 'id=' . $id . ' OR ';
+            if(is_numeric($id)){$cond .= 'id=' . $id . ' OR ';}
         }
         $cond = rtrim($cond, ' OR ');
         //  dnd($cond);
@@ -118,11 +125,11 @@ class PrefilledformHandler extends Controller{
             $_SESSION['removed'] = [];
         }
         array_push($_SESSION['removed'], $rmItemId);
-        foreach($_SESSION['removed'] as $rm){
-            if (key_exists($rm, $rawData)) {
-                unset($rawData[$rm]);
-            }
-        }
+        // foreach($_SESSION['removed'] as $rm){
+        //     if (key_exists($rm, $rawData)) {
+        //         unset($rawData[$rm]);
+        //     }
+        // }
         if ($pharmId != -1){
             $this->PharmacyModel->findById($pharmId);
             $this->view->pharmName = $this->PharmacyModel->name;
@@ -141,8 +148,12 @@ class PrefilledformHandler extends Controller{
                     }else{
                         $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
                     }
+                }else{
+                    $status = $this->checkAvailability($value,-1);
+                    $_SESSION['tempItemId'][$key] = $status;
                 }               
             }
+            //dnd( $_SESSION['tempItemId']);
             if(isset($_SESSION['tempItemId'])){
                 foreach($_SESSION['removed'] as $rm){
                     if (key_exists($rm, $_SESSION['tempItemId'])) {
@@ -151,6 +162,7 @@ class PrefilledformHandler extends Controller{
                 }
                 $this->getItemModels(array_keys($_SESSION['tempItemId']));}     
             $this->view->render('search/prefilled_form');
+            //dnd($this->view->items);
         }else {
             $this->searchFromNearbyPharmacies($rawData);
         }
