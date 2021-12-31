@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2021 at 09:26 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Dec 31, 2021 at 11:22 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -78,7 +78,7 @@ CREATE TABLE `itemtable` (
 --
 
 INSERT INTO `itemtable` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `price_per_unit_quantity`, `prescription_needed`, `pharmacy_id`, `status`) VALUES
-(1, 'KLODIC', 'R3475M', 'TABLETS', 1350, 1000, 1, 1, 1),
+(1, 'KLODIC', 'R3475M', 'TABLETS', 1350, 1000, 1, 1, 0),
 (2, 'SILOCIN 4', 'NP1403M', 'CAPSULES', 1200, 16, 1, 1, 0),
 (3, 'SITALO  100', 'NP3863M', 'FILM COA', 920, 120, 1, 1, 0),
 (4, 'PANADOL', 'NP3383M', 'CARDS', 539, 20, 0, 2, 0),
@@ -178,24 +178,22 @@ CREATE TABLE `prefilledformtable` (
   `customer_id` int(11) NOT NULL,
   `pharmacy_id` int(11) NOT NULL,
   `no_of_items` varchar(255) DEFAULT NULL,
-  `items` varchar(255) DEFAULT NULL,
-  `unit_prices` varchar(255) DEFAULT NULL,
+  `itemIds` varchar(255) DEFAULT NULL,
   `quantities` varchar(255) DEFAULT NULL,
-  `prescription` varchar(255) NOT NULL,
-  `total` double DEFAULT NULL
+  `prescription` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `prefilledformtable`
 --
 
-INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_items`, `items`, `unit_prices`, `quantities`, `prescription`, `total`) VALUES
-(1, 2, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/DESIGNDOC.txt', NULL),
-(2, 2, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/Screenshot_20211022-142945.png', NULL),
-(3, 3, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/Evidence07.txt', NULL),
-(4, 2, 3, NULL, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt', NULL),
-(5, 2, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/CS2062.pdf', NULL),
-(6, 2, 3, NULL, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg', NULL);
+INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_items`, `itemIds`, `quantities`, `prescription`) VALUES
+(1, 2, 1, '3', '9,5,6', '12,1,10', 'uploads/prescriptions/DESIGNDOC.txt'),
+(2, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/Screenshot_20211022-142945.png'),
+(3, 3, 1, NULL, NULL, NULL, 'uploads/prescriptions/Evidence07.txt'),
+(4, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt'),
+(5, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/CS2062.pdf'),
+(6, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg');
 
 -- --------------------------------------------------------
 
