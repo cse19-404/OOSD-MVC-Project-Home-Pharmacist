@@ -8,7 +8,7 @@ class Mediator extends Model{
         parent::__construct($table);
     }
 
-    public function savePharmacyMessage($params,$to,$from){
+    public function saveMessage($params,$to,$from){
         $params['sender_username'] = $from;
         $params['receiver_username'] = $to;
         $params['message_type'] = 'text';

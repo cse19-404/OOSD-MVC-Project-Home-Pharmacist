@@ -11,7 +11,7 @@
     <div>
         <a href="<?=SROOT?>CustomerDashboard/selectSearch/selected"><h2>Select a Pharmacy</h2></a>
         <a href="<?=SROOT?>PrefilledformHandler/nearBy"><h2>Search in Nearby Pharmacies</h2></a>
-        <a href="<?=SROOT?>CustomerDashboard/selectSearch/prescription"><h2>Upload a Prescription</h2></a>
+        <a href="<?=SROOT?>PrescriptionHandler/selectMethod"><h2>Upload a Prescription</h2></a>
     </div>
     <?php }
     if(isset($this->searchMode)){
@@ -45,12 +45,23 @@
             <?php break;
             case 'prescription':?>
                 <div>
-                    <form action="<?=SROOT?>CustomerDashboard/searchByPharmacy" method="post">
+                    <form action="<?=SROOT?>CustomerDashboard/searchByPharmacy/prescription" method="post">
                         <input type="text" name="pharm-name" placeholder="Enter Pharmacy name">
                         <input type="submit" value="Search">
                     </form>
                     
                 </div>
+                <?php if(isset($this->result) && !empty($this->result)){?>
+                <div>
+                    <table>
+                        <?php foreach($this->result as $row){?>
+                            <tr>
+                                <td><a href="<?=SROOT?>PrescriptionHandler/loadPrescription/<?=$row->id?>"><?php echo $row->name . '   ' . $row->address?></a></td>
+                            </tr>
+                        <?php }?>
+                    </table>
+                </div>
+                <?php }elseif(isset($this->processed)){echo "<h3>No result found</h3>";}?>
             <?php break;
             default:
                 break;
