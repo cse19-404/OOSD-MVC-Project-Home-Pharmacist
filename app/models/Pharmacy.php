@@ -77,4 +77,8 @@ class Pharmacy extends Model{
         return [$count,$price];
     }
 
+    public function findAllOffers(){
+        return $this->_db->find('seasonaloffertable',['conditions'=>'pharmacy_id=? AND status=?','bind' => [$this->id,1]]);
+    }
+
 }

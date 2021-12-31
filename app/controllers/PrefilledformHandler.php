@@ -36,8 +36,6 @@ class PrefilledformHandler extends Controller{
         //dnd($_SESSION['tempItemId']);
         $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
-        
-
         $this->view->render('search/prefilled_form');
     }
 
@@ -133,7 +131,7 @@ class PrefilledformHandler extends Controller{
                     }
                 }               
             }
-            if(isset($_SESSION['tempItemId'])){$this->getItemModels(array_keys($_SESSION['tempItemId']));}
+            if(isset($_SESSION['tempItemId'])){$this->getItemModels(array_keys($_SESSION['tempItemId']));}     
             $this->view->render('search/prefilled_form');
         }else {
             $this->searchFromNearbyPharmacies($rawData);
