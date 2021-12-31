@@ -50,7 +50,7 @@
                 </div>
             <?php }elseif(isset($this->processed)){
                 echo "<h3>No result found</h3>";
-                }
+            }
         }
 
         if ($this->mode === 'customer' && ($_SESSION['role']==='super_admin')) {?>
