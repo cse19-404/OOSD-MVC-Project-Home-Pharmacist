@@ -13,9 +13,22 @@ class Mediator extends Model{
         $params['receiver_username'] = $to;
         $params['message_type'] = 'text';
         $params['message_ref_id'] = 'None';
+        $params['is_read'] = 0;
         $this->assign($params);
         $this->save(); 
 
+    }
+
+    public function findAllMessages($receiver){
+        return $this->_db->find('mediatortable',['conditions'=>'receiver_username=?','bind' => [$receiver]]);
+    }
+
+    public function getMessage($id){
+        return $this->_db->find('mediatortable',['conditions'=>'id=?','bind' => [$id]]);
+    }
+
+    public function markAsRead($id){
+        $this->update($id, ['is_read'=>1]);
     }
 
 }
