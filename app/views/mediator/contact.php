@@ -9,26 +9,29 @@
 <body>
 
     <?php if(!isset($this->mode)){?>
-    <div>
-        <?php if ($_SESSION['role']==='super_admin') { ?>
-            <div>
-                <a href="<?=SROOT?>CustomerDashboard/selectContact/customer"><h2>Contact a Customer</h2>
-            </div>
-        <?php } ?>  
+        <div>
+            <a href="<?=SROOT?>MediatorHandler/inbox"><h2>Inbox</h2>
+        </div>
+        <div>
+            <?php if ($_SESSION['role']==='super_admin') { ?>
+                <div>
+                    <a href="<?=SROOT?>CustomerDashboard/selectContact/customer"><h2>Contact a Customer</h2>
+                </div>
+            <?php } ?>  
 
-        <?php if (!($_SESSION['role']==='pharmacy')) { ?>
-            <div>
-                <a href="<?=SROOT?>CustomerDashboard/selectContact/pharmacy"><h2>Contact a Pharmacy</h2>
-            </div>
-        <?php } ?>
-        
-        <?php if (!($_SESSION['role']==='super_admin')) { ?>
-            <div>
-            <a href="<?=SROOT?>CustomerDashboard/selectContact/us"><h2>Contact Us</h2>
-            </div>
-        <?php } ?>  
+            <?php if (!($_SESSION['role']==='pharmacy')) { ?>
+                <div>
+                    <a href="<?=SROOT?>CustomerDashboard/selectContact/pharmacy"><h2>Contact a Pharmacy</h2>
+                </div>
+            <?php } ?>
+            
+            <?php if (!($_SESSION['role']==='super_admin')) { ?>
+                <div>
+                <a href="<?=SROOT?>CustomerDashboard/selectContact/us"><h2>Contact Us</h2>
+                </div>
+            <?php } ?>  
 
-    </div>
+        </div>
     <?php }
     if(isset($this->mode)){
         if ($this->mode === 'pharmacy' && !($_SESSION['role']==='pharmacy')) {?>
@@ -75,6 +78,12 @@
                 }
         }
     }?>
+
+    <?php if ($_SESSION['role']==='pharmacy') {?>
+        <a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
+    <?php }else{?>
+        <a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+    <?php } ?>
 
 </body>
 </html>
