@@ -37,7 +37,7 @@
         if ($this->mode === 'pharmacy' && !($_SESSION['role']==='pharmacy')) {?>
             <div>
                 <form action="<?=SROOT?>CustomerDashboard/searchPharmacy" method="post">
-                    <input type="text" name="pharm-name" placeholder="Enter Pharmacy name">
+                    <input type="text" name="pharm-name" placeholder="Enter Pharmacy name" required>
                     <input type="submit" value="Search">
                 </form>  
             </div>
