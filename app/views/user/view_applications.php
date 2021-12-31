@@ -36,7 +36,7 @@
                 } else {
                     echo "<td>" . "No" . "</td>";
                 }
-                echo "<td> <a href=" . $row['documents'] . " download>" . basename($row['documents']) . "</a>";
+                echo "<td> <a href=".SROOT. $row['documents'] . " download=".SROOT.">" . basename($row['documents']) . "</a>";
             ?>
                 <td>
                     <?php $statuses = ['pending', 'approved', 'declined'] ?>
