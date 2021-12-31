@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2021 at 11:29 PM
+-- Generation Time: Dec 31, 2021 at 11:23 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -87,6 +87,36 @@ INSERT INTO `itemtable` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `pri
 (7, 'URIMAX 0.4 mg', 'R2406M', 'TABLETS', 390, 8.5, 1, 1, 0),
 (8, 'GEFTIWEL 250', 'NP2043M', 'TABLETS', 589, 4.75, 1, 1, 0),
 (9, 'PANADOL', 'NP3383M', 'BOTTLE', 539, 20, 0, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mediatortable`
+--
+
+CREATE TABLE `mediatortable` (
+  `id` int(11) NOT NULL,
+  `sender_username` varchar(255) NOT NULL,
+  `receiver_username` varchar(255) NOT NULL,
+  `message_type` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `message_ref_id` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `mediatortable`
+--
+
+INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `message_type`, `subject`, `message`, `message_ref_id`) VALUES
+(2, 'banula', 'New Pharmacy', 'text', 'qwe', 'wer', 0),
+(3, 'superuser01', 'New Pharmacy', 'text', 'hi', 'hello', 0),
+(4, 'banula', 'Lanka Pharmacy', 'text', 'Lanka', 'Lanka Pembara Lanka', 0),
+(6, 'superuser01', 'ron', 'text', 'dear', 'me', 0),
+(8, 'banula', 'Asiri Pharmacy', 'text', 'hi', 'hello', 0),
+(9, 'superuser01', 'dakshina', 'text', 'my', 'hello', 0),
+(10, 'banula', 'Lanka Pharmacy', 'text', 'dear', 'wer', 0),
+(11, 'superuser01', 'piumini', 'text', 'hi', 'me', 0);
 
 -- --------------------------------------------------------
 
@@ -186,6 +216,12 @@ ALTER TABLE `itemtable`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `mediatortable`
+--
+ALTER TABLE `mediatortable`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pharmacytable`
 --
 ALTER TABLE `pharmacytable`
@@ -218,6 +254,12 @@ ALTER TABLE `applicationtable`
 --
 ALTER TABLE `itemtable`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `mediatortable`
+--
+ALTER TABLE `mediatortable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pharmacytable`

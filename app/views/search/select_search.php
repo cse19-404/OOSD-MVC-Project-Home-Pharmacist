@@ -10,7 +10,7 @@
     <?php if(!isset($this->searchMode)){?>
     <div>
         <a href="<?=SROOT?>CustomerDashboard/selectSearch/selected"><h2>Select a Pharmacy</h2></a>
-        <a href="<?=SROOT?>CustomerDashboard/selectSearch/nearby"><h2>Search in Nearby Pharmacies</h2></a>
+        <a href="<?=SROOT?>PrefilledformHandler/nearBy"><h2>Search in Nearby Pharmacies</h2></a>
         <a href="<?=SROOT?>CustomerDashboard/selectSearch/prescription"><h2>Upload a Prescription</h2></a>
     </div>
     <?php }
@@ -28,7 +28,7 @@
                     <table>
                         <?php foreach($this->result as $row){?>
                             <tr>
-                                <td><a href="<?=SROOT?>PrefilledformHandler/loadForm/<?=$row->id?>"><?php echo $row->name . '   ' . $row->address?></a></td>
+                                <td><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$row->id?>"><?php echo $row->name . '   ' . $row->address?></a></td>
                             </tr>
                         <?php }?>
                     </table>
@@ -56,6 +56,8 @@
                 break;
         }
     }?>
+
+    <br><br><a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
 
 </body>
 </html>

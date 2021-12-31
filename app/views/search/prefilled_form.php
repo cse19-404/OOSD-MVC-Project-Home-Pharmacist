@@ -8,13 +8,12 @@
 </head>
 <body>
     <div>
-        <span><?=$this->formId?></span><br><br>
         Customer Name : <span><?=User::currentLoggedInUser()->name?></span><br><br>
         Pharmacy Name : <span><?=$this->pharmName?></span>
     </div>
     <div>
-        <form action="<?=SROOT?>PrefilledformHandler/searchItem/<?=$this->formId?>/<?=$this->pharmId?>" method="POST">
-            <input type="text" placeholder="Enter an Item Name" name="item-name">
+        <form action="<?=SROOT?>PrefilledformHandler/searchItem/<?=$this->pharmId?>" method="POST">
+            <input type="text" placeholder="Enter an Item Name" name="item-name" required>
             <input type="submit" value="Search">
         </form>
         <?php if(isset($this->result) && !empty($this->result)){?>
@@ -24,7 +23,7 @@
                         <tr>
                             <td><?php echo $row->name."(".$row->quantity_unit.")"?></td>
                             <td><?php echo "Rs " . $row->price_per_unit_quantity?></td>
-                            <td><?php if(!$row->prescription_needed){?><form action="<?=SROOT?>PrefilledformHandler/addItem/<?=$row->id?>/<?=$this->formId?>/<?=$this->pharmId?>"><input type="submit" value='Add'></form><?php }else{?>Prescription Needed<?php }?></td>
+                            <td><?php if(!$row->prescription_needed){?><form action="<?=SROOT?>PrefilledformHandler/addItem/<?=$row->id?>/<?=$this->pharmId?>"><input type="submit" value='Add'></form><?php }else{?>Prescription Needed<?php }?></td>
                         </tr>
                     <?php }?>
                 </table>
@@ -43,15 +42,21 @@
             <tr>
                 <?php if(isset($this->items)) {foreach($this->items as $row){?>
                     <tr>
-                        <td><?=$row->name?></td>
+                        <td><?=$row->name."(".$row->quantity_unit.')'?></td>
                         <td><?=$row->price_per_unit_quantity?></td>
-                        <td><form action="<?=SROOT?>PrefilledformHandler/addQuantity/<?=$row->getId()?>/<?=$this->formId?>/<?=$this->pharmId?>" method="post"><input type="text" onchange='this.form.submit()' name='quantity' placeholder="_" value=<?php if($_SESSION['tempItemId'][$row->getId()]>0){echo $_SESSION['tempItemId'][$row->getId()];}?>></form></td>
-                        <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0){echo $row->price_per_unit_quantity * $_SESSION['tempItemId'][$row->getId()];}else{echo '-';}?></td>
-                        <td>-</td>
+                        <?php if($_SESSION['tempItemId'][$row->getId()] > 0){$var = explode(",",$_SESSION['tempItemId'][$row->getId()]);}?>
+                        <td><form action="<?=SROOT?>PrefilledformHandler/addQuantity/<?=$row->getId()?>/<?=$this->pharmId?>" method="post"><input type="text" onchange='this.form.submit()' name='quantity' placeholder="_" value=<?php if($_SESSION['tempItemId'][$row->getId()]>0){echo $var[0];}?>></form></td>
+                        <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0){ echo $row->price_per_unit_quantity * $var[0];}else{echo '-';}?></td>
+                        <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0){ echo $var[1];}else{echo '-';}?></td>
                     </tr>
                 <?php }}?>
             </tr>
         </table>
     </div>
+    <?php if($this->pharmId==-1){?>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1">Select Another Form</a>
+    <?php }else {?>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>">Go Back</a>
+    <?php } ?>
 </body>
 </html>

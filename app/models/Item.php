@@ -19,6 +19,9 @@ class Item extends Model{
     public function searchItem($itemName, $pharmId){
         $resItems = [];
         $results = $this->_db->find($this->_table, ['conditions'=>'pharmacy_id=?', 'bind'=>[$pharmId]]);
+        if (!$results) {
+            return $resItems;
+        }
         foreach($results as $row){
             if(str_contains(strtoupper($row->name),strtoupper($itemName))){
                 $resItems[] = $row;

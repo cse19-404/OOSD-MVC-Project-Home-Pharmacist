@@ -70,15 +70,20 @@ class User extends Model
         foreach ($pharmacies as $pharmacy) {
             $pharmacy= (array) $pharmacy;
             $distance = distance($this->latitude,$this->longitude,$pharmacy['latitude'],$pharmacy['longitude']);
-            $distance_list[$pharmacy['name']] = $distance;
+            $distance_list[$pharmacy['id']] = $distance;
         }
         asort($distance_list);
-        $distance_list = array_slice($distance_list,0,10);       
-        return (join(',',array_keys($distance_list)));
+        foreach($distance_list as $key=>$value){
+            $keys[] = $key;
+        }
+        $distances = array_slice($keys,0,10);  
+
+        return (join(',',$distances));
     }
 
     public function searchPharmacy($pharmName){
         $resPharms = [];
+        $results = [];
         $results = $this->findAllPharmacies();
         foreach($results as $row){
             if(str_contains(strtoupper($row->name),strtoupper($pharmName))){
@@ -86,5 +91,17 @@ class User extends Model
             }
         }
         return $resPharms;
+    }
+
+    public function searchCustomer($name){
+        $resCustomers = [];
+        $results = [];
+        $results = $this->findAllUsers();
+        foreach($results as $row){
+            if(str_contains(strtoupper($row->name),strtoupper($name))){
+                $resCustomers[] = $row;
+            }
+        }
+        return $resCustomers;
     }
 }
