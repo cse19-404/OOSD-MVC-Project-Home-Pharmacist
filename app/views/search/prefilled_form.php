@@ -40,7 +40,7 @@
                 <th>Status</th>
             </tr>
             <tr>
-                <?php if(isset($this->items)) {foreach($this->items as $row){?>
+                <?php if(isset($this->items)) {foreach($this->items as $row){if(key_exists($row->getId(), $_SESSION['tempItemId'])){?>
                     <tr>
                         <td><?=$row->name."(".$row->quantity_unit.')'?></td>
                         <td><?=$row->price_per_unit_quantity?></td>
@@ -48,8 +48,9 @@
                         <td><form action="<?=SROOT?>PrefilledformHandler/addQuantity/<?=$row->getId()?>/<?=$this->pharmId?>" method="post"><input type="text" onchange='this.form.submit()' name='quantity' placeholder="_" value=<?php if($_SESSION['tempItemId'][$row->getId()]>0){echo $var[0];}?>></form></td>
                         <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0){ echo $row->price_per_unit_quantity * $var[0];}else{echo '-';}?></td>
                         <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0){ echo $var[1];}else{echo '-';}?></td>
+                        <td><form action="<?=SROOT?>PrefilledformHandler/processItems/<?=$this->pharmId?>/<?=$row->getId()?>" method="POST"><input type="submit" value="Remove"></form></td>
                     </tr>
-                <?php }}?>
+                <?php }}}?>
             </tr>
         </table>
     </div>
