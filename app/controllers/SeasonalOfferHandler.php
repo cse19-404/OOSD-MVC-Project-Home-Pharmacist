@@ -77,12 +77,13 @@ class SeasonalOfferHandler extends Controller{
     }
 
     public function addFormAction($mode){
-        $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy(); 
+        $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy();
+        $this->view ->seasonalOffer = true;
         if($mode==='add'){
             $this->view->pharmId = $this->PharmacyModel->id;
             $this->view->pharmName = $this->PharmacyModel->name;
             //dnd($this->PharmacyModel);
-            $this->view->render('search/prefilled_form');
+            $this->view->render('search/searchform');
         }
     }
 

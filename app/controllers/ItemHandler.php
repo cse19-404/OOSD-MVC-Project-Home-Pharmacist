@@ -61,11 +61,11 @@
                 "price_per_unit_quantity" => [
                     "display" => "Price per Unit Quantity",
                     "is_numeric" => true
-                ],
-                "name"=>[
-                    "display" => "name",
-                    "required" => true
-                ]                
+                ]
+                // "name"=>[
+                //     "display" => "name",
+                //     "required" => true
+                // ]                
             ]);
             if($validation->passed()){
                 $postCopy = $_POST;
@@ -95,36 +95,4 @@
             Router::redirect('ItemHandler/view');
         }
 
-        // public function editItemAction($id){
-        //     $this->ItemModel->findFirst(['conditions'=>'id=?','bind' => [$id]]);
-        //     $this->view->itemData = (array)$this->ItemModel->data();
-        //     $validateObj = new Validate();
-        //     $postCopy = $_POST;
-        //     if(isset($postCopy['prescription_needed']) && $postCopy['prescription_needed']=='on'){
-        //         $postCopy['prescription_needed'] = 1;
-        //     }else{
-        //         $postCopy['prescription_needed'] = 0;
-        //     }
-        //     unset($postCopy['submit']);
-        //     //dnd($postCopy);
-        //     $this->ItemModel->update($id,$postCopy);
-        //     Router::redirect('ItemHandler/view');
-        // }
-
-        // public function addItemAction(){
-        //     $this->ItemModel->findFirst(['conditions'=>'id=?','bind' => [$id]]);
-        //     $this->view->itemData = (array)$this->ItemModel->data();
-        //     $validateObj = new Validate();
-        //     $postCopy = $_POST;
-        //     if(isset($postCopy['prescription_needed']) && $postCopy['prescription_needed']=='on'){
-        //         $postCopy['prescription_needed'] = 1;
-        //     }else{
-        //         $postCopy['prescription_needed'] = 0;
-        //     }
-        //     unset($postCopy['submit']);
-        //     $postCopy['pharmacy_id']=Pharmacy::currentLoggedInPharmacy()->id;
-        //     //dnd($postCopy);
-        //     $this->ItemModel->insert($postCopy);
-        //     Router::redirect('ItemHandler/view');
-        // }
     }
