@@ -39,8 +39,19 @@
 
         public function saveAction($mode,$id=''){
             //dnd($_POST);
-            $this->ItemModel->findFirst(['conditions'=>'id=?','bind' => [$id]]);
-            $this->view->itemData = (array)$this->ItemModel->data();
+            if($mode==='add'){
+                $this->view->itemData = (array)$_POST;
+                if(isset($this->view->itemData['prescription_needed'])){
+                    $this->view->itemData['prescription_needed']=1;
+                } else{
+                    $this->view->itemData['prescription_needed']=0;
+                }                
+                
+            } else{
+                $this->ItemModel->findFirst(['conditions'=>'id=?','bind' => [$id]]);
+                $this->view->itemData = (array)$this->ItemModel->data();
+            }
+            
             $validation = new Validate();
             $validation->check($_POST,[
                 "quantity" => [
@@ -50,6 +61,10 @@
                 "price_per_unit_quantity" => [
                     "display" => "Price per Unit Quantity",
                     "is_numeric" => true
+                ],
+                "name"=>[
+                    "display" => "name",
+                    "required" => true
                 ]                
             ]);
             if($validation->passed()){
@@ -69,6 +84,7 @@
                 Router::redirect('ItemHandler/view');
             } else{
                 $this->view->displayErrors = $validation->displayErrors();
+                $this->view->mode=$mode;
                 $this->view->render('user/view_item');
             }
         }

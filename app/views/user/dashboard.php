@@ -41,6 +41,7 @@ if (isset($_SESSION['username'])) {
 
         <?php if ($_SESSION['role']==='pharmacy') { ?>
         <a href="<?=SROOT?>ItemHandler/view"><h2>View Inventory</h2></a><br>
+        <a href="<?=SROOT?>SeasonalOfferHandler/view"><h2>Seasonal Offers</h2></a><br>
         <?php } ?>
         <a href="<?=SROOT?>register/logout"><h2>Logout</h2></a><br><br>
         <h3><?php if(isset($_GET['msg'])){echo $_GET['msg'];} ?></h3>
