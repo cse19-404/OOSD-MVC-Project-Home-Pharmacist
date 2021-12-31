@@ -70,7 +70,7 @@ class CustomerDashboard extends Controller{
 
     public function searchCustomerAction(){
         $results = $this->UserModel->searchCustomer($_POST["name"]);
-        $this->view->result = $results;;
+        $this->view->result = $results;
         $this->selectContactAction('customer');           
     }
 
