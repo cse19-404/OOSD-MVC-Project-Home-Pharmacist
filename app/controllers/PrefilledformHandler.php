@@ -19,32 +19,37 @@ class PrefilledformHandler extends Controller{
         $this->view->render('search/prefilled_form');
     }
 
-    public function searchItemAction($PharmId){
+    public function searchItemAction($PharmId, $preId=-1){
         $results = $this->ItemModel->searchItem($_POST["item-name"], $PharmId);
         $this->view->result = $results;
         $this->getValues($PharmId);
         $this->view->processed = true;
+        $this->setPres($preId);
         //dnd($this->view->result);
         if(isset($_SESSION['tempItemId'])){$this->getItemModels(array_keys($_SESSION['tempItemId']));}
         $this->view->render('search/prefilled_form');
     }
 
-    public function addItemAction($itemId, $PharmId){
+    public function addItemAction($itemId, $PharmId, $preId=-1){
         if(isset($_SESSION['tempItemId'])){
             if(!in_array($itemId, $_SESSION['tempItemId'])){$_SESSION['tempItemId'][$itemId] = 0;}
         }else{$_SESSION['tempItemId'][$itemId] = 0;}
         //dnd($_SESSION['tempItemId']);
         $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
+
+        $this->setPres($preId);
+
         $this->view->render('search/prefilled_form');
     }
 
-    public function addQuantityAction($itemId, $PharmId){
+    public function addQuantityAction($itemId, $PharmId, $preId=-1){
         $quantity = $_POST['quantity'];
         $status = $this->checkAvailability($quantity,$itemId);
         $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
         $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
+        $this->setPres($preId);
         $this->view->render('search/prefilled_form');
     }
     
@@ -80,7 +85,7 @@ class PrefilledformHandler extends Controller{
         $this->view->items = $this->ItemModel->find(['conditions'=>$cond]);
     }
 
-    public function loadSearchFormAction($pharmId,$clear=''){
+    public function loadSearchFormAction($pharmId, $clear='',$preId='-1'){
         if (isset($_SESSION['removed'])){
             unset($_SESSION['removed']);
         }
@@ -96,11 +101,12 @@ class PrefilledformHandler extends Controller{
         }else {
             $this->view->pharmName = 'Nearby Pharmacies';
         }
+        $this->setPres($preId);
        
         $this->view->render('search/searchform');
     }
 
-    public function addRawItemAction($pharmId){
+    public function addRawItemAction($pharmId, $preId='-1'){
         if ($pharmId != -1){
             $this->PharmacyModel->findById($pharmId);
             $this->view->pharmName = $this->PharmacyModel->name;
@@ -110,10 +116,13 @@ class PrefilledformHandler extends Controller{
             $this->view->pharmName = 'Nearby Pharmacies';
         }
         $_SESSION['rawData'][$_POST['item-name']] = $_POST['quantity'];
+
+        $this->setPres($preId);
+
         $this->view->render('search/searchform');
     }
 
-    public function processItemsAction ($pharmId, $rmItemId = -1){
+    public function processItemsAction ($pharmId, $rmItemId = -1, $preId=-1){
         if (isset($_SESSION['tempItemId'])){
             unset($_SESSION['tempItemId']);
         }
@@ -124,19 +133,18 @@ class PrefilledformHandler extends Controller{
         if (!isset($_SESSION['removed'])){
             $_SESSION['removed'] = [];
         }
-        array_push($_SESSION['removed'], $rmItemId);
-        // foreach($_SESSION['removed'] as $rm){
-        //     if (key_exists($rm, $rawData)) {
-        //         unset($rawData[$rm]);
-        //     }
-        // }
+        if($rmItemId != -1){array_push($_SESSION['removed'], $rmItemId);}
+        
+        $this->setPres($preId);
+
         if ($pharmId != -1){
             $this->PharmacyModel->findById($pharmId);
             $this->view->pharmName = $this->PharmacyModel->name;
             $this->view->pharmId = $pharmId;
             foreach ($rawData as $key => $value) {
                 $result = $this->ItemModel->searchItem($key, $pharmId);
-                if ($result){
+                //dnd($result);
+                if ($result && !$result[0]->status){
                     $result = $result[0];
                     $itemId = $result->id;
                     $quantity = $value;
@@ -159,6 +167,10 @@ class PrefilledformHandler extends Controller{
                     if (key_exists($rm, $_SESSION['tempItemId'])) {
                         unset($_SESSION['tempItemId'][$rm]);
                     }
+                    if (($k = array_search($rm, $_SESSION['removed'])) !== false) {
+                        unset($_SESSION['removed'][$k]);
+                    }
+                    
                 }
                 $this->getItemModels(array_keys($_SESSION['tempItemId']));}     
             $this->view->render('search/prefilled_form');
@@ -177,6 +189,7 @@ class PrefilledformHandler extends Controller{
         }
         $this->view->pharmId = -1;
         $this->view->pharmName = 'Near By Pharmacies';
+        $this->view->preId = -1;
         $this->view->render('search/searchform');
     }
 
@@ -218,6 +231,35 @@ class PrefilledformHandler extends Controller{
         $this->pharmID = $pharmID;
         $this->pharmName = $pharmName;
         $this->view->render('search/searchform');
+    }
+
+    public function sendPrefilledFormAction($preId){
+        if (!isset($_SESSION['tempItemId'])) {
+            $_SESSION['tempItemId'] = [];
+        }
+        $itemId = $quan = [];
+        $noOfItem = 0;
+        
+        foreach($_SESSION['tempItemId'] as $key=>$val){
+            if (is_numeric($key)) {
+                $noOfItem += 1;
+            }
+            array_push($itemId, $key);
+            $quant = explode(',', $val)[0];
+            array_push($quan, $quant);
+        }
+        $this->PrefilledformModel->update($preId, ['no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan)]);
+        Router::redirect('PrescriptionHandler/view');
+
+    }
+
+    private function setPres($preId){
+        if($preId != -1){
+            $this->PrefilledformModel->findById($preId);
+            $this->view->preId = $preId;
+            $this->UserModel->findById($this->PrefilledformModel->customer_id);
+            $this->view->customerName = $this->UserModel->name;
+        }else{$this->view->preId = -1;}
     }
 
 }

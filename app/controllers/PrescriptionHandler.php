@@ -68,6 +68,9 @@
         }
         
         public function viewAction(){
+            if (isset($_SESSION['rawData'])){
+                unset($_SESSION['rawData']);
+            }
             $this->PharmacyModel = Pharmacy::currentLoggedInPharmacy();
             $results = $this->PrefilledFormModel->find([
                 'conditions'=>'pharmacy_id=?',

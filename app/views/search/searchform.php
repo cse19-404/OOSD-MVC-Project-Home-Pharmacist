@@ -10,12 +10,12 @@
 
 <body>
     <div>
-        Customer Name : <span><?= User::currentLoggedInUser()->name ?></span><br><br>
+        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}else{echo User::currentLoggedInUser()->name;}?></span><br><br>
         Pharmacy Name : <span><?= $this->pharmName ?></span>
     </div>
-    <form action="<?=SROOT?>PrefilledformHandler/addRawItem/<?= $this->pharmId?>/" method="post">
-        <input type="text" name="item-name" placeholder="Enter Item Name">
-        <input type="text" name="quantity" placeholder="Enter quantity">
+    <form action="<?=SROOT?>PrefilledformHandler/addRawItem/<?= $this->pharmId?>/<?= $this->preId?>" method="post">
+        <input type="text" name="item-name" placeholder="Enter Item Name" required>
+        <input type="text" name="quantity" placeholder="Enter quantity" required>
         <input type="submit" value="Add">
     </form>
     <div>
@@ -35,13 +35,13 @@
         </table>
     </div>
     <div>
-        <form action="<?=SROOT?>PrefilledformHandler/processItems/<?=$this->pharmId ?>" method="post">
+        <form action="<?=SROOT?>PrefilledformHandler/processItems/<?=$this->pharmId ?>/-1/<?=$this->preId?>" method="post">
             <br><br><input type="submit" value="Submit">
         </form>
     </div>
     <form action="<?=SROOT?>PrefilledformHandler/<?php if($this->pharmId == -1)
         {echo 'nearBy';} 
-        else {echo 'loadSearchForm/'.$this->pharmId ;}  ?>/clear" method="post">
+        else {echo 'loadSearchForm/'.$this->pharmId ;}  ?>/clear/<?=$this->preId?>" method="post">
         <br><br><input type="submit" value="Clear Items">
     </form>
     <br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>

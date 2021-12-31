@@ -12,7 +12,7 @@
         <table>
             <?php foreach($this->availabilty as $entry=>$value) { ?>
             <tr>
-            <td><a href="<?=SROOT?>PrefilledformHandler/processItems/<?=$entry?>"><?=$this->pharm_map[$entry]?></a></td>
+            <td><a href="<?=SROOT?>PrefilledformHandler/processItems/<?=$entry?>/-1/<?=$this->preId?>"><?=$this->pharm_map[$entry]?></a></td>
             <td><?= $value[0].' out of '. count($this->items) . "Items available"?></td>
             <td><?= 'Total Price: '.$value[1]?></td>
             </tr>
