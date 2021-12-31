@@ -74,6 +74,9 @@ class PrefilledformHandler extends Controller{
     }
 
     public function loadSearchFormAction($pharmId,$clear=''){
+        if (isset($_SESSION['removed'])){
+            unset($_SESSION['removed']);
+        }
         if ($clear === 'clear'){
             if (isset($_SESSION['rawData'])){
                 unset($_SESSION['rawData']);
@@ -103,7 +106,7 @@ class PrefilledformHandler extends Controller{
         $this->view->render('search/searchform');
     }
 
-    public function processItemsAction ($pharmId){
+    public function processItemsAction ($pharmId, $rmItemId = -1){
         if (isset($_SESSION['tempItemId'])){
             unset($_SESSION['tempItemId']);
         }
@@ -111,6 +114,15 @@ class PrefilledformHandler extends Controller{
             $_SESSION['rawData'] = [];
         }
         $rawData = $_SESSION['rawData'];
+        if (!isset($_SESSION['removed'])){
+            $_SESSION['removed'] = [];
+        }
+        array_push($_SESSION['removed'], $rmItemId);
+        foreach($_SESSION['removed'] as $rm){
+            if (key_exists($rm, $rawData)) {
+                unset($rawData[$rm]);
+            }
+        }
         if ($pharmId != -1){
             $this->PharmacyModel->findById($pharmId);
             $this->view->pharmName = $this->PharmacyModel->name;
@@ -131,7 +143,13 @@ class PrefilledformHandler extends Controller{
                     }
                 }               
             }
-            if(isset($_SESSION['tempItemId'])){$this->getItemModels(array_keys($_SESSION['tempItemId']));}     
+            if(isset($_SESSION['tempItemId'])){
+                foreach($_SESSION['removed'] as $rm){
+                    if (key_exists($rm, $_SESSION['tempItemId'])) {
+                        unset($_SESSION['tempItemId'][$rm]);
+                    }
+                }
+                $this->getItemModels(array_keys($_SESSION['tempItemId']));}     
             $this->view->render('search/prefilled_form');
         }else {
             $this->searchFromNearbyPharmacies($rawData);

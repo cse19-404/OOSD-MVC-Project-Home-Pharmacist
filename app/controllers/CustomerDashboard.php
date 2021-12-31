@@ -19,11 +19,15 @@ class CustomerDashboard extends Controller{
         $this->view->render('search/select_search');
     }
 
-    public function searchByPharmacyAction(){
+    public function searchByPharmacyAction($prescription = ''){
         $results = $this->UserModel->searchPharmacy($_POST["pharm-name"]);
         $this->view->result = $results;
         $this->view->processed = true;
-        $this->selectSearchAction('selected');
+        if ($prescription==='prescription'){
+            $this->selectSearchAction('prescription');
+        }else {
+            $this->selectSearchAction('selected');
+        }    
     }
 
     public function selectSearchAction($mode){
@@ -66,7 +70,7 @@ class CustomerDashboard extends Controller{
 
     public function searchCustomerAction(){
         $results = $this->UserModel->searchCustomer($_POST["name"]);
-        $this->view->result = $results;;
+        $this->view->result = $results;
         $this->selectContactAction('customer');           
     }
 
