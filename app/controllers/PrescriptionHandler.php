@@ -6,6 +6,8 @@
         {
             parent::__construct($controller,$action);
             $this->load_model('PrefilledForm');
+            $this->load_model('User');
+            $this->load_model('Pharmacy');
         }
 
         public function selectMethodAction(){
@@ -64,6 +66,23 @@
             $this->view->userId = $this->UserModel->id;
             $this->view->render('prescriptions/nearbyPharmacies');
         }
-
+        
+        public function viewAction(){
+            $this->PharmacyModel = Pharmacy::currentLoggedInPharmacy();
+            $results = $this->PrefilledFormModel->find([
+                'conditions'=>'pharmacy_id=?',
+                'bind'=>[$this->PharmacyModel->id]
+            ]);
+            if ($results){
+                foreach($results as $row){
+                    $user = new User();
+                    $user->findById($row->customer_id);
+                    $this->view->prescriptions[$row->id] = [$user,$row];
+                }
+            }else {
+                $results = [];
+            }
+            $this->view->render('prescriptions/viewPrescriptions');
+        }
     }
     
