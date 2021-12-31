@@ -11,11 +11,16 @@
         <?php if(isset($this->result) && !empty($this->result)){?>
             <div>
                 <table>
-                    <?php foreach($this->result as $row){?>
-                        <tr>
+                    <?php foreach($this->result as $row){
+                        if($row->is_read){?>
+                        <tr style="background-color:blanchedalmond">
                             <td><a href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'   ' . ucwords($row->message_type).' Message</pre>'?></a></td>
                         </tr>
-                    <?php }?>
+                    <?php }else{?>
+                        <tr>
+                            <td><a href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'   ' . ucwords($row->message_type).' Message</pre>'?></a></td>
+                        </tr>                        
+                    <?php } }?>
                 </table>
             </div>
         <?php }elseif(isset($this->processed)){
