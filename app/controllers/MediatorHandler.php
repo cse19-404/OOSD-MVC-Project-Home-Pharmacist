@@ -57,17 +57,6 @@ class MediatorHandler extends Controller{
         $this->view->render('mediator/mailform');
     }
 
-    public function replyTextMessageAction($id){
-        $this->MediatorModel = new Mediator();
-        $result = $this->MediatorModel->getMessage($id)[0];
-        $this->view->to = $result->sender_username; 
-        $this->view->from = $result->receiver_username;
-        $this->view->subject = $result->subject; 
-        $this->view->id = $result->id;
-        $this->view->mode = 'reply';    
-        $this->view->render('mediator/mailform');
-    }
-
     public function receiveReplyAction($id){
         $this->MediatorModel = new Mediator();
         $result = $this->MediatorModel->getMessage($id)[0];  

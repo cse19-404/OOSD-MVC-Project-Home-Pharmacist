@@ -22,8 +22,8 @@
         </div>
                 <div>      
                 <form action="<?=SROOT?>MediatorHandler/receiveMessage/<?= $this->mode?>/<?= $this->id?>" method="post">
-                    Subject : <input type="text" name="subject" placeholder="Subject"><br><br>
-                    Message : <textarea name="message" cols="30" rows="10" placeholder="Message"></textarea><br><br>
+                    Subject : <input type="text" name="subject" placeholder="Subject" required><br><br>
+                    Message : <textarea name="message" cols="30" rows="10" placeholder="Message" required></textarea><br><br>
                     <input type="submit" value="Send">
                 </form>
             </div> 
@@ -36,7 +36,7 @@
                 SUBJECT : <span><?php echo $this->result->subject?></span><br><br>
                 MESSAGE : <span><?php echo $this->result->message ?></span><br><br>   
                 
-                <form action="<?=SROOT?>MediatorHandler/replyTextMessage/<?= $this->result->id?>">
+                <form action="<?=SROOT?>CustomerDashboard/replyTextMessage/<?= $this->result->id?>">
                     <input type="submit" value="Reply">
                 </form>
         </div>
@@ -47,7 +47,7 @@
             TO : <span><?php echo $this->to?></span><br><br>    
             <form action="<?=SROOT?>MediatorHandler/receiveReply/<?= $this->id?>" method="post">
                 Subject : <input type="text" name="subject" value='<?= $this->subject?>' placeholder="Subject" readonly><br><br>
-                Message : <textarea name="message" cols="30" rows="10" placeholder="Message"></textarea><br><br>
+                Message : <textarea name="message" cols="30" rows="10" placeholder="Message" required></textarea><br><br>
                 <input type="submit" value="Send">
             </form>
         </div><?php 
