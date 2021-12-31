@@ -92,4 +92,16 @@ class User extends Model
         }
         return $resPharms;
     }
+
+    public function searchCustomer($name){
+        $resCustomers = [];
+        $results = [];
+        $results = $this->findAllUsers();
+        foreach($results as $row){
+            if(str_contains(strtoupper($row->name),strtoupper($name))){
+                $resCustomers[] = $row;
+            }
+        }
+        return $resCustomers;
+    }
 }
