@@ -44,7 +44,11 @@
         else {echo 'loadSearchForm/'.$this->pharmId ;}  ?>/clear/<?=$this->preId?>" method="post">
         <br><br><input type="submit" value="Clear Items">
     </form>
-    <br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
+    <?php if(isset($_SESSION["isPrescription"]) && $_SESSION["isPrescription"]){?>
+        <br><br><a href="<?=SROOT?>PrescriptionHandler/view">Go Back</a>
+    <?php } else{?>
+        <br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
+    <?php }?>
 </body>
 
 </html>
