@@ -108,7 +108,7 @@ class SeasonalOfferHandler extends Controller{
                     } else{
                         $postCopy['pharmacy_id']=Pharmacy::currentLoggedInPharmacy()->id;
                         $this->OfferModel->insert($postCopy);
-                        $OfferId = $this->OfferModel->getLastId + 1;
+                        $OfferId = $this->OfferModel->getLastId();
                         $this->NotifyCustomers('new',$OfferId,'new');
                     }        
                 }else {
