@@ -93,7 +93,7 @@ class SeasonalOfferHandler extends Controller{
                 if(move_uploaded_file($_FILES["bannerdocument"]["tmp_name"], $target_file)){
                     if($mode==='edit'){
                         $this->OfferModel->update($OfferId,$postCopy);
-                        $this->NotifyCustomers($mode,$OfferId,'Image Added');
+                        $this->NotifyCustomers($mode,$OfferId,'Image Changed');
                     } else{
                         $postCopy['pharmacy_id']=Pharmacy::currentLoggedInPharmacy()->id;
                         $this->OfferModel->insert($postCopy);
