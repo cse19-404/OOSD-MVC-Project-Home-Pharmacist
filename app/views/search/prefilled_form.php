@@ -27,7 +27,7 @@
                         <tr>
                             <td><?php echo $row->name."(".$row->quantity_unit.")"?></td>
                             <td><?php echo "Rs " . $row->price_per_unit_quantity?></td>
-                            <td><?php if(!$row->prescription_needed || ($this->preId !=-1 && !isset(User::$currentLoggedInUser))){?><form action="<?=SROOT?>PrefilledformHandler/addItem/<?=$row->id?>/<?=$this->pharmId?>/<?=$this->preId?>"><input type="submit" value='Add'></form><?php }else{?>Prescription Needed<?php }?></td>
+                            <td><?php if(!$row->prescription_needed || ($this->preId !=-1 && User::currentLoggedInUser()->id === Null)){?><form action="<?=SROOT?>PrefilledformHandler/addItem/<?=$row->id?>/<?=$this->pharmId?>/<?=$this->preId?>"><input type="submit" value='Add'></form><?php }else{?>Prescription Needed<?php }?></td>
                         </tr>
                     <?php }?>
                 </table>
@@ -74,11 +74,11 @@
     <br><br><a href="<?=SROOT?>OrderHandler/loadOrderDetails">Proceed to Order</a>
     <?php if(isset($_SESSION['isNearBy']) && $_SESSION['isNearBy']){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1/-1/<?=$this->preId?>">Select Another Form</a>
-    <?php }elseif(User::currentLoggedInUser() !== Null){?>
+    <?php }elseif(User::currentLoggedInUser()->id === Null){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/sendPrefilledForm/<?=$this->preId?>">Send to Customer</a>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notClear/<?=$this->preId?>">Go Back</a>
     <?php }elseif($this->preId != -1){?>
-        <br><br><a href="<?=SROOT?>PrefilledformHandler/viewForms">Go Back2</a>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/viewForms">Go Back</a>
     <?php }else{?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notClear">Go Back</a>
     <?php }?>

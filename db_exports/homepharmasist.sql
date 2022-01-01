@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2022 at 12:51 PM
+-- Generation Time: Jan 01, 2022 at 07:39 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -139,7 +139,14 @@ INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `mess
 (30, 'banula', 'superuser01', 'text', 'qwe', 'ddd', 0, 0),
 (31, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Edited', 'Seasonal Offer was edited by &quot; New Pharmacy &quot; Pharmacy - Details Changed', 6, 0),
 (32, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Edited', 'Seasonal Offer was edited by &quot; New Pharmacy &quot; Pharmacy - Details Changed', 6, 0),
-(33, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Edited', 'Seasonal Offer was edited by &quot; New Pharmacy &quot; Pharmacy - Details Changed', 6, 0);
+(33, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Edited', 'Seasonal Offer was edited by &quot; New Pharmacy &quot; Pharmacy - Details Changed', 6, 0),
+(34, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot; New Pharmacy &quot; for the prescription you sent.', 2, 0),
+(35, 'New Pharmacy', 'dakshina', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot; New Pharmacy &quot; for the prescription you sent.', 3, 0),
+(36, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot; New Pharmacy &quot; for the prescription you sent.', 8, 0),
+(37, 'New Pharmacy', 'dakshina', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form created and sent by &quot; New Pharmacy &quot; as for your request', 9, 0),
+(38, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form created and sent by &quot; New Pharmacy &quot; as for your request', 10, 0),
+(39, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot; New Pharmacy &quot; for the prescription you sent.', 1, 0),
+(40, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot; New Pharmacy &quot; for the prescription you sent.', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -226,13 +233,13 @@ CREATE TABLE `prefilledformtable` (
 --
 
 INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_all_item`, `no_of_items`, `itemIds`, `quantities`, `prescription`, `deleted`, `form_sent`, `seen`) VALUES
-(1, 2, 1, 3, '2', '9,5,6', '1,12,19000', 'uploads/prescriptions/DESIGNDOC.txt', 0, 1, 0),
-(2, 2, 1, 0, NULL, NULL, NULL, 'uploads/prescriptions/Screenshot_20211022-142945.png', 0, 0, 0),
-(3, 3, 1, 0, NULL, NULL, NULL, 'uploads/prescriptions/Evidence07.txt', 0, 0, 0),
+(1, 2, 1, 1, '1', '9', '12', 'uploads/prescriptions/DESIGNDOC.txt', 0, 1, 1),
+(2, 2, 1, 2, '1', '9,asd', '12,No Such Item', 'uploads/prescriptions/Screenshot_20211022-142945.png', 0, 1, 1),
+(3, 3, 1, 2, '2', '1,5', '12,1', 'uploads/prescriptions/Evidence07.txt', 0, 1, 0),
 (4, 2, 3, 0, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt', 0, 0, 0),
-(5, 2, 1, 0, '2', '9,1', '12,2', 'uploads/prescriptions/CS2062.pdf', 0, 1, 0),
 (6, 2, 3, 0, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg', 0, 0, 0),
-(7, 2, 1, 0, '1', '9', '1', 'uploads/prescriptions/Evidence01(3).txt', 1, 1, 0);
+(8, 2, 1, 3, '3', '9,6,1', '12,1,1', 'uploads/prescriptions/190507U_02.jpeg', 0, 1, 1),
+(10, 2, 1, 3, '2', '9,1,abc', '12,1,No Such Item', '', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -334,7 +341,7 @@ ALTER TABLE `itemtable`
 -- AUTO_INCREMENT for table `mediatortable`
 --
 ALTER TABLE `mediatortable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `offertable`
@@ -352,7 +359,7 @@ ALTER TABLE `pharmacytable`
 -- AUTO_INCREMENT for table `prefilledformtable`
 --
 ALTER TABLE `prefilledformtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `usertable`

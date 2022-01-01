@@ -74,9 +74,9 @@
             $_SESSION["isPrescription"]=true;
             $this->PharmacyModel = Pharmacy::currentLoggedInPharmacy();
             $results = $this->PrefilledFormModel->find([
-                'conditions'=>'pharmacy_id=? and deleted=?',
+                'conditions'=>'pharmacy_id=? and deleted=? and prescription!=?',
                 'order'=>'form_sent ASC',
-                'bind'=>[$this->PharmacyModel->id,0]
+                'bind'=>[$this->PharmacyModel->id,0,'']
             ]);
             if ($results){
                 foreach($results as $row){
