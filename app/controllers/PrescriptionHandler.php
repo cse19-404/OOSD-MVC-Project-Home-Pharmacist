@@ -73,8 +73,8 @@
             }
             $this->PharmacyModel = Pharmacy::currentLoggedInPharmacy();
             $results = $this->PrefilledFormModel->find([
-                'conditions'=>'pharmacy_id=?',
-                'bind'=>[$this->PharmacyModel->id]
+                'conditions'=>'pharmacy_id=? and deleted=?',
+                'bind'=>[$this->PharmacyModel->id,0]
             ]);
             if ($results){
                 foreach($results as $row){
@@ -86,6 +86,13 @@
                 $results = [];
             }
             $this->view->render('prescriptions/viewPrescriptions');
+        }
+
+        public function clearAction($id){
+            $this->PrefilledFormModel->update($id,[
+                'deleted'=>1
+            ]);
+            $this->viewAction();
         }
     }
     

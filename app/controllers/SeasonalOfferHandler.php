@@ -14,6 +14,7 @@ class SeasonalOfferHandler extends Controller{
 
     }
     public function viewAction(){
+        $_SESSION['isSeasonal']=true;
         if($_SESSION['role']=="pharmacy"){
             $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy();
             $result = $this->PharmacyModel->findAllOffers();
@@ -25,12 +26,24 @@ class SeasonalOfferHandler extends Controller{
         }elseif($_SESSION['role']=="customer"){
             $this->UserModel=User::currentLoggedInUser();
             $allOffers=$this->UserModel->findAllOffers();
+            //dnd($allOffers);
+            $result=[];
+            $pharmacies=[];
             foreach($allOffers as $row){
-                
+                if(array_key_exists($row->pharmacy_id,$result)){
+                    $result[$row->pharmacy_id][]=$row;
+                } else{
+                    $result[$row->pharmacy_id]=[$row];
+                    $newPharmacy = new Pharmacy();
+                    $newPharmacy->findById($row->pharmacy_id);
+                    $pharmacies[$row->pharmacy_id] = [$newPharmacy];
+                }              
             }
-
-
-        
+            $this->view->results = $result;
+            $this->view->pharmacies=$pharmacies;
+            //dnd($pharmacies[1][0]->address);
+            //dnd($result);
+            $this->view->render('user/view_offers_section');       
         }
     }
 

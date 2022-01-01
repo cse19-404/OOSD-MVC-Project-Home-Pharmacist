@@ -32,6 +32,7 @@ class Model
     {
         $results = [];
         $resultsQuery = $this->_db->find($this->_table, $params);
+        if (!$resultsQuery) return $results;
         //dnd($resultsQuery);
         foreach ($resultsQuery as $result) {
             $obj = ($this->_modelName === 'Item')? new $this->_modelName(DummyItem::getInstance(-1)) :new $this->_modelName($this->_table);

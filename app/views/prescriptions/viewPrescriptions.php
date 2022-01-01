@@ -18,11 +18,14 @@
                     <td><?= $entry[0]->name?></td>
                     <td><a href="<?=SROOT?><?=$entry[1]->prescription?>" download='<?=$entry[1]->prescription?>'><?= ltrim($entry[1]->prescription,'uploads/prescriptions/')?></a></td>
                     <td><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$entry[1]->pharmacy_id?>/notclear/<?=$key?>">Prepare a form</a></td>
+                    <td><a href="<?=SROOT?>PrescriptionHandler/clear/<?= $key ?>">Remove</a></td>
                 </tr>
             <?php }?>
         </table>
     <?php }else {
         echo "<h3>No prescriptions found</h3>";
     }?>
+
+    <br><br><a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
 </body>
 </html>
