@@ -38,7 +38,7 @@
                     <table>
                         <?php foreach($this->offer as $row){?>
                             <tr>
-                                <td><a href="<?=SROOT?>"><?php echo '<pre>Subject : ' .$row['subject'].'<br>'.ucwords($row['message_type']).' from '.$row['sender_username'] .'<br>'.$row['message'].' with the description : <br>'.$row['description'].'</pre>'?></a></td>
+                                <td><a href="<?=SROOT?>SeasonalOfferHandler/view"><?php echo '<pre>Subject : ' .$row['subject'].'<br>'.ucwords($row['message_type']).' from '.$row['sender_username'] .'<br>'.$row['message'].' with the description : <br>'.$row['description'].'</pre>'?></a></td>
                             </tr>                     
                     </table>
                 </div>              
