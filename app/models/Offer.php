@@ -1,22 +1,21 @@
-<?php 
+<?php
 
-class Offer extends Model{
-    
+class Offer extends Model
+{
+
     public function __construct()
     {
-        $table = 'seasonaloffertable';
+        $table = 'offertable';
         parent::__construct($table);
     }
 
-    public function deleteOffer($id){
-        $this->update($id,['status'=> 1]);
+    public function deleteOffer($id)
+    {
+        $this->update($id, ['status' => 1]);
     }
 
-    public function getLastId(){
+    public function getLastId()
+    {
         return $this->_db->lastId();
     }
-
-
-
-
 }

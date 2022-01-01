@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2022 at 07:12 AM
+-- Generation Time: Jan 01, 2022 at 08:30 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -111,7 +111,7 @@ CREATE TABLE `mediatortable` (
 --
 
 INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `message_type`, `subject`, `message`, `message_ref_id`, `is_read`) VALUES
-(2, 'banula', 'New Pharmacy', 'text', 'qwe', 'wer', 0, 0),
+(2, 'banula', 'New Pharmacy', 'text', 'qwe', 'wer', 0, 1),
 (3, 'superuser01', 'New Pharmacy', 'text', 'hi', 'hello', 0, 1),
 (4, 'banula', 'Lanka Pharmacy', 'text', 'Lanka', 'Lanka Pembara Lanka', 0, 0),
 (6, 'superuser01', 'ron', 'text', 'dear', 'me', 0, 0),
@@ -137,6 +137,37 @@ INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `mess
 (28, 'superuser01', 'banula', 'text', 'qwe', 'esrdgtfhygjukiol;polkjhngbfvdcsx', 0, 1),
 (29, 'dakshina', 'superuser01', 'text', 'my', '', 0, 0),
 (30, 'banula', 'superuser01', 'text', 'qwe', 'ddd', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `offertable`
+--
+
+CREATE TABLE `offertable` (
+  `id` int(11) NOT NULL,
+  `pharmacy_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `isexpired` tinyint(1) NOT NULL,
+  `bannerdocument` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `offertable`
+--
+
+INSERT INTO `offertable` (`id`, `pharmacy_id`, `name`, `description`, `start_date`, `end_date`, `status`, `isexpired`, `bannerdocument`) VALUES
+(6, 1, 'Offer1', 'Offer1', '2022-01-07', '2022-01-28', 0, 1, 'uploads/Screenshot 2021-12-30 105924.jpg'),
+(7, 1, 'Offer2', 'Offer2', '2022-01-18', '2022-01-11', 0, 0, 'uploads/graphic clr settings.jpg'),
+(8, 1, 'Offer3', 'Offer3', '2022-01-03', '2022-01-20', 0, 0, 'uploads/settings4.jpg'),
+(9, 1, 'Offer4', 'Offer4', '2022-01-05', '2022-01-18', 0, 0, 'uploads/settings3.jpg'),
+(10, 1, 'Offer07', 'Offer7', '2022-01-04', '2022-01-27', 0, 0, 'uploads/Agent_Viper_Half.png'),
+(11, 1, 'Offer9', 'hgmhm', '2022-01-03', '2022-01-20', 0, 0, 'uploads/viper3.jpg'),
+(12, 1, 'Offer10', 'Offer10', '2021-12-31', '2022-01-04', 1, 0, 'uploads/valhalla 4.jpg');
 
 -- --------------------------------------------------------
 
@@ -198,36 +229,6 @@ INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_ite
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seasonaloffertable`
---
-
-CREATE TABLE `seasonaloffertable` (
-  `id` int(11) NOT NULL,
-  `pharmacy_id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
-  `status` tinyint(1) NOT NULL,
-  `isexpired` tinyint(1) NOT NULL,
-  `bannerdocument` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `seasonaloffertable`
---
-
-INSERT INTO `seasonaloffertable` (`id`, `pharmacy_id`, `name`, `description`, `start_date`, `end_date`, `status`, `isexpired`, `bannerdocument`) VALUES
-(6, 1, 'Offer1', 'Offer1', '2022-01-06', '2022-01-28', 0, 1, 'uploads/Screenshot 2021-12-30 105924.jpg'),
-(7, 1, 'Offer2', 'Offer2', '2022-01-18', '2022-01-11', 0, 0, 'uploads/graphic clr settings.jpg'),
-(8, 1, 'Offer3', 'Offer3', '2022-01-03', '2022-01-20', 0, 0, 'uploads/settings4.jpg'),
-(9, 1, 'Offer4', 'Offer4', '2022-01-05', '2022-01-18', 0, 0, 'uploads/settings3.jpg'),
-(10, 1, 'Offer07', 'Offer7', '2022-01-04', '2022-01-27', 0, 0, 'uploads/Agent_Viper_Half.png'),
-(11, 1, 'Offer9', 'hgmhm', '2022-01-03', '2022-01-20', 0, 0, 'uploads/viper3.jpg');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `usertable`
 --
 
@@ -282,6 +283,12 @@ ALTER TABLE `mediatortable`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `offertable`
+--
+ALTER TABLE `offertable`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pharmacytable`
 --
 ALTER TABLE `pharmacytable`
@@ -291,12 +298,6 @@ ALTER TABLE `pharmacytable`
 -- Indexes for table `prefilledformtable`
 --
 ALTER TABLE `prefilledformtable`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `seasonaloffertable`
---
-ALTER TABLE `seasonaloffertable`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -328,6 +329,12 @@ ALTER TABLE `mediatortable`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT for table `offertable`
+--
+ALTER TABLE `offertable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `pharmacytable`
 --
 ALTER TABLE `pharmacytable`
@@ -338,12 +345,6 @@ ALTER TABLE `pharmacytable`
 --
 ALTER TABLE `prefilledformtable`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `seasonaloffertable`
---
-ALTER TABLE `seasonaloffertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `usertable`
