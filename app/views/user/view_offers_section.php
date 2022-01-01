@@ -33,7 +33,7 @@
                 <span name='pharm-address'><?= $this->pharmacies[$pharmId][0]->address?></span><br>
                 <span name='pharam-delivery-supported'><?= ($this->pharmacies[$pharmId][0]->delivery_supported)?"Delivery Supported":"Delivery Not Supported"?></span><br><br>
                 <?php foreach($rows as $row){?>
-                    <div id="<?= $row->id?>" onclick="location.href='<?=SROOT?>PreFilledFormHandler/processItems/<?= $pharmId ?>';" style="cursor: pointer; border: 2px solid; border-radius: 10px;" >
+                    <div id="<?= $row->id?>" onclick="location.href='<?=SROOT?>PreFilledFormHandler/loadSearchForm/<?= $pharmId ?>';" style="cursor: pointer; border: 2px solid; border-radius: 10px;" >
                         <h4><?= $row->name?></h4>
                         <span><?= ($row->isexpired)?"Expired on ".$row->end_date:"Active from ".$row->start_date." to ".$row->end_date?></span><br>
                         <label name="" id=""><?= $row->description?></label><br>

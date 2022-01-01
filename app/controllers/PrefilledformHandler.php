@@ -90,6 +90,9 @@ class PrefilledformHandler extends Controller{
         if (isset($_SESSION['removed'])){
             unset($_SESSION['removed']);
         }
+        if (isset($_SESSION['TotalPrice'])){
+            unset($_SESSION['TotalPrice']);
+        }
         if ($clear === 'clear'){
             if (isset($_SESSION['rawData'])){
                 unset($_SESSION['rawData']);
@@ -288,7 +291,7 @@ class PrefilledformHandler extends Controller{
         $_SESSION['TotalPrice']=$total;
         //$this->view->total=$total;
     }
-    
+
     public function viewFormAction($preId){
         $this->PrefilledformModel->findById($preId);
         $this->PrefilledformModel->seen = 1;
