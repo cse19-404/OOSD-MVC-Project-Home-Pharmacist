@@ -65,6 +65,7 @@
                 </tr>
             <?php }}}?>
         </table>
+        <br><br><span>Total Price : <?= $_SESSION['TotalPrice'] ?></span>
     </div>
     <?php if($this->pharmId==-1){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1/-1/<?=$this->preId?>">Select Another Form</a>
