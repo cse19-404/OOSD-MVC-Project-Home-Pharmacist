@@ -43,6 +43,7 @@ if (isset($_SESSION['username'])) {
         <a href="<?=SROOT?>ItemHandler/view"><h2>View Inventory</h2></a><br>
         <a href="<?=SROOT?>PrescriptionHandler/view"><h2>Uploaded Prescriptions</h2></a><br>
         <a href="<?=SROOT?>SeasonalOfferHandler/view"><h2>Seasonal Offers</h2></a><br>
+        <a href="<?=SROOT?>PharmacyDashboard/searchCustomer"><h2>Order for a customer</h2></a><br>
         <?php } ?>
         
         <a href="<?=SROOT?>CustomerDashboard/message"><h2>Messenge portral</h2></a><br>
