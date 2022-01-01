@@ -40,6 +40,8 @@
                 <input type="text" name="role" value='customer' hidden>                              
                 <input type="submit" class="btn-submit" value="Submit" name='submit'>            
             </form>
-        </div>   
+        </div>
+        
+        <br><br><a href="<?=SROOT?>home/index">Go to Home</a>
 </body>
 </html>

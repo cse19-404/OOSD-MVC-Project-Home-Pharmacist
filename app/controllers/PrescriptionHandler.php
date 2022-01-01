@@ -75,6 +75,7 @@
             $this->PharmacyModel = Pharmacy::currentLoggedInPharmacy();
             $results = $this->PrefilledFormModel->find([
                 'conditions'=>'pharmacy_id=? and deleted=?',
+                'order'=>'form_sent ASC',
                 'bind'=>[$this->PharmacyModel->id,0]
             ]);
             if ($results){

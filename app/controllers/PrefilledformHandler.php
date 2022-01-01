@@ -239,17 +239,19 @@ class PrefilledformHandler extends Controller{
             $_SESSION['tempItemId'] = [];
         }
         $itemId = $quan = [];
-        $noOfItem = 0;
+        $noOfItem = $noOfAll= 0;
         
         foreach($_SESSION['tempItemId'] as $key=>$val){
-            if (is_numeric($key)) {
-                $noOfItem += 1;
-            }
             array_push($itemId, $key);
             $quant = explode(',', $val)[0];
+            $status = explode(',', $val)[1];
             array_push($quan, $quant);
+            if ($status === 'In Stock' || $status === 'Prescription Needed') {
+                $noOfItem++;
+            }
+            $noOfAll++;
         }
-        $this->PrefilledformModel->update($preId, ['no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan)]);
+        $this->PrefilledformModel->update($preId, ['no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan), 'form_sent'=>1]);
         $this->notifyCustomer($preId);
         $_SESSION['sentMsg'] = 'Succefully sent to customer';
         Router::redirect('PrescriptionHandler/view');
@@ -267,6 +269,12 @@ class PrefilledformHandler extends Controller{
 
     private function notifyCustomer($refId){
         $this->MediatorModel->receivePrefilledfromsFromPrescription($refId);
+    }
+
+    public function viewFormAction($preId){
+        $this->PrefilledformModel->findById($preId);
+        $this->PrefilledformModel->seen = 1;
+
     }
 
 }
