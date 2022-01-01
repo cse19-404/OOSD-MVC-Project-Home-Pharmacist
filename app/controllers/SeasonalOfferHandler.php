@@ -14,13 +14,24 @@ class SeasonalOfferHandler extends Controller{
 
     }
     public function viewAction(){
-        $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy();
-        $result = $this->PharmacyModel->findAllOffers();
-        $this->view->results = $result;
-        //dnd($this->PharmacyModel);
-        // $resultQuery=$this->PharmacyModel->findAlloffers();
-        // $this->view->result=$resultQuery;
-        $this->view->render('user/view_offers_section');
+        if($_SESSION['role']=="pharmacy"){
+            $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy();
+            $result = $this->PharmacyModel->findAllOffers();
+            $this->view->results = $result;
+            //dnd($this->PharmacyModel);
+            // $resultQuery=$this->PharmacyModel->findAlloffers();
+            // $this->view->result=$resultQuery;
+            $this->view->render('user/view_offers_section');
+        }elseif($_SESSION['role']=="customer"){
+            $this->UserModel=User::currentLoggedInUser();
+            $allOffers=$this->UserModel->findAllOffers();
+            foreach($allOffers as $row){
+                
+            }
+
+
+        
+        }
     }
 
 

@@ -1,27 +1,29 @@
-<?php 
+<?php
 
-class Pharmacy extends Model{
+class Pharmacy extends Model
+{
     private $_sessionName;
     public static $currentLoggedInPharmacy = null;
 
-     public function __construct()
+    public function __construct()
     {
         $table = 'pharmacytable';
         parent::__construct($table);
         $this->_sessionName = CURRENT_USER_SESSION_NAME;
     }
 
-    public function registerNewPharmacy($params, $id){
-        if (isset($params['delivery_supported']) && $params['delivery_supported']=="on"){
+    public function registerNewPharmacy($params, $id)
+    {
+        if (isset($params['delivery_supported']) && $params['delivery_supported'] == "on") {
             $params['delivery_supported'] = 1;
-        }else{
+        } else {
             $params['delivery_supported'] = 0;
         }
         $this->assign($params);
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->save();
-        $this->_db->update('applicationtable',$id,[
-            'acc_created'=>1
+        $this->_db->update('applicationtable', $id, [
+            'acc_created' => 1
         ]);
     }
 
@@ -39,46 +41,50 @@ class Pharmacy extends Model{
         }
         return self::$currentLoggedInPharmacy;
     }
-    public function login(){
+    public function login()
+    {
         Session::set($this->_sessionName, $this->id);
-        Session::set('role','pharmacy');
-        Session::set('username',$this->username);
-        Session::set('multiton',[]);
+        Session::set('role', 'pharmacy');
+        Session::set('username', $this->username);
+        Session::set('multiton', []);
         self::$currentLoggedInPharmacy = $this;
     }
 
-    public function logout(){
+    public function logout()
+    {
         Session::delete();
         self::$currentLoggedInPharmacy = null;
         return true;
     }
 
-    public function findAllItems(){
-        return $this->_db->find('itemtable',['conditions'=>'pharmacy_id=? AND status=?','bind' => [$this->id,0]]);
+    public function findAllItems()
+    {
+        return $this->_db->find('itemtable', ['conditions' => 'pharmacy_id=? AND status=?', 'bind' => [$this->id, 0]]);
     }
 
-    public function getavailabity($items){
+    public function getavailabity($items)
+    {
         $results = $this->findAllItems();
         $count = 0;
         $price = 0;
         if (!$results || !$items) {
-            return [$count,$price];
+            return [$count, $price];
         }
-        foreach($items as $item=>$quantity){
-            foreach($results as $row){
-                if(str_contains(strtoupper($row->name),strtoupper($item)) && $row->quantity>$quantity){
-                    $count+=1;
-                    $price += $row->price_per_unit_quantity*$quantity;
+        foreach ($items as $item => $quantity) {
+            foreach ($results as $row) {
+                if (str_contains(strtoupper($row->name), strtoupper($item)) && $row->quantity > $quantity) {
+                    $count += 1;
+                    $price += $row->price_per_unit_quantity * $quantity;
                     break;
                 }
-            }     
+            }
         }
 
-        return [$count,$price];
+        return [$count, $price];
     }
 
-    public function findAllOffers(){
-        return $this->_db->find('seasonaloffertable',['conditions'=>'pharmacy_id=? AND status=?','bind' => [$this->id,0]]);
+    public function findAllOffers()
+    {
+        return $this->_db->find('offertable', ['conditions' => 'pharmacy_id=? AND status=?', 'bind' => [$this->id, 0]]);
     }
-
 }
