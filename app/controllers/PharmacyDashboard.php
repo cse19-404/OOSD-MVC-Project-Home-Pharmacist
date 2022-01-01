@@ -35,6 +35,7 @@ class PharmacyDashboard extends Controller{
         $this->view->pharmName = $pharmacy->name;
         $this->view->pharmId = $pharmacy->id;
         $this->view->preId = -1;
+        $this->view->orderfromPharm = true;
         $this->view->render('search/searchForm');
     }
 }
