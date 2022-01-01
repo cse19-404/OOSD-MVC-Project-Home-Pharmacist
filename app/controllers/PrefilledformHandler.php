@@ -356,6 +356,9 @@ class PrefilledformHandler extends Controller{
         if (isset($_SESSION['tempItemId'])){
             unset($_SESSION['tempItemId']);
         }
+        if (isset($_SESSION['removed'])){
+            unset($_SESSION['removed']);
+        }
         $cond = 'customer_id=' . User::currentLoggedInUser()->id . ' AND ' . 'form_sent=' . '1';
         $preForms = $this->PrefilledformModel->find(['conditions'=>$cond]);
         foreach ($preForms as $form) {

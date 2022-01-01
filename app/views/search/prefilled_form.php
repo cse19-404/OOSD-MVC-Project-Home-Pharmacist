@@ -73,11 +73,12 @@
     </div>
     <?php if($this->pharmId==-1){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1/-1/<?=$this->preId?>">Select Another Form</a>
-    <?php }else {if($this->preId != -1 || isset($_SESSION['orderfromPharm'])){?>
+    <?php }else {if(($this->preId != -1 && !isset(User::$currentLoggedInUser)) || isset($_SESSION['orderfromPharm'])){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/sendPrefilledForm/<?=$this->preId?>">Send to Customer</a>
+        <?php }else{?>
+        <br><br><a href="<?=SROOT?>">Proceed to Order</a>
         <?php }?>
-        
-        <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notclear/<?=$this->preId?>">Go Back</a>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/viewForms">Go Back</a>
         <?php }?>
 </body>
 </html>
