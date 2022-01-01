@@ -204,6 +204,7 @@ class PrefilledformHandler extends Controller{
     }
 
     private function searchFromNearbyPharmacies($items){
+        $_SESSION['isNearBy'] = 1;
         $user = User::currentLoggedInUser();
         $pharmacyIds = explode(',',$user->nearbypharmacies);
         $cond = '';

@@ -71,14 +71,16 @@
         </table>
         <br><br><span>Total Price : <?= $_SESSION['TotalPrice'] ?></span>
     </div>
-    <?php if($this->pharmId==-1){?>
+    <br><br><a href="<?=SROOT?>OrderHandler/loadOrderDetails">Proceed to Order</a>
+    <?php if(isset($_SESSION['isNearBy']) && $_SESSION['isNearBy']){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1/-1/<?=$this->preId?>">Select Another Form</a>
-    <?php }else {if(($this->preId != -1 && !isset(User::$currentLoggedInUser)) || isset($_SESSION['orderfromPharm'])){?>
+    <?php }elseif(User::currentLoggedInUser() !== Null){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/sendPrefilledForm/<?=$this->preId?>">Send to Customer</a>
-        <?php }else{?>
-        <br><br><a href="<?=SROOT?>">Proceed to Order</a>
-        <?php }?>
-        <br><br><a href="<?=SROOT?>PrefilledformHandler/viewForms">Go Back</a>
-        <?php }?>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notClear/<?=$this->preId?>">Go Back</a>
+    <?php }elseif($this->preId != -1){?>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/viewForms">Go Back2</a>
+    <?php }else{?>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notClear">Go Back</a>
+    <?php }?>
 </body>
 </html>

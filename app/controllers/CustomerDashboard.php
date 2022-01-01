@@ -17,6 +17,9 @@ class CustomerDashboard extends Controller{
     }
 
     public function searchAction(){
+        if (isset($_SESSION['isNearBy'])){
+            unset($_SESSION['isNearBy']);
+        }
         if (isset($_SESSION['rawData'])){
             unset($_SESSION['rawData']);
         }
