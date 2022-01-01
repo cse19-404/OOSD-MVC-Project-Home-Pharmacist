@@ -31,4 +31,16 @@ class Mediator extends Model{
         $this->update($id, ['is_read'=>1]);
     }
 
+    public function receiveSeasonalOffers($mode,$OfferId,$from){
+        if ($mode === 'new') {
+            $params['sender_username'] = $from;
+            $params['receiver_username'] = 'All-Users';
+            $params['message_type'] = 'seasonal offer';
+            $params['message_ref_id'] = $OfferId;
+            $params['is_read'] = 0;
+            $params['subject'] = 'Seasonal Offer Edited';
+
+        }
+    }
+
 }

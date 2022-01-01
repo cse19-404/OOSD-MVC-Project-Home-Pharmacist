@@ -10,6 +10,7 @@ class SeasonalOfferHandler extends Controller{
         $this->load_model('Prefilledform');
         $this->load_model('Item',-1);
         $this->load_model('Offer');
+        $this->load_model('Mediator');
 
     }
     public function viewAction(){
@@ -92,9 +93,12 @@ class SeasonalOfferHandler extends Controller{
                 if(move_uploaded_file($_FILES["bannerdocument"]["tmp_name"], $target_file)){
                     if($mode==='edit'){
                         $this->OfferModel->update($OfferId,$postCopy);
+                        $this->NotifyCustomers($mode,$OfferId,'Image Added');
                     } else{
                         $postCopy['pharmacy_id']=Pharmacy::currentLoggedInPharmacy()->id;
                         $this->OfferModel->insert($postCopy);
+                        $OfferId = $this->OfferModel->getLastId + 1;
+                        $this->NotifyCustomers('new',$OfferId,'new');
                     }        
                 }else {
                     echo ("Sorry, there was an error uploading your file.");
@@ -103,6 +107,7 @@ class SeasonalOfferHandler extends Controller{
                 //dnd($postCopy);
                 if($mode==='edit'){
                     $this->OfferModel->update($OfferId,$postCopy);
+                    $this->NotifyCustomers($mode,$OfferId,'Details Changed');
                 } 
             }  
             Router::redirect('SeasonalOfferHandler/view');
@@ -126,6 +131,12 @@ class SeasonalOfferHandler extends Controller{
         $this->PharmacyModel->findById($PharmId);
         $this->view->pharmName = $this->PharmacyModel->name;
         $this->view->PharmId = $PharmId;
+    }
+
+    private function NotifyCustomers($mode,$OfferId,$msg){
+        $this->PharmacyModel = Pharmacy::currentLoggedInPharmacy();
+        $from = $this->PharmacyModel->username;
+        $this->MediatorModel->receiveSeasonalOffers($mode,$OfferId,$from,$msg);
     }
  
 }

@@ -12,9 +12,9 @@ class Offer extends Model{
         $this->update($id,['status'=> 1]);
     }
 
-    // public function getLastId(){
-    //     return $this->_db->lastId();
-    // }
+    public function getLastId(){
+        return $this->_db->lastId();
+    }
 
 
 
