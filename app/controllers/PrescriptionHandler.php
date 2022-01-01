@@ -71,6 +71,7 @@
             if (isset($_SESSION['rawData'])){
                 unset($_SESSION['rawData']);
             }
+            $_SESSION["isPrescription"]=true;
             $this->PharmacyModel = Pharmacy::currentLoggedInPharmacy();
             $results = $this->PrefilledFormModel->find([
                 'conditions'=>'pharmacy_id=? and deleted=?',
