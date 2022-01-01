@@ -33,13 +33,18 @@ class PrefilledformHandler extends Controller{
 
     public function addItemAction($itemId, $PharmId, $preId=-1){
         if(isset($_SESSION['tempItemId'])){
-            if(!in_array($itemId, $_SESSION['tempItemId'])){$_SESSION['tempItemId'][$itemId] = 0;}
-        }else{$_SESSION['tempItemId'][$itemId] = 0;}
+            if(!in_array($itemId, $_SESSION['tempItemId'])){$_SESSION['tempItemId'][$itemId] = '-,-';}
+        }else{$_SESSION['tempItemId'][$itemId] = '-,-';}
         //dnd($_SESSION['tempItemId']);
         $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
         $this->setPres($preId);
-        $this->calculateTotal($this->view->items);
+        $this->calculateTotal($preId, $this->view->items);
+        if(isset($_SESSION['removed'])){
+            if (($k = array_search($itemId, $_SESSION['removed'])) !== false) {
+                        unset($_SESSION['removed'][$k]);
+            }
+        }
         $this->view->render('search/prefilled_form');
     }
 
@@ -50,7 +55,7 @@ class PrefilledformHandler extends Controller{
         $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
         $this->setPres($preId);
-        $this->calculateTotal($this->view->items);
+        $this->calculateTotal($preId, $this->view->items);
         $this->view->render('search/prefilled_form');
     }
     
@@ -87,6 +92,9 @@ class PrefilledformHandler extends Controller{
     }
 
     public function loadSearchFormAction($pharmId, $clear='',$preId='-1'){
+        if (isset($_SESSION['tempItemId'])){
+            unset($_SESSION['tempItemId']);
+        }
         if (isset($_SESSION['removed'])){
             unset($_SESSION['removed']);
         }
@@ -111,6 +119,9 @@ class PrefilledformHandler extends Controller{
     }
 
     public function addRawItemAction($pharmId, $preId='-1'){
+        if (isset($_SESSION['removed'])){
+            unset($_SESSION['removed']);
+        }
         if ($pharmId != -1){
             $this->PharmacyModel->findById($pharmId);
             $this->view->pharmName = $this->PharmacyModel->name;
@@ -127,9 +138,6 @@ class PrefilledformHandler extends Controller{
     }
 
     public function processItemsAction ($pharmId, $rmItemId = -1, $preId=-1){
-        if (isset($_SESSION['tempItemId'])){
-            unset($_SESSION['tempItemId']);
-        }
         if (!isset($_SESSION['rawData'])) {
             $_SESSION['rawData'] = [];
         }
@@ -137,7 +145,7 @@ class PrefilledformHandler extends Controller{
         if (!isset($_SESSION['removed'])){
             $_SESSION['removed'] = [];
         }
-        if($rmItemId != -1){array_push($_SESSION['removed'], $rmItemId);}
+        if($rmItemId != -1 && !array_key_exists(''.$rmItemId, $_SESSION['removed'])){array_push($_SESSION['removed'], $rmItemId);}
         
         $this->setPres($preId);
 
@@ -168,16 +176,12 @@ class PrefilledformHandler extends Controller{
             //dnd( $_SESSION['tempItemId']);
             if(isset($_SESSION['tempItemId'])){
                 foreach($_SESSION['removed'] as $rm){
-                    if (key_exists($rm, $_SESSION['tempItemId'])) {
+                    if (array_key_exists(''.$rm, $_SESSION['tempItemId'])) {
                         unset($_SESSION['tempItemId'][$rm]);
-                    }
-                    if (($k = array_search($rm, $_SESSION['removed'])) !== false) {
-                        unset($_SESSION['removed'][$k]);
-                    }
-                    
+                    }                  
                 }
                 $this->getItemModels(array_keys($_SESSION['tempItemId']));
-                $this->calculateTotal($this->view->items);
+                $this->calculateTotal($preId, $this->view->items);
             }     
             $this->view->render('search/prefilled_form');
             //dnd($this->view->items);
@@ -297,13 +301,13 @@ class PrefilledformHandler extends Controller{
         $this->MediatorModel->receivePrefilledfromsFromPrescription($refId);
     }
 
-    public function calculateTotal($items){
+    public function calculateTotal($preId, $items){
         $total=0;
         foreach($items as $row){
-            if(key_exists($row->getId(), $_SESSION['tempItemId'])){
+            if(array_key_exists($row->getId(), $_SESSION['tempItemId'])){
                 if($_SESSION['tempItemId'][$row->getId()] > 0 ){
                     $var = explode(",",$_SESSION['tempItemId'][$row->getId()]);
-                    if ($var[1] == 'In Stock'){
+                    if ($var[1] == 'In Stock'|| ($var[1] == 'Prescription Needed' && $preId != -1)){
                         $total += $row->price_per_unit_quantity * $var[0];
                     }
                 }
@@ -314,6 +318,9 @@ class PrefilledformHandler extends Controller{
     }
 
     public function viewFormAction($preId){
+        if (isset($_SESSION['tempItemId'])){
+            unset($_SESSION['tempItemId']);
+        }
         $this->PrefilledformModel->findById($preId);
         $this->PrefilledformModel->seen = 1;
 
@@ -339,6 +346,9 @@ class PrefilledformHandler extends Controller{
     }
 
     public function viewFormsAction(){
+        if (isset($_SESSION['tempItemId'])){
+            unset($_SESSION['tempItemId']);
+        }
         $cond = 'customer_id=' . User::currentLoggedInUser()->id . ' AND ' . 'form_sent=' . '1';
         $preForms = $this->PrefilledformModel->find(['conditions'=>$cond]);
         // var_dump($preForms);
