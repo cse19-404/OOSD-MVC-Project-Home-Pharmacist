@@ -264,11 +264,14 @@ class PrefilledformHandler extends Controller{
                 'customer_id'=>$userId,'pharmacy_id'=>$pharmId]
             );
             $preId = $this->PrefilledformModel->getLastId();
+            $this->notifyCustomer($preId,'pharmacy');
+
         }else{
             $this->PrefilledformModel->update($preId, [
                 'no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan), 'form_sent'=>1]);
+            $this->notifyCustomer($preId,'prescription');
         }
-        $this->notifyCustomer($preId);
+        
         $_SESSION['sentMsg'] = 'Succefully sent to customer';
         
         if (isset($_SESSION['orderfromPharm'])){
@@ -293,8 +296,8 @@ class PrefilledformHandler extends Controller{
         }
     }
 
-    private function notifyCustomer($refId){
-        $this->MediatorModel->receivePrefilledfromsFromPrescription($refId);
+    private function notifyCustomer($refId,$mode){
+        $this->MediatorModel->receivePrefilledForms($refId,$mode);
     }
 
     public function calculateTotal($items){
@@ -313,10 +316,14 @@ class PrefilledformHandler extends Controller{
         //$this->view->total=$total;
     }
 
-    public function viewFormAction($preId){
+    public function viewFormAction($preId,$msgId=-1){
         $this->PrefilledformModel->findById($preId);
         $this->PrefilledformModel->seen = 1;
 
+        if ($msgId != -1) {
+            $this->MediatorModel->markAsRead($msgId);
+        }
+        
         $itemIds = explode(',', $this->PrefilledformModel->itemIds);
         $itemQuants = explode(',', $this->PrefilledformModel->quantities);
         if (isset($_SESSION['rawData'])){
@@ -341,7 +348,6 @@ class PrefilledformHandler extends Controller{
     public function viewFormsAction(){
         $cond = 'customer_id=' . User::currentLoggedInUser()->id . ' AND ' . 'form_sent=' . '1';
         $preForms = $this->PrefilledformModel->find(['conditions'=>$cond]);
-        // var_dump($preForms);
         foreach ($preForms as $form) {
             $pharm = new Pharmacy();
             $pharm->findById($form->pharmacy_id);
@@ -349,7 +355,6 @@ class PrefilledformHandler extends Controller{
             $this->view->prefilledForms[$form->id] = $form;
         }
         $this->view->render('prescriptions/viewPrefilledForms');
-        //dnd($this->view->prefilledForms);
         
     }
     

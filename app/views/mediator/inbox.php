@@ -55,12 +55,12 @@
                     <table>
                         <?php foreach($this->prefroms as $row){
                             if($row->is_read){?>
-                            <tr>
-                                <td><a href="<?=SROOT?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'   ' . ucwords($row->message_type).' Message</pre>'?></a></td>
+                            <tr style="background-color:blanchedalmond">
+                                <td><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$row->message_ref_id?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'   ' . ucwords($row->message_type).' Message</pre>'?></a></td>
                             </tr>
                         <?php }else{?>
                             <tr>
-                                <td><a href="<?=SROOT?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'<br>' . ucwords($row->message_type).' Message : '.$row->message.'</pre>'?></a></td>
+                                <td><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$row->message_ref_id?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'<br>' . ucwords($row->message_type).' Message : '.$row->message.'</pre>'?></a></td>
                             </tr>                        
                         <?php } }?>
                     </table>
