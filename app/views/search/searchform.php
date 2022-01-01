@@ -46,11 +46,14 @@
     </form>
     <?php if(isset($_SESSION["isPrescription"]) && $_SESSION["isPrescription"]){?>
         <br><br><a href="<?=SROOT?>PrescriptionHandler/view">Go Back</a>
+    <?php } elseif(isset($_SESSION["isSeasonal"]) && $_SESSION["isSeasonal"]){?>
+            <br><br><a href="<?=SROOT?>SeasonalOfferHandler/view">Go Back</a>
     <?php } else if(isset($this->orderfromPharm)) { ?>
         <br><br><a href="<?=SROOT?>PharmacyDashboard/searchCustomer">Go Back</a>
     <?php } else{?>
         <br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
     <?php }?>
+
 </body>
 
 </html>

@@ -72,12 +72,8 @@
     <?php }else {if($this->preId != -1){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/sendPrefilledForm/<?=$this->preId?>">Send to Customer</a>
         <?php }?>
-        <?php if(isset($_SESSION["isSeasonal"]) && $_SESSION["isSeasonal"]){?>
-            <br><br><a href="<?=SROOT?>SeasonalOfferHandler/view">Go Back</a>
-        <?php }else{?>
-            <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notclear/<?=$this->preId?>">Go Back</a>
-        <?php }?>
         
-    <?php } ?>
+        <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notclear/<?=$this->preId?>">Go Back</a>
+        <?php }?>
 </body>
 </html>
