@@ -35,11 +35,11 @@ class Mediator extends Model{
         $params=[];
         if ($mode === 'edit') {
             $params['subject'] = 'Seasonal Offer Edited';
-            $params['message'] = 'Seasonal Offer was edited by '. $from. ' Pharmacy - '.$msg;
+            $params['message'] = 'Seasonal Offer was edited by " '. $from. ' " Pharmacy - '.$msg;
         }
         if ($mode === 'new') {
             $params['subject'] = 'Seasonal Offer Added';
-            $params['message'] = 'New Seasonal Offer was added by '. $from. ' Pharmacy';           
+            $params['message'] = 'New Seasonal Offer was added by " '. $from. ' " Pharmacy';           
         }
 
         $params['sender_username'] = $from;
@@ -49,6 +49,32 @@ class Mediator extends Model{
         $params['is_read'] = 0;
         $this->assign($params);
         $this->save();
+    }
+
+    public function findAllOffer(){
+        $results = $this->_db->find('mediatortable',['conditions'=>'receiver_username=?','bind' => ['All-Users']]);
+        $offers=[];
+        foreach($results as $res){
+            $params = [];
+            $params['sender_username'] = $res->sender_username;
+            $params['pharmacy_id'] = $this->getPharmacyIdfromOffer($res->sender_username);
+            $params['description'] = $this->getDescriptionfromOffer($res->message_ref_id);
+            $params['subject'] = $res->subject;
+            $params['message'] = $res->message;
+            $params['message_type'] = $res->message_type;
+            $offers[] = $params;
+        }
+        return $offers;
+    }
+
+    private function getPharmacyIdfromOffer($username){
+        $result = $this->_db->find('pharmacytable',['conditions'=>'username=?','bind' => [$username]]);
+        return $result[0]->id;
+    }
+
+    private function getDescriptionfromOffer($message_ref_id){
+        $result = $this->_db->find('offertable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
+        return $result[0]->description;
     }
 
 }

@@ -45,6 +45,8 @@ class MediatorHandler extends Controller{
         }
         $result = $this->MediatorModel->findAllMessages($receiver);
         $this->view->result = $result;
+        $offer = $this->MediatorModel->findAllOffer();
+        $this->view->offer = $offer;
         $this->view->render('mediator/inbox');
     }
 
