@@ -46,6 +46,12 @@
                 echo "<h3>No Seasonal Offer Notifications to display</h3>";
         }}?> 
     </div>
+    
+    <?php if ($_SESSION['role']==='pharmacy') {?>
+        <a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
+    <?php }else{?>
+        <a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+    <?php } ?>
 
 </body>
 </html>
