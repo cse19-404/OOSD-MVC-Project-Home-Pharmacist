@@ -91,7 +91,7 @@
 
         public function deleteItemAction($id){
             $this->ItemModel->deleteItem($id);
-            $this->view->render('user/view_inventory');
+            //$this->view->render('user/view_inventory');
             Router::redirect('ItemHandler/view');
         }
 

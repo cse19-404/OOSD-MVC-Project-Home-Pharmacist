@@ -14,6 +14,8 @@ class SeasonalOfferHandler extends Controller{
     }
     public function viewAction(){
         $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy();
+        $result = $this->PharmacyModel->findAllOffers();
+        $this->view->results = $result;
         //dnd($this->PharmacyModel);
         // $resultQuery=$this->PharmacyModel->findAlloffers();
         // $this->view->result=$resultQuery;
@@ -21,71 +23,110 @@ class SeasonalOfferHandler extends Controller{
     }
 
 
-    public function viewOfferAction($mode,$id=-1){
+    public function viewOfferAction($mode,$OfferId=''){
           
         if($mode==='edit'){
-            $this->load_model('Item',$id);
-            $this->ItemModel->findFirst(['conditions'=>'id=?','bind' => [$id]]);
+            $this->load_model('Offer');
+            $this->OfferModel->findFirst(['conditions'=>'id=?','bind' => [$OfferId]]);
             //dnd($this->ItemModel);
-            $this->view->itemData = (array)$this->ItemModel->data();
-            //dnd($this->view->itemData);
+            $this->view->OfferData = (array)$this->OfferModel->data();
+            //dnd($this->view->OfferData);
             $this->view->mode = $mode;
-            $this->view->render('user/view_item');
+            $this->view->PharmId = Pharmacy::currentLoggedInPharmacy()->id;
+            $this->view->OfferId=$OfferId;
+            $this->view->render('user/view_offer');
             
         }else{
             $this->view->OfferData = (array)$this->OfferModel->data();
             //dnd($this->view->OfferData);
             $this->view->mode = $mode;
+            $this->view->PharmId = Pharmacy::currentLoggedInPharmacy()->id;
+            //dnd($this->view->PharmId);
+            $this->view->OfferId=$OfferId;
             $this->view->render('user/view_offer');
         }
     }
 
-    public function saveOfferAction($mode,$id=''){
+    public function saveOfferAction($mode,$PharmId,$OfferId=''){
         //dnd($_POST);
+        $this->view->OfferId=$OfferId;
+        $this->view->PharmId=$PharmId;
         if($mode==='add'){
             $this->view->OfferData = (array)$_POST;   
         } else{
-            $this->OfferModel->findFirst(['conditions'=>'id=?','bind' => [$id]]);
+            $this->OfferModel->findFirst(['conditions'=>'id=?','bind' => [$OfferId]]);
             $this->view->OfferData = (array)$this->OfferModel->data();
         }
-        // $validation = new Validate();
-        // $validation->check($_POST,[
-        //     "quantity" => [
-        //         "display"=>"Quantity",
-        //         "is_numeric" => true
-        //     ],
-        //     "price_per_unit_quantity" => [
-        //         "display" => "Price per Unit Quantity",
-        //         "is_numeric" => true
-        //     ]                
-        // ]);
-        //if($validation->passed()){
-        $postCopy = $_POST;
-        
-        unset($postCopy['submit']);
-        if($mode==='edit'){
-            $this->OfferModel->update($id,$postCopy);
+        $validation = new Validate();
+        $validation->check($_POST,[
+            "name" => [
+                "display"=>"name",
+                "required" => true
+            ],
+            "description" => [
+                "display" => "Offer Description",
+                "required" => true
+            ],
+            "start_date" => [
+                "display" => "Starting Date",
+                "required" => true
+            ],
+            "end_date" => [
+                "display" => "Ending Date",
+                "required" => true
+            ],
+        ]);
+        $validation->dateCheck($_POST["start_date"],$_POST["end_date"]);
+        if($validation->passed()){
+            //dnd($_FILES);
+            $postCopy = $_POST;
+            unset($postCopy['submit']);
+            $postCopy['status']=0;
+            //dnd($_FILES["bannerdocument"]["tmp_name"]!="");
+            if($_FILES["bannerdocument"]["tmp_name"]!=""){
+                $target_dir = 'uploads/';
+                $target_file = $target_dir . basename($_FILES["bannerdocument"]["name"]);
+                //dnd($target_file);
+                $postCopy['bannerdocument'] = $target_file;
+                
+                if(move_uploaded_file($_FILES["bannerdocument"]["tmp_name"], $target_file)){
+                    if($mode==='edit'){
+                        $this->OfferModel->update($OfferId,$postCopy);
+                    } else{
+                        $postCopy['pharmacy_id']=Pharmacy::currentLoggedInPharmacy()->id;
+                        $this->OfferModel->insert($postCopy);
+                    }        
+                }else {
+                    echo ("Sorry, there was an error uploading your file.");
+                }
+            }else{
+                //dnd($postCopy);
+                if($mode==='edit'){
+                    $this->OfferModel->update($OfferId,$postCopy);
+                } 
+            }  
+            Router::redirect('SeasonalOfferHandler/view');
         } else{
-            $postCopy['pharmacy_id']=Pharmacy::currentLoggedInPharmacy()->id;
-            $this->OfferModel->insert($postCopy);
-        }  
-        Router::redirect('SeasonalOfferHandler/view');
-        // } else{
-        //     $this->view->displayErrors = $validation->displayErrors();
-        //     $this->view->render('user/view_item');
-        // }
-    }
-
-    public function addFormAction($mode){
-        $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy();
-        $this->view ->seasonalOffer = true;
-        if($mode==='add'){
-            $this->view->pharmId = $this->PharmacyModel->id;
-            $this->view->pharmName = $this->PharmacyModel->name;
-            //dnd($this->PharmacyModel);
-            $this->view->render('search/searchform');
+            $this->view->displayErrors = $validation->displayErrors();
+            $this->view->mode = $mode;
+            $this->view->PharmId = Pharmacy::currentLoggedInPharmacy()->id;
+            $this->view->OfferId=$OfferId;
+            $this->view->render('user/view_offer');
         }
     }
 
+    public function deleteOfferAction($id){
+        $this->OfferModel->deleteOffer($id);
+        //$this->view->render('user/view_offers_section');
+        Router::redirect('SeasonalOfferHandler/view');
+    }
+
+
+    private function getValues($PharmId){
+        $this->PharmacyModel->findById($PharmId);
+        $this->view->pharmName = $this->PharmacyModel->name;
+        $this->view->PharmId = $PharmId;
+    }
+ 
 }
 ?>

@@ -10,28 +10,33 @@
 
 <body>
     <h2>Add Offer Section</h2>
+    <div class='bg-danger' style="color:red">
+                    <?php if(isset($this->displayErrors)) {
+                        echo $this->displayErrors;
+                    } ?>
+                </div>
+    <form method="post" action="<?= SROOT ?>SeasonalOfferHandler/saveOffer/<?=$this->mode?>/<?= $this->PharmId ?>/<?=$this->OfferId?>" enctype="multipart/form-data">
 
-    <form method="post" action="<?= SROOT ?>SeasonalOfferHandler/saveOffer/<?= $this->PharmId ?>">
-
-        Offer Name: <input type="text" name="name" value="<?= $this->OfferData['name'] ?>">
-        <span class="bg-danger"> </span>
+        Offer Name: <input type="text" name="name" value="<?= $this->OfferData['name'] ?>" required>
+        <span class="bg-danger">*</span>
         <br><br>
         <label for="desc">Description:</label>
-        <textarea id="desc" name="description" rows="4" cols="50"><?=$this->OfferData['description']?></textarea>
-        <span class="bg-danger"></span>
+        <textarea id="desc" name="description" rows="4" cols="50" required><?=$this->OfferData['description']?></textarea>
+        <span class="bg-danger">*</span>
         <br><br>
-        Start Date: <input type="text" name="start_date" value="<?= $this->OfferData['start_date'] ?>">
-        <span class="bg-danger"></span>
+        Start Date: <input type="date" name="start_date" value="<?= $this->OfferData['start_date'] ?>" required>
+        <span class="bg-danger">*</span>
         <br><br>
-        End Date: <input type="text" name="end_date" value="<?= $this->OfferData['end_date'] ?>">
-        <span class="bg-danger"></span>
+        End Date: <input type="date" name="end_date" value="<?= $this->OfferData['end_date'] ?>" required>
+        <span class="bg-danger">*</span>
         <br><br>
-        <input type="file" name="documents" id="documents" required>
+        <input type="file" name="bannerdocument" id="documents" <?= ($this->mode === 'add')? 'required' :""?>>
         <br><br>
-        <a href="<?=SROOT?>SeasonalOfferHandler/addForm/<?=$this->mode?>">Add Form Template</a>
 
-        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" value="Save Offer">
     </form>
+    <br><br>
+    <a href="<?=SROOT?>SeasonalOfferHandler/view">Go to OffersSection</a> 
 </body>
 
 </html>

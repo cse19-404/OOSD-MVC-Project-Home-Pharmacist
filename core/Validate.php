@@ -110,4 +110,10 @@ class Validate
             $this->_passed = false;
         }
     }
+
+    public function dateCheck($startDate,$endDate){
+        if($startDate>=$endDate){
+            $this->addError(["Ending Date must be after the Starting Date"]);
+        }
+    }
 }
