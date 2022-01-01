@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2022 at 10:44 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Jan 01, 2022 at 11:20 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -125,16 +125,18 @@ INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `mess
 (16, 'New Pharmacy', 'superuser01', 'text', 'hi', 'ascfrgthyjukmi,l.l,mn bvcxz', 0, 0),
 (17, 'New Pharmacy', 'superuser01', 'text', 'hi', 'ascfrgthyjukmi,l.l,mn bvcxz', 0, 0),
 (18, 'New Pharmacy', 'superuser01', 'text', 'hi', 'ascfrgthyjukmi,l.l,mn bvcxz', 0, 0),
+(19, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(20, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(21, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(22, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 1),
+(23, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(24, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(25, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(26, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
 (27, 'New Pharmacy', 'superuser01', 'text', 'dear', 'qwsdefhgjhjkjll;//.l,mnbvcxzxcvcbvnhbmjn,kml.;&#039;/.l,kmjhngbfvdcxscxfvbgvnvhmj,k.l;m', 0, 0),
 (28, 'superuser01', 'banula', 'text', 'qwe', 'esrdgtfhygjukiol;polkjhngbfvdcsx', 0, 1),
 (29, 'dakshina', 'superuser01', 'text', 'my', '', 0, 0),
-(30, 'banula', 'superuser01', 'text', 'qwe', 'ddd', 0, 0),
-(31, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by New Pharmacy Pharmacy', 14, 0),
-(32, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by New Pharmacy Pharmacy', 15, 0),
-(33, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by New Pharmacy Pharmacy', 16, 0),
-(34, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by New Pharmacy Pharmacy', 17, 0),
-(35, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by New Pharmacy Pharmacy', 18, 0),
-(36, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by New Pharmacy Pharmacy', 19, 0);
+(30, 'banula', 'superuser01', 'text', 'qwe', 'ddd', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -165,14 +167,7 @@ INSERT INTO `offertable` (`id`, `pharmacy_id`, `name`, `description`, `start_dat
 (9, 1, 'Offer4', 'Offer4', '2022-01-05', '2022-01-18', 0, 0, 'uploads/settings3.jpg'),
 (10, 1, 'Offer07', 'Offer7', '2022-01-04', '2022-01-27', 0, 0, 'uploads/Agent_Viper_Half.png'),
 (11, 1, 'Offer9', 'hgmhm', '2022-01-03', '2022-01-20', 0, 0, 'uploads/viper3.jpg'),
-(12, 1, 'Offer10', 'Offer10', '2021-12-31', '2022-01-04', 1, 0, 'uploads/valhalla 4.jpg'),
-(13, 1, 'Offer-001', 'This is My Offer', '2022-01-11', '2022-01-28', 1, 0, 'uploads/DB_chart.jpeg'),
-(14, 1, 'Offer-001', 'This Offer', '2021-12-28', '2022-01-19', 1, 0, 'uploads/DB_chart.jpeg'),
-(15, 1, 'Offer-001', 'Offer Offer', '2022-01-04', '2022-01-19', 0, 0, 'uploads/DB_chart.jpeg'),
-(16, 1, 'Offer-001', 'Offer-new', '2022-01-03', '2022-01-11', 0, 0, 'uploads/DB_chart.jpeg'),
-(17, 1, 'Piumini', 'Offer is given', '2022-01-10', '2022-01-11', 0, 0, 'uploads/DB_chart.jpeg'),
-(18, 1, 'Offer-001', 'This is a new offer', '2022-01-04', '2022-01-13', 0, 0, 'uploads/DB_chart.jpeg'),
-(19, 1, 'Offer-001', 'How to send a offer', '2022-01-04', '2022-01-13', 0, 0, 'uploads/DB_chart.jpeg');
+(12, 1, 'Offer10', 'Offer10', '2021-12-31', '2022-01-04', 1, 0, 'uploads/valhalla 4.jpg');
 
 -- --------------------------------------------------------
 
@@ -216,20 +211,22 @@ CREATE TABLE `prefilledformtable` (
   `no_of_items` varchar(255) DEFAULT NULL,
   `itemIds` varchar(255) DEFAULT NULL,
   `quantities` varchar(255) DEFAULT NULL,
-  `prescription` varchar(255) NOT NULL
+  `prescription` varchar(255) NOT NULL,
+  `deleted` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `prefilledformtable`
 --
 
-INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_items`, `itemIds`, `quantities`, `prescription`) VALUES
-(1, 2, 1, '3', '9,5,6', '12,1,10', 'uploads/prescriptions/DESIGNDOC.txt'),
-(2, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/Screenshot_20211022-142945.png'),
-(3, 3, 1, NULL, NULL, NULL, 'uploads/prescriptions/Evidence07.txt'),
-(4, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt'),
-(5, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/CS2062.pdf'),
-(6, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg');
+INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_items`, `itemIds`, `quantities`, `prescription`, `deleted`) VALUES
+(1, 2, 1, '1', '6', '100', 'uploads/prescriptions/DESIGNDOC.txt', 1),
+(2, 2, 1, '1', '9', '1', 'uploads/prescriptions/Screenshot_20211022-142945.png', 0),
+(3, 3, 1, NULL, NULL, NULL, 'uploads/prescriptions/Evidence07.txt', 0),
+(4, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt', 0),
+(5, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/CS2062.pdf', 0),
+(6, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg', 0),
+(7, 2, 1, NULL, NULL, NULL, 'uploads/prescriptions/Evidence01(3).txt', 0);
 
 -- --------------------------------------------------------
 
@@ -331,13 +328,13 @@ ALTER TABLE `itemtable`
 -- AUTO_INCREMENT for table `mediatortable`
 --
 ALTER TABLE `mediatortable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `offertable`
 --
 ALTER TABLE `offertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pharmacytable`
@@ -349,7 +346,7 @@ ALTER TABLE `pharmacytable`
 -- AUTO_INCREMENT for table `prefilledformtable`
 --
 ALTER TABLE `prefilledformtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `usertable`
