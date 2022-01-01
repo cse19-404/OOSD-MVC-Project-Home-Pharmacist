@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2021 at 11:23 AM
+-- Generation Time: Dec 31, 2021 at 11:22 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -78,15 +78,16 @@ CREATE TABLE `itemtable` (
 --
 
 INSERT INTO `itemtable` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `price_per_unit_quantity`, `prescription_needed`, `pharmacy_id`, `status`) VALUES
-(1, 'KLODIC', 'R3475M', 'TABLETS', 1350, 1000, 1, 1, 1),
+(1, 'KLODIC', 'R3475M', 'TABLETS', 1350, 1000, 1, 1, 0),
 (2, 'SILOCIN 4', 'NP1403M', 'CAPSULES', 1200, 16, 1, 1, 0),
 (3, 'SITALO  100', 'NP3863M', 'FILM COA', 920, 120, 1, 1, 0),
-(4, 'PANADOL', 'NP3383M', 'CARDS', 539, 20, 0, 1, 0),
+(4, 'PANADOL', 'NP3383M', 'CARDS', 539, 20, 0, 2, 0),
 (5, 'SAMAHAN', 'R3214M', 'PACKET', 770, 15, 0, 1, 0),
 (6, 'SUSTAGEN', 'NP2239M', 'TIN', 50, 2300, 0, 1, 0),
-(7, 'URIMAX 0.4 mg', 'R2406M', 'TABLETS', 390, 8.5, 1, 1, 0),
+(7, 'URIMAX 0.4 mg', 'R2406M', 'TABLETS', 390, 8.5, 1, 3, 0),
 (8, 'GEFTIWEL 250', 'NP2043M', 'TABLETS', 589, 4.75, 1, 1, 0),
-(9, 'PANADOL', 'NP3383M', 'BOTTLE', 539, 20, 0, 1, 0);
+(9, 'PANADOL', 'NP3383M', 'BOTTLE', 539, 20, 0, 1, 0),
+(10, 'Paracitamol', 'pa123', '12', 1000, 10, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -101,22 +102,41 @@ CREATE TABLE `mediatortable` (
   `message_type` varchar(255) NOT NULL,
   `subject` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
-  `message_ref_id` int(255) NOT NULL
+  `message_ref_id` int(255) NOT NULL,
+  `is_read` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `mediatortable`
 --
 
-INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `message_type`, `subject`, `message`, `message_ref_id`) VALUES
-(2, 'banula', 'New Pharmacy', 'text', 'qwe', 'wer', 0),
-(3, 'superuser01', 'New Pharmacy', 'text', 'hi', 'hello', 0),
-(4, 'banula', 'Lanka Pharmacy', 'text', 'Lanka', 'Lanka Pembara Lanka', 0),
-(6, 'superuser01', 'ron', 'text', 'dear', 'me', 0),
-(8, 'banula', 'Asiri Pharmacy', 'text', 'hi', 'hello', 0),
-(9, 'superuser01', 'dakshina', 'text', 'my', 'hello', 0),
-(10, 'banula', 'Lanka Pharmacy', 'text', 'dear', 'wer', 0),
-(11, 'superuser01', 'piumini', 'text', 'hi', 'me', 0);
+INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `message_type`, `subject`, `message`, `message_ref_id`, `is_read`) VALUES
+(2, 'banula', 'New Pharmacy', 'text', 'qwe', 'wer', 0, 0),
+(3, 'superuser01', 'New Pharmacy', 'text', 'hi', 'hello', 0, 1),
+(4, 'banula', 'Lanka Pharmacy', 'text', 'Lanka', 'Lanka Pembara Lanka', 0, 0),
+(6, 'superuser01', 'ron', 'text', 'dear', 'me', 0, 0),
+(8, 'banula', 'Asiri Pharmacy', 'text', 'hi', 'hello', 0, 0),
+(9, 'superuser01', 'dakshina', 'text', 'my', 'hello', 0, 1),
+(10, 'banula', 'Lanka Pharmacy', 'text', 'dear', 'wer', 0, 0),
+(11, 'superuser01', 'piumini', 'text', 'hi', 'me', 0, 0),
+(12, 'dakshina', 'Lanka Pharmacy', 'text', 'Lanka', 'opakddnaewgfbgjwbe,bwe,fb', 0, 0),
+(13, 'banula', 'superuser01', 'text', 'qwe', 'qdfrgegsersgee', 0, 1),
+(15, 'New Pharmacy', 'superuser01', 'text', 'hi', 'ascfrgthyjukmi,l.l,mn bvcxz', 0, 0),
+(16, 'New Pharmacy', 'superuser01', 'text', 'hi', 'ascfrgthyjukmi,l.l,mn bvcxz', 0, 0),
+(17, 'New Pharmacy', 'superuser01', 'text', 'hi', 'ascfrgthyjukmi,l.l,mn bvcxz', 0, 0),
+(18, 'New Pharmacy', 'superuser01', 'text', 'hi', 'ascfrgthyjukmi,l.l,mn bvcxz', 0, 0),
+(19, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(20, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(21, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(22, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 1),
+(23, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(24, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(25, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(26, 'New Pharmacy', 'superuser01', 'text', '', '', 0, 0),
+(27, 'New Pharmacy', 'superuser01', 'text', 'dear', 'qwsdefhgjhjkjll;//.l,mnbvcxzxcvcbvnhbmjn,kml.;&#039;/.l,kmjhngbfvdcxscxfvbgvnvhmj,k.l;m', 0, 0),
+(28, 'superuser01', 'banula', 'text', 'qwe', 'esrdgtfhygjukiol;polkjhngbfvdcsx', 0, 1),
+(29, 'dakshina', 'superuser01', 'text', 'my', '', 0, 0),
+(30, 'banula', 'superuser01', 'text', 'qwe', 'ddd', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -157,13 +177,23 @@ CREATE TABLE `prefilledformtable` (
   `id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `pharmacy_id` int(11) NOT NULL,
-  `no_of_items` varchar(255) NOT NULL,
-  `items` varchar(255) NOT NULL,
-  `unit_prices` varchar(255) NOT NULL,
-  `quantities` varchar(255) NOT NULL,
-  `prescription` varchar(255) NOT NULL,
-  `total` double NOT NULL
+  `no_of_items` varchar(255) DEFAULT NULL,
+  `itemIds` varchar(255) DEFAULT NULL,
+  `quantities` varchar(255) DEFAULT NULL,
+  `prescription` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `prefilledformtable`
+--
+
+INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_items`, `itemIds`, `quantities`, `prescription`) VALUES
+(1, 2, 1, '3', '9,5,6', '12,1,10', 'uploads/prescriptions/DESIGNDOC.txt'),
+(2, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/Screenshot_20211022-142945.png'),
+(3, 3, 1, NULL, NULL, NULL, 'uploads/prescriptions/Evidence07.txt'),
+(4, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt'),
+(5, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/CS2062.pdf'),
+(6, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg');
 
 -- --------------------------------------------------------
 
@@ -191,13 +221,13 @@ CREATE TABLE `usertable` (
 --
 
 INSERT INTO `usertable` (`id`, `username`, `password`, `name`, `nic`, `address`, `mobile_number`, `email`, `longitude`, `latitude`, `role`, `nearbypharmacies`) VALUES
-(0, 'ron', '$2y$10$l4/Dt8MHNsQUIzdFjbFkQOd.dXhEj.X7ZKbNIz6UC3pnavBC5WT7K', 'Ron', '2345', 'UOM', '12345', 'ron@gmail.com', 81, 6.8, 'customer', 'Lanka Pharmacy,New Pharmacy,Asiri Pharmacy'),
-(1, 'superuser01', '$2y$10$f1JH1D67Vai7q/IMgMWDjO9VwhCyyZDv30TxmjZ.vecm/CODAZHpW', 'Super Admin', '199900000000', 'no.1,Colomo 01,Sri Lanka', '012-0000000', 'superadmin01@gmail.com', 6.9378, 79.8437, 'super_admin', 'New Pharmacy,Lanka Pharmacy,Asiri Pharmacy'),
-(2, 'banula', '$2y$10$xWVGeKlw4pC4TmtXp4J86e457.sqnVd.hzfJXTbqo3.ir30kYjgiu', 'Banula Kumarage', '993530328V', 'Airport Rd,Anuradapura', '071-1266278', 'banulakumarage@gmail.com', 80.4239, 8.31559, 'customer', 'New Pharmacy,Lanka Pharmacy,Asiri Pharmacy'),
-(3, 'dakshina', '$2y$10$F/dex3eX4np3lc7j522TmuYJCjTJZd50gx3EKAw04ex0JVQdq4R1C', 'Dakshina Ranmal', '199933012565', 'no.1,Gunanandapura,Talawakelle', '070-3806687', 'dakshinaranmal1999@gmail.com', 79.8939, 6.8719, 'customer', 'New Pharmacy,Lanka Pharmacy,Asiri Pharmacy'),
-(4, 'piumini', '$2y$10$/CS2A85.SPE40w5wNGLPaO9LPA2ctY71pj424ukxCHUEcdY2ClSHy', 'Piumini Kaveesha', '199974905080', 'no.2,Kandy Rd,Kurunegala', '071-4290810', 'piumini95kaveesha@gmail.com', 80.4448, 7.41605, 'customer', 'New Pharmacy,Lanka Pharmacy,Asiri Pharmacy'),
-(5, 'hiruna', '$2y$10$s11uElEwGwXaEh/SHa/xeOgYFW4HACXV9ZJhrc.XxVy4GfmpfDa4i', 'Hiruna Hansaka', '990861552V', 'No.6,Nadun Uyana,Matara', '076-2675516', 'hirunahans@gmail.com', 80.5763, 5.94935, 'customer', 'Lanka Pharmacy,New Pharmacy,Asiri Pharmacy'),
-(6, 'harry', '$2y$10$72fmKgPheRYhNB9LFn2z/urzUkoY/ZD2ShRJr5xhMYbe/Fb6Q547a', 'Harry', '12345', 'UOM', '12345', 'harry@gmail.com', 80, 1.23, 'customer', 'Asiri Pharmacy,Lanka Pharmacy,New Pharmacy');
+(0, 'ron', '$2y$10$l4/Dt8MHNsQUIzdFjbFkQOd.dXhEj.X7ZKbNIz6UC3pnavBC5WT7K', 'Ron', '2345', 'UOM', '12345', 'ron@gmail.com', 81, 6.8, 'customer', '2,1,3'),
+(1, 'superuser01', '$2y$10$f1JH1D67Vai7q/IMgMWDjO9VwhCyyZDv30TxmjZ.vecm/CODAZHpW', 'Super Admin', '199900000000', 'no.1,Colomo 01,Sri Lanka', '012-0000000', 'superadmin01@gmail.com', 6.9378, 79.8437, 'super_admin', '1,2,3'),
+(2, 'banula', '$2y$10$xWVGeKlw4pC4TmtXp4J86e457.sqnVd.hzfJXTbqo3.ir30kYjgiu', 'Banula Kumarage', '993530328V', 'Airport Rd,Anuradapura', '071-1266278', 'banulakumarage@gmail.com', 80.4239, 8.31559, 'customer', '1,2,3'),
+(3, 'dakshina', '$2y$10$F/dex3eX4np3lc7j522TmuYJCjTJZd50gx3EKAw04ex0JVQdq4R1C', 'Dakshina Ranmal', '199933012565', 'no.1,Gunanandapura,Talawakelle', '070-3806687', 'dakshinaranmal1999@gmail.com', 79.8939, 6.8719, 'customer', '1,2,3'),
+(4, 'piumini', '$2y$10$/CS2A85.SPE40w5wNGLPaO9LPA2ctY71pj424ukxCHUEcdY2ClSHy', 'Piumini Kaveesha', '199974905080', 'no.2,Kandy Rd,Kurunegala', '071-4290810', 'piumini95kaveesha@gmail.com', 80.4448, 7.41605, 'customer', '1,2,3'),
+(5, 'hiruna', '$2y$10$s11uElEwGwXaEh/SHa/xeOgYFW4HACXV9ZJhrc.XxVy4GfmpfDa4i', 'Hiruna Hansaka', '990861552V', 'No.6,Nadun Uyana,Matara', '076-2675516', 'hirunahans@gmail.com', 80.5763, 5.94935, 'customer', '2,1,3'),
+(6, 'harry', '$2y$10$72fmKgPheRYhNB9LFn2z/urzUkoY/ZD2ShRJr5xhMYbe/Fb6Q547a', 'Harry', '12345', 'UOM', '12345', 'harry@gmail.com', 80, 1.23, 'customer', '3,2,1');
 
 --
 -- Indexes for dumped tables
@@ -253,13 +283,13 @@ ALTER TABLE `applicationtable`
 -- AUTO_INCREMENT for table `itemtable`
 --
 ALTER TABLE `itemtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `mediatortable`
 --
 ALTER TABLE `mediatortable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pharmacytable`
@@ -271,7 +301,7 @@ ALTER TABLE `pharmacytable`
 -- AUTO_INCREMENT for table `prefilledformtable`
 --
 ALTER TABLE `prefilledformtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `usertable`
