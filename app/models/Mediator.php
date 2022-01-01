@@ -20,7 +20,7 @@ class Mediator extends Model{
     }
 
     public function findAllMessages($receiver){
-        return $this->_db->find('mediatortable',['conditions'=>'receiver_username=?','bind' => [$receiver]]);
+        return $this->_db->find('mediatortable',['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'text']]);
     }
 
     public function getMessage($id){
@@ -35,11 +35,11 @@ class Mediator extends Model{
         $params=[];
         if ($mode === 'edit') {
             $params['subject'] = 'Seasonal Offer Edited';
-            $params['message'] = 'Seasonal Offer was edited by " '. $from. ' " Pharmacy - '.$msg;
+            $params['message'] = 'Seasonal Offer was edited by " '.$this->getPharmacyNamebyUsername($from) . ' "  - '.$msg;
         }
         if ($mode === 'new') {
             $params['subject'] = 'Seasonal Offer Added';
-            $params['message'] = 'New Seasonal Offer was added by " '. $from. ' " Pharmacy';           
+            $params['message'] = 'New Seasonal Offer was added by " '. $this->getPharmacyNamebyUsername($from). ' " ';           
         }
 
         $params['sender_username'] = $from;
@@ -57,7 +57,7 @@ class Mediator extends Model{
         foreach($results as $res){
             $params = [];
             $params['sender_username'] = $res->sender_username;
-            $params['pharmacy_id'] = $this->getPharmacyIdfromOffer($res->sender_username);
+            $params['pharmacy_id'] = $this->getPharmacyIdfromUsername($res->sender_username);
             $params['description'] = $this->getDescriptionfromOffer($res->message_ref_id);
             $params['subject'] = $res->subject;
             $params['message'] = $res->message;
@@ -67,19 +67,48 @@ class Mediator extends Model{
         return $offers;
     }
 
-    private function getPharmacyIdfromOffer($username){
+    public function receivePrefilledfromsFromPrescription($message_ref_id){
+        $result = $this->_db->find('prefilledformtable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
+        $from = $this->getPharmacyUsernamefromID($result[0]->pharmacy_id);
+        $params=[];
+        $params['subject'] = 'Pre-Filled Form Recieved';
+        $params['message'] = 'Pre-Filled Form was sent by " '. $this->getPharmacyNamebyUsername($from). ' " for the prescription you sent.';
+        $params['sender_username'] = $from;
+        $params['receiver_username'] = $this->getCustomerUsernamefromID($result[0]->customer_id);
+        $params['message_type'] = 'prefilled form';
+        $params['message_ref_id'] = $message_ref_id;
+        $params['is_read'] = 0;
+        $this->assign($params);
+        $this->save();
+    }
+
+    public function findAllPreFilledForms($receiver){
+        return $this->_db->find('mediatortable',['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'prefilled form']]);
+    }
+
+    private function getPharmacyIdfromUsername($username){
         $result = $this->_db->find('pharmacytable',['conditions'=>'username=?','bind' => [$username]]);
         return $result[0]->id;
+    }
+
+    private function getPharmacyUsernamefromID($id){
+        $result = $this->_db->find('pharmacytable',['conditions'=>'id=?','bind' => [$id]]);
+        return $result[0]->username;
+    }
+
+    private function getPharmacyNamebyUsername($username){
+        $result = $this->_db->find('pharmacytable',['conditions'=>'username=?','bind' => [$username]]);
+        return $result[0]->name;       
+    }
+
+    private function getCustomerUsernamefromID($id){
+        $result = $this->_db->find('usertable',['conditions'=>'id=?','bind' => [$id]]);
+        return $result[0]->username;
     }
 
     private function getDescriptionfromOffer($message_ref_id){
         $result = $this->_db->find('offertable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
         return $result[0]->description;
-    }
-
-    public function receivePrefilledfromsFromPrescription($refId){
-        
-
     }
 
 }
