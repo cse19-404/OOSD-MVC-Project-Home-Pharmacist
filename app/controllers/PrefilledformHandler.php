@@ -39,7 +39,7 @@ class PrefilledformHandler extends Controller{
         $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
         $this->setPres($preId);
-        $this->calculateTotal($preId,$this->view->items);
+        $this->calculateTotal($this->view->items);
         $this->view->render('search/prefilled_form');
     }
 
@@ -50,7 +50,7 @@ class PrefilledformHandler extends Controller{
         $this->getValues($PharmId);
         $this->getItemModels(array_keys($_SESSION['tempItemId']));
         $this->setPres($preId);
-        $this->calculateTotal($preId,$this->view->items);
+        $this->calculateTotal($this->view->items);
         $this->view->render('search/prefilled_form');
     }
     
@@ -177,7 +177,7 @@ class PrefilledformHandler extends Controller{
                     
                 }
                 $this->getItemModels(array_keys($_SESSION['tempItemId']));
-                $this->calculateTotal($preId,$this->view->items);
+                $this->calculateTotal($this->view->items);
             }     
             $this->view->render('search/prefilled_form');
             //dnd($this->view->items);
@@ -297,13 +297,13 @@ class PrefilledformHandler extends Controller{
         $this->MediatorModel->receivePrefilledfromsFromPrescription($refId);
     }
 
-    public function calculateTotal($preId,$items){
+    public function calculateTotal($items){
         $total=0;
         foreach($items as $row){
             if(key_exists($row->getId(), $_SESSION['tempItemId'])){
                 if($_SESSION['tempItemId'][$row->getId()] > 0 ){
                     $var = explode(",",$_SESSION['tempItemId'][$row->getId()]);
-                    if ($var[1] == 'In Stock' || $preId !=-1){
+                    if ($var[1] == 'In Stock'){
                         $total += $row->price_per_unit_quantity * $var[0];
                     }
                 }
@@ -317,6 +317,40 @@ class PrefilledformHandler extends Controller{
         $this->PrefilledformModel->findById($preId);
         $this->PrefilledformModel->seen = 1;
 
+        $itemIds = explode(',', $this->PrefilledformModel->itemIds);
+        $itemQuants = explode(',', $this->PrefilledformModel->quantities);
+        if (isset($_SESSION['rawData'])){
+            unset($_SESSION['rawData']);
+        }
+        $i = 0;
+        foreach($itemIds as $id){
+            if(is_numeric($id)){
+                $item = new Item(DummyItem::getInstance($id));
+                $item->findById($id);
+                $_SESSION['rawData'][$item->name] = $itemQuants[$i];
+            }else{
+                $_SESSION['rawData'][$id] = '0';
+            }
+            $i++;
+        }
+        $this->PrefilledformModel->save();
+        $this->processItemsAction($this->PrefilledformModel->pharmacy_id, -1, $preId);
+
+    }
+
+    public function viewFormsAction(){
+        $cond = 'customer_id=' . User::currentLoggedInUser()->id . ' AND ' . 'form_sent=' . '1';
+        $preForms = $this->PrefilledformModel->find(['conditions'=>$cond]);
+        // var_dump($preForms);
+        foreach ($preForms as $form) {
+            $pharm = new Pharmacy();
+            $pharm->findById($form->pharmacy_id);
+            $this->view->data[$form->id] = $pharm->name;
+            $this->view->prefilledForms[$form->id] = $form;
+        }
+        $this->view->render('prescriptions/viewPrefilledForms');
+        //dnd($this->view->prefilledForms);
+        
     }
     
 

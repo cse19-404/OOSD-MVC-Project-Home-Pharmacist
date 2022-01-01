@@ -12,11 +12,11 @@
             <th>Pharmacy name</th>
             <th>Status</th>
         </tr>
-        <?php if(isset($this->prefilledForms)){foreach($this->prefilledForms as $form=>$data){?>
+        <?php if(isset($this->prefilledForms)){foreach($this->prefilledForms as $id=>$form){?>
             <tr>
-                <td><?=$data?></td>
+                <td><?=$this->data[$id]?></td>
                 <td><?=$form->no_of_items . " out of " . $form->no_of_all_item . " Items Availale"?></td>
-                <td><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$form->id?>"></a></td>
+                <td><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$id?>">View Form</a></td>
             </tr>
         <?php }}?>
     </table>
