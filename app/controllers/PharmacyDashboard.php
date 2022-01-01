@@ -27,7 +27,7 @@ class PharmacyDashboard extends Controller{
         $this->view->render('search/searchCustomer');
     }
 
-    public function loadFormAction($pharmId,$userId){
+    public function loadFormAction($userId){
         $user = new User();
         $user->findById($userId);
         $pharmacy = Pharmacy::currentLoggedInPharmacy();
