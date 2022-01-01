@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2022 at 08:30 AM
+-- Generation Time: Jan 01, 2022 at 08:38 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -211,20 +211,21 @@ CREATE TABLE `prefilledformtable` (
   `no_of_items` varchar(255) DEFAULT NULL,
   `itemIds` varchar(255) DEFAULT NULL,
   `quantities` varchar(255) DEFAULT NULL,
-  `prescription` varchar(255) NOT NULL
+  `prescription` varchar(255) NOT NULL,
+  `deleted` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `prefilledformtable`
 --
 
-INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_items`, `itemIds`, `quantities`, `prescription`) VALUES
-(1, 2, 1, '3', '9,5,6', '12,1,10', 'uploads/prescriptions/DESIGNDOC.txt'),
-(2, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/Screenshot_20211022-142945.png'),
-(3, 3, 1, NULL, NULL, NULL, 'uploads/prescriptions/Evidence07.txt'),
-(4, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt'),
-(5, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/CS2062.pdf'),
-(6, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg');
+INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_items`, `itemIds`, `quantities`, `prescription`, `deleted`) VALUES
+(1, 2, 1, '1', '6', '100', 'uploads/prescriptions/DESIGNDOC.txt', 0),
+(2, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/Screenshot_20211022-142945.png', 0),
+(3, 3, 1, NULL, NULL, NULL, 'uploads/prescriptions/Evidence07.txt', 0),
+(4, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt', 0),
+(5, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/CS2062.pdf', 0),
+(6, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg', 0);
 
 -- --------------------------------------------------------
 
