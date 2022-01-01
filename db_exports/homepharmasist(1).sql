@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2022 at 08:38 AM
+-- Generation Time: Jan 01, 2022 at 10:22 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -136,7 +136,9 @@ INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `mess
 (27, 'New Pharmacy', 'superuser01', 'text', 'dear', 'qwsdefhgjhjkjll;//.l,mnbvcxzxcvcbvnhbmjn,kml.;&#039;/.l,kmjhngbfvdcxscxfvbgvnvhmj,k.l;m', 0, 0),
 (28, 'superuser01', 'banula', 'text', 'qwe', 'esrdgtfhygjukiol;polkjhngbfvdcsx', 0, 1),
 (29, 'dakshina', 'superuser01', 'text', 'my', '', 0, 0),
-(30, 'banula', 'superuser01', 'text', 'qwe', 'ddd', 0, 0);
+(30, 'banula', 'superuser01', 'text', 'qwe', 'ddd', 0, 0),
+(31, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by New Pharmacy Pharmacy', 1, 0),
+(32, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Edited', 'Seasonal Offer was edited by New Pharmacy Pharmacy - Details Changed', 17, 0);
 
 -- --------------------------------------------------------
 
@@ -163,11 +165,12 @@ CREATE TABLE `offertable` (
 INSERT INTO `offertable` (`id`, `pharmacy_id`, `name`, `description`, `start_date`, `end_date`, `status`, `isexpired`, `bannerdocument`) VALUES
 (6, 1, 'Offer1', 'Offer1', '2022-01-07', '2022-01-28', 0, 1, 'uploads/Screenshot 2021-12-30 105924.jpg'),
 (7, 1, 'Offer2', 'Offer2', '2022-01-18', '2022-01-11', 0, 0, 'uploads/graphic clr settings.jpg'),
-(8, 1, 'Offer3', 'Offer3', '2022-01-03', '2022-01-20', 0, 0, 'uploads/settings4.jpg'),
-(9, 1, 'Offer4', 'Offer4', '2022-01-05', '2022-01-18', 0, 0, 'uploads/settings3.jpg'),
+(8, 2, 'Offer3', 'Offer3', '2022-01-03', '2022-01-20', 0, 0, 'uploads/settings4.jpg'),
+(9, 2, 'Offer4', 'Offer4', '2022-01-05', '2022-01-18', 0, 0, 'uploads/settings3.jpg'),
 (10, 1, 'Offer07', 'Offer7', '2022-01-04', '2022-01-27', 0, 0, 'uploads/Agent_Viper_Half.png'),
-(11, 1, 'Offer9', 'hgmhm', '2022-01-03', '2022-01-20', 0, 0, 'uploads/viper3.jpg'),
-(12, 1, 'Offer10', 'Offer10', '2021-12-31', '2022-01-04', 1, 0, 'uploads/valhalla 4.jpg');
+(11, 3, 'Offer9', 'hgmhm', '2022-01-03', '2022-01-20', 0, 0, 'uploads/viper3.jpg'),
+(12, 3, 'Offer10', 'Offer10', '2021-12-31', '2022-01-04', 1, 0, 'uploads/valhalla 4.jpg'),
+(17, 1, 'Offer011', 'Offer11', '2022-01-13', '2022-01-18', 1, 0, 'uploads/dakshi 02.PNG');
 
 -- --------------------------------------------------------
 
@@ -225,7 +228,9 @@ INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_ite
 (3, 3, 1, NULL, NULL, NULL, 'uploads/prescriptions/Evidence07.txt', 0),
 (4, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt', 0),
 (5, 2, 1, '2', '9,1', '12,2', 'uploads/prescriptions/CS2062.pdf', 0),
-(6, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg', 0);
+(6, 2, 3, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg', 0),
+(7, 2, 1, NULL, NULL, NULL, 'uploads/prescriptions/CSE Gaming logo.png', 0),
+(8, 2, 1, '1', '6', '1', 'uploads/prescriptions/dakshi 03.PNG', 0);
 
 -- --------------------------------------------------------
 
@@ -327,13 +332,13 @@ ALTER TABLE `itemtable`
 -- AUTO_INCREMENT for table `mediatortable`
 --
 ALTER TABLE `mediatortable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `offertable`
 --
 ALTER TABLE `offertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `pharmacytable`
@@ -345,7 +350,7 @@ ALTER TABLE `pharmacytable`
 -- AUTO_INCREMENT for table `prefilledformtable`
 --
 ALTER TABLE `prefilledformtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `usertable`
