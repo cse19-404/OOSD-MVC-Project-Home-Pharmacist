@@ -46,7 +46,30 @@
                 echo "<h3>No Seasonal Offer Notifications to display</h3>";
         }}?> 
     </div>
-    
+
+    <div>
+        <?php if($_SESSION['role'] === 'customer'){?>
+            <h2>Prefilled Form Notifications</h2>
+            <?php if(isset($this->prefroms) && !empty($this->prefroms)){?>
+                <div>
+                    <table>
+                        <?php foreach($this->prefroms as $row){
+                            if($row->is_read){?>
+                            <tr>
+                                <td><a href="<?=SROOT?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'   ' . ucwords($row->message_type).' Message</pre>'?></a></td>
+                            </tr>
+                        <?php }else{?>
+                            <tr>
+                                <td><a href="<?=SROOT?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'<br>' . ucwords($row->message_type).' Message : '.$row->message.'</pre>'?></a></td>
+                            </tr>                        
+                        <?php } }?>
+                    </table>
+                </div>
+            <?php }else{
+                echo "<h3>No Prefilled Forms to display</h3>";
+            }}?>   
+    </div>
+
     <?php if ($_SESSION['role']==='pharmacy') {?>
         <a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
     <?php }else{?>
