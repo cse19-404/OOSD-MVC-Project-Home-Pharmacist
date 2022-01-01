@@ -77,4 +77,9 @@ class Mediator extends Model{
         return $result[0]->description;
     }
 
+    public function receivePrefilledfromsFromPrescription($refId){
+        
+
+    }
+
 }

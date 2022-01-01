@@ -9,6 +9,7 @@ class PrefilledformHandler extends Controller{
         $this->load_model('Pharmacy');
         $this->load_model('Prefilledform');
         $this->load_model('Item',-1);
+        $this->load_model('Mediator');
     }
 
     public function loadFormAction($PharmId){
@@ -249,6 +250,7 @@ class PrefilledformHandler extends Controller{
             array_push($quan, $quant);
         }
         $this->PrefilledformModel->update($preId, ['no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan)]);
+        $this->notifyCustomer($preId);
         Router::redirect('PrescriptionHandler/view');
 
     }
@@ -260,6 +262,10 @@ class PrefilledformHandler extends Controller{
             $this->UserModel->findById($this->PrefilledformModel->customer_id);
             $this->view->customerName = $this->UserModel->name;
         }else{$this->view->preId = -1;}
+    }
+
+    private function notifyCustomer($refId){
+        $this->MediatorModel->receivePrefilledfromsFromPrescription($refId);
     }
 
 }
