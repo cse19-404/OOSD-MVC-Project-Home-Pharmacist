@@ -8,7 +8,11 @@
 </head>
 <body>
     <div>
-        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}else{echo User::currentLoggedInUser()->name;}?></span><br><br>
+        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}
+        else if(isset($_SESSION['orderfromPharm'])){
+            echo $_SESSION['orderfromPharm'][0];
+        }
+        else{echo User::currentLoggedInUser()->name;}?></span><br><br>
         Pharmacy Name : <span><?=$this->pharmName?></span>
     </div>
     <div>
@@ -69,7 +73,7 @@
     </div>
     <?php if($this->pharmId==-1){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1/-1/<?=$this->preId?>">Select Another Form</a>
-    <?php }else {if($this->preId != -1){?>
+    <?php }else {if($this->preId != -1 || isset($_SESSION['orderfromPharm'])){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/sendPrefilledForm/<?=$this->preId?>">Send to Customer</a>
         <?php }?>
         

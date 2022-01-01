@@ -10,7 +10,11 @@
 
 <body>
     <div>
-        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}else{echo User::currentLoggedInUser()->name;}?></span><br><br>
+        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}
+        else if(isset($_SESSION['orderfromPharm'])){
+            echo $_SESSION['orderfromPharm'][0];
+        }
+        else{echo User::currentLoggedInUser()->name;}?></span><br><br>
         Pharmacy Name : <span><?= $this->pharmName ?></span>
     </div>
     <form action="<?=SROOT?>PrefilledformHandler/addRawItem/<?= $this->pharmId?>/<?= $this->preId?>" method="post">
@@ -48,7 +52,7 @@
         <br><br><a href="<?=SROOT?>PrescriptionHandler/view">Go Back</a>
     <?php } elseif(isset($_SESSION["isSeasonal"]) && $_SESSION["isSeasonal"]){?>
             <br><br><a href="<?=SROOT?>SeasonalOfferHandler/view">Go Back</a>
-    <?php } else if(isset($this->orderfromPharm)) { ?>
+    <?php } else if(isset($_SESSION['orderfromPharm'])) { ?>
         <br><br><a href="<?=SROOT?>PharmacyDashboard/searchCustomer">Go Back</a>
     <?php } else{?>
         <br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>

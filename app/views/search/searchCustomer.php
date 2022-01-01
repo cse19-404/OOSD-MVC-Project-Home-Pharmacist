@@ -7,9 +7,15 @@
     <title>Search Customer</title>
 </head>
 <body>
+    <span>
+        <?php if(isset($_SESSION['sentMsg'])){
+            echo $_SESSION['sentMsg'];
+            unset($_SESSION['sentMsg']);
+        }?>
+    </span>
     <div>
         <form action="<?=SROOT?>PharmacyDashboard/orderForCustomer" method="post">
-            <input type="text" name="customer-name" placeholder="Enter Pharmacy name" required>
+            <input type="text" name="customer-name" placeholder="Enter Customer name" required>
             <input type="submit" value="Search">
         </form>  
     </div>

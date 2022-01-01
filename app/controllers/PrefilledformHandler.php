@@ -256,10 +256,26 @@ class PrefilledformHandler extends Controller{
             }
             $noOfAll++;
         }
-        $this->PrefilledformModel->update($preId, ['no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan), 'form_sent'=>1]);
+        if (isset($_SESSION['orderfromPharm'])){
+            $pharmId = Pharmacy::currentLoggedInPharmacy()->id;
+            $userId = $_SESSION['orderfromPharm'][1]; 
+            $this->PrefilledformModel->insert(
+                ['no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan), 'form_sent'=>1,
+                'customer_id'=>$userId,'pharmacy_id'=>$pharmId]
+            );
+            $preId = $this->PrefilledformModel->getLastId();
+        }else{
+            $this->PrefilledformModel->update($preId, [
+                'no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan), 'form_sent'=>1]);
+        }
         $this->notifyCustomer($preId);
         $_SESSION['sentMsg'] = 'Succefully sent to customer';
-        Router::redirect('PrescriptionHandler/view');
+        
+        if (isset($_SESSION['orderfromPharm'])){
+            Router::redirect('PharmacyDashboard/searchCustomer');
+        }else{
+            Router::redirect('PrescriptionHandler/view');
+        }
 
     }
 
@@ -269,7 +285,12 @@ class PrefilledformHandler extends Controller{
             $this->view->preId = $preId;
             $this->UserModel->findById($this->PrefilledformModel->customer_id);
             $this->view->customerName = $this->UserModel->name;
-        }else{$this->view->preId = -1;}
+        }else{
+            if(isset($_SESSION['orderfromPharm'])){
+                $this->view->customerName = $_SESSION['orderfromPharm'][0];
+            }
+            $this->view->preId = -1;
+        }
     }
 
     private function notifyCustomer($refId){

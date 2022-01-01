@@ -8,5 +8,10 @@ class PrefilledForm extends Model{
         parent::__construct($table);
     }
 
+    public function getLastId()
+    {
+        return $this->_db->lastId();
+    }
+
 
 }

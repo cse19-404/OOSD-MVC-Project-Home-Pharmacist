@@ -24,6 +24,12 @@ class PharmacyDashboard extends Controller{
     }
 
     public function searchCustomerAction(){
+        if (isset($_SESSION['rawData'])){
+            unset($_SESSION['rawData']);
+        }
+        if (isset($_SESSION['orderfromPharm'])){
+            unset($_SESSION['orderfromPharm']);
+        }
         $this->view->render('search/searchCustomer');
     }
 
@@ -35,7 +41,7 @@ class PharmacyDashboard extends Controller{
         $this->view->pharmName = $pharmacy->name;
         $this->view->pharmId = $pharmacy->id;
         $this->view->preId = -1;
-        $this->view->orderfromPharm = true;
+        $_SESSION['orderfromPharm'] = [$user->name,$user->id];
         $this->view->render('search/searchForm');
     }
 }
