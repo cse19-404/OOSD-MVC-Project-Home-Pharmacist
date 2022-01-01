@@ -251,6 +251,7 @@ class PrefilledformHandler extends Controller{
         }
         $this->PrefilledformModel->update($preId, ['no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan)]);
         $this->notifyCustomer($preId);
+        $_SESSION['sentMsg'] = 'Succefully sent to customer';
         Router::redirect('PrescriptionHandler/view');
 
     }

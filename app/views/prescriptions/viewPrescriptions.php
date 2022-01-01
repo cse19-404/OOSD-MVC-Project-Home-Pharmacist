@@ -7,6 +7,12 @@
     <title>View Prescriptions</title>
 </head>
 <body>
+    <span>
+        <?php if(isset($_SESSION['sentMsg'])){
+            echo $_SESSION['sentMsg'];
+            unset($_SESSION['sentMsg']);
+        }?>
+    </span>
     <?php if(isset($this->prescriptions) && !empty($this->prescriptions)){?>
         <table>
             <tr>
