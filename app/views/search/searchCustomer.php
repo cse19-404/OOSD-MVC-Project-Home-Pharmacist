@@ -19,7 +19,7 @@
                     <table>
                         <?php foreach($this->result as $row){?>
                             <tr>
-                                <td><a href="<?=SROOT?>PharmacyDashboard/loadForm/<?=$this->pharmId?>/<?=$row->id?>"><?php echo $row->name?></a></td>
+                                <td><a href="<?=SROOT?>PharmacyDashboard/loadForm/<?=$row->id?>"><?php echo $row->name?></a></td>
                             </tr>
                         <?php }?>
                     </table>
