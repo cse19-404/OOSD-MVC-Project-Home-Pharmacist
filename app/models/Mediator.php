@@ -67,12 +67,17 @@ class Mediator extends Model{
         return $offers;
     }
 
-    public function receivePrefilledfromsFromPrescription($message_ref_id){
+    public function receivePrefilledForms($message_ref_id,$mode){
         $result = $this->_db->find('prefilledformtable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
         $from = $this->getPharmacyUsernamefromID($result[0]->pharmacy_id);
         $params=[];
         $params['subject'] = 'Pre-Filled Form Recieved';
-        $params['message'] = 'Pre-Filled Form was sent by " '. $this->getPharmacyNamebyUsername($from). ' " for the prescription you sent.';
+        if ($mode === 'pharmacy') {
+            $params['message'] = 'Pre-Filled Form created and sent by " '. $this->getPharmacyNamebyUsername($from). ' " as for your request';            
+        }
+        if($mode === 'prescription'){
+            $params['message'] = 'Pre-Filled Form was sent by " '. $this->getPharmacyNamebyUsername($from). ' " for the prescription you sent.';
+        }
         $params['sender_username'] = $from;
         $params['receiver_username'] = $this->getCustomerUsernamefromID($result[0]->customer_id);
         $params['message_type'] = 'prefilled form';
