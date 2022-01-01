@@ -251,7 +251,7 @@ class PrefilledformHandler extends Controller{
             }
             $noOfAll++;
         }
-        $this->PrefilledformModel->update($preId, ['no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan)]);
+        $this->PrefilledformModel->update($preId, ['no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan), 'form_sent'=>1]);
         $this->notifyCustomer($preId);
         $_SESSION['sentMsg'] = 'Succefully sent to customer';
         Router::redirect('PrescriptionHandler/view');
@@ -274,7 +274,7 @@ class PrefilledformHandler extends Controller{
     public function viewFormAction($preId){
         $this->PrefilledformModel->findById($preId);
         $this->PrefilledformModel->seen = 1;
-        
+
     }
 
 }

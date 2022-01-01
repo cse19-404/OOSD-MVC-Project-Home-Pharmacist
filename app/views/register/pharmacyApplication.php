@@ -32,7 +32,7 @@
             <input type="file" name="documents" id="documents" required><br><br>
             <input type="submit" class="btn-submit" value="Submit" name='submit'>
         </form>
-        <br><br><a href="index.php">Go to Home</a>
+        <br><br><a href="<?=SROOT?>home/index">Go to Home</a>
     </div>
 
 </body>
