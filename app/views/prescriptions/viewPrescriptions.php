@@ -25,5 +25,7 @@
     <?php }else {
         echo "<h3>No prescriptions found</h3>";
     }?>
+
+    <br><br><a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
 </body>
 </html>
