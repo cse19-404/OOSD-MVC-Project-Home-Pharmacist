@@ -8,11 +8,17 @@
 </head>
 <body>
     <div>
-        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}
-        else if(isset($_SESSION['orderfromPharm'])){
-            echo $_SESSION['orderfromPharm'][0];
+        <?php
+        $_SESSION['UserPharmacydetails'] =[];
+        if(isset($_SESSION['orderfromPharm'])){
+            $_SESSION['UserPharmacydetails']["UserId"]=$_SESSION['orderfromPharm'][1];
         }
-        else{echo User::currentLoggedInUser()->name;}?></span><br><br>
+        else{
+            $_SESSION['UserPharmacydetails']["UserId"]=User::currentLoggedInUser()->id;
+        }
+        $_SESSION['UserPharmacydetails']["PharmId"]=$this->pharmId;
+        ?>     
+        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}else if(isset($_SESSION['orderfromPharm'])){echo $_SESSION['orderfromPharm'][0];}else{echo User::currentLoggedInUser()->name;} ?></span><br><br>
         Pharmacy Name : <span><?=$this->pharmName?></span>
     </div>
     <div>
@@ -71,7 +77,9 @@
         </table>
         <br><br><span>Total Price : <?= $_SESSION['TotalPrice'] ?></span>
     </div>
-    <br><br><a href="<?=SROOT?>OrderHandler/loadOrderDetails">Proceed to Order</a>
+    <?php if(User::currentLoggedInUser()->id !== Null || isset($_SESSION['orderfromPharm'])){?>
+        <br><br><a href="<?=SROOT?>OrderHandler/loadOrderDetails/<?= $this->preId?>">Proceed to Order</a>
+    <?php }?>
     <?php if(isset($_SESSION['isNearBy']) && $_SESSION['isNearBy']){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1/-1/<?=$this->preId?>">Select Another Form</a>
     <?php }elseif(User::currentLoggedInUser()->id === Null){?>
