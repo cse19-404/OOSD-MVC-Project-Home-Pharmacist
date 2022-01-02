@@ -22,7 +22,7 @@
 
         <span><?= $title ?></span><br><br>
 
-        <form action='<?=SROOT?>OrderHandler/order/' method='post' > 
+        <form action='<?=SROOT?>OrderHandler/order/<?=$this->preId?>/<?php if($submitBtn === "Save Details" || $submitBtn === "Use Default Details"){echo 0;}else{echo 1;}?>/0' method='post' > 
             <label for="reciever_name">Reciever's Name : </label><input name="reciever_name" type="text" value="<?= User::currentLoggedInUser()->name?>" <?= $readonly?> ><br>
             <br>
             <label for="address">Address : </label><input name="address" type="text" value="<?=User::currentLoggedInUser()->address?>" <?= $readonly?> ><br>
@@ -36,7 +36,7 @@
     <div>
         
         <?php if($this->change !== 'change'){?>
-            <button onclick="location.href='<?=SROOT?>OrderHandler/loadOrderDetails/<?= $this->$preId?>/change';">Use Different Details</button>
+            <form action="<?=SROOT?>OrderHandler/order/<?=$this->preId?>/1/0/change" method="POST"><input type="submit" value="Use Different Details"></form>
         <?php }?>
         
     </div>
