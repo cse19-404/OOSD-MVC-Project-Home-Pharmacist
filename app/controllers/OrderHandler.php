@@ -41,7 +41,7 @@ class OrderHandler extends Controller{
             $this->view->count = $order->no_of_items;
             $this->view->ids = explode(',', $order->items);
             $this->view->unit_prices = explode(',', $order->unit_prices);
-            $this->view->quantities = explode(',', $order->unit_prices);
+            $this->view->quantities = explode(',', $order->quantities);
             $this->UserModel->findById($order->customer_id);
             $this->view->customerName = $this->UserModel->name;
             for ($i=0; $i < $this->view->count; $i++) { 
