@@ -9,7 +9,7 @@ class HistoryOrder extends Controller implements Strategy{
         public function orderAction($preId, $change='', $handler){
             if($change!='change'){
                 $prescription = NULL;
-                if($preId != -1){
+                if($preId != -1 && !isset($_SESSION['orderfromPharm'])){
                     $this->PrefilledFormModel->findById($preId);
                     $prescription = $this->PrefilledFormModel->prescription;
                 }

@@ -17,9 +17,10 @@
             $_SESSION['UserPharmacydetails']["UserId"]=User::currentLoggedInUser()->id;
         }
         $_SESSION['UserPharmacydetails']["PharmId"]=$this->pharmId;
-        ?>     
-        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}else if(isset($_SESSION['orderfromPharm'])){echo $_SESSION['orderfromPharm'][0];}else{echo User::currentLoggedInUser()->name;} ?></span><br><br>
+        $_SESSION['UserPharmacydetails']["CustomerName"]= (!isset(User::currentLoggedInUser()->name))? $this->customerName : ((isset($_SESSION['orderfromPharm']))? $_SESSION['orderfromPharm'][0] : User::currentLoggedInUser()->name);?>     
+        Customer Name : <span><?= $_SESSION['UserPharmacydetails']["CustomerName"]?></span><br><br>
         Pharmacy Name : <span><?=$this->pharmName?></span>
+        <?php $_SESSION['UserPharmacydetails']["PharmName"]=$this->pharmName;?>
     </div>
     <div>
         <form action="<?=SROOT?>PrefilledformHandler/searchItem/<?=$this->pharmId?>/<?=$this->preId?>" method="POST">

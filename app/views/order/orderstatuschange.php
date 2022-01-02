@@ -16,15 +16,13 @@
             <tr>
                 <th>Item Name</th>
                 <th>Quantity</th>
-                <th>Unit Price(Rs.)</th>
                 <th>Price</th>
             </tr>
             <?php if (isset($this->items) && !empty($this->items)) {
                 for ($i=0; $i < $this->count; $i++) { ?>
                     <tr>
-                        <td><?=$this->items[$i]->name?></td>
+                        <td><?=$this->items[$i]->name . '(' . $this->items[$i]->quantity_unit . ')'?></td>
                         <td><?=$this->quantities[$i] ?> </td>
-                        <td><?=$this->unit_prices[$i] ?></td>
                         <td><?=$this->unit_prices[$i] * $this->quantities[$i] ?></td>
                         <td>
                             <?php if($this->items[$i]->prescription_needed){ ?>

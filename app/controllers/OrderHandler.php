@@ -60,6 +60,18 @@ class OrderHandler extends Controller{
                 $_SESSION['OrderDetails']['reciever_name'] = $_POST['reciever_name'];
                 $_SESSION['OrderDetails']['address'] = $_POST['address'];
                 $_SESSION['OrderDetails']['mobile_number'] = $_POST['mobile_number'];
+
+                $this->view->count = $_SESSION['OrderDetails']['no_of_items'];
+                $this->view->ids = explode(',', $_SESSION['OrderDetails']['items']);
+                $this->view->unit_prices = explode(',', $_SESSION['OrderDetails']['unit_prices']);
+                $this->view->quantities = explode(',', $_SESSION['OrderDetails']['quantities']);
+                $this->view->customerName = $_SESSION['UserPharmacydetails']["CustomerName"];
+                for ($i=0; $i < $this->view->count; $i++) { 
+                    $item = new Item(DummyItem::getInstance($this->view->ids[$i]));
+                    $item->findById($this->view->ids[$i]);
+                    $this->view->items[] = $item;
+                }
+                $this->view->render('order/confirmOrder');
             }
             
         }
