@@ -8,11 +8,17 @@
 </head>
 <body>
     <div>
-        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}
-        else if(isset($_SESSION['orderfromPharm'])){
-            echo $_SESSION['orderfromPharm'][0];
+        <?php
+        $_SESSION['UserPharmacydetails'] =[];
+        if(isset($_SESSION['orderfromPharm'])){
+            $_SESSION['UserPharmacydetails']["UserId"]=$_SESSION['orderfromPharm'][1];
         }
-        else{echo User::currentLoggedInUser()->name;}?></span><br><br>
+        else{
+            $_SESSION['UserPharmacydetails']["UserId"]=User::currentLoggedInUser()->id;
+        }
+        $_SESSION['UserPharmacydetails']["PharmId"]=$this->pharmId;
+        ?>     
+        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}else if(isset($_SESSION['orderfromPharm'])){echo $_SESSION['orderfromPharm'][0];}else{echo User::currentLoggedInUser()->name;} ?></span><br><br>
         Pharmacy Name : <span><?=$this->pharmName?></span>
     </div>
     <div>

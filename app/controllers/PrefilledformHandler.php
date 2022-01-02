@@ -150,9 +150,7 @@ class PrefilledformHandler extends Controller{
         $this->setPres($preId);
 
         if ($pharmId != -1){
-            $this->PharmacyModel->findById($pharmId);
-            $this->view->pharmName = $this->PharmacyModel->name;
-            $this->view->pharmId = $pharmId;
+            $this->getValues($pharmId);
             foreach ($rawData as $key => $value) {
                 $result = $this->ItemModel->searchItem($key, $pharmId);
                 //dnd($result);

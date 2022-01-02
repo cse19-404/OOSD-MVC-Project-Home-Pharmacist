@@ -8,14 +8,37 @@
 </head>
 <body>
     <div>
-        <span>Default Order Details</span><br>
-        <span>Reciever's Name : <?=User::currentLoggedInUser()->name?></span><br>
-        <span>Address : <?=User::currentLoggedInUser()->address?></span><br>
-        <span>Reciever's Contact Number : <?=User::currentLoggedInUser()->mobile_number?></span><br>
+        <?php
+        if($this->change!="change"){
+            $title="Default Order Details";
+            $readonly="readonly";
+            $submitBtn="Use Default Details";
+        }else{
+            $title="Change Order Details";
+            $readonly="";
+            $submitBtn="Save Details";
+        }
+        ?>
+
+        <span><?= $title ?></span><br><br>
+
+        <form action='<?=SROOT?>OrderHandler/order/<?= (isset($_SESSION['orderfromPharm']))? Pharmacy::$currentLoggedInPharmacy()->id:$this->pharmId?>' method='post' > 
+            <label for="reciever_name">Reciever's Name : </label><input name="reciever_name" type="text" value="<?= User::currentLoggedInUser()->name?>" <?= $readonly?> ><br>
+            <br>
+            <label for="address">Address : </label><input name="address" type="text" value="<?=User::currentLoggedInUser()->address?>" <?= $readonly?> ><br>
+            <br>
+            <label for="mobile_number">Reciever's Contact Number : </label><input name="mobile_number" type="text" value="<?=User::currentLoggedInUser()->mobile_number?>" <?= $readonly?> >
+            <br><br>
+            <input type="submit" value="<?= $submitBtn?>" >
+            <br><br>
+        </form>
     </div>
     <div>
-        <a href="<?=SROOT?>">Use Default Details</a>
-        <a href="<?=SROOT?>">Use Different Details</a>
+        
+        <?php if($this->change !== 'change'){?>
+            <button onclick="location.href='<?=SROOT?>OrderHandler/loadOrderDetails/change';">Use Different Details</button>
+        <?php }?>
+        
     </div>
 </body>
 </html>
