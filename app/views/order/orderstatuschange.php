@@ -17,6 +17,7 @@
                 <th>Item Name</th>
                 <th>Quantity</th>
                 <th>Unit Price(Rs.)</th>
+                <th>Price</th>
             </tr>
             <?php if (isset($this->items) && !empty($this->items)) {
                 for ($i=0; $i < $this->count; $i++) { ?>
@@ -24,6 +25,7 @@
                         <td><?=$this->items[$i]->name?></td>
                         <td><?=$this->quantities[$i] ?> </td>
                         <td><?=$this->unit_prices[$i] ?></td>
+                        <td><?=$this->unit_prices[$i] * $this->quantities[$i] ?></td>
                         <td>
                             <?php if($this->items[$i]->prescription_needed){ ?>
                                 <td>Prescription Needed</td>
@@ -37,11 +39,12 @@
         </table>
         <br>    
         <?php if ($this->order->prescription != ""){?>
+            <label for="prescription">Prescription: </label>
             <a href="<?=SROOT?><?=$this->order->prescription?>" download='<?=$this->order->prescription?>'>
                 <?= ltrim($this->order->prescription,'uploads/prescriptions/')?>
             </a>
         <?php }?>
-        <br><br><label for="total">Total Price : <?=$this->order->total?></label><br><br>
+        <br><label for="total">Total Price : <?=$this->order->total?></label><br><br>
         
         <form action="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>" method="post">
             <label>Update status</label>
