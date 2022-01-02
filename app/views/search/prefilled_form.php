@@ -77,7 +77,9 @@
         </table>
         <br><br><span>Total Price : <?= $_SESSION['TotalPrice'] ?></span>
     </div>
-    <br><br><a href="<?=SROOT?>OrderHandler/loadOrderDetails">Proceed to Order</a>
+    <?php if(User::currentLoggedInUser()->id !== Null || isset($_SESSION['orderfromPharm'])){?>
+        <br><br><a href="<?=SROOT?>OrderHandler/loadOrderDetails/<?= $this->preId?>">Proceed to Order</a>
+    <?php }?>
     <?php if(isset($_SESSION['isNearBy']) && $_SESSION['isNearBy']){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1/-1/<?=$this->preId?>">Select Another Form</a>
     <?php }elseif(User::currentLoggedInUser()->id === Null){?>

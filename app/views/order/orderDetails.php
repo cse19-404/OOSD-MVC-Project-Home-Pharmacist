@@ -22,7 +22,7 @@
 
         <span><?= $title ?></span><br><br>
 
-        <form action='<?=SROOT?>OrderHandler/order/<?= (isset($_SESSION['orderfromPharm']))? Pharmacy::$currentLoggedInPharmacy()->id:$this->pharmId?>' method='post' > 
+        <form action='<?=SROOT?>OrderHandler/order/' method='post' > 
             <label for="reciever_name">Reciever's Name : </label><input name="reciever_name" type="text" value="<?= User::currentLoggedInUser()->name?>" <?= $readonly?> ><br>
             <br>
             <label for="address">Address : </label><input name="address" type="text" value="<?=User::currentLoggedInUser()->address?>" <?= $readonly?> ><br>
@@ -36,7 +36,7 @@
     <div>
         
         <?php if($this->change !== 'change'){?>
-            <button onclick="location.href='<?=SROOT?>OrderHandler/loadOrderDetails/change';">Use Different Details</button>
+            <button onclick="location.href='<?=SROOT?>OrderHandler/loadOrderDetails/<?= $this->$preId?>/change';">Use Different Details</button>
         <?php }?>
         
     </div>
