@@ -9,7 +9,7 @@
 <body>
     <div>
         <?php $statuses = ['All','new', 'preparing', 'shipped','delivered'] ?>
-        <form action='<?=SROOT?>OrderHandler/view' method='post'>
+        <form action='<?=SROOT?><?php if(isset(Pharmacy::currentLoggedInPharmacy()->id)){echo 'OrderHandler/view';}else{echo 'CustomerDashboard/viewPurchaseHistory';}?>' method='post'>
             <label for="filter">Filter by Status</label>
             <select name='filter-status' onchange='this.form.submit()'>
                 <?php
@@ -36,14 +36,19 @@
                     <tr>
                         <td> <a href="<?=SROOT?>OrderHandler/viewOrder/<?=$key?>"> <?= $value[0]->name ?> </a> </td>
                         <td><?= $value[1]->status ?> </td>
-                        <td><a href="<?=SROOT?>OrderHandler/closeOrder/<?=$key?>">Close Order</a></td>
+                        <?php if(isset(Pharmacy::currentLoggedInPharmacy()->id)){?>
+                            <td><a href="<?=SROOT?>OrderHandler/closeOrder/<?=$key?>">Close Order</a></td>
+                        <?php }else{?>
+                            <?php if($value[1]->status === 'delivered'){?>
+                            <td><a href="<?=SROOT?>OrderHandler/deleteHistory/<?=$key?>">Delete Entry</a></td>
+                        <?php }}?>    
                     </tr>
             <?php } 
             }else {
                 echo '<h2> No Orders </h2>';
             }?>
         </table>
-        <br><br><a href="<?=SROOT?>PharmacyDashboard">Go to dashboard</a>
+        <br><br><a href="<?=SROOT?><?php if(isset(Pharmacy::currentLoggedInPharmacy()->id)){echo 'PharmacyDashboard';}else{echo 'CustomerDashboard';}?>">Go to dashboard</a>
     </div>
     
 </body>

@@ -22,4 +22,18 @@ class Order extends Model
             'bind'=>[$status,0,$pharmId]
         ]);
     }
+
+    public function getCustomerOrdersByFilter($status=''){
+        $customer_id = User::currentLoggedInUser()->id;
+        if ($status===""){
+            return $this->find([
+                'conditions'=>'deleted=? and closed=? and customer_id=?',
+                'bind'=>[0,0,$customer_id]
+            ]);
+        }
+        return $this->find([
+            'conditions'=>'status=? and deleted=? and closed=? and customer_id=?',
+            'bind'=>[$status,0,0,$customer_id]
+        ]);
+    }
 }

@@ -4,6 +4,7 @@ class DirectOrder extends Controller implements Strategy{
         {
             parent::__construct($controller,$action);
             $this->load_model('User');
+            $this->load_model('PrefilledForm');
         }
 
         public function orderAction($preId, $change='', $handler){
@@ -18,7 +19,7 @@ class DirectOrder extends Controller implements Strategy{
                 $unit_prices='';
                 $no_of_items=0;
                 foreach($_SESSION['tempItemId'] as $itemId=>$value){
-                    if(str_contains($value,'In Stock')){
+                    if((str_contains($value,'In Stock') || str_contains($value,'Prescription Needed')) && explode(',', $value)[0] !== '-'){
                         $no_of_items++;
                         $values = explode(",",$_SESSION['tempItemId'][$itemId]);
                         $items = $items.','.$itemId;

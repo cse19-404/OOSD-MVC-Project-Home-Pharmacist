@@ -7,12 +7,14 @@ class CustomerDashboard extends Controller{
         $this->load_model("User");
         $this->load_model('Pharmacy');
         $this->load_model('Mediator');
+        $this->load_model('Order');
     }
 
     public function indexAction() {
-        if (isset($_SESSION['isSeasonal'])){
-            unset($_SESSION['isSeasonal']);
-        }
+        unsetSession("all");
+        // if (isset($_SESSION['isSeasonal'])){
+        //     unset($_SESSION['isSeasonal']);
+        // }
         $this->view->render('user/dashboard');
     }
 
@@ -90,6 +92,25 @@ class CustomerDashboard extends Controller{
         $this->view->id = $result->id;
         $this->view->mode = 'reply';    
         $this->view->render('mediator/mailform');
+    }
+
+    public function viewPurchaseHistoryAction(){
+        $status ="";
+        $this->view->filter = 'All';
+        if (isset($_POST['filter-status'])){
+            $status = $_POST['filter-status'];
+            $this->view->filter = $status;
+        }
+        $status = ($status === 'All') ? '':$status;
+        $results = $this->OrderModel->getCustomerOrdersByFilter($status);
+        $this->view->results = $results;
+        $this->view->results =[];
+        foreach($results as $result){
+            $user = new Pharmacy();
+            $user->findById($result->pharmacy_id);
+            $this->view->results [$result->id] = [$user,$result];
+        }
+        $this->view->render('order/viewOrders');
     }
 
 }
