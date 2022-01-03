@@ -46,6 +46,10 @@ class MediatorHandler extends Controller{
             $offer = $this->MediatorModel->findAllOffer();
             $this->view->offer = $offer;
         }
+        if ($_SESSION['role']==='super_admin'){
+            $this->UserModel = User::currentLoggedInUser();
+            $receiver = $this->UserModel->username;
+        }
         $result = $this->MediatorModel->findAllMessages($receiver);
         $this->view->result = $result;
         $prefroms = $this->MediatorModel->findAllPreFilledForms($receiver);

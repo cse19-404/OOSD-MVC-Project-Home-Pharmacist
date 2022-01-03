@@ -29,7 +29,6 @@ if (isset($_SESSION['username'])) {
         <a href="<?=SROOT?>ApplicationHandler/view"><h2>View Applications</h2></a>
         <a href="<?=SROOT?>UserHandler/view"><h2>View Users</h2></a>
         <a href="<?=SROOT?>ApplicationHandler/viewApproved"><h2>Pharmacy Account Creation</h2></a>
-        <a href="<?=SROOT?>UserHandler/updatenearbypharmacies"><h2>Update Near By Pharmacies List</h2></a>
         <?php } ?>
 
         <?php if ($_SESSION['role']==='customer') { ?>
