@@ -16,6 +16,19 @@
         }
     }
 
+    function sendmail($msg,$to,$subject){
+        $from = "sendertester7@gmail.com";
+        $subject = "Home Pharmasist - ".$subject;
+        $txt = $msg;
+        $headers = "From: ".$from ;
+
+        if(mail($to,$subject,$txt,$headers)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     function unsetSession($varArray){
         if($varArray==="all"){
             $varArray = array_keys($_SESSION);           

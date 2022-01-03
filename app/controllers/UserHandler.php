@@ -44,6 +44,9 @@
                 if ($validation->passed()){
                     $this->PharmacyModel = new Pharmacy();
                     $this->PharmacyModel->registerNewPharmacy($_POST, $id);
+                    $this->ApplicationModel->findById($id);
+                    $msg = "Your Account has created. username =".$this->ApplicationModel->email.", password = password";
+                    sendmail($msg,$this->ApplicationModel->email,"Application Creation");
                     $this->updatenearbypharmacies();
 
                     Router::redirect('ApplicationHandler/viewApproved');
