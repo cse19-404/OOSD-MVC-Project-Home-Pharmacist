@@ -120,17 +120,18 @@
             $bind = [];
             $order = '';
             $limit = '';
-        }
-        if(($table === 'usertable') || ($table === 'pharmacytable')){
-            if (isset($params['conditions'])) {
-                $params['conditions'] = $params['conditions'].'is_closed=?';
-                array_push($params['bind'],0)
-            }else{
-                $params['conditions'] = 'is_closed=?';
-                $params['bind'] = [0];
-            }
 
-        }
+            // added to avoid closed accounts
+            if($table === 'usertable' || $table === 'pharmacytable'){
+                if (isset($params['conditions'])) {
+                    $cond = $params['conditions'].' AND is_closed=?';
+                    $params['conditions'] = $cond;
+                    array_push($params['bind'],0);
+                }else{
+                    $params['conditions'] = 'is_closed=?';
+                    $params['bind'] = [0];
+                }
+            }
 
             //conditions
             if (isset($params['conditions'])){
