@@ -58,7 +58,7 @@ class OrderHandler extends Controller{
                 Router::route([$strategy, 'order', $preId, $order, $this]);
                 $this->view->render('order/orderDetails');
             }else{
-                $_SESSION['OrderDetails']['reciever_name'] = $_POST['reciever_name'];
+                $_SESSION['OrderDetails']['receiver'] = $_POST['receiver_name'];
                 $_SESSION['OrderDetails']['address'] = $_POST['address'];
                 $_SESSION['OrderDetails']['mobile_number'] = $_POST['mobile_number'];
 

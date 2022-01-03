@@ -9,7 +9,7 @@
 <body>
     <div>
         <label for="customer-name">Customer Name : <?=$this->customerName?></label><br>
-        <label for="customer-name">Reciever Name : <?=$this->order->receiver_name?></label><br>
+        <label for="customer-name">Receiver Name : <?=$this->order->receiver_name?></label><br>
         <label for="customer-name">Address : <?=$this->order->address?></label><br>
         <label for="mobile_number">Mobile Number : <?=$this->order->mobile_number?></label><br><br>
         <table>

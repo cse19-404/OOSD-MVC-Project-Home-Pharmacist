@@ -10,7 +10,7 @@
     <div>
         <label for="pharm-name">Pharmacy Name : <?=$_SESSION['UserPharmacydetails']["PharmName"]?></label><br> 
         <label for="customer-name">Customer Name : <?=$_SESSION['UserPharmacydetails']["CustomerName"]?></label><br>
-        <label for="customer-name">Reciever Name : <?=$_SESSION['OrderDetails']['reciever_name']?></label><br>
+        <label for="customer-name">Receiver Name : <?=$_SESSION['OrderDetails']['receiver_name']?></label><br>
         <label for="customer-name">Address : <?=$_SESSION['OrderDetails']['address']?></label><br>
         <label for="mobile_number">Mobile Number : <?=$_SESSION['OrderDetails']['mobile_number']?></label><br><br>
     </div>
