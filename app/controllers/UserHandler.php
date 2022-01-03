@@ -45,7 +45,7 @@
                     $this->PharmacyModel = new Pharmacy();
                     $this->PharmacyModel->registerNewPharmacy($_POST, $id);
                     $this->ApplicationModel->findById($id);
-                    $msg = "Your Account has created. username =".$this->ApplicationModel->email.", password = password";
+                    $msg = "Your Account has created. username =".$this->ApplicationModel->pharmacy_name.", password = password";
                     sendmail($msg,$this->ApplicationModel->email,"Application Creation");
                     $this->updatenearbypharmacies();
 
