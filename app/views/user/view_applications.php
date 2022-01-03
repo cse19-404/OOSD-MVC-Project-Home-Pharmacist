@@ -26,7 +26,7 @@
             foreach ($this->applications as $row) {
                 $row = (array) $row;
                 echo "<tr>";
-                echo "<td>" . $row["email"] . "</td>";
+                echo "<td>" . "<a href = 'mailto:".$row["email"]."'>". $row["email"]."</a></td>";
                 echo "<td>" . $row["pharmacy_name"] . "</td>";
                 echo "<td> Location: " . $row['latitude'] . "," . $row['longitude'] . "</td>";
                 echo "<td>".$row['address']."</td>";

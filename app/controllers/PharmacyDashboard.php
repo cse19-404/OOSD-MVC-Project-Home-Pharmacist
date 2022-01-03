@@ -8,9 +8,10 @@ class PharmacyDashboard extends Controller{
     }
 
     public function indexAction() {
-        if (isset($_SESSION['isPrescription'])){
-            unset($_SESSION['isPrescription']);
-        }
+        unsetSession("all");
+        // if (isset($_SESSION['isPrescription'])){
+        //     unset($_SESSION['isPrescription']);
+        // }
         $this->view->render('user/dashboard');       
     }
 

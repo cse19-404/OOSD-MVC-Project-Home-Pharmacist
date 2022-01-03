@@ -11,9 +11,10 @@ class CustomerDashboard extends Controller{
     }
 
     public function indexAction() {
-        if (isset($_SESSION['isSeasonal'])){
-            unset($_SESSION['isSeasonal']);
-        }
+        unsetSession("all");
+        // if (isset($_SESSION['isSeasonal'])){
+        //     unset($_SESSION['isSeasonal']);
+        // }
         $this->view->render('user/dashboard');
     }
 

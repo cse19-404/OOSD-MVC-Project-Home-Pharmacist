@@ -35,11 +35,16 @@
                     'repassword'=>[
                         'display'=>'Confirm Password',
                         'matches'=>'password'
+                    ],
+                    'username'=>[
+                        'display'=>'Username',
+                        'unique'=>'pharmacytable'
                     ]
                 ]);
                 if ($validation->passed()){
                     $this->PharmacyModel = new Pharmacy();
                     $this->PharmacyModel->registerNewPharmacy($_POST, $id);
+                    $this->updatenearbypharmacies();
 
                     Router::redirect('ApplicationHandler/viewApproved');
                 }else {
@@ -54,9 +59,8 @@
 
         }
 
-        public function updatenearbypharmaciesAction(){
-            $user = User::currentLoggedInUser();
-            $users = $user->find();
+        public function updatenearbypharmacies(){
+            $users = $this->UserModel->find();
             
             foreach ($users as $user) {
                 $nearbypharmacies = $user->getAllNearByPharmacies($user->latitude,$user->longitude);
@@ -64,7 +68,6 @@
                 $user->save();
             }
             
-            $this->view->render('user/waiting');
         }
 
     }
