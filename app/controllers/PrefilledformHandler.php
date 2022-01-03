@@ -10,6 +10,7 @@ class PrefilledformHandler extends Controller{
         $this->load_model('Prefilledform');
         $this->load_model('Item',-1);
         $this->load_model('Mediator');
+        $this->load_model('Order');
     }
 
     public function loadFormAction($PharmId){
@@ -161,10 +162,10 @@ class PrefilledformHandler extends Controller{
                     $status = $this->checkAvailability($quantity,$itemId);
                     if(isset($_SESSION['tempItemId'])){
                         if(!in_array($itemId, $_SESSION['tempItemId'])){
-                            $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
+                            $_SESSION['tempItemId'][$itemId] = ($status === 'Prescription Needed' && $preId == -1)? '-,'.$status: $quantity. ','.$status;
                         }
                     }else{
-                        $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
+                        $_SESSION['tempItemId'][$itemId] = ($status === 'Prescription Needed' && $preId == -1)? '-,'.$status: $quantity. ','.$status;
                     }
                 }else{
                     $status = $this->checkAvailability($value,-1);
@@ -287,10 +288,15 @@ class PrefilledformHandler extends Controller{
     }
 
     private function setPres($preId){
-        if($preId != -1){
+        if($preId > -1){
             $this->PrefilledformModel->findById($preId);
             $this->view->preId = $preId;
             $this->UserModel->findById($this->PrefilledformModel->customer_id);
+            $this->view->customerName = $this->UserModel->name;
+        }elseif($preId < -1){
+            $this->OrderModel->findById(abs($preId)-1);
+            $this->view->preId = $preId;
+            $this->UserModel->findById($this->OrderModel->customer_id);
             $this->view->customerName = $this->UserModel->name;
         }else{
             if(isset($_SESSION['orderfromPharm'])){

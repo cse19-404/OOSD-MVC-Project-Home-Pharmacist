@@ -4,6 +4,7 @@ class OrderHandler extends Controller{
         {
             parent::__construct($controller,$action);
             $this->load_model('User');
+            $this->load_model('Pharmacy');
             $this->load_model('Order');
             $this->load_model('PrefilledForm');
             $this->load_model('Mediator');
@@ -54,9 +55,17 @@ class OrderHandler extends Controller{
 
         public function orderAction($preId, $detail=0, $history=0, $order=''){
             if($detail == 1){
-                $strategy = ($history == 1)? "HistoryOrder": "DirectOrder";
-                Router::route([$strategy, 'order', $preId, $order, $this]);
-                $this->view->render('order/orderDetails');
+                if ($history == 0) {
+                    $strategy = "DirectOrder";
+                    Router::route([$strategy, 'order', $preId, $order, $this]);
+                    $this->view->render('order/orderDetails');
+                }else{
+                    $strategy = "HistoryOrder";
+                    $preId = $history;
+                    Router::route([$strategy, 'order', $preId, $order, $this]);
+                }
+                //Router::route([$strategy, 'order', $preId, $order, $this]);
+                
             }else{
                 $_SESSION['OrderDetails']['receiver_name'] = $_POST['receiver_name'];
                 $_SESSION['OrderDetails']['address'] = $_POST['address'];
@@ -105,7 +114,9 @@ class OrderHandler extends Controller{
             $this->view->unit_prices = explode(',', $order->unit_prices);
             $this->view->quantities = explode(',', $order->quantities);
             $this->UserModel->findById($order->customer_id);
+            $this->PharmacyModel->findById($order->pharmacy_id);
             $this->view->customerName = $this->UserModel->name;
+            $this->view->pharmacyName = $this->PharmacyModel->name;
             for ($i=0; $i < $this->view->count; $i++) { 
                 $item = new Item(DummyItem::getInstance($this->view->ids[$i]));
                 $item->findById($this->view->ids[$i]);
@@ -161,5 +172,13 @@ class OrderHandler extends Controller{
 
         private function notifyStatusUpdate($id,$status){
             $this->MediatorModel->receiveOrderStatusUpdate($id,$status);
+        }
+
+        public function deleteHistoryAction($id){
+            $this->OrderModel->findById($id);
+            $this->OrderModel->update($id,[
+                'deleted'=>1
+            ]);
+            Router::redirect('CustomerDashboard/viewPurchaseHistory');
         }
 }

@@ -8,6 +8,7 @@
 </head>
 <body>
     <div>
+        <?php if(isset(User::currentLoggedInUser()->id)){?><label for="pharmacy-name">Pharmacy Name : <?=$this->pharmacyName?></label><br><?php }?>
         <label for="customer-name">Customer Name : <?=$this->customerName?></label><br>
         <label for="customer-name">Receiver Name : <?=$this->order->receiver_name?></label><br>
         <label for="customer-name">Address : <?=$this->order->address?></label><br>
@@ -43,7 +44,7 @@
             </a>
         <?php }?>
         <br><label for="total">Total Price : <?=$this->order->total?></label><br><br>
-        
+        <?php if(!isset(User::currentLoggedInUser()->id)){?>
         <form action="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>" method="post">
             <label>Update status</label>
             <select name="status" id="status">
@@ -54,6 +55,9 @@
             </select>
             <input type="submit" name="submit" value="Change Status">
         </form>
+        <?php }else{?>
+            <form action="<?=SROOT?>OrderHandler/order/-1/1/<?= $this->order->id?>/history" method='POST'><input type="submit" value="Re Order"></form>
+        <?php }?>
 
     </div>
     <br><br><a href="<?=SROOT?>OrderHandler/view">Go back</a>

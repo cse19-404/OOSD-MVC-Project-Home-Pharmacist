@@ -54,14 +54,14 @@
                 <tr>
                     <td><?=$row->name."(".$row->quantity_unit.')'?></td>
                     <td><?=$row->price_per_unit_quantity?></td>
-                    <?php if($_SESSION['tempItemId'][$row->getId()] > 0){$var = explode(",",$_SESSION['tempItemId'][$row->getId()]);}?>
-                    <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0 && $var[1] === 'Prescription Needed' && $this->preId ==-1){echo '-';}else{?><form action="<?=SROOT?>PrefilledformHandler/addQuantity/<?=$row->getId()?>/<?=$this->pharmId?>/<?=$this->preId?>" method="post"><input type="text" onchange='this.form.submit()' name='quantity' placeholder="_" value=<?php if($_SESSION['tempItemId'][$row->getId()]>0){echo $var[0];}?>></form><?php }?></td>
-                    <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0 ){
-                        if ($var[1] !== 'Prescription Needed' || $this->preId !=-1){
+                    <?php $var = explode(",",$_SESSION['tempItemId'][$row->getId()]);?>
+                    <td><?php if($var[1] === 'Prescription Needed' && $this->preId ==-1){echo '-';}else{?><form action="<?=SROOT?>PrefilledformHandler/addQuantity/<?=$row->getId()?>/<?=$this->pharmId?>/<?=$this->preId?>" method="post"><input type="text" onchange='this.form.submit()' name='quantity' placeholder='0' value=<?php if(is_numeric($var[0])){echo $var[0];}?>></form><?php }?></td>
+                    <td><?php if(1){
+                        if (is_numeric($var[0]) && ($var[1] !== 'Prescription Needed' || $this->preId !=-1)){
                             echo $row->price_per_unit_quantity * $var[0];}else{echo '-';
                         }
                     }?></td>
-                    <td><?php if($_SESSION['tempItemId'][$row->getId()] > 0){ echo $var[1];}else{echo '-';}?></td>
+                    <td><?php if(1){ echo $var[1];}else{echo '-';}?></td>
                     <td><form action="<?=SROOT?>PrefilledformHandler/processItems/<?=$this->pharmId?>/<?=$row->getId()?>/<?=$this->preId?>" method="POST"><input type="submit" value="Remove"></form></td>
                 </tr>
             <?php }}}?>

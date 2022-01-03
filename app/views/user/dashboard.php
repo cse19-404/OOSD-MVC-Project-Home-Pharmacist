@@ -34,10 +34,9 @@ if (isset($_SESSION['username'])) {
 
         <?php if ($_SESSION['role']==='customer') { ?>
         <a href="<?=SROOT?>CustomerDashboard/search"><h2>Search</h2></a>
-        <a href="<?=SROOT?>"><h2>Order</h2></a>
         <a href="<?=SROOT?>PrefilledformHandler/viewForms"><h2>View Prescribed Forms</h2></a>
         <a href="<?=SROOT?>SeasonalOfferHandler/view"><h2>Seasonal Offers</h2></a>
-        <a href="<?=SROOT?>"><h2>Purchase Hisorty</h2></a>
+        <a href="<?=SROOT?>CustomerDashboard/viewPurchaseHistory"><h2>Purchase Hisorty</h2></a>
         <?php } ?>  
 
         <?php if ($_SESSION['role']==='pharmacy') { ?>
