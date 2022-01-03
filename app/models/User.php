@@ -118,4 +118,10 @@ class User extends Model
     {
         return $this->_db->find('offertable');
     }
+
+    public function removeCustomerAccount($id){
+        $this->_db->update($this->_table,$id,[
+            'is_closed'=>1
+        ]);
+    }
 }

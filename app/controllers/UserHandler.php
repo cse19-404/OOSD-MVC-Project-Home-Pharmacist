@@ -44,6 +44,9 @@
                 if ($validation->passed()){
                     $this->PharmacyModel = new Pharmacy();
                     $this->PharmacyModel->registerNewPharmacy($_POST, $id);
+                    $this->ApplicationModel->findById($id);
+                    $msg = "Your Account has created. username =".$this->ApplicationModel->pharmacy_name.", password = password";
+                    sendmail($msg,$this->ApplicationModel->email,"Application Creation");
                     $this->updatenearbypharmacies();
 
                     Router::redirect('ApplicationHandler/viewApproved');
@@ -68,6 +71,16 @@
                 $user->save();
             }
             
+        }
+
+        public function removeCustomerAccountAction(){
+            $this->UserModel->removeCustomerAccount($_POST['id']);
+            Router::redirect('UserHandler/view');
+        }
+
+        public function removePharmacyAccountAction(){
+            $this->PharmacyModel->removePharmacyAccount($_POST['id']);
+            Router::redirect('UserHandler/view');
         }
 
     }

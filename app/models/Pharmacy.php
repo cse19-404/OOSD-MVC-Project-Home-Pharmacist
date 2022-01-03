@@ -87,4 +87,10 @@ class Pharmacy extends Model
     {
         return $this->_db->find('offertable', ['conditions' => 'pharmacy_id=? AND status=?', 'bind' => [$this->id, 0]]);
     }
+
+    public function removePharmacyAccount($id){
+        $this->_db->update($this->_table,$id,[
+            'is_closed'=>1
+        ]);
+    }
 }
