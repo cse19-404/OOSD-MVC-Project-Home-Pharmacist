@@ -20,11 +20,11 @@ class Mediator extends Model{
     }
 
     public function findAllMessages($receiver){
-        return $this->_db->find('mediatortable',['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'text']]);
+        return $this->find(['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'text']]);
     }
 
     public function getMessage($id){
-        return $this->_db->find('mediatortable',['conditions'=>'id=?','bind' => [$id]]);
+        return $this->find(['conditions'=>'id=?','bind' => [$id]]);
     }
 
     public function markAsRead($id){
@@ -35,11 +35,11 @@ class Mediator extends Model{
         $params=[];
         if ($mode === 'edit') {
             $params['subject'] = 'Seasonal Offer Edited';
-            $params['message'] = 'Seasonal Offer was edited by " '.$this->getPharmacyNamebyUsername($from) . ' "  - '.$msg;
+            $params['message'] = 'Seasonal Offer was edited by "'.$this->getPharmacyNamebyUsername($from) . '"  - '.$msg;
         }
         if ($mode === 'new') {
             $params['subject'] = 'Seasonal Offer Added';
-            $params['message'] = 'New Seasonal Offer was added by " '. $this->getPharmacyNamebyUsername($from). ' " ';           
+            $params['message'] = 'New Seasonal Offer was added by "'. $this->getPharmacyNamebyUsername($from). '" ';           
         }
 
         $params['sender_username'] = $from;
@@ -52,7 +52,7 @@ class Mediator extends Model{
     }
 
     public function findAllOffer(){
-        $results = $this->_db->find('mediatortable',['conditions'=>'receiver_username=?','bind' => ['All-Users']]);
+        $results = $this->find(['conditions'=>'receiver_username=?','bind' => ['All-Users']]);
         $offers=[];
         foreach($results as $res){
             $params = [];
@@ -73,10 +73,10 @@ class Mediator extends Model{
         $params=[];
         $params['subject'] = 'Pre-Filled Form Recieved';
         if ($mode === 'pharmacy') {
-            $params['message'] = 'Pre-Filled Form created and sent by " '. $this->getPharmacyNamebyUsername($from). ' " as for your request';            
+            $params['message'] = 'Pre-Filled Form created and sent by "'. $this->getPharmacyNamebyUsername($from). '" as for your request';            
         }
         if($mode === 'prescription'){
-            $params['message'] = 'Pre-Filled Form was sent by " '. $this->getPharmacyNamebyUsername($from). ' " for the prescription you sent.';
+            $params['message'] = 'Pre-Filled Form was sent by "'. $this->getPharmacyNamebyUsername($from). '" for the prescription you sent.';
         }
         $params['sender_username'] = $from;
         $params['receiver_username'] = $this->getCustomerUsernamefromID($result[0]->customer_id);
@@ -88,7 +88,26 @@ class Mediator extends Model{
     }
 
     public function findAllPreFilledForms($receiver){
-        return $this->_db->find('mediatortable',['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'prefilled form']]);
+        return $this->find(['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'prefilled form']]);
+    }
+
+    public function receiveOrderStatusUpdate($message_ref_id,$status){
+        $result = $this->_db->find('ordertable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
+        $from = $this->getPharmacyUsernamefromID($result[0]->pharmacy_id);
+        $params=[];
+        $params['subject'] = 'Order Status Updated';
+        $params['message'] = 'The Order you made at "'. $this->getPharmacyNamebyUsername($from). '" has changed the status of your order. The status of your order is "'.$status.'".';            
+        $params['sender_username'] = $from;
+        $params['receiver_username'] = $this->getCustomerUsernamefromID($result[0]->customer_id);
+        $params['message_type'] = 'order';
+        $params['message_ref_id'] = $message_ref_id;
+        $params['is_read'] = 0;
+        $this->assign($params);
+        $this->save();    
+    }
+
+    public function findAllOrder($receiver){
+        return $this->find(['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'order']]);
     }
 
     private function getPharmacyIdfromUsername($username){

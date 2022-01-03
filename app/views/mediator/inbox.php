@@ -56,7 +56,7 @@
                         <?php foreach($this->prefroms as $row){
                             if($row->is_read){?>
                             <tr style="background-color:blanchedalmond">
-                                <td><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$row->message_ref_id?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'   ' . ucwords($row->message_type).' Message</pre>'?></a></td>
+                            <td><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$row->message_ref_id?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'<br>' . ucwords($row->message_type).' Message : '.$row->message.'</pre>'?></a></td>
                             </tr>
                         <?php }else{?>
                             <tr>
@@ -67,6 +67,29 @@
                 </div>
             <?php }else{
                 echo "<h3>No Prefilled Forms to display</h3>";
+            }}?>   
+    </div>
+
+    <div>
+        <?php if($_SESSION['role'] === 'customer'){?>
+            <h2>Order Status Notifications</h2>
+            <?php if(isset($this->order) && !empty($this->order)){?>
+                <div>
+                    <table>
+                        <?php foreach($this->order as $row){
+                            if($row->is_read){?>
+                            <tr style="background-color:blanchedalmond">
+                            <td><a href="<?=SROOT?>/<?=$row->message_ref_id?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'<br>' . ucwords($row->message_type).' Message : '.$row->message.'</pre>'?></a></td>
+                            </tr>
+                        <?php }else{?>
+                            <tr>
+                                <td><a href="<?=SROOT?>/<?=$row->message_ref_id?>/<?=$row->id?>"><?php echo '<pre>From: '.$row->sender_username .'   Subject : ' .$row->subject.'<br>' . ucwords($row->message_type).' Message : '.$row->message.'</pre>'?></a></td>
+                            </tr>                        
+                        <?php } }?>
+                    </table>
+                </div>
+            <?php }else{
+                echo "<h3>No Order Status Change to display</h3>";
             }}?>   
     </div>
 

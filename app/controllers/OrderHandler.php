@@ -6,6 +6,7 @@ class OrderHandler extends Controller{
             $this->load_model('User');
             $this->load_model('Order');
             $this->load_model('PrefilledForm');
+            $this->load_model('Mediator');
         }
 
         // public function loadOrderDetailsAction($preId,$change=''){
@@ -125,6 +126,7 @@ class OrderHandler extends Controller{
             $this->OrderModel->update($id,[
                 'status'=>$_POST['status']
             ]);
+            $this->notifyStatusUpdate($id,$_POST['status']);
             Router::redirect('OrderHandler/view');
         }
 
@@ -155,5 +157,9 @@ class OrderHandler extends Controller{
             }
 
             
+        }
+
+        private function notifyStatusUpdate($id,$status){
+            $this->MediatorModel->receiveOrderStatusUpdate($id,$status);
         }
 }
