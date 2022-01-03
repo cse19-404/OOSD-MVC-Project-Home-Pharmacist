@@ -17,16 +17,23 @@
     }
 
     function unsetSession($varArray){
-        if($varArray==="all"){
-            $varArray = array_keys($_SESSION);           
+        
+        foreach($varArray as $varName){ 
+            if(isset($_SESSION[$varName])){
+                unset($_SESSION[$varName]);
+            }              
         }
-        foreach($varArray as $varName){
-            if(!($varName === 'multiton' ||  $varName === 'username' || $varName === 'role' || $varName === CURRENT_USER_SESSION_NAME)){
-                if(isset($_SESSION[$varName])){
-                    unset($_SESSION[$varName]);
+        //dnd($_SESSION);
+    }
+    function unsetSessionExcept($varArray=[]){
+        array_push($varArray, 'multiton', 'username', 'role', CURRENT_USER_SESSION_NAME);
+        $keys = array_keys($_SESSION);
+        foreach($keys as $key){
+            if(!in_array($key, $varArray)){
+                if(isset($_SESSION[$key])){
+                    unset($_SESSION[$key]);
                 }
             }      
         }
-        //dnd($_SESSION);
     }
         
