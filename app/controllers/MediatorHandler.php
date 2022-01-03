@@ -39,14 +39,15 @@ class MediatorHandler extends Controller{
         if ($_SESSION['role']==='pharmacy') {
             $this->PharmacyModel = Pharmacy::currentLoggedInPharmacy();
             $receiver = $this->PharmacyModel->username;
-        }else{
+        }
+        if ($_SESSION['role']==='customer'){
             $this->UserModel = User::currentLoggedInUser();
             $receiver = $this->UserModel->username;
+            $offer = $this->MediatorModel->findAllOffer();
+            $this->view->offer = $offer;
         }
         $result = $this->MediatorModel->findAllMessages($receiver);
         $this->view->result = $result;
-        $offer = $this->MediatorModel->findAllOffer();
-        $this->view->offer = $offer;
         $prefroms = $this->MediatorModel->findAllPreFilledForms($receiver);
         $this->view->prefroms = $prefroms;
         $this->view->render('mediator/inbox');
