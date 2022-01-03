@@ -180,9 +180,10 @@ class PrefilledformHandler extends Controller{
                 }
                 $this->getItemModels(array_keys($_SESSION['tempItemId']));
                 $this->calculateTotal($preId, $this->view->items);
-            }     
+            }
+            //dnd($this->view->items);     
             $this->view->render('search/prefilled_form');
-            //dnd($this->view->items);
+            
         }else {
             $this->searchFromNearbyPharmacies($rawData);
         }

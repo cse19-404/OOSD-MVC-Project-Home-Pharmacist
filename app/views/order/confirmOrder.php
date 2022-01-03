@@ -46,7 +46,7 @@
             <br><label for="total">Total Price : <?=$_SESSION['OrderDetails']['total']?></label><br><br>
         <?php }?>
 
-        <form action="<?=SROOT?>" method="POST"><input type="submit" value="Confirm Order"></form>
-        <form action="<?=SROOT?>" method="POST"><input type="submit" value="Cancel Order"></form>
+        <form action="<?=SROOT?>OrderHandler/confirmOrder" method="POST"><input type="submit" value="Confirm Order"></form>
+        <form action="<?=SROOT?>OrderHandler/cancelOrder" method="POST"><input type="submit" value="Cancel Order"></form>
 </body>
 </html>

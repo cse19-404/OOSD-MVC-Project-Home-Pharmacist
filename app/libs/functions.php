@@ -14,4 +14,12 @@
             $miles = $dist * 60 * 1.1515;            
             return ($miles * 1.609344);
         }
-    }   
+    }
+
+    function unsetSession($varArray){
+        foreach($varArray as $varName){
+            if(isset($_SESSION[$varName])){
+                unset($_SESSION[$varName]);
+            }
+        }
+    }

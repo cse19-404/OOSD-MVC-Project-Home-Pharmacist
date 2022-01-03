@@ -127,4 +127,33 @@ class OrderHandler extends Controller{
             ]);
             Router::redirect('OrderHandler/view');
         }
+
+        public function cancelOrderAction(){
+            
+            unsetSession(['OrderDetails','UserPharmacydetails','tempItemId', 'rawData', 'TotalPrice', 'removed']);
+            if($_SESSION['role']==='customer'){
+                Router::redirect('CustomerDashboard');
+            } else{
+                Router::redirect('PharmacyDashboard');
+            }  
+        }
+
+        public function confirmOrderAction(){
+            //dnd($_SESSION['OrderDetails']);
+            if(isset($_SESSION['OrderDetails'])){
+                if($_SESSION['OrderDetails']['prescription']===NULL){
+                    unset($_SESSION['OrderDetails']['prescription']);
+                }
+                $this->OrderModel->insert($_SESSION['OrderDetails']);
+            }
+
+            unsetSession(['OrderDetails','UserPharmacydetails','tempItemId', 'rawData', 'TotalPrice', 'removed']);
+            if($_SESSION['role']==='customer'){
+                Router::redirect('CustomerDashboard');
+            } else{
+                Router::redirect('PharmacyDashboard');
+            }
+
+            
+        }
 }
