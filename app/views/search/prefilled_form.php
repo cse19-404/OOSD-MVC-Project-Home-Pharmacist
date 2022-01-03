@@ -7,9 +7,16 @@
     <title>Prefilled Form</title>
 </head>
 <script>
-    function deliveryCheck(delivery){  
+    function deliveryCheck(delivery, proceed){  
         if(delivery == 0){
             alert("Sorry! This Pharmacy Doesn\'t Support Delivery");          
+        }else if(delivery != 0 && !proceed){
+            alert("Add 1 or more valied Items to Proceed..!");
+        }
+    }
+    function sendCheck(empty){
+        if(empty == 1){
+            alert("Add Items Before Send...!");
         }
     }
 </script>
@@ -85,11 +92,11 @@
                 </tr>
             <?php }}}?>
         </table>
-        <br><br><span>Total Price : <?= $_SESSION['TotalPrice'] ?></span>
+        <br><br><span>Total Price : <?php if(isset($_SESSION['TotalPrice'])){echo $_SESSION['TotalPrice'];}else{echo 0;}?></span>
     </div>
     <?php if(User::currentLoggedInUser()->id !== Null || isset($_SESSION['orderfromPharm'])){?>
         <br><br>
-        <a onclick='deliveryCheck(<?= $this->pharmacy->delivery_supported ?>)' href=<?php if($this->pharmacy->delivery_supported){
+        <a onclick='deliveryCheck(<?= $this->pharmacy->delivery_supported?>,<?=(isset($_SESSION["TotalPrice"]) && $_SESSION["TotalPrice"]>0)?>)' href=<?php if($this->pharmacy->delivery_supported && (isset($_SESSION["TotalPrice"]) && $_SESSION["TotalPrice"]>0)){
         echo (SROOT.'OrderHandler/order/'.$this->preId.'/1/0');
         }else{
             echo "";
@@ -98,10 +105,12 @@
     <?php if(isset($_SESSION['isNearBy']) && $_SESSION['isNearBy']){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1/-1/<?=$this->preId?>">Select Another Form</a>
     <?php }elseif(User::currentLoggedInUser()->id === Null){?>
-        <br><br><a href="<?=SROOT?>PrefilledformHandler/sendPrefilledForm/<?=$this->preId?>">Send to Customer</a>
+        <br><br><a onclick="sendCheck(<?=!isset($_SESSION['tempItemId'])?>)" href="<?php if(isset($_SESSION['tempItemId'])){
+            echo SROOT . "PrefilledformHandler/sendPrefilledForm/" . $this->preId;
+            }else{ echo '';}?>">Send to Customer</a>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notClear/<?=$this->preId?>">Go Back</a>
     <?php }elseif($this->preId != -1){?>
-        <br><br><a href="<?=SROOT?>PrefilledformHandler/viewForms">Go Back</a>
+        <br><br><a href="<?=SROOT?><?php if(isset($_SESSION['isHistory'])){echo 'CustomerDashboard/viewPurchaseHistory';}else{echo 'PrefilledformHandler/viewForms';}?>">Go Back</a>
     <?php }else{?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notClear">Go Back</a>
     <?php }?>

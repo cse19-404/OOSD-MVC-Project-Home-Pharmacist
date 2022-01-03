@@ -19,7 +19,7 @@
             case 'selected':?>
                 <div>
                     <form action="<?=SROOT?>CustomerDashboard/searchByPharmacy" method="post">
-                        <input type="text" name="pharm-name" placeholder="Enter Pharmacy name">
+                        <input type="text" name="pharm-name" placeholder="Enter Pharmacy name" required>
                         <input type="submit" value="Search">
                     </form>  
                 </div>
@@ -35,18 +35,10 @@
                 </div>
                 <?php }elseif(isset($this->processed)){echo "<h3>No result found</h3>";}?>
             <?php break;
-            case 'nearby':?>
-                <div>
-                    <form action="<?=SROOT?>CustomerDashboard/searchByPharmacy" method="post">
-                        <input type="text" name="pharm-name" placeholder="Enter Pharmacy name">
-                        <input type="submit" value="Search">
-                    </form>
-                </div>
-            <?php break;
             case 'prescription':?>
                 <div>
                     <form action="<?=SROOT?>CustomerDashboard/searchByPharmacy/prescription" method="post">
-                        <input type="text" name="pharm-name" placeholder="Enter Pharmacy name">
+                        <input type="text" name="pharm-name" placeholder="Enter Pharmacy name" required>
                         <input type="submit" value="Search">
                     </form>
                     

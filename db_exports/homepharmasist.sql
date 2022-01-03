@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 03, 2022 at 05:32 PM
+-- Generation Time: Jan 03, 2022 at 11:11 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -146,12 +146,24 @@ INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `mess
 (37, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot; New Pharmacy &quot; for the prescription you sent.', 15, 1),
 (38, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot; New Pharmacy &quot; for the prescription you sent.', 16, 1),
 (39, 'New Pharmacy', 'dakshina', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 3, 0),
-(40, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form created and sent by &quot;New Pharmacy&quot; as for your request', 17, 0),
+(40, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form created and sent by &quot;New Pharmacy&quot; as for your request', 17, 1),
 (41, 'New Pharmacy', 'dakshina', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order. The status of your order is &quot;preparing&quot;.', 2, 0),
 (42, 'New Pharmacy', 'banula', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order. The status of your order is &quot;preparing&quot;.', 3, 0),
 (43, 'New Pharmacy', 'banula', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order. The status of your order is &quot;shipped&quot;.', 5, 0),
 (44, 'New Pharmacy', 'banula', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order. The status of your order is &quot;delivered&quot;.', 7, 0),
-(45, 'New Pharmacy', 'banula', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order. The status of your order is &quot;shipped&quot;.', 9, 0);
+(45, 'New Pharmacy', 'banula', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order. The status of your order is &quot;shipped&quot;.', 9, 0),
+(46, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 1, 1),
+(47, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 1, 0),
+(48, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 2, 0),
+(49, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 1, 0),
+(50, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 1, 0),
+(51, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 1, 0),
+(52, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 4, 0),
+(53, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 6, 0),
+(54, 'New Pharmacy', 'dakshina', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order. The status of your order is &quot;shipped&quot;.', 2, 0),
+(55, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 1, 0),
+(56, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 5, 0),
+(57, 'New Pharmacy', 'banula', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; for the prescription you sent.', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -205,23 +217,26 @@ CREATE TABLE `ordertable` (
   `total` int(11) NOT NULL,
   `status` varchar(255) NOT NULL,
   `closed` tinyint(4) NOT NULL DEFAULT 0,
-  `deleted` tinyint(1) NOT NULL DEFAULT 0
+  `deleted` tinyint(1) NOT NULL DEFAULT 0,
+  `seen` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `ordertable`
 --
 
-INSERT INTO `ordertable` (`id`, `customer_id`, `pharmacy_id`, `receiver_name`, `address`, `mobile_number`, `no_of_items`, `items`, `unit_prices`, `quantities`, `prescription`, `total`, `status`, `closed`, `deleted`) VALUES
-(1, 2, 1, 'Piumini Kaveesha', '37, Seeradunna, Mawathagama', '0719884636', '3', '1,2,3', '1000,16,120', '2,3,4', '', 4324, 'delivered', 0, 0),
-(2, 3, 1, 'Kaveesha Piumini', 'SLT,Badulla', '0719884636', '4', '4,5,6,2', '234,456,23,4', '2,3,4,7', 'uploads/prescriptions/Screenshot_20211022-142945.png', 3454, 'preparing', 0, 0),
-(3, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '1', '9', '20', '12', '', 240, 'preparing', 0, 0),
-(4, 2, 2, 'Banula', 'Airport Rd,Anuradapura', '071-1266278', '1', '4', '20', '1', '', 20, 'new', 0, 0),
-(5, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '1', '9', '20', '12', '', 2768, 'shipped', 0, 0),
-(6, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '2', '9,6', '20,2300', '12,1', '', 2540, 'new', 0, 0),
-(7, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '2', '9,5', '20,15', '12,2', '', 270, 'delivered', 0, 0),
-(8, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '2', '9,5', '20,15', '12,123', '', 2085, 'new', 0, 0),
-(9, 2, 1, 'paniya', 'Airport Rd,Anuradapura', '071-1266278', '4', '9,1,5,6', '20,1000,15,2300', '12,2,12,1', 'uploads/prescriptions/CS2062.pdf', 4720, 'shipped', 0, 0);
+INSERT INTO `ordertable` (`id`, `customer_id`, `pharmacy_id`, `receiver_name`, `address`, `mobile_number`, `no_of_items`, `items`, `unit_prices`, `quantities`, `prescription`, `total`, `status`, `closed`, `deleted`, `seen`) VALUES
+(1, 2, 1, 'Piumini Kaveesha', '37, Seeradunna, Mawathagama', '0719884636', '3', '1,2,3', '1000,16,120', '2,3,4', '', 4324, 'delivered', 0, 0, 0),
+(2, 3, 1, 'Kaveesha Piumini', 'SLT,Badulla', '0719884636', '4', '4,5,6,2', '234,456,23,4', '2,3,4,7', 'uploads/prescriptions/Screenshot_20211022-142945.png', 3454, 'shipped', 0, 0, 0),
+(3, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '1', '9', '20', '12', '', 240, 'preparing', 0, 0, 0),
+(4, 2, 2, 'Banula', 'Airport Rd,Anuradapura', '071-1266278', '1', '4', '20', '1', '', 20, 'new', 0, 0, 0),
+(5, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '1', '9', '20', '12', '', 2768, 'shipped', 0, 0, 0),
+(6, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '2', '9,6', '20,2300', '12,1', '', 2540, 'new', 0, 0, 0),
+(7, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '2', '9,5', '20,15', '12,2', '', 270, 'delivered', 0, 0, 0),
+(8, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '2', '9,5', '20,15', '12,123', '', 2085, 'new', 0, 0, 0),
+(9, 2, 1, 'paniya', 'Airport Rd,Anuradapura', '071-1266278', '4', '9,1,5,6', '20,1000,15,2300', '12,2,12,1', 'uploads/prescriptions/CS2062.pdf', 4720, 'shipped', 0, 0, 0),
+(10, 2, 1, 'Banula Kumarage', 'Airport Rd,Anuradapura', '071-1266278', '1', '9', '20', '12', '', 240, 'new', 0, 0, 0),
+(11, 2, 1, 'Banula', 'Airport Rd,Anuradapura', '071-', '1', '6', '2300', '1', '', 2300, 'new', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -251,7 +266,7 @@ CREATE TABLE `pharmacytable` (
 INSERT INTO `pharmacytable` (`id`, `username`, `password`, `name`, `License_no`, `address`, `contact_number`, `email`, `latitude`, `longitude`, `delivery_supported`, `is_closed`) VALUES
 (1, 'New Pharmacy', '$2y$10$SUkO0oGEyWXL7CPHyIH4V.mfXEpxSUJJGif6qbtn64OUtNVdfn/rO', 'New Pharmacy', '1234E', '12\\2,Kandy road,Kurunegala', '012-1212123', 'newpharmacy123@gmail.com', 7.4818, 80.3609, 1, 0),
 (2, 'Lanka Pharmacy', '$2y$10$i6uod78BtGhd.qZvN5nO/./wwBbn/6C42HRCNOC6xkXejax.IDU4W', 'Lanka Pharmacy', 'abcd', 'No.7,Colombo Rd,Monaragala', '012-1212178', 'lankapharmacy00@gmail.com', 6.88842, 81.3439, 1, 0),
-(3, 'Asiri Pharmacy', '$2y$10$AEjqDR8/oItigkSIXBRutOYNq89mmUiZcl9DGGJrNUH6p.f2LEeZG', 'Asiri Pharmacy', '12345', 'no 12, Colombo', '011 - 1234333', 'asiri@gmil.com', 1.23, 80, 1, 0);
+(3, 'Asiri Pharmacy', '$2y$10$AEjqDR8/oItigkSIXBRutOYNq89mmUiZcl9DGGJrNUH6p.f2LEeZG', 'Asiri Pharmacy', '12345', 'no 12, Colombo', '011 - 1234333', 'asiri@gmil.com', 1.23, 80, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -270,26 +285,27 @@ CREATE TABLE `prefilledformtable` (
   `prescription` varchar(255) NOT NULL,
   `deleted` tinyint(1) DEFAULT 0,
   `form_sent` tinyint(1) DEFAULT 0,
-  `seen` tinyint(1) NOT NULL DEFAULT 0
+  `seen` tinyint(1) NOT NULL DEFAULT 0,
+  `sent_date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `prefilledformtable`
 --
 
-INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_all_item`, `no_of_items`, `itemIds`, `quantities`, `prescription`, `deleted`, `form_sent`, `seen`) VALUES
-(1, 2, 1, 3, '2', '9,5,6', '1,12,19000', 'uploads/prescriptions/DESIGNDOC.txt', 0, 0, 1),
-(2, 2, 1, 2, '1', '9,asd', '12,No Such Item', 'uploads/prescriptions/Screenshot_20211022-142945.png', 0, 1, 1),
-(4, 2, 3, 0, NULL, NULL, NULL, 'uploads/prescriptions/ip config.txt', 0, 0, 0),
-(5, 2, 1, 0, '2', '9,1', '12,2', 'uploads/prescriptions/CS2062.pdf', 0, 1, 1),
-(6, 2, 3, 0, NULL, NULL, NULL, 'uploads/prescriptions/190331A_2.jpg', 0, 0, 0),
-(7, 2, 1, 0, '1', '9', '1', 'uploads/prescriptions/Evidence01(3).txt', 1, 1, 1),
-(12, 5, 1, 1, '1', '6', '1', '', 0, 1, 0),
-(13, 3, 1, 1, '1', '9', '1', '', 0, 1, 0),
-(14, 5, 1, 1, '1', '6', '3', '', 0, 1, 0),
-(15, 2, 1, 1, '0', 'abc', 'No Such Item', '', 0, 1, 1),
-(16, 2, 1, 1, '1', '9', '1', '', 0, 1, 1),
-(17, 2, 1, 5, '3', '9,6,1,abc,asd', '12,1,-,No Such Item,No Such Item', '', 0, 1, 1);
+INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_all_item`, `no_of_items`, `itemIds`, `quantities`, `prescription`, `deleted`, `form_sent`, `seen`, `sent_date`) VALUES
+(1, 2, 1, 3, '2', '5,6,1', '12,-,1', 'uploads/prescriptions/DESIGNDOC.txt', 0, 1, 1, '2022-01-03'),
+(2, 2, 1, 3, '3', '9,6,1', '1,2,2', 'uploads/prescriptions/Screenshot_20211022-142945.png', 0, 1, 1, '2022-01-03'),
+(4, 2, 1, 1, '1', '5', '12', 'uploads/prescriptions/ip config.txt', 0, 1, 1, '2022-01-02'),
+(5, 2, 1, 2, '2', '5,1', '1,1', 'uploads/prescriptions/CS2062.pdf', 0, 1, 0, '2022-01-03'),
+(6, 2, 1, 1, '0', '9', '12300', 'uploads/prescriptions/190331A_2.jpg', 0, 1, 1, '2022-01-02'),
+(7, 2, 1, 0, '1', '9', '1', 'uploads/prescriptions/Evidence01(3).txt', 0, 0, 0, '2022-01-02'),
+(12, 5, 1, 1, '1', '6', '1', '', 0, 1, 0, '2022-01-04'),
+(13, 3, 1, 1, '1', '9', '1', '', 0, 1, 0, '2022-01-04'),
+(14, 5, 1, 1, '1', '6', '3', '', 0, 1, 0, '2022-01-04'),
+(15, 2, 1, 1, '0', 'abc', 'No Such Item', '', 0, 1, 0, '2022-01-04'),
+(16, 2, 1, 1, '1', '9', '1', '', 0, 1, 0, '2022-01-04'),
+(17, 2, 1, 5, '3', '9,6,1,abc,asd', '12,1,-,No Such Item,No Such Item', '', 0, 1, 0, '2022-01-04');
 
 -- --------------------------------------------------------
 
@@ -398,7 +414,7 @@ ALTER TABLE `itemtable`
 -- AUTO_INCREMENT for table `mediatortable`
 --
 ALTER TABLE `mediatortable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `offertable`
@@ -410,7 +426,7 @@ ALTER TABLE `offertable`
 -- AUTO_INCREMENT for table `ordertable`
 --
 ALTER TABLE `ordertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `pharmacytable`
@@ -422,7 +438,7 @@ ALTER TABLE `pharmacytable`
 -- AUTO_INCREMENT for table `prefilledformtable`
 --
 ALTER TABLE `prefilledformtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `usertable`

@@ -11,7 +11,7 @@ class CustomerDashboard extends Controller{
     }
 
     public function indexAction() {
-        unsetSession("all");
+        unsetSessionExcept();
         // if (isset($_SESSION['isSeasonal'])){
         //     unset($_SESSION['isSeasonal']);
         // }
@@ -95,6 +95,12 @@ class CustomerDashboard extends Controller{
     }
 
     public function viewPurchaseHistoryAction(){
+        if (isset($_SESSION['removed'])){
+            unset($_SESSION['removed']);
+        }
+        if(isset($_SESSION['isHistory'])){
+            unset($_SESSION['isHistory']);
+        }
         $status ="";
         $this->view->filter = 'All';
         if (isset($_POST['filter-status'])){

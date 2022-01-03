@@ -146,12 +146,15 @@ class PrefilledformHandler extends Controller{
         if (!isset($_SESSION['removed'])){
             $_SESSION['removed'] = [];
         }
-        if($rmItemId != -1 && !array_key_exists(''.$rmItemId, $_SESSION['removed'])){array_push($_SESSION['removed'], $rmItemId);}
+        if($rmItemId != -1 && !in_array(''.$rmItemId, $_SESSION['removed'])){
+            array_push($_SESSION['removed'], $rmItemId);    
+        }
         
         $this->setPres($preId);
 
         if ($pharmId != -1){
             $this->getValues($pharmId);
+            //dnd( $_SESSION['tempItemId']);
             foreach ($rawData as $key => $value) {
                 $result = $this->ItemModel->searchItem($key, $pharmId);
                 //dnd($result);
@@ -168,12 +171,14 @@ class PrefilledformHandler extends Controller{
                         $_SESSION['tempItemId'][$itemId] = ($status === 'Prescription Needed' && $preId == -1)? '-,'.$status: $quantity. ','.$status;
                     }
                 }else{
+                    //var_dump($value);
                     $status = $this->checkAvailability($value,-1);
                     $_SESSION['tempItemId'][$key] = $status;
                 }               
             }
             //dnd( $_SESSION['tempItemId']);
             if(isset($_SESSION['tempItemId'])){
+                //dnd($_SESSION['removed']);
                 foreach($_SESSION['removed'] as $rm){
                     if (array_key_exists(''.$rm, $_SESSION['tempItemId'])) {
                         unset($_SESSION['tempItemId'][$rm]);
@@ -182,7 +187,8 @@ class PrefilledformHandler extends Controller{
                 $this->getItemModels(array_keys($_SESSION['tempItemId']));
                 $this->calculateTotal($preId, $this->view->items);
             }
-            //dnd($this->view->items);     
+            //dnd($this->view->items); 
+               
             $this->view->render('search/prefilled_form');
             
         }else {
@@ -192,6 +198,9 @@ class PrefilledformHandler extends Controller{
     }
 
     public function nearByAction($clear=''){
+        if (isset($_SESSION['removed'])){
+            unset($_SESSION['removed']);
+        }
         if ($clear === 'clear'){
             if (isset($_SESSION['rawData'])){
                 unset($_SESSION['rawData']);
@@ -204,6 +213,12 @@ class PrefilledformHandler extends Controller{
     }
 
     private function searchFromNearbyPharmacies($items){
+        if (isset($_SESSION['removed'])){
+            unset($_SESSION['removed']);
+        }
+        if (isset($_SESSION['tempItemId'])){
+            unset($_SESSION['tempItemId']);
+        }
         $_SESSION['isNearBy'] = 1;
         $user = User::currentLoggedInUser();
         $pharmacyIds = explode(',',$user->nearbypharmacies);
@@ -266,14 +281,14 @@ class PrefilledformHandler extends Controller{
             $userId = $_SESSION['orderfromPharm'][1]; 
             $this->PrefilledformModel->insert(
                 ['no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan), 'form_sent'=>1,
-                'customer_id'=>$userId,'pharmacy_id'=>$pharmId]
+                'customer_id'=>$userId,'pharmacy_id'=>$pharmId, 'sent_date'=>date('Y-m-d H:i:s')]
             );
             $preId = $this->PrefilledformModel->getLastId();
             $this->notifyCustomer($preId,'pharmacy');
 
         }else{
             $this->PrefilledformModel->update($preId, [
-                'no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan), 'form_sent'=>1]);
+                'no_of_all_item'=>$noOfAll, 'no_of_items'=>$noOfItem, 'itemIds'=>join(',',$itemId), 'quantities'=>join(',',$quan), 'form_sent'=>1, 'sent_date'=>date('Y-m-d H:i:s')]);
             $this->notifyCustomer($preId,'prescription');
         }
         

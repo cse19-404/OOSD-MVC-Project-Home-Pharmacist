@@ -72,7 +72,7 @@ class Pharmacy extends Model
         }
         foreach ($items as $item => $quantity) {
             foreach ($results as $row) {
-                if (str_contains(strtoupper($row->name), strtoupper($item)) && $row->quantity > $quantity) {
+                if (str_contains(strtoupper($row->name), strtoupper($item)) && $row->quantity > $quantity && !$row->prescription_needed) {
                     $count += 1;
                     $price += $row->price_per_unit_quantity * $quantity;
                     break;

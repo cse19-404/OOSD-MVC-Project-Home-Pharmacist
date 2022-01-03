@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirm Order</title>
 </head>
+<script>
+    function orderDone(){
+        alert('Your Order has been Placed..!');
+    }
+    function cancelOrder(){
+        alert('Your Order has been Canceled..!');
+    }
+</script>
 <body>
     <div>
         <label for="pharm-name">Pharmacy Name : <?=$_SESSION['UserPharmacydetails']["PharmName"]?></label><br> 
@@ -46,7 +54,9 @@
             <br><label for="total">Total Price : <?=$_SESSION['OrderDetails']['total']?></label><br><br>
         <?php }?>
 
-        <form action="<?=SROOT?>OrderHandler/confirmOrder" method="POST"><input type="submit" value="Confirm Order"></form>
-        <form action="<?=SROOT?>OrderHandler/cancelOrder" method="POST"><input type="submit" value="Cancel Order"></form>
+        
+        
+        <br><br><a onclick='orderDone()' href="<?=SROOT?>OrderHandler/confirmOrder">Confirm Order</a>
+        <br><br><a onclick='cancelOrder()' href="<?=SROOT?>OrderHandler/cancelOrder">Cancel Order</a>
 </body>
 </html>

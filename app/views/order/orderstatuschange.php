@@ -57,6 +57,7 @@
             <br><br><a href="<?=SROOT?>OrderHandler/view">Go back</a>
         </form>
         <?php }else{?>
+            <?php $_SESSION['isHistory'] = 1?>
             <form action="<?=SROOT?>OrderHandler/order/-1/1/<?= $this->order->id?>/history" method='POST'><input type="submit" value="Re Order"></form>
             <br><br><a href="<?=SROOT?>CustomerDashboard/viewPurchaseHistory">Go back</a>
         <?php }?>
