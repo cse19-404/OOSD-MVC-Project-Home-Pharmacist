@@ -17,9 +17,16 @@
     }
 
     function unsetSession($varArray){
-        foreach($varArray as $varName){
-            if(isset($_SESSION[$varName])){
-                unset($_SESSION[$varName]);
-            }
+        if($varArray==="all"){
+            $varArray = array_keys($_SESSION);           
         }
+        foreach($varArray as $varName){
+            if(!($varName === 'multiton' ||  $varName === 'username' || $varName === 'role' || $varName === CURRENT_USER_SESSION_NAME)){
+                if(isset($_SESSION[$varName])){
+                    unset($_SESSION[$varName]);
+                }
+            }      
+        }
+        //dnd($_SESSION);
     }
+        

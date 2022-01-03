@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prefilled Form</title>
 </head>
+<script>
+    function deliveryCheck(delivery){  
+        if(delivery == 0){
+            alert("Sorry! This Pharmacy Doesn\'t Support Delivery");          
+        }
+    }
+</script>
 <body>
     <div>
         <?php
@@ -17,6 +24,8 @@
             $_SESSION['UserPharmacydetails']["UserId"]=User::currentLoggedInUser()->id;
         }
         $_SESSION['UserPharmacydetails']["PharmId"]=$this->pharmId;
+        $this->pharmacy = new Pharmacy();
+        $this->pharmacy->findById($this->pharmId);
         $_SESSION['UserPharmacydetails']["CustomerName"]= (!isset(User::currentLoggedInUser()->name))? $this->customerName : ((isset($_SESSION['orderfromPharm']))? $_SESSION['orderfromPharm'][0] : User::currentLoggedInUser()->name);?>     
         Customer Name : <span><?= $_SESSION['UserPharmacydetails']["CustomerName"]?></span><br><br>
         Pharmacy Name : <span><?=$this->pharmName?></span>
@@ -79,7 +88,12 @@
         <br><br><span>Total Price : <?= $_SESSION['TotalPrice'] ?></span>
     </div>
     <?php if(User::currentLoggedInUser()->id !== Null || isset($_SESSION['orderfromPharm'])){?>
-        <br><br><a href="<?=SROOT?>OrderHandler/order/<?= $this->preId?>/1/0">Proceed to Order</a>
+        <br><br>
+        <a onclick='deliveryCheck(<?= $this->pharmacy->delivery_supported ?>)' href=<?php if($this->pharmacy->delivery_supported){
+        echo (SROOT.'OrderHandler/order/'.$this->preId.'/1/0');
+        }else{
+            echo "";
+        }?> >Proceed to Order</a>  
     <?php }?>
     <?php if(isset($_SESSION['isNearBy']) && $_SESSION['isNearBy']){?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/processItems/-1/-1/<?=$this->preId?>">Select Another Form</a>

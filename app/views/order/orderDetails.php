@@ -18,16 +18,19 @@
             $readonly="";
             $submitBtn="Save Details";
         }
+
+        $this->User = new User();
+        $this->User->findById($_SESSION['UserPharmacydetails']['UserId']);
         ?>
 
         <span><?= $title ?></span><br><br>
 
         <form action='<?=SROOT?>OrderHandler/order/<?=$this->preId?>/<?php if($submitBtn === "Save Details" || $submitBtn === "Use Default Details"){echo 0;}else{echo 1;}?>/0' method='post' > 
-            <label for="receiver_name">Receiver's Name : </label><input name="receiver_name" type="text" value="<?= User::currentLoggedInUser()->name?>" <?= $readonly?> ><br>
+            <label for="receiver_name">Receiver's Name : </label><input name="receiver_name" type="text" value="<?= $this->User->name?>" <?= $readonly?> ><br>
             <br>
-            <label for="address">Address : </label><input name="address" type="text" value="<?=User::currentLoggedInUser()->address?>" <?= $readonly?> ><br>
+            <label for="address">Address : </label><input name="address" type="text" value="<?= $this->User->address?>" <?= $readonly?> ><br>
             <br>
-            <label for="mobile_number">Receiver's Contact Number : </label><input name="mobile_number" type="text" value="<?=User::currentLoggedInUser()->mobile_number?>" <?= $readonly?> >
+            <label for="mobile_number">Receiver's Contact Number : </label><input name="mobile_number" type="text" value="<?= $this->User->mobile_number?>" <?= $readonly?> >
             <br><br>
             <input type="submit" value="<?= $submitBtn?>" >
             <br><br>
