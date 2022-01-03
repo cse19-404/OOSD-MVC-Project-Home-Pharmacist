@@ -124,9 +124,14 @@
             // added to avoid closed accounts
             if($table === 'usertable' || $table === 'pharmacytable'){
                 if (isset($params['conditions'])) {
-                    $cond = $params['conditions'].' AND is_closed=?';
+                    $cond = (is_array($params['conditions']))? join(' AND ' ,$params['conditions']).' AND is_closed=?':$params['conditions'].' AND is_closed=?';
                     $params['conditions'] = $cond;
-                    array_push($params['bind'],0);
+                    if(isset($params['bind'])){
+                        array_push($params['bind'],0);
+                    }else{
+                        $params['bind'][] = 0;
+                    }
+                    
                 }else{
                     $params['conditions'] = 'is_closed=?';
                     $params['bind'] = [0];
