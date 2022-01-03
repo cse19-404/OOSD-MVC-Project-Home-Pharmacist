@@ -120,6 +120,17 @@
             $bind = [];
             $order = '';
             $limit = '';
+        }
+        if(($table === 'usertable') || ($table === 'pharmacytable')){
+            if (isset($params['conditions'])) {
+                $params['conditions'] = $params['conditions'].'is_closed=?';
+                array_push($params['bind'],0)
+            }else{
+                $params['conditions'] = 'is_closed=?';
+                $params['bind'] = [0];
+            }
+
+        }
 
             //conditions
             if (isset($params['conditions'])){
@@ -134,6 +145,7 @@
                     $conditionString = $params['conditions'];
                 }
             }
+
             if($conditionString != "")            
             {
                 $conditionString = ' WHERE '.$conditionString;
@@ -152,7 +164,7 @@
             }
 
             $sql = "SELECT * FROM {$table}{$conditionString}{$order}{$limit}";
-            //dnd($sql);
+            // dnd($sql);
             
 
             if ($this->query($sql,$bind)){

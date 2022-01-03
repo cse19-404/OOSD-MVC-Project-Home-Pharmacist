@@ -32,9 +32,15 @@
                 echo "<td>" . $row["address"] . "</td>";
                 echo "<td>" . $row["mobile_number"] . "</td>";
                 echo "<td>" . $row["email"] . "</td>";
-                echo "<td> Location: " . $row['latitude'] . "," . $row['longitude'] . "</td>";
-            }
-            ?>
+                echo "<td> Location: " . $row['latitude'] . "," . $row['longitude'] . "</td>";  ?>
+                <td>
+                    <form action="<?=SROOT?>UserHandler/removeCustomerAccount" method="post">
+                        <?php echo "<input type='text' value='" . $row['id'] . "' name='id' hidden>" ?>
+                        <input type="submit" value="Close Customer Account">
+                    </form>
+                </td>
+            </tr>
+        <?php } ?>
         </table>
     </div>
     <?php }
@@ -71,10 +77,15 @@
                     echo "<td>" . "Yes" . "</td>";
                 } else {
                     echo "<td>" . "No" . "</td>";
-                }
-            }
-            
-            ?>
+                }?>
+                    <td>
+                        <form action="<?=SROOT?>UserHandler/removePharmacyAccount" method="post">
+                            <?php echo "<input type='text' value='" . $row['id'] . "' name='id' hidden>" ?>
+                            <input type="submit" value="Close Pharmacy Account">
+                        </form>
+                    </td>
+                </tr>
+            <?php } ?>
         </table>
     </div>
     <?php }

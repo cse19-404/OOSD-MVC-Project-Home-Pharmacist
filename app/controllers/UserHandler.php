@@ -70,4 +70,14 @@
             
         }
 
+        public function removeCustomerAccountAction(){
+            $this->UserModel->removeCustomerAccount($_POST['id']);
+            Router::redirect('UserHandler/view');
+        }
+
+        public function removePharmacyAccountAction(){
+            $this->PharmacyModel->removePharmacyAccount($_POST['id']);
+            Router::redirect('UserHandler/view');
+        }
+
     }
