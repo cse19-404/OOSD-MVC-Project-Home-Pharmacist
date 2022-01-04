@@ -4,3 +4,20 @@ Singelton -->
 Multiton -->
     DummyItem Class
     Multiton Array in $_SESSION[] super global
+
+MVC
+
+Stratergy --> 
+    OrderHandler - Context
+    Stratergy - interface
+        ->DirectOrder
+        ->HistoryOrder
+
+Mediator -->
+    MediatorHandler 
+     --> connects Pharmacy, User
+
+Observer
+    -->SesionalOfferHandler - Observable
+    -->User - Observer 
+
