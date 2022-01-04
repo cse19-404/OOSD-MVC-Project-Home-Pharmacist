@@ -89,11 +89,17 @@ class OrderHandler extends Controller{
             Router::redirect('OrderHandler/view');
         }
 
-        public function updateStatusAction($id){
-            $this->OrderModel->update($id,[
-                'status'=>$_POST['status']
-            ]);
-            $this->notifyStatusUpdate($id,$_POST['status']);
+        public function updateStatusAction($id, $seen=''){
+            if($seen === 'seen'){
+                $this->OrderModel->update($id,[
+                    'status'=>'seen']);
+                $this->notifyStatusUpdate($id, 'seen');
+            }else{
+                $this->OrderModel->update($id,[
+                    'status'=>$_POST['status']
+                ]);
+                $this->notifyStatusUpdate($id,$_POST['status']);
+            }
             Router::redirect('OrderHandler/view');
         }
 

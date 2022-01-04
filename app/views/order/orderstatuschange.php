@@ -54,6 +54,7 @@
                 <option value="delivered">Delivered</option>
             </select>
             <input type="submit" name="submit" value="Change Status">
+            <br><br><a href="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>/seen">Accept Order</a>
             <br><br><a href="<?=SROOT?>OrderHandler/view">Go back</a>
         </form>
         <?php }else{?>

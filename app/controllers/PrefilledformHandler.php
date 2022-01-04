@@ -373,7 +373,7 @@ class PrefilledformHandler extends Controller{
 
     }
 
-    public function viewFormsAction(){
+    public function viewFormsAction($pres=''){
         if (isset($_SESSION['tempItemId'])){
             unset($_SESSION['tempItemId']);
         }
@@ -382,11 +382,24 @@ class PrefilledformHandler extends Controller{
         }
         $cond = 'customer_id=' . User::currentLoggedInUser()->id . ' AND ' . 'form_sent=' . '1';
         $preForms = $this->PrefilledformModel->find(['conditions'=>$cond]);
-        foreach ($preForms as $form) {
-            $pharm = new Pharmacy();
-            $pharm->findById($form->pharmacy_id);
-            $this->view->data[$form->id] = $pharm->name;
-            $this->view->prefilledForms[$form->id] = $form;
+        if($pres === 'prescription'){
+            foreach ($preForms as $form) {
+                if($form->prescription != NULL){
+                    $pharm = new Pharmacy();
+                    $pharm->findById($form->pharmacy_id);
+                    $this->view->data[$form->id] = $pharm->name;
+                    $this->view->prefilledForms[$form->id] = $form;
+                }
+            }
+        }else{
+            foreach ($preForms as $form) {
+                if($form->prescription == NULL){
+                    $pharm = new Pharmacy();
+                    $pharm->findById($form->pharmacy_id);
+                    $this->view->data[$form->id] = $pharm->name;
+                    $this->view->prefilledForms[$form->id] = $form;
+                }
+            }
         }
         $this->view->render('prescriptions/viewPrefilledForms');
         

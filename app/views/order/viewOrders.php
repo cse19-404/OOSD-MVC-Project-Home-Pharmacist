@@ -8,7 +8,7 @@
 </head>
 <body>
     <div>
-        <?php $statuses = ['All','new', 'preparing', 'shipped','delivered'] ?>
+        <?php $statuses = ['All','new', 'seen', 'preparing', 'shipped','delivered'] ?>
         <form action='<?=SROOT?><?php if(isset(Pharmacy::currentLoggedInPharmacy()->id)){echo 'OrderHandler/view';}else{echo 'CustomerDashboard/viewPurchaseHistory';}?>' method='post'>
             <label for="filter">Filter by Status</label>
             <select name='filter-status' onchange='this.form.submit()'>

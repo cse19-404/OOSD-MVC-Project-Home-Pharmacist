@@ -18,8 +18,8 @@
             <tr>
                 <td><?=$form->sent_date?></td>
                 <td><?=$this->data[$id]?></td>
-                <td><a href="<?=SROOT?><?=$form->prescription?>" download='<?=$form->prescription?>'>
-                <?= ltrim($form->prescription, 'uploads/prescriptions/')?>
+                <td><?php if($form->prescription != NULL) {?><a href="<?=SROOT?><?=$form->prescription?>" download='<?=$form->prescription?>'>
+                <?= ltrim($form->prescription, 'uploads/prescriptions/')?><?php }else{echo '-';}?>
             </a></td>
                 <td><?=$form->no_of_items . " out of " . $form->no_of_all_item . " Items Availale"?></td>
                 <td><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$id?>">View Form</a></td>

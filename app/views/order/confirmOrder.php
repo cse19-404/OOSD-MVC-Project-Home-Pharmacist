@@ -51,8 +51,8 @@
             <a href="<?=SROOT?><?=$_SESSION['OrderDetails']['prescription']?>" download='<?=$_SESSION['OrderDetails']['prescription']?>'>
                 <?= ltrim($_SESSION['OrderDetails']['prescription'],'uploads/prescriptions/')?>
             </a>
-            <br><label for="total">Total Price : <?=$_SESSION['OrderDetails']['total']?></label><br><br>
         <?php }?>
+            <br><label for="total">Total Price : <?=$_SESSION['OrderDetails']['total']?></label><br><br>
 
         
         
