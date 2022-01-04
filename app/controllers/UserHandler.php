@@ -80,6 +80,7 @@
 
         public function removePharmacyAccountAction(){
             $this->PharmacyModel->removePharmacyAccount($_POST['id']);
+            $this->updatenearbypharmacies();
             Router::redirect('UserHandler/view');
         }
 
