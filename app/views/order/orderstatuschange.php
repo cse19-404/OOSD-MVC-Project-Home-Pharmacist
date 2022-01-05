@@ -44,20 +44,21 @@
             </a>
         <?php }?>
         <br><label for="total">Total Price : <?=$this->order->total?></label><br><br>
-        <?php if(!isset(User::currentLoggedInUser()->id)){?>
-        <form action="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>" method="post">
-            <label>Update status</label>
-            <select name="status" id="status">
-                <option value="new">New</option>
-                <option value="preparing">Preparing</option>
-                <option value="shipped">Shipped</option>
-                <option value="delivered">Delivered</option>
-            </select>
-            <input type="submit" name="submit" value="Change Status">
-            <br><br><a href="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>/seen">Accept Order</a>
+        <?php if(!isset(User::currentLoggedInUser()->id)){
+            if($this->order->status === 'new'){?><br><br><a href="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>/seen">Accept Order</a><?php }else{?>
+                <form action="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>" method="post">
+                    <label>Update status</label>
+                    <select name="status" id="status">
+                        <option value="new">New</option>
+                        <option value="preparing">Preparing</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="delivered">Delivered</option>
+                    </select>
+                    <input type="submit" name="submit" value="Change Status">
+                </form>
+        <?php }?>
             <br><br><a href="<?=SROOT?>OrderHandler/view">Go back</a>
-        </form>
-        <?php }else{?>
+            <?php }else{?>
             <?php $_SESSION['isHistory'] = 1?>
             <form action="<?=SROOT?>OrderHandler/order/-1/1/<?= $this->order->id?>/history" method='POST'><input type="submit" value="Re Order"></form>
             <br><br><a href="<?=SROOT?>CustomerDashboard/viewPurchaseHistory">Go back</a>
