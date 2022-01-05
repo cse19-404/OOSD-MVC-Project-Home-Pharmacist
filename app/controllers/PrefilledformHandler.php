@@ -380,6 +380,13 @@ class PrefilledformHandler extends Controller{
         if (isset($_SESSION['removed'])){
             unset($_SESSION['removed']);
         }
+        if($pres === 'prescription'){
+            $_SESSION['isPres'] = 1;
+        }else{
+            if (isset($_SESSION['isPres'])){
+                unset($_SESSION['isPres']);
+            }
+        }
         $cond = 'customer_id=' . User::currentLoggedInUser()->id . ' AND ' . 'form_sent=' . '1';
         $preForms = $this->PrefilledformModel->find(['conditions'=>$cond]);
         if($pres === 'prescription'){

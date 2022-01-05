@@ -110,7 +110,7 @@
             }else{ echo '';}?>">Send to Customer</a>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notClear/<?=$this->preId?>">Go Back</a>
     <?php }elseif($this->preId != -1){?>
-        <br><br><a href="<?=SROOT?><?php if(isset($_SESSION['isHistory'])){echo 'CustomerDashboard/viewPurchaseHistory';}else{echo 'PrefilledformHandler/viewForms';}?>">Go Back</a>
+        <br><br><a href="<?=SROOT?><?php if(isset($_SESSION['isHistory'])){echo 'CustomerDashboard/viewPurchaseHistory';}else{if(isset($_SESSION['isPres'])){echo 'PrefilledformHandler/viewForms/prescription';}else{echo 'PrefilledformHandler/viewForms';}}?>">Go Back</a>
     <?php }else{?>
         <br><br><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$this->pharmId?>/notClear">Go Back</a>
     <?php }?>
