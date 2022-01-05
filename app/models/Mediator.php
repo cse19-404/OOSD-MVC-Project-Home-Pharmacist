@@ -95,8 +95,15 @@ class Mediator extends Model{
         $result = $this->_db->find('ordertable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
         $from = $this->getPharmacyUsernamefromID($result[0]->pharmacy_id);
         $params=[];
-        $params['subject'] = 'Order Status Updated';
-        $params['message'] = 'The Order you made at "'. $this->getPharmacyNamebyUsername($from). '" has changed the status of your order. The status of your order is "'.$status.'".';            
+        if ($status === 'seen') {
+            $params['subject'] = 'Order Accepted'; 
+            $params['message'] = 'The Order you made at "'. $this->getPharmacyNamebyUsername($from). '" has been accepted. Your order is now confirmed.';                    
+        }
+        else{
+            $params['subject'] = 'Order Status Updated';
+            $params['message'] = 'The Order you made at "'. $this->getPharmacyNamebyUsername($from). '" has changed the status of your order. The status of your order is "'.$status.'".';            
+        }
+        
         $params['sender_username'] = $from;
         $params['receiver_username'] = $this->getCustomerUsernamefromID($result[0]->customer_id);
         $params['message_type'] = 'order';
