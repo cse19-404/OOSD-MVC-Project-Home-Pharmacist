@@ -8,6 +8,17 @@
     <title>Register Pharmacy</title>
     <style>
     .error {color: #FF0000;}
+    .Appcontainer {
+        z-index: 2;
+        border-radius: 10px;
+        background-color: #e9e9e9ed;
+        height: 20cm;
+        width: 16cm;
+        margin: auto;
+        margin-top: 1cm;
+        padding: 20px;
+        box-shadow: 10px 10px 50px 0.1px rgba(0, 0, 0, 0.664);
+      }
     </style>
     <?php include_once('css/base.php'); ?>
 </head>
@@ -15,7 +26,8 @@
 <body>
     <div class='container-fluid'>
         <h1 class='header'>Registration Application</h1><hr><br>
-        <div class="form-group">
+
+        <div class="Appcontainer">
             <form class="form-horizontal" action="<?=SROOT?>register/signup/pharmacy" method="post" enctype="multipart/form-data">
                 <label class="email">Email</label>
                 <input type="email" class="form-control" name="email" id="email" value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>" required><br><br>
@@ -32,10 +44,11 @@
                 <input type="checkbox" name="delivery_supported" <?php if(isset($_POST['delivery_supported']) && $_POST['delivery_supported']=='on'){echo "checked";}?>><br><br>
                 <label>Upload Document</label>
                 <input type="file" name="documents" id="documents" required><br><br>
-                <input type="submit" class="btn-submit" value="Submit" name='submit'>
+                <input type="submit" class="btn btn-info" value="Submit" name='submit'>
             </form>
-            <br><br><a href="<?=SROOT?>home/index">Go to Home</a>
+            
         </div>
+        <br><br><a href="<?=SROOT?>home/index">Go to Home</a>
     </div>
 
 
