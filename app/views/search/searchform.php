@@ -48,7 +48,7 @@
             </div>
         </form>
         <div>
-            <table>
+            <table class='table'>
                 <tr>
                     <th>Item Name</th>
                     <th>Quantity</th>

@@ -74,7 +74,7 @@
                 </form>
                 <?php if(isset($this->result) && !empty($this->result)){?>
                     <div>
-                        <table>
+                        <table class='table'>
                             <?php foreach($this->result as $row){?>
                                 <tr>
                                     <td><?php echo $row->name."(".$row->quantity_unit.")"?></td>
@@ -89,7 +89,7 @@
             </div>
             <div>
                 <br><br>
-                <table>
+                <table class = 'table'>
                     <tr>
                         <th>Item Name</th>
                         <th>Price per unit quantity</th>
