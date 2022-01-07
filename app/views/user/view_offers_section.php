@@ -20,7 +20,15 @@
                 <label name="" id=""><?= $row->description?></label><br>
                 <img src="<?= SROOT.$row->bannerdocument?>" alt="A Seasonal Offer" width="300" height="100">
             </div>
+
+            <?php
+            if(!$row->isexpired){?>
             <form action="<?=SROOT?>SeasonalOfferHandler/viewOffer/edit/<?= $row->id ?>"><input type="submit" value="Edit Offer"></form>
+            <?php }?>
+            <?php 
+            if($row->isexpired){?>
+            <form action="<?=SROOT?>SeasonalOfferHandler/viewOffer/renew/<?= $row->id ?>"><input type="submit" value="Renew Offer"></form>
+            <?php }?>
             <form action="<?=SROOT?>SeasonalOfferHandler/deleteOffer/<?= $row->id ?>"><input type="submit" value="Remove From View"></form>
             <br>
         <?php }?>
