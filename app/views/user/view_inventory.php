@@ -7,15 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory</title>
+    <?php include_once('css/base.php'); ?>
 </head>
 
 <body>
-    <h1>Inventory</h1>
+    <div class="container-fluid">
+    <h1 class = 'header'>Inventory</h1>
     <hr>
-    <br>
     <?php if (isset($_SESSION['role']) && !strcmp($_SESSION['role'], 'pharmacy')) { ?>
         <div class="table-div">
-            <table class='table'>
+            <table class="table">
                 <thread>
                     <th>Item Name</th>
                     <th>Item Code</th>
@@ -38,10 +39,10 @@
                     echo "<td>" . $row['price_per_unit_quantity'] . "</td>";
 
                 ?>
-                    <td><a href="<?=SROOT?>ItemHandler/viewItem/edit/<?=$row["id"]?>">Edit</a></td>
+                    <td><a role='button' class="btn btn-info" href="<?=SROOT?>ItemHandler/viewItem/edit/<?=$row["id"]?>">Edit</a></td>
                     <td>
                         <form action="<?=SROOT?>ItemHandler/deleteItem/<?=$row["id"]?>" method="post">
-                            <input type="submit" value="Remove item">
+                            <input type="submit" value="Remove item" class="btn btn-danger" role="button">
                         </form>
                     </td>
                     </tr>
@@ -51,15 +52,16 @@
         </div>
         <br><br>
         <form method="POST" action="<?=SROOT?>ItemHandler/viewItem/add">
-            <input type="submit" name="Add" value="Add new Item">
+            <input type="submit" name="Add" value="Add new Item" role='button' class="btn btn-success">
         </form>
         <br>
         <br>
-        <a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
+        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
 
     <?php } else {
         echo "<h1> <a href='index.php'> Log in first </a> </h1>";
     } ?>
+    </div>
 </body>
 
 </html>
