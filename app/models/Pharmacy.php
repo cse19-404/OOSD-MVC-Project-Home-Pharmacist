@@ -49,6 +49,7 @@ class Pharmacy extends Model
         Session::set('username', $this->username);
         Session::set('multiton', []);
         self::$currentLoggedInPharmacy = $this;
+        date_default_timezone_set('Asia/Colombo');
     }
 
     public function logout()
@@ -84,9 +85,12 @@ class Pharmacy extends Model
         return [$count, $price];
     }
 
-    public function findAllOffers()
+    public function findOffers($type)
     {
-        return $this->_db->find('offertable', ['conditions' => 'pharmacy_id=? AND status=?', 'bind' => [$this->id, 0]]);
+        if($type==="all"){
+            return $this->_db->find('offertable', ['conditions' => 'pharmacy_id=? AND status=?', 'bind' => [$this->id, 0]]);
+        }
+        
     }
 
     public function removePharmacyAccount($id){

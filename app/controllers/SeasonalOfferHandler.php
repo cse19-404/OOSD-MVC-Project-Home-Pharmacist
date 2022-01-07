@@ -17,7 +17,7 @@ class SeasonalOfferHandler extends Controller{
         $_SESSION['isSeasonal']=true;
         if($_SESSION['role']=="pharmacy"){
             $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy();
-            $result = $this->PharmacyModel->findAllOffers();
+            $result = $this->PharmacyModel->findOffers("all");
             $this->view->results = $result;
             //dnd($this->PharmacyModel);
             // $resultQuery=$this->PharmacyModel->findAlloffers();
@@ -61,7 +61,18 @@ class SeasonalOfferHandler extends Controller{
             $this->view->OfferId=$OfferId;
             $this->view->render('user/view_offer');
             
-        }else{
+        }elseif($mode==='renew'){
+            $this->load_model('Offer');
+            $this->OfferModel->findFirst(['conditions'=>'id=?','bind' => [$OfferId]]);
+            //dnd($this->ItemModel);
+            $this->view->OfferData = (array)$this->OfferModel->data();
+            //dnd($this->view->OfferData);
+            $this->view->mode = $mode;
+            $this->view->PharmId = Pharmacy::currentLoggedInPharmacy()->id;
+            $this->view->OfferId=$OfferId;
+            $this->view->render('user/view_offer');
+        }
+        else{
             $this->view->OfferData = (array)$this->OfferModel->data();
             //dnd($this->view->OfferData);
             $this->view->mode = $mode;
@@ -101,7 +112,13 @@ class SeasonalOfferHandler extends Controller{
                 "required" => true
             ],
         ]);
+        $target_dir = 'uploads/';
+        $target_file = $target_dir . basename($_FILES["bannerdocument"]["name"]);
+        if($target_file !== 'uploads/'){
+            $validation->imageCheck(strtolower(pathinfo($target_file,PATHINFO_EXTENSION)));
+        }
         $validation->dateCheck($_POST["start_date"],$_POST["end_date"]);
+        
         if($validation->passed()){
             //dnd($_FILES);
             $postCopy = $_POST;
@@ -109,8 +126,7 @@ class SeasonalOfferHandler extends Controller{
             $postCopy['status']=0;
             //dnd($_FILES["bannerdocument"]["tmp_name"]!="");
             if($_FILES["bannerdocument"]["tmp_name"]!=""){
-                $target_dir = 'uploads/';
-                $target_file = $target_dir . basename($_FILES["bannerdocument"]["name"]);
+                
                 //dnd($target_file);
                 $postCopy['bannerdocument'] = $target_file;
                 
@@ -118,7 +134,14 @@ class SeasonalOfferHandler extends Controller{
                     if($mode==='edit'){
                         $this->OfferModel->update($OfferId,$postCopy);
                         $this->NotifyCustomers($mode,$OfferId,'Image Changed');
-                    } else{
+                    }
+                    elseif($mode==='renew'){
+                        //$postCopy['pharmacy_id']=Pharmacy::currentLoggedInPharmacy()->id;
+                        $postCopy['isexpired']=0;
+                        $this->OfferModel->update($OfferId,$postCopy);
+                        //$this->NotifyCustomers($mode,$OfferId,'Image Changed');
+                    }
+                    else{
                         $postCopy['pharmacy_id']=Pharmacy::currentLoggedInPharmacy()->id;
                         $this->OfferModel->insert($postCopy);
                         $OfferId = $this->OfferModel->getLastId();

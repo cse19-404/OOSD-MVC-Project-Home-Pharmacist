@@ -10,8 +10,9 @@
 </head>
 
 <body>
+    <h1 class='header'>Approved Applications<hr></h1>
     <div class='container-fluid'>
-        <h1 class='header'>Approved Applications<hr></h1>
+        
         <?php if(isset($_SESSION['role']) && !strcmp($_SESSION['role'],'super_admin')) { ?>
             <?php if (is_array($this->approvedApplications) && count($this->approvedApplications) > 0) { ?>
             <div class="table-div">
