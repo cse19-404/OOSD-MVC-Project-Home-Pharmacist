@@ -91,7 +91,7 @@
                 </div>
                 <div class="mb-3 row1">
                     <div class="col-sm-10">
-                        <?php if ($this->role === 'pharmacy'){
+                        <?php if (Register::getCurrentRole() === 'pharmacy'){
                         echo('<br><a href='.SROOT.'register/signup/pharmacy>Apply For a Pharmacy Account</a>');
                     }else{
                         echo('<br><label>Need an account? <a href='.SROOT.'register/signup/customer>Sign up</a></label>');    
