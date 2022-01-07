@@ -6,7 +6,7 @@ class OrderHandler extends Controller{
             $this->load_model('User');
             $this->load_model('Pharmacy');
             $this->load_model('Order');
-            $this->load_model('PrefilledForm');
+            //$this->load_model('PrefilledForm');
             $this->load_model('Mediator');
         }
 
