@@ -9,6 +9,14 @@
 </head>
 
 <body>
+    <?php 
+        if($this->mode === "add" ){
+            $btnValue = "Add Offer";
+        }
+        else{
+            $btnValue = "Save Offer";
+        }
+    ?>
     <h2>Add Offer Section</h2>
     <div class='bg-danger' style="color:red">
                     <?php if(isset($this->displayErrors)) {
@@ -33,7 +41,7 @@
         <input type="file" name="bannerdocument" id="documents" <?= ($this->mode === 'add')? 'required' :""?>>
         <br><br>
 
-        <input type="submit" name="submit" value="Save Offer">
+        <input type="submit" name="submit" value=<?= $btnValue ?>>
     </form>
     <br><br>
     <a href="<?=SROOT?>SeasonalOfferHandler/view">Go to OffersSection</a> 

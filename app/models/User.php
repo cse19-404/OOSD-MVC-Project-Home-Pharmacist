@@ -117,7 +117,7 @@ class User extends Model
 
     public function findAllOffers()
     {
-        return $this->_db->find('offertable');
+        return $this->_db->find('offertable', ['conditions' => 'status=?', 'bind' => [0]]);
     }
 
     public function removeCustomerAccount($id){
