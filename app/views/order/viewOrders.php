@@ -34,6 +34,7 @@
             <tr>
                 <th>Customer Name</th>
                 <th>Status</th>
+                <th></th>
             </tr>
             <?php if (isset($this->results) && !empty($this->results)) {
                 foreach ($this->results as $key => $value) { ?>
@@ -45,7 +46,9 @@
                         <?php }else{?>
                             <?php if($value[1]->status === 'delivered'){?>
                             <td><a href="<?=SROOT?>OrderHandler/deleteHistory/<?=$key?>" class="btn btn-danger" role="button">Delete Entry</a></td>
-                        <?php }}?>    
+                        <?php }else {
+                            echo "<td></td>";
+                        }}?>    
                     </tr>
             <?php } 
             }else {
