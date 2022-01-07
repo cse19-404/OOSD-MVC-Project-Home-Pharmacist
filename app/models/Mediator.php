@@ -117,6 +117,23 @@ class Mediator extends Model{
         return $this->find(['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'order']]);
     }
 
+    public function confirmOrder($message_ref_id){
+        $result = $this->_db->find('ordertable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
+        $from = $this->getCustomerUsernamefromID($result[0]->customer_id);
+        $params=[];
+                
+        $params['subject'] = 'New Order';
+        $params['message'] = 'A new Order is made by "'.$this->getCustomerNamebyUsername($from). '" at your pharamcy. You can view new order details and accept the order now.';            
+
+        $params['sender_username'] = $from;
+        $params['receiver_username'] = $this->getPharmacyUsernamefromID($result[0]->pharmacy_id); 
+        $params['message_type'] = 'order';
+        $params['message_ref_id'] = $message_ref_id;
+        $params['is_read'] = 0;
+        $this->assign($params);
+        $this->save(); 
+    }
+
     private function getPharmacyIdfromUsername($username){
         $result = $this->_db->find('pharmacytable',['conditions'=>'username=?','bind' => [$username]]);
         return $result[0]->id;
@@ -129,6 +146,11 @@ class Mediator extends Model{
 
     private function getPharmacyNamebyUsername($username){
         $result = $this->_db->find('pharmacytable',['conditions'=>'username=?','bind' => [$username]]);
+        return $result[0]->name;       
+    }
+
+    private function getCustomerNamebyUsername($username){
+        $result = $this->_db->find('usertable',['conditions'=>'username=?','bind' => [$username]]);
         return $result[0]->name;       
     }
 

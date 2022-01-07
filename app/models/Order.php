@@ -36,4 +36,9 @@ class Order extends Model
             'bind'=>[$status,0,0,$customer_id]
         ]);
     }
+
+    public function getLastId()
+    {
+        return $this->_db->lastId();
+    }
 }
