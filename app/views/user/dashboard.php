@@ -32,6 +32,7 @@ if (isset($_SESSION['username'])) {
         <?php } ?>
 
         <?php if ($_SESSION['role']==='customer') { ?>
+        <a href="<?=SROOT?>UserHandler/changedetails/customer"><h2>Change Account Details</h2></a><br>
         <a href="<?=SROOT?>CustomerDashboard/search"><h2>Search</h2></a>
         <a href="<?=SROOT?>PrefilledformHandler/viewForms/prescription"><h2>View Prescribed Forms</h2></a>
         <a href="<?=SROOT?>PrefilledformHandler/viewForms"><h2>View Forms from Pharmacies</h2></a>
@@ -40,6 +41,7 @@ if (isset($_SESSION['username'])) {
         <?php } ?>  
 
         <?php if ($_SESSION['role']==='pharmacy') { ?>
+        <a href="<?=SROOT?>UserHandler/changedetails/pharmacy"><h2>Change Account Details</h2></a><br>
         <a href="<?=SROOT?>ItemHandler/view"><h2>View Inventory</h2></a><br>
         <a href="<?=SROOT?>OrderHandler/view"><h2>Orders</h2></a><br>
         <a href="<?=SROOT?>PrescriptionHandler/view"><h2>Uploaded Prescriptions</h2></a><br>
