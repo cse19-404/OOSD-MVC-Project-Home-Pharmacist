@@ -6,22 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet"> 
-    <style>
-        body{
-            background-image: url("https://pbs.twimg.com/media/EUI8QoSXgAIYAjY?format=jpg&name=4096x4096");
-            background-repeat: repeat;
-            background-size: cover;
-            height:100vh;
-        }
-
-        .header{
-        font-family: 'Slabo 27px', serif;
-        }
-
-    </style>
+    <?php include_once('css/base.php'); ?>
 </head>
 
 <body>
