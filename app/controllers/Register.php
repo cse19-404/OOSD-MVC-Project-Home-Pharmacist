@@ -38,12 +38,8 @@
                     }
                 }                
             }else {
-                $this->view->render('register/login');
-                if ($role === 'pharmacy'){
-                    echo('<br><a href='.SROOT.'register/signup/pharmacy>Apply For a Pharmacy Account</a>');
-                }else{
-                    echo('<br><label>Need an account? <a href='.SROOT.'register/signup/customer>Sign up</a></label>');    
-                }    
+                $this->view->role=$role;
+                $this->view->render('register/login'); 
             }
             
         }
