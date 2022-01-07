@@ -7,57 +7,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Form</title>
 </head>
+<style>
+    .bg-danger {
+        color: #FF0000;
+    }
 
+    .Appcontainer {
+        z-index: 2;
+        border-radius: 15px;
+        background-color: #e9e9e9ed;
+        height:15%;
+        width: 13cm;
+        margin: auto;
+        margin-top: 2cm;
+        padding: 25px;
+        padding-left: 30px;
+        padding-right: 30px;
+        box-shadow: 10px 10px 50px 0.1px rgba(0, 0, 0, 0.664);
+    }
+
+</style>
+<?php include_once('css/baseForm.php'); ?>
 <body>
-    <div>
-        Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}
-        else if(isset($_SESSION['orderfromPharm'])){
-            echo $_SESSION['orderfromPharm'][0];
-        }
-        else{echo User::currentLoggedInUser()->name;}?></span><br><br>
-        Pharmacy Name : <span><?= $this->pharmName ?></span>
-    </div>
-    <form action="<?=SROOT?>PrefilledformHandler/addRawItem/<?= $this->pharmId?>/<?= $this->preId?>" method="post">
-        <input type="text" name="item-name" placeholder="Enter Item Name" required>
-        <input type="text" name="quantity" placeholder="Enter quantity" required>
-        <input type="submit" value="Add">
-    </form>
-    <div>
-        <table>
-            <tr>
-                <th>Item Name</th>
-                <th>Quantity</th>
-            </tr>
-            <?php if (isset($_SESSION['rawData']) && !empty($_SESSION['rawData'])) {
-            foreach ($_SESSION['rawData'] as $key=>$value) { ?>
-                <tr>
-                    <td><?= $key?></td>
-                    <td><?= $value?></td>
-                </tr>
-            
-            <?php } }?>
-        </table>
-    </div>
-    <div>
-        <form action="<?=SROOT?>PrefilledformHandler/processItems/<?=$this->pharmId ?>/-1/<?=$this->preId?>" method="post">
-            <br><br><input type="submit" value="Submit">
+<div class='container-fluid'>
+    <h1 class="header">Item Search Form</h1>
+    <div class="Appcontainer">
+        <div>            
+            Customer Name : <span><?php if(!isset(User::currentLoggedInUser()->name)){echo $this->customerName;}
+            else if(isset($_SESSION['orderfromPharm'])){
+                echo $_SESSION['orderfromPharm'][0];
+            }
+            else{echo User::currentLoggedInUser()->name;}?></span><br><br>
+            Pharmacy Name : <span><?= $this->pharmName ?></span><br><br>
+        </div>
+        <form action="<?=SROOT?>PrefilledformHandler/addRawItem/<?= $this->pharmId?>/<?= $this->preId?>" method="post">
+            <div class="col-auto">
+                <input class="form-control-plaintext" type="text" name="item-name" placeholder="Enter Item Name" required>
+                <input class="form-control-plaintext" type="text" name="quantity" placeholder="Enter quantity" required>
+                <input class="btn btn-danger" type="submit" value="Add">
+            </div>
         </form>
-    </div>
-    <form action="<?=SROOT?>PrefilledformHandler/<?php if($this->pharmId == -1)
-        {echo 'nearBy';} 
-        else {echo 'loadSearchForm/'.$this->pharmId ;}  ?>/clear/<?=$this->preId?>" method="post">
-        <br><br><input type="submit" value="Clear Items">
-    </form>
-    <?php if(isset($_SESSION["isPrescription"]) && $_SESSION["isPrescription"]){?>
-        <br><br><a href="<?=SROOT?>PrescriptionHandler/view">Go Back</a>
-    <?php } elseif(isset($_SESSION["isSeasonal"]) && $_SESSION["isSeasonal"]){?>
-            <br><br><a href="<?=SROOT?>SeasonalOfferHandler/view">Go Back</a>
-    <?php } else if(isset($_SESSION['orderfromPharm'])) { ?>
-        <br><br><a href="<?=SROOT?>PharmacyDashboard/searchCustomer">Go Back</a>
-    <?php } else{?>
-        <br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
-    <?php }?>
-
+        <div>
+            <table class='table'>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                </tr>
+                <?php if (isset($_SESSION['rawData']) && !empty($_SESSION['rawData'])) {
+                foreach ($_SESSION['rawData'] as $key=>$value) { ?>
+                    <tr>
+                        <td><?= $key?></td>
+                        <td><?= $value?></td>
+                    </tr>
+                
+                <?php } }?>
+            </table>
+        </div>
+        <div>
+            <form action="<?=SROOT?>PrefilledformHandler/processItems/<?=$this->pharmId ?>/-1/<?=$this->preId?>" method="post">
+                <br><br><input class="btn btn-success" type="submit" value="Submit">
+            </form>
+        </div>
+        <form action="<?=SROOT?>PrefilledformHandler/<?php if($this->pharmId == -1)
+            {echo 'nearBy';} 
+            else {echo 'loadSearchForm/'.$this->pharmId ;}  ?>/clear/<?=$this->preId?>" method="post">
+            <br><br><input class="btn btn-light" type="submit" value="Clear Items">
+        </form>
+        </div>
+        <?php if(isset($_SESSION["isPrescription"]) && $_SESSION["isPrescription"]){?>
+            <br><br><a class="btn btn-primary" role = "button" href="<?=SROOT?>PrescriptionHandler/view">Go Back</a>
+        <?php } elseif(isset($_SESSION["isSeasonal"]) && $_SESSION["isSeasonal"]){?>
+                <br><br><a class="btn btn-primary" role = "button" href="<?=SROOT?>SeasonalOfferHandler/view">Go Back</a>
+        <?php } else if(isset($_SESSION['orderfromPharm'])) { ?>
+            <br><br><a class="btn btn-primary" role = "button" href="<?=SROOT?>PharmacyDashboard/searchCustomer">Go Back</a>
+        <?php } else{?>
+            <br><br><a class="btn btn-primary" role = "button" href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
+        <?php }?>
+    
+</div>
 </body>
 
 </html>

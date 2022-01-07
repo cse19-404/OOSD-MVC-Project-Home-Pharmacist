@@ -14,11 +14,13 @@ class Order extends Model
         if ($status===""){
             return $this->find([
                 'conditions'=>'closed=? and pharmacy_id=?',
+                'order'=>'status DESC,id',
                 'bind'=>[0,$pharmId]
             ]);
         }
         return $this->find([
             'conditions'=>'status=? and closed=? and pharmacy_id=?',
+            'order'=>'status DESC,id',
             'bind'=>[$status,0,$pharmId]
         ]);
     }
@@ -28,11 +30,13 @@ class Order extends Model
         if ($status===""){
             return $this->find([
                 'conditions'=>'deleted=? and closed=? and customer_id=?',
+                'order'=>'status DESC,id',
                 'bind'=>[0,0,$customer_id]
             ]);
         }
         return $this->find([
             'conditions'=>'status=? and deleted=? and closed=? and customer_id=?',
+            'order'=>'status DESC,id',
             'bind'=>[$status,0,0,$customer_id]
         ]);
     }
