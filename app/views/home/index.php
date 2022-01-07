@@ -6,6 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <style>
+        body{
+            background-image: url("https://pbs.twimg.com/media/EUI8QoSXgAIYAjY?format=jpg&name=4096x4096");
+            background-repeat: repeat;
+            background-size: cover;
+            height:100vh;
+        }
+    </style>
 </head>
 
 <body>

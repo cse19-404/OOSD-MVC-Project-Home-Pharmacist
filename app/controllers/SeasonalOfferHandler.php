@@ -7,8 +7,8 @@ class SeasonalOfferHandler extends Controller{
         parent::__construct($controller,$action);
         $this->load_model('User');
         $this->load_model('Pharmacy');
-        $this->load_model('Prefilledform');
-        $this->load_model('Item',-1);
+        //$this->load_model('Prefilledform');
+        //$this->load_model('Item',-1);
         $this->load_model('Offer');
         $this->load_model('Mediator');
 
