@@ -10,11 +10,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 
 <style>
     body{
-            background-image: url("https://pbs.twimg.com/media/EUI8QoSXgAIYAjY?format=jpg&name=4096x4096");
+            background-image: url("https://cutewallpaper.org/23/abstract-medical-wallpaper/1881726571.jpg");
             background-repeat: repeat;
             background-size: cover;
             height:100vh;
@@ -24,10 +23,6 @@
         font-family: 'Slabo 27px', serif;
     }
     .container-fluid{
-        background-color: rgba(226, 226, 226, 0.687);
-    }
-
-    table{
-        font-family: 'Poppins', sans-serif;
+        background-color: rgba(236, 236, 236, 0.3);
     }
 </style>
