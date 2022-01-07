@@ -10,15 +10,15 @@
     .error {color: #FF0000;}
     .Appcontainer {
         z-index: 2;
-        border-radius: 10px;
+        border-radius: 15px;
         background-color: #e9e9e9ed;
-        height: 20cm;
+        height: 20.5cm;
         width: 16cm;
         margin: auto;
-        margin-top: 1cm;
-        padding: 20px;
-        box-shadow: 10px 10px 50px 0.1px rgba(0, 0, 0, 0.664);
-      }
+        padding: 25px;
+        padding-left: 30px;
+        padding-right: 30px;
+        box-shadow: 10px 10px 50px 0.1px rgba(0, 0, 0, 0.664);      }
     </style>
     <?php include_once('css/baseForm.php'); ?>
 </head>
@@ -48,7 +48,8 @@
             </form>
             
         </div>
-        <br><br><a href="<?=SROOT?>home/index">Go to Home</a>
+        <br><br><a class="btn btn-success" role="button" href="<?=SROOT?>home/index">Go to Home</a>
+        <br><br><br><br>
     </div>
 
 
