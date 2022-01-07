@@ -16,7 +16,7 @@
         z-index: 2;
         border-radius: 15px;
         background-color: #e9e9e9ed;
-        height: 10cm;
+        height:15%;
         width: 13cm;
         margin: auto;
         margin-top: 2cm;
@@ -37,7 +37,7 @@
 
 
 </style>
-<?php include_once('css/base.php'); ?>
+<?php include_once('css/baseForm.php'); ?>
 
 <body>
     <div class='container-fluid'>

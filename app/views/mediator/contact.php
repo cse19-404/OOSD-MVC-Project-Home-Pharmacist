@@ -111,7 +111,6 @@
         </ul>
     </div>
     </section>       
-</div>
 
 
     <?php }if(isset($this->mode)){
@@ -161,10 +160,11 @@
     }?>
 
     <?php if ($_SESSION['role']==='pharmacy') {?>
-        <a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
+        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     <?php }else{?>
-        <a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     <?php } ?>
+    </div>
 
 </body>
 </html>

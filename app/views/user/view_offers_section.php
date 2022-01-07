@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include_once('css/base.php'); ?>
+
     <title>Seasonal Offers</title>
 </head>
 <body>
@@ -52,7 +54,7 @@
             </div>
             <br><br>
             <?php }?>
-            <a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+            <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
         <?php } ?>
         
 </body>
