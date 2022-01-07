@@ -46,7 +46,8 @@
                     $this->PharmacyModel->registerNewPharmacy($_POST, $id);
                     $this->ApplicationModel->findById($id);
                     $this->PharmacyModel->findById($this->PharmacyModel->getLastId());
-                    $msg = "Your Account has created. username =".$this->PharmacyModel->username.", password = password";
+                    $msg = "Your Account has created. username =".$this->PharmacyModel->username.", password = password".
+                    "\nYou can change your username and password by logging in to the account.\nhttp://localhost/home_pharmasist/home/index";
                     sendmail($msg,$this->ApplicationModel->email,"Account Creation");
                     $this->updatenearbypharmacies();
 
