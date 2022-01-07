@@ -25,7 +25,7 @@
         display:inline;
     }
     </style>
-    <?php include_once('css/base.php'); ?>
+    <?php include_once('css/baseForm.php'); ?>
 </head>
 <body>
     <div class='container-fluid'>
