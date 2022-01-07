@@ -61,7 +61,7 @@ class OrderHandler extends Controller{
             $this->view->render('order/viewOrders');
         }
 
-        public function viewOrderAction($id){
+        public function viewOrderAction($id,$msgId=-1){
             $order = new Order();
             $order->findById($id);
             $this->view->order = $order;
@@ -78,6 +78,9 @@ class OrderHandler extends Controller{
                 $item->findById($this->view->ids[$i]);
                 $this->view->items[] = $item;
             }
+            if ($msgId != -1) {
+                $this->MediatorModel->markAsRead($msgId);
+            }    
             $this->view->render('order/orderstatuschange');
         }
 
@@ -114,12 +117,14 @@ class OrderHandler extends Controller{
         }
 
         public function confirmOrderAction(){
-            //dnd($_SESSION['OrderDetails']);
+            // dnd($_SESSION['OrderDetails']);
             if(isset($_SESSION['OrderDetails'])){
                 if($_SESSION['OrderDetails']['prescription']===NULL){
                     unset($_SESSION['OrderDetails']['prescription']);
                 }
                 $this->OrderModel->insert($_SESSION['OrderDetails']);
+                $id = $this->OrderModel->getLastId();
+                $this->MediatorModel->confirmOrder($id);
             }
 
             unsetSession(['OrderDetails','UserPharmacydetails','tempItemId', 'rawData', 'TotalPrice', 'removed']);

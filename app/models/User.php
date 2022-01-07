@@ -45,6 +45,7 @@ class User extends Model
 
     public function registerNewUser($params)
     {
+        $params['is_closed'] = 0;
         $this->assign($params);
         $nearbypharmacies = $this->getAllNearByPharmacies($this->latitude, $this->longitude);
         $this->nearbypharmacies = $nearbypharmacies;

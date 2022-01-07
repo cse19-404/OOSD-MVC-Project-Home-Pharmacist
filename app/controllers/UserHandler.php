@@ -45,8 +45,9 @@
                     $this->PharmacyModel = new Pharmacy();
                     $this->PharmacyModel->registerNewPharmacy($_POST, $id);
                     $this->ApplicationModel->findById($id);
-                    $msg = "Your Account has created. username =".$this->ApplicationModel->pharmacy_name.", password = password";
-                    sendmail($msg,$this->ApplicationModel->email,"Application Creation");
+                    $this->PharmacyModel->findById($this->PharmacyModel->getLastId());
+                    $msg = "Your Account has created. username =".$this->PharmacyModel->username.", password = password";
+                    sendmail($msg,$this->ApplicationModel->email,"Account Creation");
                     $this->updatenearbypharmacies();
 
                     Router::redirect('ApplicationHandler/viewApproved');
@@ -82,6 +83,97 @@
             $this->PharmacyModel->removePharmacyAccount($_POST['id']);
             $this->updatenearbypharmacies();
             Router::redirect('UserHandler/view');
+        }
+
+        public function changeDetailsAction($role){
+            if ($_POST){
+                if ($role === 'customer'){
+                    $validate = new Validate();
+                    $user = User::currentLoggedInUser();
+                    $username = ($_POST['username'] !=="" ) ? $_POST['username'] : "";
+                    $password = ($_POST['password'] !=="" ) ? $_POST['password'] : "";
+                    $creditionals = [];
+                    if ($username !==""){
+                        $validate->check(['username'=>$username],[
+                            'username'=>[
+                                'display'=>'Username',
+                                'min'=>4
+                            ],
+                            'username'=>[
+                                'display'=>'Username',
+                                'unique'=>'usertable'
+                            ]
+                        ]);
+                        $creditionals['username'] = $username;
+                    }
+                    if ($password !== ""){
+                        $validate->check(['password'=>$password],[
+                            'password'=>[
+                                'display'=>'Password',
+                                'min'=>6
+                            ]
+                        ]);
+                        $creditionals['password'] = password_hash($password, PASSWORD_DEFAULT);
+                    }
+
+                    if ($validate->passed()){
+                        $user->update($user->id,$creditionals);
+                        if (array_key_exists("username",$creditionals)){
+                            $_SESSION['username'] = $username;
+                        }    
+                        Router::redirect('CustomerDashboard');
+                    }else {
+                        $this->view->displayErrors = $validate->displayErrors();
+                        $this->view->role = $role;
+                        $this->view->render('user/changeDetails');
+                    }
+
+                }else {
+                    $validate = new Validate();
+                    $pharmacy = Pharmacy::currentLoggedInPharmacy();
+                    $username = ($_POST['username'] !=="" ) ? $_POST['username'] : "";
+                    $password = ($_POST['password'] !=="" ) ? $_POST['password'] : "";
+                    $creditionals = [];
+                    if ($username !==""){
+                        $validate->check(['username'=>$username],[
+                            'username'=>[
+                                'display'=>'Username',
+                                'min'=>4
+                            ],
+                            'username'=>[
+                                'display'=>'Username',
+                                'unique'=>'usertable'
+                            ]
+                        ]);
+                        $creditionals['username'] = $username;
+                    }
+                    if ($password !== ""){
+                        $validate->check(['password'=>$password],[
+                            'password'=>[
+                                'display'=>'Password',
+                                'min'=>6
+                            ]
+                        ]);
+                        $creditionals['password'] = password_hash($password, PASSWORD_DEFAULT);
+                    }
+                    if (!empty($creditionals) && $validate->passed()){
+                        $pharmacy->update($pharmacy->id,$creditionals);    
+                        if (array_key_exists("username",$creditionals)){
+                            $_SESSION['username'] = $username;
+                        }
+                        Router::redirect('PharmacyDashboard');
+                    }else {
+                        $this->view->displayErrors = $validate->displayErrors();
+                        $this->view->role = $role;
+                        $this->view->render('user/changeDetails');
+                    }
+
+                }
+            }else {
+                $this->view->role = $role;
+                $this->view->render('user/changeDetails');
+            }
+            
         }
 
     }
