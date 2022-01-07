@@ -1,4 +1,4 @@
 <?php
 interface Strategy{
-    public function orderAction($preId, $change='', $handler);
+    public function orderAction($preId, $handler, $change='');
 }

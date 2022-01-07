@@ -7,7 +7,7 @@ class DirectOrder extends Controller implements Strategy{
             $this->load_model('PrefilledForm');
         }
 
-        public function orderAction($preId, $change='', $handler){
+        public function orderAction($preId, $handler, $change=''){
             if($change!='change'){
                 $prescription = NULL;
                 if($preId != -1 && !isset($_SESSION['orderfromPharm'])){
