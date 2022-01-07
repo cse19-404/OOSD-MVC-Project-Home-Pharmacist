@@ -22,4 +22,7 @@
     .header{
         font-family: 'Slabo 27px', serif;
     }
+    .container-fluid{
+        background-color: rgba(226, 226, 226, 0.687);
+    }
 </style>
