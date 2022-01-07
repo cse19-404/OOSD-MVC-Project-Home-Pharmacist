@@ -100,7 +100,7 @@
         }
         ?>
         <br>
-        <a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     </div>
 </body>
 </html>

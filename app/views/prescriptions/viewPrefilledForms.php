@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prefilled Forms</title>
+    <?php include_once('css/baseTable.php'); ?>
+
 </head>
 <body>
-    <table>
+    <div class="container-fluid">
+    <h1 class = 'header'>Forms from Prescriptions</Section></h1>
+    <hr>
+    <div class="table-div">
+    <table class="table">
         <tr>
             <th>Recieved Date</th>
             <th>Pharmacy Name</th>
@@ -21,11 +27,13 @@
                 <td><?php if($form->prescription != NULL) {?><a href="<?=SROOT?><?=$form->prescription?>" download='<?=$form->prescription?>'>
                 <?= ltrim($form->prescription, 'uploads/prescriptions/')?><?php }else{echo '-';}?>
             </a></td>
-                <td><?=$form->no_of_items . " out of " . $form->no_of_all_item . " Items Availale"?></td>
-                <td><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$id?>">View Form</a></td>
+                <td style="color :#337ab7;"><?=$form->no_of_items . " out of " . $form->no_of_all_item . " Items Availale"?></td>
+                <td><a  role="button" class="btn btn-success" href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$id?>">View Form</a></td>
             </tr>
         <?php }}?>
     </table>
-    <br><br><a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+    </div>
+    <br><br><a role="button" class="btn btn-primary" href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+    </div>
 </body>
 </html>

@@ -3,7 +3,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pharmacy Applications</title>
-    <?php include_once('css/base.php'); ?>
+    <?php include_once('css/baseTable.php'); ?>
 </head>
 
 <body>
@@ -78,7 +78,7 @@
         else {
             echo "<h1> <a href='index.php'> Log in first </a> </h1>";
         }?>
-        <a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     </div>
 
 </body>

@@ -5,35 +5,116 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Message Portral</title>
+    <style>
+        ul{
+        margin:0;
+        padding:0;
+        list-style:none;
+        }
+        .padding-lg {
+            display: block;
+            padding-top: 60px;
+            padding-bottom: 60px;
+        }
+        .our-webcoderskull .cnt-block:hover {
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+            border: 0;
+        }
+
+        .our-webcoderskull .cnt-block{ 
+        float:left; 
+        width:100%; 
+        background:#fff; 
+        padding:30px 20px; 
+        text-align:center; 
+        border:2px solid #d5d5d5;
+        margin: 0 0 28px;
+        }
+        .our-webcoderskull .cnt-block figure{
+        width:148px; 
+        height:148px; 
+        border-radius:100%; 
+        display:inline-block;
+        margin-bottom: 15px;
+        }
+        .our-webcoderskull .cnt-block img{ 
+        width:148px; 
+        height:148px; 
+        border-radius:100%; 
+        }
+        .our-webcoderskull .cnt-block h3{ 
+        color:#2a2a2a; 
+        font-size:20px; 
+        font-weight:500; 
+        padding:6px 0;
+        text-transform:uppercase;
+        }
+        .our-webcoderskull .cnt-block h3 a{
+        text-decoration:none;
+            color:#2a2a2a;
+        }
+        .our-webcoderskull .cnt-block h3 a:hover{
+            color:#337ab7;
+        }
+        .our-webcoderskull .cnt-block p{ 
+        color:#2a2a2a; 
+        font-size:13px; 
+        line-height:20px; 
+        font-weight:400;
+        }
+    </style>
+
+    <?php include_once('css/base.php'); ?>
 </head>
 <body>
-
+<div class='container-fluid'>
     <?php if(!isset($this->mode)){?>
-        <div>
-            <a href="<?=SROOT?>MediatorHandler/inbox"><h2>Inbox</h2>
-        </div>
-        <div>
-            <?php if ($_SESSION['role']==='super_admin') { ?>
-                <div>
-                    <a href="<?=SROOT?>CustomerDashboard/selectContact/customer"><h2>Contact a Customer</h2>
-                </div>
-            <?php } ?>  
-
-            <?php if (!($_SESSION['role']==='pharmacy')) { ?>
-                <div>
-                    <a href="<?=SROOT?>CustomerDashboard/selectContact/pharmacy"><h2>Contact a Pharmacy</h2>
-                </div>
-            <?php } ?>
+        <section class="our-webcoderskull padding-lg">
+    <div class="container">
+        <ul class="row">
+        <li class="col-12 col-md-6 col-lg-3">
+            <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>MediatorHandler/inbox';">
+                <figure><img src="https://potentiainstitute.com/wp-content/uploads/2020/07/Email-Icon.png" class="img-responsive" alt=""></figure>
+                <h3><a href="<?=SROOT?>MediatorHandler/inbox">Inbox</h3>
+            </div>
+        </li>
+        <?php if ($_SESSION['role']==='super_admin') { ?>
+        <li class="col-12 col-md-6 col-lg-3">
             
-            <?php if (!($_SESSION['role']==='super_admin')) { ?>
-                <div>
-                <a href="<?=SROOT?>CustomerDashboard/selectContact/us"><h2>Contact Us</h2>
-                </div>
-            <?php } ?>  
+                    <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/customer';">
+                    <figure><img src="https://www.jing.fm/clipimg/detail/63-634224_profile-clipart-end-user-customer-blue-icon-png.png" class="img-responsive" alt=""></figure>
+                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/customer">Contact a Customer</h3>
+                    </div>
+            
+        </li>
+        <?php } ?>  
+        <?php if (!($_SESSION['role']==='pharmacy')) { ?>
+        <li class="col-12 col-md-6 col-lg-3">
+            
+                    <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/pharmacy';">
+                    <figure><img src="https://cdn-icons-png.flaticon.com/512/230/230194.png" class="img-responsive" alt=""></figure>
+                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/pharmacy">Contact a Pharmacy</h3>
+                    </div>
+            
+        </li>
+        <?php } ?> 
+        <?php if (!($_SESSION['role']==='super_admin')) { ?> 
+        <li class="col-12 col-md-6 col-lg-3">
+            
+                    <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/us';">
+                    <figure><img src="https://media.istockphoto.com/illustrations/contact-us-glassy-cyan-blue-round-button-illustration-id816810182?b=1&k=6&m=816810182&s=612x612&w=0&h=NOD9Od-3efEsGCnSk4_mbWrQesoVmKvAgKMR2-54Xxo=" class="img-responsive" alt=""></figure>
+                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/us">Contact Us</h3>
+                    </div>
+             
+        </li>
+        <?php } ?> 
+        </ul>
+    </div>
+    </section>       
+</div>
 
-        </div>
-    <?php }
-    if(isset($this->mode)){
+
+    <?php }if(isset($this->mode)){
         if ($this->mode === 'pharmacy' && !($_SESSION['role']==='pharmacy')) {?>
             <div>
                 <form action="<?=SROOT?>CustomerDashboard/searchPharmacy" method="post">
