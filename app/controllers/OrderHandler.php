@@ -14,12 +14,12 @@ class OrderHandler extends Controller{
             if($detail == 1){
                 if ($history == 0) {
                     $strategy = "DirectOrder";
-                    Router::route([$strategy, 'order', $preId, $order, $this]);
+                    Router::route([$strategy, 'order', $preId, $this, $order]);
                     $this->view->render('order/orderDetails');
                 }else{
                     $strategy = "HistoryOrder";
                     $preId = $history;
-                    Router::route([$strategy, 'order', $preId, $order, $this]);
+                    Router::route([$strategy, 'order', $preId, $this, $order]);
                 }
                 
             }else{

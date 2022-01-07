@@ -7,7 +7,7 @@ class HistoryOrder extends Controller implements Strategy{
             $this->load_model('Order');
         }
 
-        public function orderAction($preId, $change='', $handler){
+        public function orderAction($preId, $handler, $change=''){
             if($change === 'history'){
                 if (isset($_SESSION['tempItemId'])){
                     unset($_SESSION['tempItemId']);
