@@ -19,6 +19,7 @@ class Pharmacy extends Model
         } else {
             $params['delivery_supported'] = 0;
         }
+        $params['is_closed'] = 0;
         $this->assign($params);
         $this->password = password_hash($this->password, PASSWORD_DEFAULT);
         $this->save();
@@ -92,5 +93,10 @@ class Pharmacy extends Model
         $this->_db->update($this->_table,$id,[
             'is_closed'=>1
         ]);
+    }
+
+    public function getLastId()
+    {
+        return $this->_db->lastId();
     }
 }
