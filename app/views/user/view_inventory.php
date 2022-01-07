@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory</title>
-    <?php include_once('css/base.php'); ?>
+    <?php include_once('css/baseTable.php'); ?>
 </head>
 
 <body>
