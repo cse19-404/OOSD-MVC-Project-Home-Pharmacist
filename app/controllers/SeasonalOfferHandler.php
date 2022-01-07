@@ -25,7 +25,7 @@ class SeasonalOfferHandler extends Controller{
             $this->view->render('user/view_offers_section');
         }elseif($_SESSION['role']=="customer"){
             $this->UserModel=User::currentLoggedInUser();
-            $allOffers=$this->UserModel->findOffers();
+            $allOffers=$this->UserModel->findAllOffers();
             //dnd($allOffers);
             $result=[];
             $pharmacies=[];
