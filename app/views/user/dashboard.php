@@ -27,7 +27,7 @@ if (isset($_SESSION['username'])) {
         section {
             padding-top: 4rem;
             padding-bottom: 5rem;
-            background-color: #f1f4fa;
+            background-color: rgba(226, 226, 226, 0.687);
         }
         .wrap {
             display: flex;

@@ -12,7 +12,7 @@
         section {
             padding-top: 4rem;
             padding-bottom: 5rem;
-            background-color: #f1f4fa;
+            background-color: rgba(226, 226, 226, 0.687);
         }
         .wrap {
             display: flex;
@@ -65,8 +65,11 @@
 </head>
 
 <body>
-    <h1 class='header'>Welcome to HOME PHARMACIST</h1>
+    <div class='container-fluid'>
+        <h1 class='header'>Welcome to HOME PHARMACIST</h1>
+    </div>
     <section>
+    
         <div class='container'>
             <div class="row mbr-justify-content-center">
                 <div class="col-lg-6 mbr-col-md-10">
