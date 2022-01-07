@@ -78,7 +78,7 @@
         else {
             echo "<h1> <a href='index.php'> Log in first </a> </h1>";
         }?>
-        <a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     </div>
 
 </body>

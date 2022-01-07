@@ -1,18 +1,3 @@
-<?php
-if (isset($_SESSION['username'])) {
-    if ($_SESSION['role'] === 'customer' || $_SESSION['role'] === 'super_admin'){
-        echo "<h1>Hi " . User::currentLoggedInUser()->name . "</h1>";
-    }else{
-        echo "<h1>Hi " . Pharmacy::currentLoggedInPharmacy()->name . "</h1>";
-    }
-    
-} else {
-    echo "<h1> <a href='index.php'> Log in first </a> </h1>";
-    die();
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,10 +66,23 @@ if (isset($_SESSION['username'])) {
 </head>
 
 <body>
-<hr><br>
 
 <section>
     <div class="container">
+            <?php
+                if (isset($_SESSION['username'])) {
+                    if ($_SESSION['role'] === 'customer' || $_SESSION['role'] === 'super_admin'){
+                        echo "<h1 class = 'header'>Hi " . User::currentLoggedInUser()->name . "</h1>";
+                    }else{
+                        echo "<h1 class = 'header'>Hi " . Pharmacy::currentLoggedInPharmacy()->name . "</h1>";
+                    }
+                    
+                } else {
+                    echo "<h1> <a href='index.php'> Log in first </a> </h1>";
+                    die();
+                }
+
+            ?>
         <?php if ($_SESSION['role']==='super_admin') { ?>
             <div class="row mbr-justify-content-center">
             <div class="col-lg-6 mbr-col-md-10">
