@@ -47,12 +47,14 @@
                 <th>Customer Name</th>
                 <th>Status</th>
                 <th></th>
+                <th></th>
             </tr>
             <?php if (isset($this->results) && !empty($this->results)) {
                 foreach ($this->results as $key => $value) { ?>
                     <tr>
-                        <td> <a href="<?=SROOT?>OrderHandler/viewOrder/<?=$key?>"> <?= $value[0]->name ?> </a> </td>
+                        <td><?= $value[0]->name ?></td>
                         <td style = "color :#346702;"><?= $value[1]->status ?> </td>
+                        <td><a href="<?=SROOT?>OrderHandler/viewOrder/<?=$key?>" class="btn btn-success" role="button"> View Order </a></td>
                         <?php if(isset(Pharmacy::currentLoggedInPharmacy()->id)){?>
                             <td><a href="<?=SROOT?>OrderHandler/closeOrder/<?=$key?>" class="btn btn-danger" role="button">Close Order</a></td>
                         <?php }else{?>

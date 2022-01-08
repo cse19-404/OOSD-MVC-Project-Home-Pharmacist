@@ -84,14 +84,14 @@
                                     <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                     <td class="view-message "><?php echo $row->subject ?></td>
                                     <td class="view-message inbox-small-cells"></td>
-                                    <td class="view-message  text-right"><a href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>">View</a></td> 
+                                    <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>">View</a></td> 
                                 </tr>
                             <?php }else{?>
                                 <tr class="unread">
                                     <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                     <td class="view-message "><?php echo $row->subject ?></td>
                                     <td class="view-message inbox-small-cells"></td>
-                                    <td class="view-message  text-right"><a href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>">View</a></td>
+                                    <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>">View</a></td>
                                 </tr>                        
                             <?php } }?>
                           </tbody>
@@ -113,10 +113,10 @@
                           <table class="table table-inbox table-hover">
                             <tbody>
                                 <?php foreach($this->offer as $row){?>
-                                    <tr class="unread">
+                                    <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row['sender_username'].'' ?> </td>
                                         <td class="view-message "><?php echo $row['subject'].'<br>'. $row['message'] ?></td>
-                                        <td class="view-message  text-right"><a href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>">View</a></td>
+                                        <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>SeasonalOfferHandler/view">View</a></td>
                                     </tr>                        
                                 <?php }?>
                           </tbody>
@@ -144,13 +144,13 @@
                                     <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                         <td class="view-message "><?php echo $row->subject.'<br>'.$row->message  ?></td>
-                                        <td class="view-message  text-right"><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td> 
+                                        <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td> 
                                     </tr>
                                 <?php }else{?>
                                     <tr class="unread">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                         <td class="view-message "><?php echo $row->subject.'<br>'.$row->message ?></td>
-                                        <td class="view-message  text-right"><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td>
+                                        <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td>
                                     </tr>                        
                                 <?php } }?>
                           </tbody>
@@ -178,14 +178,14 @@
                                     <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                         <td class="view-message "><?php echo $row->subject.'<br>'.$row->message  ?></td>
-                                        <td class="view-message  text-right"><a href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td> 
+                                        <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td> 
                                     </tr>
                                 <?php }else{?>
                                     <tr class="unread">
                                     <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                         <td class="view-message "><?php echo $row->subject.'<br>'.$row->message ?></td>
-                                        <td class="view-message  text-right"><a href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td>
+                                        <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td>
                                     </tr>
                                     </tr>                        
                                 <?php } }?>
@@ -214,14 +214,14 @@
                                     <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                         <td class="view-message "><?php echo $row->subject.'<br>'.$row->message  ?></td>
-                                        <td class="view-message  text-right"><a href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td> 
+                                        <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td> 
                                     </tr>
                                 <?php }else{?>
                                     <tr class="unread">
                                     <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                         <td class="view-message "><?php echo $row->subject.'<br>'.$row->message ?></td>
-                                        <td class="view-message  text-right"><a href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td>
+                                        <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td>
                                     </tr>
                                     </tr>                        
                                 <?php } }?>

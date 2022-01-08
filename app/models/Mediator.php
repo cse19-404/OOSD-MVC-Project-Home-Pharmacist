@@ -55,7 +55,7 @@ class Mediator extends Model{
     }
 
     public function findAllOffer(){
-        $results = $this->find(['conditions'=>'receiver_username=?','bind' => ['All-Users']]);
+        $results = $this->find(['conditions'=>'receiver_username=?','order'=>'is_read ASC','bind' => ['All-Users']]);
         $offers=[];
         foreach($results as $res){
             $params = [];
@@ -91,7 +91,7 @@ class Mediator extends Model{
     }
 
     public function findAllPreFilledForms($receiver){
-        return $this->find(['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'prefilled form']]);
+        return $this->find(['conditions'=>'receiver_username=? AND message_type=?','order'=>'is_read ASC','bind' => [$receiver,'prefilled form']]);
     }
 
     public function receiveOrderStatusUpdate($message_ref_id,$status){
@@ -117,7 +117,7 @@ class Mediator extends Model{
     }
 
     public function findAllOrder($receiver){
-        return $this->find(['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'order']]);
+        return $this->find(['conditions'=>'receiver_username=? AND message_type=?','order'=>'is_read ASC','bind' => [$receiver,'order']]);
     }
 
     public function confirmOrder($message_ref_id){

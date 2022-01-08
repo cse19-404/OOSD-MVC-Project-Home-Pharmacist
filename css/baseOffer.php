@@ -14,7 +14,7 @@
 
 <style>
     body{
-            background-image: url("https://www.waters.com/content/dam/waters/en/Photography/stock/health-and-medical/stock-blue-white-capsules.jpg");
+            background-image: url("https://image.jimcdn.com/app/cms/image/transf/dimension=2000x1500:format=jpg/path/se7babe6f99715253/backgroundarea/ic7f0c4cff1c46402/version/1499091867/image.jpg");
             background-repeat: repeat;
             background-size: cover;
             height:100vh;
@@ -31,7 +31,5 @@
         margin-top: 20px;
         margin-right: 30px;
     }
-    table{
-        font-family: 'Poppins', sans-serif;
-    }
+
 </style>
