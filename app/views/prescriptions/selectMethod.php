@@ -87,6 +87,6 @@
             </section>
             </div>
 
-    <br><br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
+    <br><br><br><a href="<?=SROOT?>CustomerDashboard/search" role='button' class='btn btn-primary'>Go Back</a>
 </body>
 </html>
