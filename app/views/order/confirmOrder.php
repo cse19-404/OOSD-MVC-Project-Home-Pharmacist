@@ -14,49 +14,84 @@
         alert('Your Order has been Canceled..!');
     }
 </script>
-<body>
-    <div>
-        <label for="pharm-name">Pharmacy Name : <?=$_SESSION['UserPharmacydetails']["PharmName"]?></label><br> 
-        <label for="customer-name">Customer Name : <?=$_SESSION['UserPharmacydetails']["CustomerName"]?></label><br>
-        <label for="customer-name">Receiver Name : <?=$_SESSION['OrderDetails']['receiver_name']?></label><br>
-        <label for="customer-name">Address : <?=$_SESSION['OrderDetails']['address']?></label><br>
-        <label for="mobile_number">Mobile Number : <?=$_SESSION['OrderDetails']['mobile_number']?></label><br><br>
-    </div>
-    <table>
-            <tr>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Price</th>
-            </tr>
-            <?php if (isset($this->items) && !empty($this->items)) {
-                for ($i=0; $i < $this->count; $i++) { ?>
-                    <tr>
-                        <td><?=$this->items[$i]->name . '(' . $this->items[$i]->quantity_unit . ')'?></td>
-                        <td><?=$this->quantities[$i] ?> </td>
-                        <td><?=$this->unit_prices[$i] * $this->quantities[$i] ?></td>
-                        <td>
-                            <?php if($this->items[$i]->prescription_needed){ ?>
-                                <td>Prescription Needed</td>
-                            <?php }?>
-                        </td>
-                    </tr>
-            <?php } 
-            }else {
-                echo '<h2> No items in the order </h2>';
-            }?>
-        </table>
-        <br>
-        <?php if ($_SESSION['OrderDetails']['prescription'] !== NULL){?>
-            <label for="prescription">Prescription: </label>
-            <a href="<?=SROOT?><?=$_SESSION['OrderDetails']['prescription']?>" download='<?=$_SESSION['OrderDetails']['prescription']?>'>
-                <?= ltrim($_SESSION['OrderDetails']['prescription'],'uploads/prescriptions/')?>
-            </a>
-        <?php }?>
-            <br><label for="total">Total Price : <?=$_SESSION['OrderDetails']['total']?></label><br><br>
 
-        
-        
-        <br><br><a onclick='orderDone()' href="<?=SROOT?>OrderHandler/confirmOrder">Confirm Order</a>
-        <br><br><a onclick='cancelOrder()' href="<?=SROOT?>OrderHandler/cancelOrder">Cancel Order</a>
+<style>
+    .bg-danger {color: #FF0000;}
+    .Appcontainer {
+        z-index: 2;
+        border-radius: 15px;
+        background-color: #e9e9e9ed;
+        height: 10%;
+        width: 30%;
+        margin: auto;
+        margin-top: 1cm;
+        padding: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+        box-shadow: 10px 10px 50px 0.1px rgba(0, 0, 0, 0.664);
+      }
+
+    .spacinglabels{
+        margin-bottom: 5px;
+    }
+
+    ul{
+        list-style-type: circle;
+    }
+    
+
+</style>
+<?php include_once('css/baseForm.php'); ?>
+<body>
+    <div class='container-fluid'>
+        <h1 class=header>Confirm Order</h1>
+        <div class="Appcontainer">
+            <div>
+                <ul>
+                    <li class="spacinglabels">Pharmacy Name : <?=$_SESSION['UserPharmacydetails']["PharmName"]?></li><br>
+                    <li class="spacinglabels">Customer Name : <?=$_SESSION['UserPharmacydetails']["CustomerName"]?></li><br>
+                    <li class="spacinglabels">Receiver Name : <?=$_SESSION['OrderDetails']['receiver_name']?></li><br>
+                    <li class="spacinglabels">Address : <?=$_SESSION['OrderDetails']['address']?></li><br>
+                    <li class="spacinglabels">Mobile Number : <?=$_SESSION['OrderDetails']['mobile_number']?></li><br>
+                </ul><br>
+            </div>
+            <table class="table">
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Quantity</th>
+                        <th>Price(Rs.)</th>
+                    </tr>
+                    <?php if (isset($this->items) && !empty($this->items)) {
+                        for ($i=0; $i < $this->count; $i++) { ?>
+                            <tr>
+                                <td><?=$this->items[$i]->name . '(' . $this->items[$i]->quantity_unit . ')'?></td>
+                                <td><?=$this->quantities[$i] ?> </td>
+                                <td><?=$this->unit_prices[$i] * $this->quantities[$i] ?></td>
+                                <td>
+                                    <?php if($this->items[$i]->prescription_needed){ ?>
+                                        <td>Prescription Needed</td>
+                                    <?php }?>
+                                </td>
+                            </tr>
+                    <?php } 
+                    }else {
+                        echo '<h2> No items in the order </h2>';
+                    }?>
+                </table>
+                <br>
+                <?php if ($_SESSION['OrderDetails']['prescription'] !== NULL){?>
+                    <label for="prescription">Prescription: </label>
+                    <a href="<?=SROOT?><?=$_SESSION['OrderDetails']['prescription']?>" download='<?=$_SESSION['OrderDetails']['prescription']?>'>
+                        <?= ltrim($_SESSION['OrderDetails']['prescription'],'uploads/prescriptions/')?>
+                    </a>
+                <?php }?>
+                    <br><label class="badge rounded-pill bg-secondary" for="total">Total Price : Rs. <?=$_SESSION['OrderDetails']['total']." /="?></label><br><br>
+
+                
+                
+                <br><br><a role="button" class="btn btn-success" onclick='orderDone()' href="<?=SROOT?>OrderHandler/confirmOrder">Confirm Order</a>
+                <a role="button" class="btn btn-danger" onclick='cancelOrder()' href="<?=SROOT?>OrderHandler/cancelOrder">Cancel Order</a>
+        </div>
+    </div>
 </body>
 </html>
