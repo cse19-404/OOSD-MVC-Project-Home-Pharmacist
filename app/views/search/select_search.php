@@ -121,8 +121,10 @@
                 </ul>
             </section>
             </div>
-            <?php }
-        if (isset($this->searchMode)) {
+            <br><br><a class="btn btn-primary" role="button" href="<?= SROOT ?>CustomerDashboard">Go to Dashboard</a>
+            <?php } ?>
+
+        <?php if (isset($this->searchMode)) {
             switch ($this->searchMode) {
                 case 'selected': ?>
                 <h2 class ="header">Search Pharmacy</h2>
@@ -177,10 +179,11 @@
         <?php break;
                 default:
                     break;
-            }
-        } ?>
+            }?>
+        <br><br><a class="btn btn-primary" role="button" href="<?= SROOT ?>CustomerDashboard/search">Go Back</a>
+        <?php } ?>
 
-        <br><br><a class="btn btn-primary" role="button" href="<?= SROOT ?>CustomerDashboard">Go to Dashboard</a>
+       
     </div>
 </body>
 
