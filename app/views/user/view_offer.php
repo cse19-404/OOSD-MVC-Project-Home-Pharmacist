@@ -38,6 +38,8 @@
         }
     ?>
     <div class='container-fluid'>
+    <br><br>
+        <a role="button" class="mybtn btn btn-primary" href="<?=SROOT?>SeasonalOfferHandler/view">Go to OffersSection</a>
         <h2 class="header">Add Offer Section</h2>
         <div class="Appcontainer">
             <div class='bg-danger' style="color:red">
@@ -62,8 +64,6 @@
                 <input class="btn btn-success" type="submit" name="submit" value=<?= $btnValue ?>>
             </form>
         </div>
-        <br><br>
-        <a role="button" class="btn btn-primary" href="<?=SROOT?>SeasonalOfferHandler/view">Go to OffersSection</a>
     </div>
 </body>
 

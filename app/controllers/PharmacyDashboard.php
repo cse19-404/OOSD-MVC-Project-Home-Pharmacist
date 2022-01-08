@@ -28,6 +28,9 @@ class PharmacyDashboard extends Controller{
         if (isset($_SESSION['rawData'])){
             unset($_SESSION['rawData']);
         }
+        if (isset($_SESSION['tempItemId'])){
+            unset($_SESSION['tempItemId']);
+        }
         if (isset($_SESSION['orderfromPharm'])){
             unset($_SESSION['orderfromPharm']);
         }
