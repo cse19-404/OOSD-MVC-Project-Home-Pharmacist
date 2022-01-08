@@ -25,6 +25,7 @@
     .mybtn{
         float: right;
         margin-top: 20px;
+        margin-right: 30px;
     }
     .container-fluid{
         background-color: rgba(236, 236, 236, 0.3);
