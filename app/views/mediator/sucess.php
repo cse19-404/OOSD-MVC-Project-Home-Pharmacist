@@ -26,8 +26,8 @@
 </head>
 <body>
     <div class="Appcontainer">
-        <h2>Message Successfully Sent</h2>
         <br><br><a role='button' class='mybtn btn btn-primary' href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <h2>Message Successfully Sent</h2>
     </div>
 
 </body>

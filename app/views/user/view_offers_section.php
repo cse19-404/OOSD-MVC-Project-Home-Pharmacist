@@ -124,7 +124,7 @@
                     transform: scale(1); } }
 
     </style>
-    <?php include_once('css/base.php'); ?>
+    <?php include_once('css/baseInbox.php'); ?>
 
     <title>Seasonal Offers</title>
 </head>
@@ -138,7 +138,7 @@
         </form>
         <br><br>
         <?php foreach($this->results as $row){?>
-        <div class="container" onclick="location.href='#';" style="cursor: pointer;">
+        <div class="container" style="cursor: pointer;">
             <div class="card">
                 <div class="container-fliud">
                     <div class="wrapper row">

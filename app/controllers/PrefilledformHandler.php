@@ -50,7 +50,8 @@ class PrefilledformHandler extends Controller{
     }
 
     public function addQuantityAction($itemId, $PharmId, $preId=-1){
-        $quantity = (isset($_POST['quantity']))? $_POST['quantity']: 0;
+
+        $quantity = (isset($_POST['quantity']) || !is_numeric($_POST['quantity']))? $_POST['quantity']: 0;
         $status = $this->checkAvailability($quantity,$itemId);
         $_SESSION['tempItemId'][$itemId] = $quantity. ','.$status;
         $this->getValues($PharmId);

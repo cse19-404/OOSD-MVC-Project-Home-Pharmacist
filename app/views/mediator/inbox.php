@@ -58,7 +58,7 @@
             margin: 0px;
         }
     </style>
-    <?php include_once('css/base.php'); ?>
+    <?php include_once('css/baseInbox.php'); ?>
 </head>
 <body>
 

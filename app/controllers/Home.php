@@ -9,6 +9,7 @@
 
         public function indexAction ()
         {
+            Session::delete();
             $this->view->render('home/index');
         }
 
