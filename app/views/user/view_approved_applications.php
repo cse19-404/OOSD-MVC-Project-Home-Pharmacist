@@ -56,7 +56,7 @@
             echo "<h1> <a href='index.php'> Log in first </a> </h1>";
         }?>
         <br>
-        <a class="btn btn-default" role="button" href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <a class="btn btn-primary" role="button" href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
     </div>
 
 </body>

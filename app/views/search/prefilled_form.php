@@ -44,6 +44,18 @@
         margin-left: 0.3cm;
     }
 
+    .badge{
+        border-top-width: 10px;
+        border-top-style: solid;
+        border-left-style: solid;
+        border-left-width: 10px;
+        border-right-width: 10px;
+        border-right-style: solid;
+        border-bottom-width: 10px;
+        border-bottom-style: solid;
+        border-color: #777;
+    }
+
 </style>
 <?php include_once('css/baseForm.php'); ?>
 <body>

@@ -26,6 +26,8 @@
         box-shadow: 10px 10px 50px 0.1px rgba(0, 0, 0, 0.664);
     }
 
+    
+
 </style>
 <?php include_once('css/baseForm.php'); ?>
 <body>

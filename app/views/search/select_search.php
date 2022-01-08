@@ -158,7 +158,7 @@
                             </table>
                         </div>
                     <?php } elseif (isset($this->processed)) {
-                        echo "<h3>No result found</h3>";
+                        echo "<span>No result found</span>";
                     } ?>
                 </div>
                     
