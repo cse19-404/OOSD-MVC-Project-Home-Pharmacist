@@ -9,6 +9,8 @@
 </head>
 <body>
     <div class="container-fluid">
+    <br><br><a href="<?=SROOT?>PharmacyDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+
     <h1 class = 'header'>Prescriptions</h1>
     <hr>
     <span>
@@ -23,6 +25,8 @@
             <tr>
                 <th>Customer Name</th>
                 <th>Prescription</th>
+                <th></th>
+                <th></th>
             </tr>
             <?php foreach($this->prescriptions as $key=>$entry) {?>
                 <tr>
@@ -30,6 +34,7 @@
                     <td><a href="<?=SROOT?><?=$entry[1]->prescription?>" download='<?=$entry[1]->prescription?>'><?= ltrim($entry[1]->prescription,'uploads/prescriptions/')?></a></td>
                     <?php if(!$entry[1]->form_sent){?>
                     <td><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$entry[1]->pharmacy_id?>/notclear/<?=$key?>" role="button" class="btn btn-success">Prepare a form</a></td>
+                    <td></td>
                     <?php }else { ?>
                         <td style="color :#346702;">Form sent </td>
                         <td><a href="<?=SROOT?>PrescriptionHandler/clear/<?= $key ?>" role="button" class="btn btn-danger">Remove</a></td>
@@ -43,7 +48,6 @@
         echo "<h3>No prescriptions found</h3>";
     }?>
 
-    <br><br><a href="<?=SROOT?>PharmacyDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     </div>
 </body>
 </html>

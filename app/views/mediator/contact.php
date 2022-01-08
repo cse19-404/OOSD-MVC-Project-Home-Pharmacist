@@ -62,12 +62,24 @@
         line-height:20px; 
         font-weight:400;
         }
+        .row{
+        margin-top: 100px;
+    }
+        .padding-lg{
+            margin-left: 150px;
+            margin-right: -150px;
+        }
     </style>
 
     <?php include_once('css/base.php'); ?>
 </head>
 <body>
 <div class='container-fluid'>
+    <?php if ($_SESSION['role']==='pharmacy') {?>
+        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+    <?php }else{?>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+    <?php } ?>
     <?php if(!isset($this->mode)){?>
         <section class="our-webcoderskull padding-lg">
     <div class="container">
@@ -158,12 +170,6 @@
                 }
         }
     }?>
-
-    <?php if ($_SESSION['role']==='pharmacy') {?>
-        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
-    <?php }else{?>
-        <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
-    <?php } ?>
     </div>
 
 </body>

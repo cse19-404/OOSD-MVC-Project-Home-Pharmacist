@@ -25,6 +25,8 @@
 
 <body>
     <div class='container-fluid'>
+        <br><br><a class="mybtn btn btn-success" role="button" href="<?=SROOT?>home/index">Go to Home</a>
+
         <h1 class='header'>Registration Application</h1><hr><br>
 
         <div class="Appcontainer">
@@ -48,7 +50,6 @@
             </form>
             
         </div>
-        <br><br><a class="btn btn-success" role="button" href="<?=SROOT?>home/index">Go to Home</a>
         <br><br><br><br>
     </div>
 

@@ -27,7 +27,7 @@
 <body>
     <div class="Appcontainer">
         <h2>Message Successfully Sent</h2>
-        <br><br><a role='button' class='btn btn-primary' href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <br><br><a role='button' class='mybtn btn btn-primary' href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
     </div>
 
 </body>

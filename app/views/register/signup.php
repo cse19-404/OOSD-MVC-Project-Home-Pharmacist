@@ -29,6 +29,8 @@
 </head>
 <body>
     <div class='container-fluid'>
+        <a class="mybtn btn btn-success" role="button" href="<?=SROOT?>home/index">Go to Home</a>
+
         <h1 class='header'>Sign Up...!</h1>
             <div class="Appcontainer">
                 <form class="form-horizontal" action="<?=SROOT?>register/signup/customer" method="post">
@@ -61,7 +63,6 @@
                 </form>
             </div>
             <br><br>
-            <a class="btn btn-success" role="button" href="<?=SROOT?>home/index">Go to Home</a>
             <br><br><br><br>
     </div>
 
