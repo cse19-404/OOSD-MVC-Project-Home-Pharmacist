@@ -22,6 +22,10 @@
     .header{
         font-family: 'Slabo 27px', serif;
     }
+    .mybtn{
+        float: right;
+        margin-top: 20px;
+    }
     .container-fluid{
         background-color: rgba(236, 236, 236, 0.3);
     }
