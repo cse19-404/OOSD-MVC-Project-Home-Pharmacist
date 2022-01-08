@@ -20,7 +20,7 @@ function autoload($className)
     }elseif (file_exists(ROOT .DS . 'core' . DS . 'dummies'. DS. $className . '.php')) {
         require_once(ROOT .DS . 'core' . DS . 'dummies'. DS. $className . '.php');
     }else {
-        echo "<h1> Page not found </h1>";
+        include(ROOT.DS.'app'.DS.'views'.DS.'home'.DS.'404Error'.'.php');
         die();
     }
 }

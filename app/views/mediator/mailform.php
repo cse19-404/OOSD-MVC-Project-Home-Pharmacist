@@ -48,17 +48,6 @@
                             <span class="spacinglabels">TO : <?= $this->to?></span><br><br><br>
                         <?php } ?>
                         
-
-                        <!-- <?php if(($_SESSION['role']==='pharmacy')){
-                            echo (" FROM : <span>". Pharmacy::currentLoggedInPharmacy()->name."</span><br><br>");
-                        }else{ 
-                            echo (" FROM : <span>". User::currentLoggedInUser()->name."</span><br><br>");
-                        }?>
-                        <?php if(isset($this->to) && $this->mode === 'us'){
-                            echo ("TO : <span>Home Pharmasist</span><br><br>");
-                        }else{ 
-                            echo ("TO : <span>".$this->to."</span><br><br>");
-                        }?> -->
                     </div>
                     <div>      
                         <form action="<?=SROOT?>MediatorHandler/receiveMessage/<?= $this->mode?>/<?= $this->id?>" method="post">
@@ -79,11 +68,6 @@
                         
                         Subject : <input class="form-control" type="text" placeholder="Subject" value=<?= $this->result->subject?> readonly><br><br>
                         Message : <textarea class="form-control" cols="30" rows="10" placeholder="Message" value=<?= $this->result->message?> readonly></textarea><br><br>
-
-                            <!-- FROM : <span><?php echo $this->result->sender_username?></span><br><br>
-                            TO : <span><?php echo $this->result->receiver_username?></span><br><br>
-                            SUBJECT : <span><?php echo $this->result->subject?></span><br><br>
-                            MESSAGE : <span><?php echo $this->result->message ?></span><br><br>    -->
                             
                         <form action="<?=SROOT?>CustomerDashboard/replyTextMessage/<?= $this->result->id?>">
                             <input class="btn btn-info" type="submit" value="Reply">
@@ -105,17 +89,6 @@
                             <input class="btn btn-info" type="submit" value="Send">
                         </form>
                     </div>
-                    
-
-                    <!-- <div>
-                        FROM : <span><?php echo $this->from?></span><br><br>
-                        TO : <span><?php echo $this->to?></span><br><br>    
-                        <form action="<?=SROOT?>MediatorHandler/receiveReply/<?= $this->id?>" method="post">
-                            Subject : <input type="text" name="subject" value='<?= $this->subject?>' placeholder="Subject" readonly><br><br>
-                            Message : <textarea name="message" cols="30" rows="10" placeholder="Message" required></textarea><br><br>
-                            <input type="submit" value="Send">
-                        </form>
-                    </div> -->
                     <?php } ?>
                 </div>          
                 <br><br><a role="button" class="btn btn-success" href="<?=SROOT?>CustomerDashboard/message">Go Back</a>
