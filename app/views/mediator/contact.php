@@ -75,7 +75,7 @@
         <li class="col-12 col-md-6 col-lg-3">
             <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>MediatorHandler/inbox';">
                 <figure><img src="https://potentiainstitute.com/wp-content/uploads/2020/07/Email-Icon.png" class="img-responsive" alt=""></figure>
-                <h3><a href="<?=SROOT?>MediatorHandler/inbox">Inbox</h3>
+                <h3><a href="<?=SROOT?>MediatorHandler/inbox">Inbox</a></h3>
             </div>
         </li>
         <?php if ($_SESSION['role']==='super_admin') { ?>
@@ -83,7 +83,7 @@
             
                     <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/customer';">
                     <figure><img src="https://www.jing.fm/clipimg/detail/63-634224_profile-clipart-end-user-customer-blue-icon-png.png" class="img-responsive" alt=""></figure>
-                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/customer">Contact a Customer</h3>
+                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/customer">Contact a Customer</a></h3>
                     </div>
             
         </li>
@@ -93,7 +93,7 @@
             
                     <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/pharmacy';">
                     <figure><img src="https://cdn-icons-png.flaticon.com/512/230/230194.png" class="img-responsive" alt=""></figure>
-                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/pharmacy">Contact a Pharmacy</h3>
+                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/pharmacy">Contact a Pharmacy</a></h3>
                     </div>
             
         </li>
@@ -103,7 +103,7 @@
             
                     <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/us';">
                     <figure><img src="https://media.istockphoto.com/illustrations/contact-us-glassy-cyan-blue-round-button-illustration-id816810182?b=1&k=6&m=816810182&s=612x612&w=0&h=NOD9Od-3efEsGCnSk4_mbWrQesoVmKvAgKMR2-54Xxo=" class="img-responsive" alt=""></figure>
-                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/us">Contact Us</h3>
+                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/us">Contact Us</a></h3>
                     </div>
              
         </li>
