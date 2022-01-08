@@ -29,8 +29,8 @@
     .mybtn{
         float: right;
         margin-top: 20px;
+        margin-right: 30px;
     }
-
     table{
         font-family: 'Poppins', sans-serif;
     }

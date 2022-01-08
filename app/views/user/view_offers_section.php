@@ -43,7 +43,7 @@
                     animation-duration: .3s; }
 
         .card {
-        margin-top: 50px;
+        margin-bottom: 50px;
         background: #eee;
         padding: 3em;
         line-height: 1.5em; }
@@ -99,6 +99,11 @@
         border-radius: 2px; }
         .color:first-of-type {
             margin-left: 20px; }
+        
+        .mybtnn{
+            float: right;
+            margin-right: 30px;
+        }
 
         .tooltip-inner {
         padding: 1.3em; }
@@ -129,16 +134,16 @@
     <title>Seasonal Offers</title>
 </head>
 <body>
+<header style="padding-left: 20px"><h2 class='header'>Welcome to Seasonal Offers Section</h2></header><hr><br>
     <div class='container'>
     <?php if($_SESSION['role']==='pharmacy'){?>
-        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
-        <h2 class='header'>Welcome to Seasonal Offers Section</h2><hr><br>
+        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="mybtnn btn btn-primary">Go to Dashboard</a>
         <form action="<?=SROOT?>SeasonalOfferHandler/viewOffer/add" method="post">
             <input class="btn btn-warning" type="submit" value='Add new Offer'>
         </form>
         <br><br>
         <?php foreach($this->results as $row){?>
-        <div class="container" style="cursor: pointer;">
+        <div class="">
             <div class="card">
                 <div class="container-fliud">
                     <div class="wrapper row">
@@ -171,8 +176,7 @@
         <?php }?>
         <br><br>
     <?php }elseif($_SESSION['role']==='customer'){?>
-        <a href="<?=SROOT?>CustomerDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
-        <h2 class='header'>Welcome to Seasonal Offers Section</h2><hr><br>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="mybtnn btn btn-primary">Go to Dashboard</a>
             <?php foreach($this->results as $pharmId => $rows){?>
                 <div class="container-fluid" id="<?= $pharmId?>" style="cursor: pointer; border: 2px solid; border-radius: 10px; padding:30px;text-align:centre;">
                     <span name='pharm-name'><h4><strong><?= $this->pharmacies[$pharmId][0]->name ?></strong></h4></span>

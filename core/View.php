@@ -17,7 +17,8 @@
             if (file_exists(ROOT.DS.'app'.DS.'views'.DS.$viewString.'.php')){
                 include(ROOT.DS.'app'.DS.'views'.DS.$viewString.'.php');
             }else{
-                die($viewName."doesn't exsist");
+                include(ROOT.DS.'app'.DS.'views'.DS.'home'.DS.'404Error'.'.php');
+                die();
             }
 
         }

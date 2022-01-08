@@ -29,6 +29,7 @@
     .mybtn{
         float: right;
         margin-top: 20px;
+        margin-right: 30px;
     }
 
     table{
