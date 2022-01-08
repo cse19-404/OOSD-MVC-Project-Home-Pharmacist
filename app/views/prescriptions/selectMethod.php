@@ -72,21 +72,21 @@
             <section class="our-webcoderskull padding-lg">
                 <ul class="row">
                     <li class="col-12 col-md-6 col-lg-3">
-                        <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectSearch/prescription';">
+                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectSearch/prescription';">
                             <figure><img src="https://cdn2.iconfinder.com/data/icons/pharmacy-17/2000/Pharmacy_front-512.png" class="img-responsive" alt=""></figure>
-                            <h3><a href="<?=SROOT?>CustomerDashboard/selectSearch/prescription">Select a Pharmacy</h3>
+                            <h3><a href="<?=SROOT?>CustomerDashboard/selectSearch/prescription">Select a Pharmacy</a></h3>
                         </div>
                     </li>
                     <li class="col-12 col-md-6 col-lg-3">
-                        <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?=SROOT?>PrescriptionHandler/uploadtonearbyPharm';">
+                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>PrescriptionHandler/uploadtonearbyPharm';">
                             <figure><img src="https://thumbs.dreamstime.com/b/pharmacy-location-blue-map-pin-icon-element-map-point-mobile-concept-web-apps-icon-website-design-109712535.jpg" class="img-responsive" alt=""></figure>
-                            <h3><a href="<?=SROOT?>PrescriptionHandler/uploadtonearbyPharm">Search in Nearby Pharmacies</h3>
+                            <h3><a href="<?=SROOT?>PrescriptionHandler/uploadtonearbyPharm">Search in Nearby Pharmacies</a></h3>
                         </div>
                     </li>
                 </ul>
             </section>
             </div>
 
-    <br><br><br><a href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
+    <br><br><br><a href="<?=SROOT?>CustomerDashboard/search" role='button' class='btn btn-primary'>Go Back</a>
 </body>
 </html>

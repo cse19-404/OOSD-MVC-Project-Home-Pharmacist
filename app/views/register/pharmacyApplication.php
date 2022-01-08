@@ -37,13 +37,13 @@
                 <input type="text" class="form-control" name="address" value="<?php echo htmlspecialchars($_POST['address'] ?? '', ENT_QUOTES); ?>" required><br><br>
                 <Label>Contact No</Label>
                 <input type="text" class="form-control" name='contact_no' value="<?php echo htmlspecialchars($_POST['contact_no'] ?? '', ENT_QUOTES); ?>" required><br><br>
-                <label>Location: </label>
+                <label>Location: </label><br>
                 <label>Latitude </label><input type="text" class="form-control" name="latitude" id="latitude" value="<?php echo htmlspecialchars($_POST['latitude'] ?? '', ENT_QUOTES); ?>" required>
-                <label>longitude </label><input type="text" class="form-control" name="longitude" id="longitude" value="<?php echo htmlspecialchars($_POST['longitude'] ?? '', ENT_QUOTES); ?>" required><br><br>
+                <label>Longitude </label><input type="text" class="form-control" name="longitude" id="longitude" value="<?php echo htmlspecialchars($_POST['longitude'] ?? '', ENT_QUOTES); ?>" required><br><br>
                 <label>Delivery Supported</label>
                 <input type="checkbox" name="delivery_supported" <?php if(isset($_POST['delivery_supported']) && $_POST['delivery_supported']=='on'){echo "checked";}?>><br><br>
                 <label>Upload Document</label>
-                <input type="file" name="documents" id="documents" required><br><br>
+                <input type="file" name="documents" id="documents" required><br>
                 <input type="submit" class="btn btn-info" value="Submit" name='submit'>
             </form>
             

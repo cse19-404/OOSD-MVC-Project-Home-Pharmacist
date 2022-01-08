@@ -78,15 +78,15 @@
                                 <tr class="">
                                     <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                     <td class="view-message "><?php echo $row->subject ?></td>
+                                    <td class="view-message inbox-small-cells"></td>
                                     <td class="view-message  text-right"><a href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>">View</a></td> 
                                 </tr>
                             <?php }else{?>
                                 <tr class="unread">
-                                <tr class="">
                                     <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                     <td class="view-message "><?php echo $row->subject ?></td>
+                                    <td class="view-message inbox-small-cells"></td>
                                     <td class="view-message  text-right"><a href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>">View</a></td>
-                                </tr>
                                 </tr>                        
                             <?php } }?>
                           </tbody>
@@ -109,11 +109,9 @@
                             <tbody>
                                 <?php foreach($this->offer as $row){?>
                                     <tr class="unread">
-                                    <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row['sender_username'].'' ?> </td>
                                         <td class="view-message "><?php echo $row['subject'].'<br>'. $row['message'] ?></td>
                                         <td class="view-message  text-right"><a href="<?=SROOT?>MediatorHandler/loadInbox/<?=$row->id?>">View</a></td>
-                                    </tr>
                                     </tr>                        
                                 <?php }?>
                           </tbody>
@@ -145,11 +143,9 @@
                                     </tr>
                                 <?php }else{?>
                                     <tr class="unread">
-                                    <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                         <td class="view-message "><?php echo $row->subject.'<br>'.$row->message ?></td>
                                         <td class="view-message  text-right"><a href="<?=SROOT?>PrefilledformHandler/viewForm/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td>
-                                    </tr>
                                     </tr>                        
                                 <?php } }?>
                           </tbody>
@@ -233,13 +229,12 @@
                   </aside>
         </div>
         <?php } ?>
+        <?php if ($_SESSION['role']==='pharmacy') {?>
+            <a role='button' class='btn btn-primary' href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
+        <?php }else{?>
+            <a role='button' class='btn btn-primary'href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <?php } ?>
     </div>
-
-    <?php if ($_SESSION['role']==='pharmacy') {?>
-        <a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
-    <?php }else{?>
-        <a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
-    <?php } ?>
 
 </body>
 </html>

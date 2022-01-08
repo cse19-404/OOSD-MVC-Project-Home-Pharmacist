@@ -26,6 +26,7 @@
         .wrap:hover {
             background: linear-gradient(135deg,#6394ff 0%,#0a193b 100%);
             color: white;
+            cursor: pointer;
         }
 
         .mbr-iconfont {
@@ -78,32 +79,31 @@
                             <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Login as a User</h2></p>  
                         </div>
                     </div>
-            </div>
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>register/login/pharmacy';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Login as a Pharmacy</h2></p>  
+                </div>
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>register/login/pharmacy';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Login as a Pharmacy</h2></p>  
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>register/signup/customer';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Sign up as a Customer</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>register/signup/customer';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Sign up as a Customer</h2></p>  
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>register/signup/pharmacy';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Apply For a Pharmacy Account</h2></p>  
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>register/signup/pharmacy';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Apply For a Pharmacy Account</h2></p>  
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 

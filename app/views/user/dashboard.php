@@ -27,6 +27,7 @@
         .wrap:hover {
             background: linear-gradient(135deg,#6394ff 0%,#0a193b 100%);
             color: white;
+            cursor: pointer;
         }
 
         .mbr-iconfont {
@@ -165,87 +166,86 @@
     <div class="container">
         <?php if ($_SESSION['role']==='super_admin') { ?>
             <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>ApplicationHandler/view';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>New Applications</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>ApplicationHandler/view';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>New Applications</h2></p>  
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>UserHandler/view';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Users</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>UserHandler/view';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Users</h2></p>  
+                        </div>
                     </div>
                 </div>
             </div>   
             <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>ApplicationHandler/viewApproved';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Pharmacy Account Creation</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>ApplicationHandler/viewApproved';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Pharmacy Account Creation</h2></p>  
+                        </div>
                     </div>
-                </div>
-            </div> 
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/message';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Message Potral</h2></p>  
+                </div> 
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/message';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Message Potral</h2></p>  
+                        </div>
                     </div>
-                </div>
-            </div>     
-            
+                </div>     
+            </div>
             
         <?php } ?>
 
         <?php if ($_SESSION['role']==='customer') { ?>
             <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/search';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Search</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/search';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Search</h2></p>  
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>PrefilledformHandler/viewForms/prescription';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Forms from Prescriptions</h2></p>  
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>PrefilledformHandler/viewForms/prescription';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Forms from Prescriptions</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>PrefilledformHandler/viewForms';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Forms from Pharmacies</h2></p>  
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>SeasonalOfferHandler/view';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Seasonal Offers</h2></p>  
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>PrefilledformHandler/viewForms';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Forms from Pharmacies</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/viewPurchaseHistory';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Purchase Hisorty</h2></p>  
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>SeasonalOfferHandler/view';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Seasonal Offers</h2></p>  
-                    </div>
-                </div>
-            </div>
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/viewPurchaseHistory';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Purchase Hisorty</h2></p>  
-                    </div>
-                </div>
-            </div>
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/message';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Message Potral</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/message';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Message Potral</h2></p>  
+                        </div>
                     </div>
                 </div>
             </div>
@@ -253,58 +253,57 @@
 
         <?php if ($_SESSION['role']==='pharmacy') { ?>
             <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>ItemHandler/view';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Inventory</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>ItemHandler/view';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Inventory</h2></p>  
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>OrderHandler/view';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Orders</h2></p>  
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>OrderHandler/view';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Orders</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>PrescriptionHandler/view';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Uploaded Prescriptions</h2></p>  
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>SeasonalOfferHandler/view';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Seasonal Offers</h2></p>  
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>PrescriptionHandler/view';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Uploaded Prescriptions</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>PharmacyDashboard/searchCustomer';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Order for a customer</h2></p>  
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>SeasonalOfferHandler/view';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Seasonal Offers</h2></p>  
-                    </div>
-                </div>
-            </div>
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>PharmacyDashboard/searchCustomer';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Order for a customer</h2></p>  
-                    </div>
-                </div>
-            </div>
-            <div class="row mbr-justify-content-center">
-            <div class="col-lg-6 mbr-col-md-10">
-                <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/message';">
-                    <div class="text-wrap vcenter">
-                        <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Message Potral</h2></p>  
+                <div class="col-lg-6 mbr-col-md-10">
+                    <div class="wrap" onclick="location.href='<?=SROOT?>CustomerDashboard/message';">
+                        <div class="text-wrap vcenter">
+                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Message Potral</h2></p>  
+                        </div>
                     </div>
                 </div>
             </div>
         <?php } ?>
 
-    
-</section>
     </div>
+</section>
 </body>
 
 </html>

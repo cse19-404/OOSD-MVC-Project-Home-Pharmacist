@@ -115,7 +115,7 @@ class Validate
         if($startDate>=$endDate){
             $this->addError(["Ending Date must be after the Starting Date"]);
         }
-        if($startDate < date('Y/m/d')){
+        if($startDate < date('d/m/Y')){
             $this->addError(["Starting Date must be after the Current Date".date('Y/m/d')]);
         }
     }
