@@ -14,6 +14,12 @@ class SeasonalOfferHandler extends Controller{
 
     }
     public function viewAction(){
+        if (isset($_SESSION['tempItemId'])){
+            unset($_SESSION['tempItemId']);
+        }
+        if (isset($_SESSION['rawData'])){
+            unset($_SESSION['rawData']);
+        }
         $_SESSION['isSeasonal']=true;
         if($_SESSION['role']=="pharmacy"){
             $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy();

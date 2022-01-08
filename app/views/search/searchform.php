@@ -30,6 +30,15 @@
 <?php include_once('css/baseForm.php'); ?>
 <body>
 <div class='container-fluid'>
+        <?php if(isset($_SESSION["isPrescription"]) && $_SESSION["isPrescription"]){?>
+            <br><br><a class="mybtn btn btn-primary" role = "button" href="<?=SROOT?>PrescriptionHandler/view">Go Back</a>
+        <?php } elseif(isset($_SESSION["isSeasonal"]) && $_SESSION["isSeasonal"]){?>
+                <br><br><a class="mybtn btn btn-primary" role = "button" href="<?=SROOT?>SeasonalOfferHandler/view">Go Back</a>
+        <?php } else if(isset($_SESSION['orderfromPharm'])) { ?>
+            <br><br><a class="mybtn btn btn-primary" role = "button" href="<?=SROOT?>PharmacyDashboard/searchCustomer">Go Back</a>
+        <?php } else{?>
+            <br><br><a class="mybtn btn btn-primary" role = "button" href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
+        <?php }?>
     <h1 class="header">Item Search Form</h1>
     <div class="Appcontainer">
         <div>            
@@ -74,15 +83,6 @@
             <br><br><input class="btn btn-light" type="submit" value="Clear Items">
         </form>
         </div>
-        <?php if(isset($_SESSION["isPrescription"]) && $_SESSION["isPrescription"]){?>
-            <br><br><a class="btn btn-primary" role = "button" href="<?=SROOT?>PrescriptionHandler/view">Go Back</a>
-        <?php } elseif(isset($_SESSION["isSeasonal"]) && $_SESSION["isSeasonal"]){?>
-                <br><br><a class="btn btn-primary" role = "button" href="<?=SROOT?>SeasonalOfferHandler/view">Go Back</a>
-        <?php } else if(isset($_SESSION['orderfromPharm'])) { ?>
-            <br><br><a class="btn btn-primary" role = "button" href="<?=SROOT?>PharmacyDashboard/searchCustomer">Go Back</a>
-        <?php } else{?>
-            <br><br><a class="btn btn-primary" role = "button" href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
-        <?php }?>
     
 </div>
 </body>

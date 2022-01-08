@@ -130,8 +130,9 @@
 </head>
 <body>
     <div class='container'>
-    <h2 class='header'>Welcome to Seasonal Offers Section</h2><hr><br>
     <?php if($_SESSION['role']==='pharmacy'){?>
+        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+        <h2 class='header'>Welcome to Seasonal Offers Section</h2><hr><br>
         <form action="<?=SROOT?>SeasonalOfferHandler/viewOffer/add" method="post">
             <input class="btn btn-warning" type="submit" value='Add new Offer'>
         </form>
@@ -169,8 +170,9 @@
 	    </div>
         <?php }?>
         <br><br>
-        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     <?php }elseif($_SESSION['role']==='customer'){?>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+        <h2 class='header'>Welcome to Seasonal Offers Section</h2><hr><br>
             <?php foreach($this->results as $pharmId => $rows){?>
                 <div class="container-fluid" id="<?= $pharmId?>" style="cursor: pointer; border: 2px solid; border-radius: 10px; padding:30px;text-align:centre;">
                     <span name='pharm-name'><h4><strong><?= $this->pharmacies[$pharmId][0]->name ?></strong></h4></span>
@@ -197,7 +199,6 @@
             </div>
             <br><br>
             <?php }?>
-            <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
         <?php } ?>
     </div>  
     

@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="container-fluid">
+    <br><br><a role="button" class="mybtn btn btn-primary" href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
     <h1 class = 'header'>Forms from Prescriptions</Section></h1>
     <hr>
     <div class="table-div">
@@ -33,7 +34,6 @@
         <?php }}?>
     </table>
     </div>
-    <br><br><a role="button" class="btn btn-primary" href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
     </div>
 </body>
 </html>
