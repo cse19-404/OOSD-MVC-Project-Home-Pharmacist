@@ -27,6 +27,7 @@
         .wrap:hover {
             background: linear-gradient(135deg,#6394ff 0%,#0a193b 100%);
             color: white;
+            cursor: pointer;
         }
 
         .mbr-iconfont {
