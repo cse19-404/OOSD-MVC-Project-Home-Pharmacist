@@ -26,6 +26,10 @@
     .container-fluid{
         background-color: rgba(226, 226, 226, 0.687);
     }
+    .mybtn{
+        float: right;
+        margin-top: 20px;
+    }
 
     table{
         font-family: 'Poppins', sans-serif;

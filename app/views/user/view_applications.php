@@ -9,6 +9,8 @@
 <body>
     
     <div class='container-fluid'>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+
         <h1  class='header'>Applications<hr></h1>    
         <?php if(isset($_SESSION['role']) && !strcmp($_SESSION['role'],'super_admin')) { ?>
         <?php if (is_array($this->applications) && count($this->applications) > 0) { ?>
@@ -78,7 +80,6 @@
         else {
             echo "<h1> <a href='index.php'> Log in first </a> </h1>";
         }?>
-        <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     </div>
 
 </body>

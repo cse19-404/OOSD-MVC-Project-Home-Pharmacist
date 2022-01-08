@@ -62,12 +62,20 @@
         line-height:20px; 
         font-weight:400;
         }
+        .row{
+        margin-top: 100px;
+        }
+        .padding-lg{
+            margin-left: 300px;
+            margin-right: -300px;
+        }
     </style>
 
     <?php include_once('css/base.php'); ?>
 </head>
 <body>
     <div class='container-fluid'>
+    <br><br><br><a href="<?=SROOT?>CustomerDashboard/search" role='button' class='mybtn btn btn-primary'>Go Back</a>
             <div class='container'>
             <section class="our-webcoderskull padding-lg">
                 <ul class="row">
@@ -86,7 +94,6 @@
                 </ul>
             </section>
             </div>
-
-    <br><br><br><a href="<?=SROOT?>CustomerDashboard/search" role='button' class='btn btn-primary'>Go Back</a>
+    </div>
 </body>
 </html>

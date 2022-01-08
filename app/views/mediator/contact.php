@@ -62,7 +62,13 @@
         line-height:20px; 
         font-weight:400;
         }
-
+        .row{
+        margin-top: 100px;
+        }
+        .padding-lg{
+            margin-left: 150px;
+            margin-right: -150px;
+        }
         .Appcontainer {
         z-index: 2;
         border-radius: 15px;
@@ -81,50 +87,55 @@
     <?php include_once('css/baseForm.php'); ?>
 </head>
 <body>
-    <div class='container-fluid'>
-        <?php if(!isset($this->mode)){?>
-            <section class="our-webcoderskull padding-lg">
-        <div class="container">
-            <ul class="row">
-            <li class="col-12 col-md-6 col-lg-3">
-                <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>MediatorHandler/inbox';">
-                    <figure><img src="https://potentiainstitute.com/wp-content/uploads/2020/07/Email-Icon.png" class="img-responsive" alt=""></figure>
-                    <h3><a href="<?=SROOT?>MediatorHandler/inbox">Inbox</a></h3>
-                </div>
-            </li>
-            <?php if ($_SESSION['role']==='super_admin') { ?>
-            <li class="col-12 col-md-6 col-lg-3">
-                
-                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/customer';">
-                        <figure><img src="https://www.jing.fm/clipimg/detail/63-634224_profile-clipart-end-user-customer-blue-icon-png.png" class="img-responsive" alt=""></figure>
-                        <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/customer">Contact a Customer</a></h3>
-                        </div>
-                
-            </li>
-            <?php } ?>  
-            <?php if (!($_SESSION['role']==='pharmacy')) { ?>
-            <li class="col-12 col-md-6 col-lg-3">
-                
-                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/pharmacy';">
-                        <figure><img src="https://cdn-icons-png.flaticon.com/512/230/230194.png" class="img-responsive" alt=""></figure>
-                        <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/pharmacy">Contact a Pharmacy</a></h3>
-                        </div>
-                
-            </li>
-            <?php } ?> 
-            <?php if (!($_SESSION['role']==='super_admin')) { ?> 
-            <li class="col-12 col-md-6 col-lg-3">
-                
-                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/us';">
-                        <figure><img src="https://media.istockphoto.com/illustrations/contact-us-glassy-cyan-blue-round-button-illustration-id816810182?b=1&k=6&m=816810182&s=612x612&w=0&h=NOD9Od-3efEsGCnSk4_mbWrQesoVmKvAgKMR2-54Xxo=" class="img-responsive" alt=""></figure>
-                        <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/us">Contact Us</a></h3>
-                        </div>
-                
-            </li>
-            <?php } ?> 
-            </ul>
-        </div>
-        </section>       
+<div class='container-fluid'>
+    <?php if ($_SESSION['role']==='pharmacy') {?>
+        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+    <?php }else{?>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+    <?php } ?>
+    <?php if(!isset($this->mode)){?>
+        <section class="our-webcoderskull padding-lg">
+    <div class="container">
+        <ul class="row">
+        <li class="col-12 col-md-6 col-lg-3">
+            <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>MediatorHandler/inbox';">
+                <figure><img src="https://potentiainstitute.com/wp-content/uploads/2020/07/Email-Icon.png" class="img-responsive" alt=""></figure>
+                <h3><a href="<?=SROOT?>MediatorHandler/inbox">Inbox</a></h3>
+            </div>
+        </li>
+        <?php if ($_SESSION['role']==='super_admin') { ?>
+        <li class="col-12 col-md-6 col-lg-3">
+            
+                    <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/customer';">
+                    <figure><img src="https://www.jing.fm/clipimg/detail/63-634224_profile-clipart-end-user-customer-blue-icon-png.png" class="img-responsive" alt=""></figure>
+                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/customer">Contact a Customer</a></h3>
+                    </div>
+            
+        </li>
+        <?php } ?>  
+        <?php if (!($_SESSION['role']==='pharmacy')) { ?>
+        <li class="col-12 col-md-6 col-lg-3">
+            
+                    <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/pharmacy';">
+                    <figure><img src="https://cdn-icons-png.flaticon.com/512/230/230194.png" class="img-responsive" alt=""></figure>
+                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/pharmacy">Contact a Pharmacy</a></h3>
+                    </div>
+            
+        </li>
+        <?php } ?> 
+        <?php if (!($_SESSION['role']==='super_admin')) { ?> 
+        <li class="col-12 col-md-6 col-lg-3">
+            
+                    <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>CustomerDashboard/selectContact/us';">
+                    <figure><img src="https://media.istockphoto.com/illustrations/contact-us-glassy-cyan-blue-round-button-illustration-id816810182?b=1&k=6&m=816810182&s=612x612&w=0&h=NOD9Od-3efEsGCnSk4_mbWrQesoVmKvAgKMR2-54Xxo=" class="img-responsive" alt=""></figure>
+                    <h3><a href="<?=SROOT?>CustomerDashboard/selectContact/us">Contact Us</a></h3>
+                    </div>
+             
+        </li>
+        <?php } ?> 
+        </ul>
+    </div>
+    </section>       
 
 
         <?php }if(isset($this->mode)){
@@ -178,14 +189,10 @@
                         echo "<span>No result found</span>";
                         }?>
                 </div>
-            <?php }
-        }?>
-
-        <?php if ($_SESSION['role']==='pharmacy') {?>
-            <a class="btn btn-primary" role="button" href="<?=SROOT?>PharmacyDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
-        <?php }else{?>
-            <a class="btn btn-primary" role="button" href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
-        <?php } ?>
+            <?php }elseif(isset($this->processed)){
+                echo "<h3>No result found</h3>";
+                }   
+    }?>
     </div>
 
 </body>

@@ -93,6 +93,7 @@
     }
     .mybtn{
         float: right;
+        margin-top: 20px;
     }
     .row{
         margin-top: 100px;
@@ -134,8 +135,9 @@
             </div>
             <?php } ?>
 
-        <?php if (isset($this->searchMode)) {
-            switch ($this->searchMode) {
+        <?php if (isset($this->searchMode)) {?>
+            <br><a class="btn btn-primary mybtn" role="button" href="<?= SROOT ?>CustomerDashboard/search">Go Back</a>
+            <?php switch ($this->searchMode) {
                 case 'selected': ?>
                 <h2 class ="header">Search Pharmacy</h2>
                 <div class="Appcontainer">
@@ -190,7 +192,6 @@
                 default:
                     break;
             }?>
-        <br><br><a class="btn btn-primary" role="button" href="<?= SROOT ?>CustomerDashboard/search">Go Back</a>
         <?php } ?>
 
        

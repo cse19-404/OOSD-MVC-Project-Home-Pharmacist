@@ -9,103 +9,99 @@
     <?php include_once('css/base.php'); ?>
 
     <style>
-        section {
-            padding-top: 4rem;
-            padding-bottom: 5rem;
-            background-color: rgba(226, 226, 226, 0.687);
+        ul{
+        margin:0;
+        padding:0;
+        list-style:none;
         }
-        .wrap {
-            display: flex;
-            background: white;
-            padding: 1rem 1rem 1rem 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 7px 7px 30px -5px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
+        .padding-lg {
+            display: block;
+            padding-top: 60px;
+            padding-bottom: 60px;
         }
-
-        .wrap:hover {
-            background: linear-gradient(135deg,#6394ff 0%,#0a193b 100%);
-            color: white;
-            cursor: pointer;
+        .our-webcoderskull .cnt-block:hover {
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+            border: 0;
         }
 
-        .mbr-iconfont {
-            font-size: 4.5rem !important;
-            color: #313131;
-            margin: 1rem;
-            padding-right: 1rem;
+        .our-webcoderskull .cnt-block{ 
+        float:left; 
+        width:100%; 
+        background:#fff; 
+        padding:30px 20px; 
+        text-align:center; 
+        border:2px solid #d5d5d5;
+        margin: 0 0 28px;
         }
-        .vcenter {
-            margin: auto;
+        .our-webcoderskull .cnt-block figure{
+        width:148px; 
+        height:148px; 
+        border-radius:100%; 
+        display:inline-block;
+        margin-bottom: 15px;
         }
-
-        .mbr-section-title3 {
-            text-align: left;
+        .our-webcoderskull .cnt-block img{ 
+        width:148px; 
+        height:148px; 
+        border-radius:100%; 
         }
-        h2 {
-            margin-top: 0.5rem;
-            margin-bottom: 0.5rem;
+        .our-webcoderskull .cnt-block h3{ 
+        color:#2a2a2a; 
+        font-size:20px; 
+        font-weight:500; 
+        padding:6px 0;
+        text-transform:uppercase;
         }
-        .display-5 {
-            font-family: 'Source Sans Pro',sans-serif;
-            font-size: 1.4rem;
+        .our-webcoderskull .cnt-block h3 a{
+        text-decoration:none;
+            color:#2a2a2a;
         }
-        .mbr-bold {
-            font-weight: 700;
+        .our-webcoderskull .cnt-block h3 a:hover{
+            color:#337ab7;
         }
-
-        p {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            line-height: 25px;
+        .our-webcoderskull .cnt-block p{ 
+        color:#2a2a2a; 
+        font-size:13px; 
+        line-height:20px; 
+        font-weight:400;
         }
-        .display-6 {
-            font-family: 'Source Sans Pro',sans-serif;
-            font-size: 1re}
+        .row{
+        margin-top: 30px;
+        }
+        .padding-lg{
+            margin-left: 300px;
+            margin-right: -300px;
+        }
     </style>
 </head>
 
 <body>
-    <div class='container-fluid'>
-        <h1 class='header'>Welcome to HOME PHARMACIST</h1>
-    </div>
-    <section>
+    <div class='container'>
+        <h1 class='header'>Welcome to HOME PHARMACIST</h1><hr><br>
     
-        <div class='container'>
-            <div class="row mbr-justify-content-center">
-                <div class="col-lg-6 mbr-col-md-10">
-                    <div class="wrap" onclick="location.href='<?=SROOT?>register/login/customer';">
-                        <div class="text-wrap vcenter">
-                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Login as a User</h2></p>  
+        <div>
+            <div class='container'>
+            <section class="our-webcoderskull padding-lg">
+                <ul class="row">
+                    <li class="col-12 col-md-6 col-lg-3">
+                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>register/login/customer';">
+                            <figure><img src="https://miro.medium.com/fit/c/1360/1360/1*PTMS3jauA_i0-ZAR1U4nfw.png" class="img-responsive" alt=""></figure>
+                            <h3><a href="<?=SROOT?>register/login/customer">Login as a <br> User</a></h3>
+                            <p><a href="<?=SROOT?>register/signup/customer">Sign up for free</a></p>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mbr-col-md-10">
-                    <div class="wrap" onclick="location.href='<?=SROOT?>register/login/pharmacy';">
-                        <div class="text-wrap vcenter">
-                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Login as a Pharmacy</h2></p>  
+                    </li>
+                    <li class="col-12 col-md-6 col-lg-3">
+                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>register/login/pharmacy';">
+                            <figure><img src="https://i.pinimg.com/originals/25/73/9a/25739a34018afaac50d5a3e6a0a947ea.jpg" class="img-responsive" alt=""></figure>
+                            <h3><a href="<?=SROOT?>register/login/pharmacy">Login as a <br> Pharmacy</a></h3>
+                            <p><a href="<?=SROOT?>register/signup/pharmacy">Apply For a Pharmacy Account</a></p>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mbr-justify-content-center">
-                <div class="col-lg-6 mbr-col-md-10">
-                    <div class="wrap" onclick="location.href='<?=SROOT?>register/signup/customer';">
-                        <div class="text-wrap vcenter">
-                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Sign up as a Customer</h2></p>  
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mbr-col-md-10">
-                    <div class="wrap" onclick="location.href='<?=SROOT?>register/signup/pharmacy';">
-                        <div class="text-wrap vcenter">
-                            <p class="mbr-fonts-style text1 mbr-text display-6"><h2>Apply For a Pharmacy Account</h2></p>  
-                        </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
+            </section>
             </div>
         </div>
-    </section>
+    </div>
 
     
     <div hidden>

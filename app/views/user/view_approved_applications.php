@@ -10,9 +10,10 @@
 </head>
 
 <body>
-    <h1 class='header'>Approved Applications<hr></h1>
+
     <div class='container-fluid'>
-        
+        <a class="mybtn btn btn-default" role="button" href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <h1 class='header'>Approved Applications<hr></h1>
         <?php if(isset($_SESSION['role']) && !strcmp($_SESSION['role'],'super_admin')) { ?>
             <?php if (is_array($this->approvedApplications) && count($this->approvedApplications) > 0) { ?>
             <div class="table-div">
@@ -56,9 +57,7 @@
             echo "<h1> <a href='index.php'> Log in first </a> </h1>";
         }?>
         <br>
-        <a class="btn btn-primary" role="button" href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
     </div>
-
 </body>
 
 </html>

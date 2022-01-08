@@ -9,6 +9,7 @@
 </head>
 <body>
 <div class="container-fluid">
+    <br><br><a role="button" class="mybtn btn btn-primary" href="<?=SROOT?><?php if(isset(Pharmacy::currentLoggedInPharmacy()->id)){echo 'PharmacyDashboard';}else{echo 'CustomerDashboard';}?>">Go to dashboard</a>
     <h1 class = 'header'>Order Section</Section></h1>
     <hr>
     <div>
@@ -55,7 +56,6 @@
                 echo '<h2> No Orders </h2>';
             }?>
         </table>
-        <br><br><a role="button" class="btn btn-primary" href="<?=SROOT?><?php if(isset(Pharmacy::currentLoggedInPharmacy()->id)){echo 'PharmacyDashboard';}else{echo 'CustomerDashboard';}?>">Go to dashboard</a>
     </div>
 </div>  
 </body>
