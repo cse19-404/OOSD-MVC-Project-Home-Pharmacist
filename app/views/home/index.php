@@ -89,7 +89,7 @@
                     <li class="col-12 col-md-6 col-lg-3">
                         <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?=SROOT?>register/login/customer';">
                             <figure><img src="https://miro.medium.com/fit/c/1360/1360/1*PTMS3jauA_i0-ZAR1U4nfw.png" class="img-responsive" alt=""></figure>
-                            <h3><a href="<?=SROOT?>register/signup/customer">Login as a <br> User</a></h3>
+                            <h3><a href="<?=SROOT?>register/login/customer">Login as a <br> User</a></h3>
                             <p><a href="<?=SROOT?>register/signup/customer">Sign up for free</a></p>
                         </div>
                     </li>
