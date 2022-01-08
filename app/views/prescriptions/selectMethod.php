@@ -62,6 +62,13 @@
         line-height:20px; 
         font-weight:400;
         }
+        .row{
+        margin-top: 100px;
+        }
+        .padding-lg{
+            margin-left: 300px;
+            margin-right: -300px;
+        }
     </style>
 
     <?php include_once('css/base.php'); ?>
@@ -87,6 +94,6 @@
                 </ul>
             </section>
             </div>
-
+    </div>
 </body>
 </html>
