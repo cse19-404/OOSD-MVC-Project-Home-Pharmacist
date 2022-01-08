@@ -38,7 +38,7 @@
     ul{
         list-style-type: circle;
     }
-    
+
     .badge{
         border-top-width: 10px;
         border-top-style: solid;
@@ -91,7 +91,7 @@
                     }?>
                 </table>
                 <br>
-                <?php if ($_SESSION['OrderDetails']['prescription'] !== NULL){?>
+                <?php if ($_SESSION['OrderDetails']['prescription'] != NULL){?>
                     <label for="prescription">Prescription: </label>
                     <a href="<?=SROOT?><?=$_SESSION['OrderDetails']['prescription']?>" download='<?=$_SESSION['OrderDetails']['prescription']?>'>
                         <?= ltrim($_SESSION['OrderDetails']['prescription'],'uploads/prescriptions/')?>

@@ -24,7 +24,12 @@ class SeasonalOfferHandler extends Controller{
         if($_SESSION['role']=="pharmacy"){
             $this->PharmacyModel=Pharmacy::currentLoggedInPharmacy();
             $result = $this->PharmacyModel->findOffers("all");
-            $this->view->results = $result;
+            if($result){
+                $this->view->results = $result;
+            }else{
+                $this->view->results = [];
+            }
+            
             //dnd($this->PharmacyModel);
             // $resultQuery=$this->PharmacyModel->findAlloffers();
             // $this->view->result=$resultQuery;
@@ -32,18 +37,19 @@ class SeasonalOfferHandler extends Controller{
         }elseif($_SESSION['role']=="customer"){
             $this->UserModel=User::currentLoggedInUser();
             $allOffers=$this->UserModel->findAllOffers();
-            //dnd($allOffers);
             $result=[];
             $pharmacies=[];
-            foreach($allOffers as $row){
-                if(array_key_exists($row->pharmacy_id,$result)){
-                    $result[$row->pharmacy_id][]=$row;
-                } else{
-                    $result[$row->pharmacy_id]=[$row];
-                    $newPharmacy = new Pharmacy();
-                    $newPharmacy->findById($row->pharmacy_id);
-                    $pharmacies[$row->pharmacy_id] = [$newPharmacy];
-                }              
+            if(isset($allOffers)){
+                foreach($allOffers as $row){
+                    if(array_key_exists($row->pharmacy_id,$result)){
+                        $result[$row->pharmacy_id][]=$row;
+                    } else{
+                        $result[$row->pharmacy_id]=[$row];
+                        $newPharmacy = new Pharmacy();
+                        $newPharmacy->findById($row->pharmacy_id);
+                        $pharmacies[$row->pharmacy_id] = [$newPharmacy];
+                    }              
+                }
             }
             $this->view->results = $result;
             $this->view->pharmacies=$pharmacies;

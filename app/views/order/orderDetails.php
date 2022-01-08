@@ -52,11 +52,11 @@
         <div class="Appcontainer">
             <form action='<?=SROOT?>OrderHandler/order/<?=$this->preId?>/<?php if($submitBtn === "Save Details" || $submitBtn === "Use Default Details"){echo 0;}else{echo 1;}?>/0' method='post' > 
             
-                <label for="receiver_name">Receiver's Name : </label><input class="form-control" name="receiver_name" type="text" value="<?= $this->User->name?>" <?= $readonly?> ><br>
+                <label for="receiver_name">Receiver's Name : </label><input class="form-control" name="receiver_name" type="text" value="<?= $this->User->name?>" <?= $readonly?> required><br>
                 <br>
-                <label for="address">Address : </label><input class="form-control" name="address" type="text" value="<?= $this->User->address?>" <?= $readonly?> ><br>
+                <label for="address">Address : </label><input class="form-control" name="address" type="text" value="<?= $this->User->address?>" <?= $readonly?> required><br>
                 <br>
-                <label for="mobile_number">Receiver's Contact Number : </label><input class="form-control" name="mobile_number" type="text" value="<?= $this->User->mobile_number?>" <?= $readonly?> >
+                <label for="mobile_number">Receiver's Contact Number : </label><input class="form-control" name="mobile_number" type="text" value="<?= $this->User->mobile_number?>" <?= $readonly?> required>
                 <br><br>
                 <input class="btn btn-success" type="submit" value="<?= $submitBtn?>" >
                 <br><br>

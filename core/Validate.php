@@ -65,6 +65,16 @@ class Validate
                                 $this->addError(["{$display} must be a valid email address", $item]);
                             }
                             break;
+                        case 'valid_contact':
+                            $contact_arr=explode('-',$value);
+                            if(count($contact_arr)!==2){
+                                $this->addError(["{$display} must be in valid format (012-3456789)", $item]);
+                            }else{
+                                if(strlen($contact_arr[0])!==3 || strlen($contact_arr[1])!==7 || !is_numeric($contact_arr[0]) || !is_numeric($contact_arr[1])){
+                                    $this->addError(["{$display} must be in valid format (012-3456789)", $item]);
+                                }
+                            }
+                            break;
                     }
                 }
             }

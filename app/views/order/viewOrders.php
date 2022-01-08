@@ -7,6 +7,17 @@
     <title>View Orders</title>
     <?php include_once('css/baseTable.php'); ?>
 </head>
+<style>
+    .dropdown{
+        padding: 6px;
+        border-radius: 5px;
+        margin: 7px;
+        border: hidden;
+    }
+    .dropdown select option{
+        padding: 15px;
+    }
+</style>
 <body>
 <div class="container-fluid">
     <br><br><a role="button" class="mybtn btn btn-primary" href="<?=SROOT?><?php if(isset(Pharmacy::currentLoggedInPharmacy()->id)){echo 'PharmacyDashboard';}else{echo 'CustomerDashboard';}?>">Go to dashboard</a>
@@ -16,7 +27,7 @@
         <?php $statuses = ['All','new', 'seen', 'preparing', 'shipped','delivered'] ?>
         <form action='<?=SROOT?><?php if(isset(Pharmacy::currentLoggedInPharmacy()->id)){echo 'OrderHandler/view';}else{echo 'CustomerDashboard/viewPurchaseHistory';}?>' method='post'>
             <label for="filter">Filter by Status</label>
-            <select class='dropdown' name='filter-status' onchange='this.form.submit()'>
+            <select class='dropdown btn-info' name='filter-status' onchange='this.form.submit()'>
                 <?php
                 for ($i = 0; $i < count($statuses); $i++) {
                     if ($statuses[$i] ===$this->filter) {

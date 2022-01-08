@@ -5,7 +5,16 @@
     <title>Pharmacy Applications</title>
     <?php include_once('css/baseTable.php'); ?>
 </head>
-
+<style>
+    .dropdown{
+        padding: 4px;
+        border-radius: 5px;
+        border: hidden;
+    }
+    .dropdown select option{
+        padding: 15px;
+    }
+</style>
 <body>
     
     <div class='container-fluid'>
@@ -46,7 +55,7 @@
                     <td>
                         <?php $statuses = ['pending', 'approved', 'declined'] ?>
                         <form action='<?=SROOT?>ApplicationHandler/changeStatus' method='post'>
-                            <select class='dropdown' name='status' onchange='this.form.submit()'>
+                            <select class='dropdown btn-info' name='status' onchange='this.form.submit()'>
                                 <?php
                                 for ($i = 0; $i < 3; $i++) {
                                     if ($statuses[$i] == $row['application_status']) {

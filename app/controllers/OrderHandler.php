@@ -11,6 +11,7 @@ class OrderHandler extends Controller{
         }
 
         public function orderAction($preId, $detail=0, $history=0, $order=''){
+            
             if($detail == 1){
                 if ($history == 0) {
                     $strategy = "DirectOrder";
