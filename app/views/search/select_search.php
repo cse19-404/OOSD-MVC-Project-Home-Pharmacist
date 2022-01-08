@@ -101,19 +101,19 @@
             <section class="our-webcoderskull padding-lg">
                 <ul class="row">
                     <li class="col-12 col-md-6 col-lg-3">
-                        <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?= SROOT ?>CustomerDashboard/selectSearch/selected';">
+                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?= SROOT ?>CustomerDashboard/selectSearch/selected';">
                             <figure><img src="https://cdn2.iconfinder.com/data/icons/pharmacy-17/2000/Pharmacy_front-512.png" class="img-responsive" alt=""></figure>
                             <h3><a href="<?= SROOT ?>CustomerDashboard/selectSearch/selected">Select a Pharmacy</a></h3>
                         </div>
                     </li>
                     <li class="col-12 col-md-6 col-lg-3">
-                        <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?= SROOT ?>PrefilledformHandler/nearBy';">
+                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?= SROOT ?>PrefilledformHandler/nearBy';">
                             <figure><img src="https://thumbs.dreamstime.com/b/pharmacy-location-blue-map-pin-icon-element-map-point-mobile-concept-web-apps-icon-website-design-109712535.jpg" class="img-responsive" alt=""></figure>
                             <h3><a href="<?= SROOT ?>PrefilledformHandler/nearBy">Search in Nearby Pharmacies</a></h3>
                         </div>
                     </li>
                     <li class="col-12 col-md-6 col-lg-3">
-                        <div class="cnt-block equal-hight" style="height: 349px;" onclick="location.href='<?= SROOT ?>PrescriptionHandler/selectMethod';">
+                        <div class="cnt-block equal-hight" style="height: 349px;cursor: pointer;" onclick="location.href='<?= SROOT ?>PrescriptionHandler/selectMethod';">
                             <figure><img src="https://media.istockphoto.com/vectors/medical-prescription-vector-illustration-rx-concepts-modern-flat-vector-id1136667779?k=20&m=1136667779&s=612x612&w=0&h=fUimtkr9BCbqkymYD6tXiQxh9RCspWLKwChy5JX3gvw=" class="img-responsive" alt=""></figure>
                             <h3><a href="<?= SROOT ?>PrescriptionHandler/selectMethod">Upload a Prescription</a></h3>
                         </div>
