@@ -105,7 +105,7 @@
                 <br><br>
                 <label class="badge rounded-pill bg-secondary" for="total">Total Price : <?=$this->order->total?></label><br><br>
                 <?php if(!isset(User::currentLoggedInUser()->id)){
-                    if($this->order->status === 'new'){?><br><br><a href="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>/seen">Accept Order</a><?php }else{?>
+                    if($this->order->status === 'new'){?><br><br><a role="button" class="btn btn-success" href="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>/seen">Accept Order</a><?php }else{?>
                         <form action="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>" method="post">
                             <label>Update status :  </label>
                             
@@ -122,11 +122,11 @@
                 <?php }?>
             </div>
         </div>
-                <br><br><a role="button" class="btn btn-success" href="<?=SROOT?>OrderHandler/view">Go back</a>
+                <br><br><a role="button" class="btn btn-primary" href="<?=SROOT?>OrderHandler/view">Go back</a>
                 <?php }else{?>
                 <?php $_SESSION['isHistory'] = 1?>
                 <form action="<?=SROOT?>OrderHandler/order/-1/1/<?= $this->order->id?>/history" method='POST'><input class="btn btn-info" type="submit" value="Re Order"></form>
-                <br><br><a role="button" class="btn btn-success" href="<?=SROOT?>CustomerDashboard/viewPurchaseHistory">Go back</a>
+                <br><br><a role="button" class="btn btn-primary" href="<?=SROOT?>CustomerDashboard/viewPurchaseHistory">Go back</a>
             <?php }?>
 
         
