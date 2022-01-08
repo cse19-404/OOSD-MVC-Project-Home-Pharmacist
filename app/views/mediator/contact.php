@@ -62,6 +62,13 @@
         line-height:20px; 
         font-weight:400;
         }
+        .row{
+        margin-top: 100px;
+    }
+        .padding-lg{
+            margin-left: 150px;
+            margin-right: -150px;
+        }
     </style>
 
     <?php include_once('css/base.php'); ?>

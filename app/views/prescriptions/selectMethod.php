@@ -62,6 +62,13 @@
         line-height:20px; 
         font-weight:400;
         }
+        .row{
+        margin-top: 100px;
+        }
+        .padding-lg{
+            margin-left: 300px;
+            margin-right: -300px;
+        }
     </style>
 
     <?php include_once('css/base.php'); ?>
@@ -86,7 +93,7 @@
                 </ul>
             </section>
             </div>
-
+    </div>
     <br><br><br><a href="<?=SROOT?>CustomerDashboard/search" role='button' class='btn btn-primary'>Go Back</a>
 </body>
 </html>
