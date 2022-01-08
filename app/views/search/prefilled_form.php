@@ -79,16 +79,15 @@
                                 <tr>
                                     <td><?php echo $row->name."(".$row->quantity_unit.")"?></td>
                                     <td><?php echo "Rs " . $row->price_per_unit_quantity?></td>
-                                    <td><?php if(!$row->prescription_needed || ($this->preId !=-1 && User::currentLoggedInUser()->id === Null)){?><form action="<?=SROOT?>PrefilledformHandler/addItem/<?=$row->id?>/<?=$this->pharmId?>/<?=$this->preId?>"><div class="btn-margin"><input class="btn btn-light" type="submit" value='Add'></div></form><?php }else{?>Prescription Needed<?php }?></td>
+                                    <td><?php if(!$row->prescription_needed || ($this->preId !=-1 && User::currentLoggedInUser()->id === Null)){?><form action="<?=SROOT?>PrefilledformHandler/addItem/<?=$row->id?>/<?=$this->pharmId?>/<?=$this->preId?>"><div class="btn-margin"><input class="btn btn-warning" type="submit" value='Add'></div></form><?php }else{?>Prescription Needed<?php }?></td>
                                 </tr>
                             <?php }?>
                         </table>
-                        <br><br>
                     </div>
                 <?php }elseif(isset($this->processed)){echo "<span>No result found!</span>";}?>
             </div>
             <div>
-                <br><br>
+                <br>
                 <table class = 'table'>
                     <tr>
                         <th>Item Name</th>
