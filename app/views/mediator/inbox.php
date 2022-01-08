@@ -229,13 +229,12 @@
                   </aside>
         </div>
         <?php } ?>
+        <?php if ($_SESSION['role']==='pharmacy') {?>
+            <a role='button' class='btn btn-primary' href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
+        <?php }else{?>
+            <a role='button' class='btn btn-primary'href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <?php } ?>
     </div>
-
-    <?php if ($_SESSION['role']==='pharmacy') {?>
-        <a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
-    <?php }else{?>
-        <a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
-    <?php } ?>
 
 </body>
 </html>
