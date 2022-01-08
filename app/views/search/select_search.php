@@ -86,10 +86,20 @@
         color:#337ab7;
     }
     .our-webcoderskull .cnt-block p{ 
-    color:#2a2a2a; 
-    font-size:13px; 
-    line-height:20px; 
-    font-weight:400;
+        color:#2a2a2a; 
+        font-size:13px; 
+        line-height:20px; 
+        font-weight:400;
+    }
+    .mybtn{
+        float: right;
+    }
+    .row{
+        margin-top: 100px;
+    }
+    .padding-lg{
+        margin-left: 150px;
+        margin-right: -150px;
     }
 </style>
 <?php include_once('css/baseForm.php'); ?>
@@ -97,6 +107,7 @@
 <body>
     <div class='container-fluid'>
         <?php if (!isset($this->searchMode)) { ?>
+            <br><a class="mybtn btn btn-primary" role="button" href="<?= SROOT ?>CustomerDashboard">Go to Dashboard</a>
             <div class='container'>
             <section class="our-webcoderskull padding-lg">
                 <ul class="row">
@@ -121,7 +132,6 @@
                 </ul>
             </section>
             </div>
-            <br><br><a class="btn btn-primary" role="button" href="<?= SROOT ?>CustomerDashboard">Go to Dashboard</a>
             <?php } ?>
 
         <?php if (isset($this->searchMode)) {
