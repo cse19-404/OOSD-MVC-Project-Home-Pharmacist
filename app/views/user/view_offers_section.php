@@ -169,7 +169,7 @@
 	    </div>
         <?php }?>
         <br><br>
-        <a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
+        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     <?php }elseif($_SESSION['role']==='customer'){?>
             <?php foreach($this->results as $pharmId => $rows){?>
                 <div class="container-fluid" id="<?= $pharmId?>" style="cursor: pointer; border: 2px solid; border-radius: 10px; padding:30px;text-align:centre;">

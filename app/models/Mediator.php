@@ -20,7 +20,10 @@ class Mediator extends Model{
     }
 
     public function findAllMessages($receiver){
-        return $this->find(['conditions'=>'receiver_username=? AND message_type=?','bind' => [$receiver,'text']]);
+        return $this->find([
+            'conditions'=>'receiver_username=? AND message_type=?',
+            'order'=>'is_read ASC',
+            'bind' => [$receiver,'text']]);
     }
 
     public function getMessage($id){
