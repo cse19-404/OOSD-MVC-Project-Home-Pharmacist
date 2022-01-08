@@ -72,13 +72,16 @@
             margin-left: 300px;
             margin-right: -300px;
         }
+        .header{
+            padding-left: 20px;
+        }
     </style>
 </head>
 
 <body>
+    <h1 class='header'>Welcome to HOME PHARMACIST</h1><hr><br>  
     <div class='container'>
-        <h1 class='header'>Welcome to HOME PHARMACIST</h1><hr><br>
-    
+        
         <div>
             <div class='container'>
             <section class="our-webcoderskull padding-lg">
