@@ -12,6 +12,7 @@
 
 <body>
     <div class="container-fluid">
+    <a href="<?=SROOT?>PharmacyDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
     <h1 class = 'header'>Inventory</h1>
     <hr>
     <?php if (isset($_SESSION['role']) && !strcmp($_SESSION['role'], 'pharmacy')) { ?>
@@ -56,7 +57,6 @@
         </form>
         <br>
         <br>
-        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
 
     <?php } else {
         echo "<h1> <a href='index.php'> Log in first </a> </h1>";

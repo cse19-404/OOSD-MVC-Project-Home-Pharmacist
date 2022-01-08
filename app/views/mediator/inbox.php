@@ -63,6 +63,11 @@
 <body>
 
     <div class='container-fluid'>
+        <?php if ($_SESSION['role']==='pharmacy') {?>
+            <a role='button' class='mybtn btn btn-primary' href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
+        <?php }else{?>
+            <a role='button' class='mybtn btn btn-primary'href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+        <?php } ?>
         <h1 class='header'>Inbox</h1><hr><br>
         <div class="mail-box">
                   <aside class="lg-side">
@@ -228,11 +233,6 @@
                       </div>
                   </aside>
         </div>
-        <?php } ?>
-        <?php if ($_SESSION['role']==='pharmacy') {?>
-            <a role='button' class='btn btn-primary' href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
-        <?php }else{?>
-            <a role='button' class='btn btn-primary'href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
         <?php } ?>
     </div>
 

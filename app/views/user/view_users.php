@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container-fluid">
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
         <?php if(isset($_SESSION['role']) && !strcmp($_SESSION['role'],'super_admin')) { ?>
         <h2>Customer Details<hr></h2>
         <?php if (is_array($this->result_customer) && count($this->result_customer)> 0) { ?>
@@ -100,7 +101,6 @@
         }
         ?>
         <br>
-        <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
     </div>
 </body>
 </html>

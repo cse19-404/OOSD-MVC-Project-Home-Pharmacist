@@ -68,6 +68,11 @@
 </head>
 <body>
 <div class='container-fluid'>
+    <?php if ($_SESSION['role']==='pharmacy') {?>
+        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+    <?php }else{?>
+        <a href="<?=SROOT?>CustomerDashboard" role="button" class="mybtn btn btn-primary">Go to Dashboard</a>
+    <?php } ?>
     <?php if(!isset($this->mode)){?>
         <section class="our-webcoderskull padding-lg">
     <div class="container">
@@ -158,12 +163,6 @@
                 }
         }
     }?>
-
-    <?php if ($_SESSION['role']==='pharmacy') {?>
-        <a href="<?=SROOT?>PharmacyDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
-    <?php }else{?>
-        <a href="<?=SROOT?>CustomerDashboard" role="button" class="btn btn-primary">Go to Dashboard</a>
-    <?php } ?>
     </div>
 
 </body>

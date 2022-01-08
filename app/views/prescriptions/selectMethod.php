@@ -68,6 +68,7 @@
 </head>
 <body>
     <div class='container-fluid'>
+    <br><br><br><a href="<?=SROOT?>CustomerDashboard/search" role='button' class='mybtn btn btn-primary'>Go Back</a>
             <div class='container'>
             <section class="our-webcoderskull padding-lg">
                 <ul class="row">
@@ -87,6 +88,5 @@
             </section>
             </div>
 
-    <br><br><br><a href="<?=SROOT?>CustomerDashboard/search" role='button' class='btn btn-primary'>Go Back</a>
 </body>
 </html>

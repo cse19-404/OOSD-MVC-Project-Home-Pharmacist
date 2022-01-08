@@ -9,6 +9,8 @@
 </head>
 <body>
     <div class='container-fluid'>
+    <br><br><a role="button" class="mybtn btn btn-primary" href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
+
         <h1 class="header">Availability of NearBy Pharmacies</h1>
         <hr>
         <?php if (isset($this->availabilty) && !empty($this->availabilty)) {?>
@@ -29,7 +31,6 @@
         }
         echo "All Pharmacies Found 0 out of ".$count;}?>
 
-    <br><br><a role="button" class="btn btn-primary" href="<?=SROOT?>CustomerDashboard/search">Go Back</a>
     </div>
 </body>
 </html>
