@@ -59,7 +59,7 @@
     </style>
 </head>
 <body>
-    <h1 class='header'>Login<hr></h1>
+    <h1 class='header'>Login as a <?= ucwords(Register::getCurrentRole()) ?><hr></h1>
     <br>
     
         <div class="outer">
