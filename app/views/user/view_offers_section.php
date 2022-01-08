@@ -56,7 +56,7 @@
         .card {
             margin-bottom: 50px;
             background: #4089be75;
-            border: solid;
+            border: none;
             border-radius: 10px;
             padding: 3em;
             line-height: 1.5em;
