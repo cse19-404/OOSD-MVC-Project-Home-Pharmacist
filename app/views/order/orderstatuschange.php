@@ -109,11 +109,17 @@
                         <form action="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>" method="post">
                             <label>Update status :  </label>
                             
-                            <select class="dropdown btn-primary" name="status" id="status">
-                                <option value="new">New</option>
-                                <option value="preparing">Preparing</option>
-                                <option value="shipped">Shipped</option>
-                                <option value="delivered">Delivered</option>
+                            <?php $statuses = ['new', 'preparing', 'shipped','delivered'] ?>
+                            <select class="dropdown btn-primary" name='status'  id='status'>
+                                    <?php
+                                    for ($i = 0; $i < count($statuses); $i++) {
+                                        if ($statuses[$i] === $this->order->status) {
+                                            echo "<option value =" . $statuses[$i] . " selected= 'selected'>" . ucwords($statuses[$i]) . "</option>";
+                                        } else {
+                                            echo "<option value=" . $statuses[$i] . ">" . ucwords($statuses[$i]) . "</option>";
+                                        }
+                                    }
+                                    ?>
                             </select>
                             
                             
