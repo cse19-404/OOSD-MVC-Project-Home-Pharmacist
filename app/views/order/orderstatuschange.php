@@ -110,17 +110,21 @@
                             <label>Update status :  </label>
                             
                             <?php $statuses = ['seen','preparing', 'shipped','delivered'] ?>
-                            <select class="dropdown btn-primary" name='status'  id='status'>
+                            <select class="dropdown btn-primary" name='status'  id='status' required>
                                     <?php
                                     for ($i = 0; $i < count($statuses); $i++) {
                                         if ($statuses[$i] === $this->order->status) {
                                             if ($statuses[$i] === 'seen') {
-                                                echo "<option value='seen' disabled>Seen</option>";
+                                                echo "<option value='seen' disabled selected= 'selected'>Seen</option>";
                                             }else{
                                                 echo "<option value =" . $statuses[$i] . " selected= 'selected'>" . ucwords($statuses[$i]) . "</option>";
                                             }
                                         } else {
-                                            echo "<option value=" . $statuses[$i] . ">" . ucwords($statuses[$i]) . "</option>";
+                                            if ($statuses[$i] === 'seen'){
+                                                echo "<option value='seen' disabled>Seen</option>";
+                                            }else {
+                                                echo "<option value=" . $statuses[$i] . ">" . ucwords($statuses[$i]) . "</option>";
+                                            }
                                         }
                                     }
                                     ?>
