@@ -9,11 +9,13 @@ class Mediator extends Model{
     }
 
     public function saveMessage($params,$to,$from){
+        date_default_timezone_set('Asia/Colombo');
         $params['sender_username'] = $from;
         $params['receiver_username'] = $to;
         $params['message_type'] = 'text';
         $params['message_ref_id'] = 'None';
         $params['is_read'] = 0;
+        $params['subject'] = $params['subject'].' - '.date("Y-m-d"). ' - '. date("h:i:sa");
         $this->assign($params);
         $this->save(); 
 
@@ -35,14 +37,15 @@ class Mediator extends Model{
     }
 
     public function receiveSeasonalOffers($mode,$OfferId,$from,$msg){
+        date_default_timezone_set('Asia/Colombo');
         $params=[];
         if ($mode === 'edit') {
             $params['subject'] = 'Seasonal Offer Edited';
-            $params['message'] = 'Seasonal Offer was edited by "'.$this->getPharmacyNamebyUsername($from) . '"  - '.$msg;
+            $params['message'] = 'Seasonal Offer was edited by "'.$this->getPharmacyNamebyUsername($from) . '" on '.date("Y-m-d"). ' at '. date("h:i:sa").'. - '.$msg;
         }
         if ($mode === 'new') {
             $params['subject'] = 'Seasonal Offer Added';
-            $params['message'] = 'New Seasonal Offer was added by "'. $this->getPharmacyNamebyUsername($from). '" ';           
+            $params['message'] = 'New Seasonal Offer was added by "'. $this->getPharmacyNamebyUsername($from).'" on '.date("Y-m-d"). ' at '. date("h:i:sa").'.';           
         }
 
         $params['sender_username'] = $from;
@@ -71,15 +74,16 @@ class Mediator extends Model{
     }
 
     public function receivePrefilledForms($message_ref_id,$mode){
+        date_default_timezone_set('Asia/Colombo');
         $result = $this->_db->find('prefilledformtable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
         $from = $this->getPharmacyUsernamefromID($result[0]->pharmacy_id);
         $params=[];
         $params['subject'] = 'Pre-Filled Form Recieved';
         if ($mode === 'pharmacy') {
-            $params['message'] = 'Pre-Filled Form created and sent by "'. $this->getPharmacyNamebyUsername($from). '" as for your request';            
+            $params['message'] = 'Pre-Filled Form created and sent by "'. $this->getPharmacyNamebyUsername($from). '" as for your request on '.date("Y-m-d"). ' at '. date("h:i:sa").'. ';            
         }
         if($mode === 'prescription'){
-            $params['message'] = 'Pre-Filled Form was sent by "'. $this->getPharmacyNamebyUsername($from). '" for the prescription you sent.';
+            $params['message'] = 'Pre-Filled Form was sent by "'. $this->getPharmacyNamebyUsername($from). '" on '.date("Y-m-d"). ' at '. date("h:i:sa").' for the prescription you sent on '.$result[0]->sent_date.'.';
         }
         $params['sender_username'] = $from;
         $params['receiver_username'] = $this->getCustomerUsernamefromID($result[0]->customer_id);
@@ -95,16 +99,17 @@ class Mediator extends Model{
     }
 
     public function receiveOrderStatusUpdate($message_ref_id,$status){
+        date_default_timezone_set('Asia/Colombo');
         $result = $this->_db->find('ordertable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
         $from = $this->getPharmacyUsernamefromID($result[0]->pharmacy_id);
         $params=[];
         if ($status === 'seen') {
             $params['subject'] = 'Order Accepted'; 
-            $params['message'] = 'The Order you made at "'. $this->getPharmacyNamebyUsername($from). '" has been accepted. Your order is now confirmed.';                    
+            $params['message'] = 'The Order you made at "'. $this->getPharmacyNamebyUsername($from). '" has been accepted. Your order was confirmed on '.date("Y-m-d"). ' at '. date("h:i:sa").'.';                    
         }
         else{
             $params['subject'] = 'Order Status Updated';
-            $params['message'] = 'The Order you made at "'. $this->getPharmacyNamebyUsername($from). '" has changed the status of your order. The status of your order is "'.$status.'".';            
+            $params['message'] = 'The Order you made at "'. $this->getPharmacyNamebyUsername($from). '" has changed the status of your order on '.date("Y-m-d"). ' at '. date("h:i:sa").'. The status of your order is "'.$status.'".';            
         }
         
         $params['sender_username'] = $from;
@@ -121,12 +126,13 @@ class Mediator extends Model{
     }
 
     public function confirmOrder($message_ref_id){
+        date_default_timezone_set('Asia/Colombo');
         $result = $this->_db->find('ordertable',['conditions'=>'id=?','bind' => [$message_ref_id]]);
         $from = $this->getCustomerUsernamefromID($result[0]->customer_id);
         $params=[];
                 
         $params['subject'] = 'New Order';
-        $params['message'] = 'A new Order is made by "'.$this->getCustomerNamebyUsername($from). '" at your pharamcy. You can view new order details and accept the order now.';            
+        $params['message'] = 'A new Order is made by "'.$this->getCustomerNamebyUsername($from). '" at your pharamcy on '.date("Y-m-d"). ' at '. date("h:i:sa").'. You can view new order details and accept the order now.';            
 
         $params['sender_username'] = $from;
         $params['receiver_username'] = $this->getPharmacyUsernamefromID($result[0]->pharmacy_id); 

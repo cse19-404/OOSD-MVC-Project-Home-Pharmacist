@@ -21,13 +21,16 @@
         text-align: center;
         color: darkblue;
       }
+      body{
+          padding: 10%;
+      }
     </style>
     <?php include_once('css/baseForm.php'); ?>
 </head>
 <body>
     <div class="Appcontainer">
-        <br><br><a role='button' class='mybtn btn btn-primary' href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
-        <h2>Message Successfully Sent</h2>
+        <h2 class="header">Message Successfully Sent</h2>      
+        <br><br><a role='button' class='btn btn-primary' href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
     </div>
 
 </body>
