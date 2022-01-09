@@ -182,11 +182,9 @@
                                     </tr>
                                 <?php }else{?>
                                     <tr class="unread">
-                                    <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                         <td class="view-message "><?php echo $row->subject.'<br>'.$row->message ?></td>
                                         <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td>
-                                    </tr>
                                     </tr>                        
                                 <?php } }?>
                           </tbody>
@@ -218,11 +216,9 @@
                                     </tr>
                                 <?php }else{?>
                                     <tr class="unread">
-                                    <tr class="">
                                         <td class="view-message  dont-show"><?php echo 'From: '.$row->sender_username.'' ?> </td>
                                         <td class="view-message "><?php echo $row->subject.'<br>'.$row->message ?></td>
                                         <td class="view-message  text-right"><a role="button" class="mybtnn btn btn-info" href="<?=SROOT?>OrderHandler/viewOrder/<?=$row->message_ref_id?>/<?=$row->id?>">View</a></td>
-                                    </tr>
                                     </tr>                        
                                 <?php } }?>
                           </tbody>
