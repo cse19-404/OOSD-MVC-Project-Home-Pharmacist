@@ -10,8 +10,11 @@
     <?php include_once('css/base.php'); ?>
 
     <style>
-        .bg-danger {
-            color: #FF0000;
+        .myadjust {
+            margin-left: 50px;
+            margin-right: 50px;
+            padding-left: 38%;
+            padding-right: 37%; 
         }
 
         .main {
@@ -70,15 +73,16 @@
         </h1>
     </header>
     <br>
-
+    <div class="myadjust">
+        <?php if (isset($this->errcreditionals)) { ?>
+            <div class="alert alert-danger" role="alert" style="padding-left: 33px;">
+                <strong><?php echo ($this->errcreditionals); ?></strong>
+            </div>
+        <?php } ?>
+    </div>
     <div class="outer">
         <div style="width:100%;">
             <div class="top">
-                <div class='bg-danger'>
-                    <?php if (isset($this->errcreditionals)) {
-                        echo $this->errcreditionals;
-                    } ?>
-                </div>
                 <main class='main'>
                     <form action="<?= SROOT ?>register/login/<?= Register::getCurrentRole() ?>" method="post">
                         <div class="mb-3 row1">
