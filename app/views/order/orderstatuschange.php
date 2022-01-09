@@ -109,8 +109,9 @@
                         <form action="<?=SROOT?>OrderHandler/updateStatus/<?=$this->order->id?>" method="post">
                             <label>Update status :  </label>
                             
-                            <?php $statuses = ['new', 'preparing', 'shipped','delivered'] ?>
+                            <?php $statuses = ['preparing', 'shipped','delivered'] ?>
                             <select class="dropdown btn-primary" name='status'  id='status'>
+                                    <option value="new" disabled>New</option>
                                     <?php
                                     for ($i = 0; $i < count($statuses); $i++) {
                                         if ($statuses[$i] === $this->order->status) {
