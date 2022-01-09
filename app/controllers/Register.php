@@ -22,7 +22,7 @@
                         self::$_role = 'customer';
                         Router::redirect('CustomerDashboard');
                     }else {
-                        $this->view->errcreditionals = '<li class=bg-danger> Wrong Creditionals </li>';
+                        $this->view->errcreditionals = '<li> Wrong Creditionals </li>';
                         $this->view->render('register/login');
                     }
                 }else{
@@ -33,7 +33,7 @@
                         //dnd($GLOBALS['multiton']);
                         Router::redirect('PharmacyDashboard');
                     }else {
-                        $this->view->errcreditionals = '<li class=bg-danger> Wrong Creditionals </li>';
+                        $this->view->errcreditionals = '<li> Wrong Creditionals </li>';
                         $this->view->render('register/login');
                     }
                 }                
