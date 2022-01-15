@@ -75,11 +75,19 @@ class User extends Model
     public function getAllNearByPharmacies()
     {
         $pharmacies = $this->findAllPharmacies();
+        //dnd($pharmacies);
+        if(!$pharmacies){
+            $pharmacies=[];
+            $distance_list=[];
+            return '';
+        }
+        
         foreach ($pharmacies as $pharmacy) {
             $pharmacy = (array) $pharmacy;
             $distance = distance($this->latitude, $this->longitude, $pharmacy['latitude'], $pharmacy['longitude']);
             $distance_list[$pharmacy['id']] = $distance;
         }
+        
         asort($distance_list);
         foreach ($distance_list as $key => $value) {
             $keys[] = $key;
