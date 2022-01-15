@@ -9,27 +9,51 @@
     .bg-danger {color: #FF0000;}
     </style>
 </head>
-<body>
-<div class='bg-danger'>
-    <?php if(isset($this->displayErrors)) {
-        echo $this->displayErrors;
-    } ?>
-    </div>
-    <div>
-        <h2>Change Account Details</h2>
-        <form action="<?=SROOT?>UserHandler/changedetails/<?=$this->role?>" method="post">
-            <label>New Username:</label>
-            <input type="text" name="username"><br><br>
-            <label>New password:</label>
-            <input type="password" name="password"><br>
-            <br><input type="submit" value="Change">         
-        </form>
-    </div>
+<style>
+        .bg-danger {
+            color: #FF0000;
+        }
 
-    <?php if ($this->role === 'customer') {?>
-    <br><br><a href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
-    <?php } else {?>
-    <br><br><a href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
-    <?php } ?>
+        .Appcontainer {
+            z-index: 2;
+            border-radius: 15px;
+            background-color: #e9e9e9ed;
+            height: 15%;
+            width: 25%;
+            margin: auto;
+            margin-top: 2cm;
+            padding: 30px;
+            padding-left: 30px;
+            padding-right: 30px;
+            box-shadow: 10px 10px 50px 0.1px rgba(0, 0, 0, 0.664);
+        }
+</style>
+<?php include_once('css/baseForm.php'); ?>
+<body>
+    <div class='container-fluid'>
+        <?php if ($this->role === 'customer') {?>
+            <a role="button" class="mybtn btn btn-primary" href="<?=SROOT?>CustomerDashboard">Go to Dashboard</a>
+            <?php } else {?>
+            <a role="button" class="mybtn btn btn-primary" href="<?=SROOT?>PharmacyDashboard">Go to Dashboard</a>
+        <?php } ?>
+        <h2 class="header">Change Account Details</h2>
+        <div class="Appcontainer">
+            <div class='bg-danger'>
+                <?php if(isset($this->displayErrors)) {
+                    echo $this->displayErrors;
+                } ?>
+            </div>
+            <div>
+                
+                <form class="form-horizontal" action="<?=SROOT?>UserHandler/changedetails/<?=$this->role?>" method="post">
+                    <label>New Username:</label>
+                    <input class="form-control" type="text" name="username"><br><br>
+                    <label>New password:</label>
+                    <input class="form-control" type="password" name="password"><br>
+                    <br><input class="btn btn-success" type="submit" value="Change"><br>         
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -34,6 +34,8 @@
                     <th>Delivery Supported</th>
                     <th>Files</th>
                     <th>Status</th>
+                    <th></th>
+                    <th></th>
                 </thread>
                 <?php
 

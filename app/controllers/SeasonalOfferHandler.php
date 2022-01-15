@@ -39,7 +39,7 @@ class SeasonalOfferHandler extends Controller{
             $allOffers=$this->UserModel->findAllOffers();
             $result=[];
             $pharmacies=[];
-            if(isset($allOffers)){
+            if(isset($allOffers) && $allOffers){
                 foreach($allOffers as $row){
                     if(array_key_exists($row->pharmacy_id,$result)){
                         $result[$row->pharmacy_id][]=$row;
