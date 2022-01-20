@@ -43,7 +43,7 @@
                     } else {
                         echo "<td>" . "No" . "</td>";
                     }
-                    echo "<td> <a href=" . $row['documents'] . " download>" . basename($row['documents']) . "</a>";
+                    echo "<td> <a href=" .SROOT. $row['documents'] . " download>" . basename($row['documents']) . "</a>";
                 ?>
                     <td><a class="btn btn-info" role="button" href=<?php echo SROOT."UserHandler/pharmAccCreat/".$row['id'];?>>Create Account</a></td>
                     </tr>
