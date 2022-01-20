@@ -9,6 +9,10 @@
     <?php include_once('css/base.php'); ?>
 
     <style>
+        .myadjust {
+            padding-left: 38%;
+            padding-right: 37%; 
+        }
         ul{
         margin:0;
         padding:0;
@@ -81,6 +85,13 @@
 <body>
     <h1 class='header'>Welcome to HOME PHARMACIST</h1><hr><br>  
     <div class='container'>
+        <div class="myadjust style="padding-left: 31%;border-right-width: 0px;border-right-style: solid;">
+            <?php if (isset($this->msg)) { ?>
+                <div class="alert alert-info" role="alert" style="padding-left: 29px;padding-right: 15px;">
+                    <strong><?php echo $this->msg; ?></strong>
+                </div>
+            <?php } ?>
+        </div>
         
         <div>
             <div class='container'>
@@ -105,22 +116,6 @@
             </div>
         </div>
     </div>
-
-    
-    <div hidden>
-        <h1 class='header'>Welcome to HOME PHARMACIST</h1>
-        <hr><br>
-        <a href="<?=SROOT?>register/login/customer">Login as a User</a><br>
-        <a href="<?=SROOT?>register/login/pharmacy">Login as a Pharmacy</a>
-        <br><br>
-        <a href="<?=SROOT?>register/signup/customer">New to HOME PHARMACIST.? Sign up for free.</a>
-        <br><br>
-        <a href="<?=SROOT?>register/signup/pharmacy">Apply For a Pharmacy Account</a>
-        <br><br>
-    </div>
-    <h3><?php if (isset($_GET['msg'])) {
-            echo $_GET['msg'];
-        } ?></h3>
 </body>
 
 </html>
