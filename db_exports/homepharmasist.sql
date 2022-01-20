@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 11:48 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Jan 20, 2022 at 12:31 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -85,7 +85,7 @@ CREATE TABLE `itemtable` (
 
 INSERT INTO `itemtable` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `price_per_unit_quantity`, `prescription_needed`, `pharmacy_id`, `status`) VALUES
 (1, 'KLODIC', 'R3475M', 'TABLETS', 1350, 1000, 1, 1, 0),
-(2, 'SILOCIN 4', 'NP1403M', 'CAPSULES', 1200, 16, 1, 1, 0),
+(2, 'SILOCIN 4', 'NP1403M', 'CAPSULES', 1200, 16, 1, 2, 0),
 (3, 'SITALO  100', 'NP3863M', 'FILM COA', 920, 120, 1, 1, 0),
 (4, 'PANADOL', 'NP3383M', 'CARDS', 539, 20, 0, 2, 0),
 (5, 'SAMAHAN', 'R3214M', 'PACKET', 770, 15, 0, 1, 0),
@@ -93,19 +93,19 @@ INSERT INTO `itemtable` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `pri
 (7, 'URIMAX 0.4 mg', 'R2406M', 'TABLETS', 390, 8.5, 1, 3, 0),
 (8, 'GEFTIWEL 250', 'NP2043M', 'TABLETS', 589, 4.75, 1, 1, 0),
 (9, 'PANADOL', 'NP3383M', 'BOTTLE', 539, 20, 0, 3, 0),
-(11, 'Atarax 25mg', '23e', 'TABLETS', 560, 220.25, 1, 1, 0),
+(11, 'Atarax 25mg', '23e', 'TABLETS', 560, 220.25, 1, 2, 0),
 (12, 'Alprax 0.25', 'NP3383Z', 'TABLETS', 600, 100, 0, 3, 0),
 (13, 'Pantop 40', 'NP223R', 'TABLETS', 700, 10.5, 1, 1, 0),
 (14, 'Sinarest', 'NP140K', 'BOTTLE', 250, 560, 1, 4, 0),
-(15, 'Diazepam', 'NP20R', 'CAPSULES', 145, 10.25, 1, 1, 0),
+(15, 'Diazepam', 'NP20R', 'CAPSULES', 145, 10.25, 1, 3, 0),
 (16, 'Hydrocortisone', 'NP290T', 'TABLETS', 350, 220, 0, 3, 0),
 (17, 'Phenobarbital', 'NP22Y', 'TABLETS', 500, 113.5, 0, 1, 0),
-(18, 'Pyrantel', 'NP200P', 'CARDS', 123, 564, 0, 4, 0),
+(18, 'Pyrantel', 'NP200P', 'CARDS', 123, 564, 1, 2, 0),
 (19, 'Benzylpenicillin', 'NP289T', 'PACKET', 340, 230, 0, 4, 0),
-(20, 'Nitrofurantoin', 'NP208U', 'BOTTLE', 260, 360, 1, 1, 0),
-(21, 'Siddhalepa', 'TH908P', 'TUBES', 450, 55, 0, 2, 0),
-(22, 'Pyrazinamide', 'YU908I', 'FILM COA', 620, 22.3, 0, 1, 0),
-(23, 'Flucytosine', 'NP2090I', 'TUBES', 234, 999.5, 1, 2, 0);
+(20, 'Nitrofurantoin', 'NP208U', 'BOTTLE', 260, 360, 1, 3, 0),
+(21, 'Siddhalepa', 'TH908P', 'TUBES', 450, 55, 0, 1, 0),
+(22, 'Pyrazinamide', 'YU908I', 'FILM COA', 620, 22.3, 0, 4, 0),
+(23, 'Flucytosine', 'NP2090I', 'TUBES', 234, 999.5, 0, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -129,7 +129,15 @@ CREATE TABLE `mediatortable` (
 --
 
 INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `message_type`, `subject`, `message`, `message_ref_id`, `is_read`) VALUES
-(58, 'Thor', 'Lanka Pharmacy', 'order', 'New Order', 'A new Order is made by &quot;Thor Odinson&quot; at your pharamcy on 2022-01-20 at 04:10:12pm. You can view new order details and accept the order now.', 12, 0);
+(58, 'Thor', 'Lanka Pharmacy', 'order', 'New Order', 'A new Order is made by &quot;Thor Odinson&quot; at your pharamcy on 2022-01-20 at 04:10:12pm. You can view new order details and accept the order now.', 12, 0),
+(59, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by &quot;New Pharmacy&quot; on 2022-01-20 at 04:24:55pm.', 13, 0),
+(60, 'New Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by &quot;New Pharmacy&quot; on 2022-01-20 at 04:27:48pm.', 14, 0),
+(61, 'Lanka Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by &quot;Lanka Pharmacy&quot; on 2022-01-20 at 04:29:42pm.', 15, 0),
+(62, 'Asiri Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by &quot;Asiri Pharmacy&quot; on 2022-01-20 at 04:33:01pm.', 16, 0),
+(63, 'Tony', 'New Pharmacy', 'order', 'New Order', 'A new Order is made by &quot;Tony Stark&quot; at your pharamcy on 2022-01-20 at 04:37:14pm. You can view new order details and accept the order now.', 13, 0),
+(64, 'Tony', 'Lanka Pharmacy', 'order', 'New Order', 'A new Order is made by &quot;Tony Stark&quot; at your pharamcy on 2022-01-20 at 04:38:43pm. You can view new order details and accept the order now.', 14, 0),
+(65, 'New Pharmacy', 'Tony', 'order', 'Order Accepted', 'The Order you made at &quot;New Pharmacy&quot; has been accepted. Your order was confirmed on 2022-01-20 at 04:44:17pm.', 13, 0),
+(66, 'Lanka Pharmacy', 'Tony', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;Lanka Pharmacy&quot; on 2022-01-20 at 04:49:21pm for the prescription you sent on 2022-01-20.', 21, 0);
 
 -- --------------------------------------------------------
 
@@ -148,6 +156,16 @@ CREATE TABLE `offertable` (
   `isexpired` tinyint(1) NOT NULL,
   `bannerdocument` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `offertable`
+--
+
+INSERT INTO `offertable` (`id`, `pharmacy_id`, `name`, `description`, `start_date`, `end_date`, `status`, `isexpired`, `bannerdocument`) VALUES
+(13, 1, 'PULSE25', '25% discount on your orders', '2022-01-20', '2022-01-30', 0, 0, 'uploads/25offer-banner.jpg'),
+(14, 1, 'New Year Special', 'Get 70% discount on Health and Wellness products', '2022-01-21', '2022-01-31', 0, 0, 'uploads/medicines-offers.jpg'),
+(15, 2, '2022 Special', 'Get 20% discounts on your orders', '2022-01-21', '2022-01-28', 0, 0, 'uploads/Medicine-Order-Online.jpg'),
+(16, 3, 'Allopathy Offer', 'Get up to 20 to 25% discount on all Allopathy medicines', '2022-01-19', '2022-01-25', 0, 0, 'uploads/maxresdefault.jpg');
 
 -- --------------------------------------------------------
 
@@ -179,7 +197,9 @@ CREATE TABLE `ordertable` (
 --
 
 INSERT INTO `ordertable` (`id`, `customer_id`, `pharmacy_id`, `receiver_name`, `address`, `mobile_number`, `no_of_items`, `items`, `unit_prices`, `quantities`, `prescription`, `total`, `status`, `closed`, `deleted`, `seen`) VALUES
-(12, 4, 2, 'Thor Odinson', 'no.2,Kandy Rd,Kurunegala', '071-4290810', '1', '4', '20', '2', '', 40, 'new', 0, 0, 0);
+(12, 4, 2, 'Thor Odinson', 'no.2,Kandy Rd,Kurunegala', '071-4290810', '1', '4', '20', '2', '', 40, 'new', 0, 0, 0),
+(13, 2, 1, 'Pepper Potts', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266245', '3', '5,17,6', '15,113.5,2300', '12,25,1', '', 5318, 'seen', 0, 0, 0),
+(14, 2, 2, 'Tony Stark', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266278', '2', '4,23', '20,999.5', '12,5', '', 5238, 'new', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -245,7 +265,9 @@ CREATE TABLE `prefilledformtable` (
 --
 
 INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_all_item`, `no_of_items`, `itemIds`, `quantities`, `prescription`, `deleted`, `form_sent`, `seen`, `sent_date`) VALUES
-(19, 4, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/prescription01.txt', 0, 0, 0, '2022-01-20');
+(19, 4, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/prescription01.txt', 0, 0, 0, '2022-01-20'),
+(20, 2, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/prescription.jpg', 0, 0, 0, '2022-01-20'),
+(21, 2, 2, 3, '3', '11,18,4', '21,12,20', 'uploads/prescriptions/prescription_legible_roj_17jan24.jpg', 0, 1, 0, '2022-01-20');
 
 -- --------------------------------------------------------
 
@@ -352,19 +374,19 @@ ALTER TABLE `itemtable`
 -- AUTO_INCREMENT for table `mediatortable`
 --
 ALTER TABLE `mediatortable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT for table `offertable`
 --
 ALTER TABLE `offertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `ordertable`
 --
 ALTER TABLE `ordertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pharmacytable`
@@ -376,7 +398,7 @@ ALTER TABLE `pharmacytable`
 -- AUTO_INCREMENT for table `prefilledformtable`
 --
 ALTER TABLE `prefilledformtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `usertable`
