@@ -108,7 +108,7 @@
                     
                 </div>
                 <ul class="dropdownSettings">
-                    <li class="SettingsListItem" name="changePasswords"><a class="SettingsListItem" href="<?=SROOT?>UserHandler/changedetails/<?php if($_SESSION['role'] === 'customer'){echo 'customer';}else{echo 'pharmacy';}?>">Change Details</a></li>
+                    <li class="SettingsListItem" name="changePasswords"><a class="SettingsListItem" href="<?=SROOT?>UserHandler/changedetails/<?php if($_SESSION['role'] === 'customer' || $_SESSION['role'] === 'super_admin'){echo 'customer';}else{echo 'pharmacy';}?>">Change Details</a></li>
                     <li class="SettingsListItem" name="logout"><a href="<?=SROOT?>register/logout" class="SettingsListItem">Log Out</a></li>
                 </ul>
             </div>
