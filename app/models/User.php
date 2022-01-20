@@ -55,7 +55,11 @@ class User extends Model
 
     public function findAllApplications()
     {
-        return $this->_db->find('applicationtable', ['conditions' => 'deleted=?', 'bind' => [0]]);
+        return $this->_db->find('applicationtable', [
+            'conditions' => 'deleted=?',
+            'order'=>'acc_created ASC',
+            'bind' => [0]
+        ]);
     }
 
     public function findApprovedApplications()

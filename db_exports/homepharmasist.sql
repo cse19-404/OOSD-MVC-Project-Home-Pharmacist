@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2022 at 09:54 PM
+-- Generation Time: Jan 20, 2022 at 11:22 AM
 -- Server version: 10.4.19-MariaDB
--- PHP Version: 8.0.6
+-- PHP Version: 8.0.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -47,13 +47,19 @@ CREATE TABLE `applicationtable` (
 --
 
 INSERT INTO `applicationtable` (`id`, `email`, `pharmacy_name`, `latitude`, `longitude`, `delivery_supported`, `documents`, `application_status`, `acc_created`, `address`, `contact_no`, `deleted`) VALUES
-(1, 'newpharmacy123@gmail.com', 'New Pharmacy', 7.4818, 80.3609, 1, 'uploads/Evidence01.txt', 'declined', 0, '12\\2,Kandy road,Kurunegala', '012-1212123', 0),
-(2, 'jayapharm99@gmail.com', 'Jaya Pharmacy', 6.03575, 80.2384, 0, 'uploads/Evidence02.docx', 'declined', 0, 'No.9,Akuressa Rd,Galle', '012-1212124', 0),
+(1, 'newpharmacy123@gmail.com', 'New Pharmacy', 7.4818, 80.3609, 1, 'uploads/Evidence01.txt', 'approved', 1, '12\\2,Kandy road,Kurunegala', '012-1212123', 0),
+(2, 'jayapharm99@gmail.com', 'Jaya Pharmacy', 6.03575, 80.2384, 0, 'uploads/Evidence02.docx', 'approved', 1, 'No.9,Akuressa Rd,Galle', '012-1212124', 0),
 (3, 'lankapharmacy00@gmail.com', 'Lanka Pharmacy', 6.88842, 81.3439, 1, 'uploads/Evidence03.txt', 'approved', 1, 'No.7,Colombo Rd,Monaragala', '012-1212178', 0),
-(4, 'unitedpharm23@yahoo.com', 'United Pharmacy', 6.98862, 81.0574, 1, 'uploads/Evidence04.txt', 'pending', 0, 'No.23,Bandarawela Rd,Badulla', '012-1911913', 0),
-(5, 'lankapharmacy66@gmail.com', 'Lanka Pharmacy', 7.16491, 80.5694, 0, 'uploads/Evidence05.txt', 'pending', 0, 'No.78,Kandy Rd,Gampola', '099-1212998', 0),
-(6, 'citypharmacy404@gmail.com', 'City Pharmacy', 7.33816, 80.9989, 1, 'uploads/Evidence06.txt', 'pending', 0, 'No.22,Badulla Rd,Mahiyanganaya', '099-1212001', 0),
-(7, 'asiriph@gmil.com', 'Asiri Pharmacy', 7.23, 80, 1, 'uploads/Evidence07.txt', 'approved', 1, 'no 12, Jaya Mawatha, Colombo 7', '011 - 1234333', 0);
+(4, 'unitedpharm23@yahoo.com', 'United Pharmacy', 6.98862, 81.0574, 1, 'uploads/Evidence04.txt', 'approved', 1, 'No.23,Bandarawela Rd,Badulla', '012-1911913', 0),
+(5, 'lankapharmacy66@gmail.com', 'Lanka Pharmacy', 7.16491, 80.5694, 0, 'uploads/Evidence05.txt', 'approved', 1, 'No.78,Kandy Rd,Gampola', '099-1212998', 0),
+(6, 'citypharmacy404@gmail.com', 'City Pharmacy', 7.33816, 80.9989, 1, 'uploads/Evidence06.txt', 'approved', 1, 'No.22,Badulla Rd,Mahiyanganaya', '099-1212001', 0),
+(7, 'asiriph@gmil.com', 'Asiri Pharmacy', 7.23, 80, 1, 'uploads/Evidence07.txt', 'approved', 1, 'no 12, Jaya Mawatha, Colombo 7', '011 - 1234333', 0),
+(8, 'chameepharm@gmail.cpm', 'Chamee Pharmacy', 8.32225, 80.4026, 1, 'uploads/chamee_evidence.txt', 'pending', 0, 'Maithripala Senanayake Mawatha, Anuradhapura', '025-2234733', 0),
+(9, 'suwasewanapharm@gmail.com', 'Suwasewana Pharmacy', 7.26222, 80.5928, 1, 'uploads/suwasewana_evidence.txt', 'approved', 1, 'N0 534, Peradeniya Rd, Kandy', '0812634405', 0),
+(10, 'unionpharm@gmail.com', 'Union Pharmacy', 6.03649, 80.2166, 0, 'uploads/unionpharm_evidence.txt', 'approved', 1, 'No 200, Dikwalla Rd, Galle', '091-2245455', 0),
+(11, 'libertypharm@gmail.com', 'Liberty Pharmacy', 6.91141, 79.8836, 0, 'uploads/libertypharm_evidence.txt', 'approved', 1, 'No 24, Borella Road, Colombo', '011-3422233', 0),
+(12, 'luxmypharm@gmail.com', 'Luxmy Pharmacy', 9.66564, 80.0266, 1, 'uploads/luxmypharm_evidence.txt', 'approved', 0, 'no 234, Hospital Road, Jaffna', '021-2333400', 0),
+(13, 'citymedicals@gmail.com', 'City Medicals', 6.79416, 79.9519, 1, 'uploads/citymedicals_evidence.txt', 'approved', 1, 'No 23, Kesbawa Road, Colombo', '011-1233363', 0);
 
 -- --------------------------------------------------------
 
@@ -177,7 +183,15 @@ CREATE TABLE `pharmacytable` (
 INSERT INTO `pharmacytable` (`id`, `username`, `password`, `name`, `License_no`, `address`, `contact_number`, `email`, `latitude`, `longitude`, `delivery_supported`, `is_closed`) VALUES
 (1, 'New Pharmacy', '$2y$10$SUkO0oGEyWXL7CPHyIH4V.mfXEpxSUJJGif6qbtn64OUtNVdfn/rO', 'New Pharmacy', '1234E', '12\\2,Kandy road,Kurunegala', '012-1212123', 'newpharmacy123@gmail.com', 7.4818, 80.3609, 1, 0),
 (2, 'Lanka Pharmacy', '$2y$10$i6uod78BtGhd.qZvN5nO/./wwBbn/6C42HRCNOC6xkXejax.IDU4W', 'Lanka Pharmacy', 'abcd', 'No.7,Colombo Rd,Monaragala', '012-1212178', 'lankapharmacy00@gmail.com', 6.88842, 81.3439, 1, 0),
-(3, 'Asiri Pharmacy', '$2y$10$AEjqDR8/oItigkSIXBRutOYNq89mmUiZcl9DGGJrNUH6p.f2LEeZG', 'Asiri Pharmacy', '12345', 'no 12, Colombo', '011 - 1234333', 'asiri@gmil.com', 1.23, 80, 0, 1);
+(3, 'Asiri Pharmacy', '$2y$10$AEjqDR8/oItigkSIXBRutOYNq89mmUiZcl9DGGJrNUH6p.f2LEeZG', 'Asiri Pharmacy', '12345', 'no 12, Colombo', '011 - 1234333', 'asiri@gmil.com', 1.23, 80, 0, 0),
+(4, 'Jaya Pharmacy', '$2y$10$SeYq9T0tDTatxZJJ2rHkL.HlKmqMt8K7ScPO1ywOKLXgYGgpu6hge', 'Jaya Pharmacy', '119119R', 'No.9,Akuressa Rd,Galle', '012-1212124', 'jayapharm99@gmail.com', 6.03575, 80.2384, 0, 0),
+(5, 'United Pharmacy', '$2y$10$HyCXLJ8KZo2tUIDiSBaMS.oFV8Fta73iXoxWkTCp7a/NtIwqmBkAy', 'United Pharmacy', '1234G', 'No.23,Bandarawela Rd,Badulla', '012-1911913', 'unitedpharm23@yahoo.com', 6.98862, 81.0574, 1, 0),
+(6, 'Lanka Pharm', '$2y$10$PG44kJYSKARnxXW2FZcHIujXLOmJ8lkUbuadj3W0ZWjrplgAbLc2e', 'Lanka Pharmacy', '245GL', 'No.78,Kandy Rd,Gampola', '099-1212998', 'lankapharmacy66@gmail.com', 7.16491, 80.5694, 0, 0),
+(7, 'City Pharmacy', '$2y$10$qRt0Qixkhkoj2vV6T0vOFOubMR0tcXoBzTnf1EtY0zTlsEXxqqTUO', 'City Pharmacy', '567CK', 'No.22,Badulla Rd,Mahiyanganaya', '099-1212001', 'citypharmacy404@gmail.com', 7.33816, 80.9989, 1, 0),
+(8, 'Suwasewana Pharmacy', '$2y$10$.sFhXwh9.g5ixS2g/xutCedaa4PtGp4hOd4EQ9NFFc0afO0yrVIBO', 'Suwasewana Pharmacy', '356CG', 'N0 534, Peradeniya Rd, Kandy', '0812634405', 'suwasewanapharm@gmail.com', 7.26222, 80.5928, 1, 0),
+(9, 'Union Pharmacy', '$2y$10$nQX8gqpgC3uWH30DnMnlLuRD7FqYet01v0K4aI4azVh3SeChMic3S', 'Union Pharmacy', '267C', 'No 200, Dikwalla Rd, Galle', '091-2245455', 'unionpharm@gmail.com', 6.03649, 80.2166, 0, 0),
+(10, 'Liberty Pharmacy', '$2y$10$vx2JhNpNmgIa8JywjLCxeO2GKyhS9bB0Lr/IAv2T.VI.a2uksLIcq', 'Liberty Pharmacy', '6789L', 'No 24, Borella Road, Colombo', '011-3422233', 'libertypharm@gmail.com', 6.91141, 79.8836, 0, 0),
+(11, 'City Medicals', '$2y$10$71KV1b47SMYlDFPqaBUyEOd5VnlvlazhpkFee5DKpmFVPad7BE9bC', 'City Medicals', '2345B', 'No 23, Kesbawa Road, Colombo', '011-1233363', 'citymedicals@gmail.com', 6.79416, 79.9519, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -227,13 +241,11 @@ CREATE TABLE `usertable` (
 --
 
 INSERT INTO `usertable` (`id`, `username`, `password`, `name`, `nic`, `address`, `mobile_number`, `email`, `longitude`, `latitude`, `role`, `nearbypharmacies`, `is_closed`) VALUES
-(1, 'SuperUser', '$2y$10$f1JH1D67Vai7q/IMgMWDjO9VwhCyyZDv30TxmjZ.vecm/CODAZHpW', 'Super User', '997852332V', 'no.1,Colomo 01,Sri Lanka', '012-0000000', 'superadmin01@gmail.com', 6.9378, 79.8437, 'super_admin', '1,2', 0),
-(2, 'Tony', '$2y$10$8mL.0Wtkrp9oOCqgIfS0QuEqGrx4SMhxqL7yOczTFUL7Ols4FCOD2', 'Tony Stark', '993530328V', 'Avengers HeadQuarters, New York', '071-1266278', 'ironman00@gmail.com', 80.4239, 8.31559, 'customer', '1,2', 0),
-(3, 'Steve', '$2y$10$rctFBzKAARnZCTzmveP8Fu5sB3M.Jq4PK880fsk.BjK3BcHJgIqyG', 'Steve Rogers', '997942332V', 'no.1,Jaya Mawatha', '070-3806687', 'captainamerica@gmail.com', 79.8939, 6.8719, 'customer', '1,2', 0),
-(4, 'Thor', '$2y$10$wZbNP7c93Sm.cyveMWM1Fe7q0p6cjhlTwLnoplPDyP183vdl0qVv.', 'Thor Odinson', '991892354V', 'no.2,Kandy Rd,Kurunegala', '071-4290810', 'thorodinson@gmail.com', 80.4448, 7.41605, 'customer', '1,2', 0),
-(5, 'Peter', '$2y$10$yr2bkLYWbi5q9gHLoXs3K.ySBPB0klSsLuad8pxW0FvgFtsQ0dA5.', 'Peter Parker', '990861552V', 'No.6,Nadun Uyana,Matara', '076-2675516', 'peterparker@gmail.com', 80.5763, 5.94935, 'customer', '2,1', 0),
-(6, 'Natasha', '$2y$10$72fmKgPheRYhNB9LFn2z/urzUkoY/ZD2ShRJr5xhMYbe/Fb6Q547a', 'Natasha Romanoff', '807643552V', 'UOM', '077-3243554', 'blackwidow@gmail.com', 80, 1.23, 'customer', '2,1', 0),
-(7, 'Clint', '$2y$10$l4/Dt8MHNsQUIzdFjbFkQOd.dXhEj.X7ZKbNIz6UC3pnavBC5WT7K', 'Clint Barton', '804534221V', 'UOM', '070-9876234', 'hawkeye@gmail.com', 81, 6.8, 'customer', '2,1', 0);
+(1, 'superuser', '$2y$10$SUaVPNUh/v7iGFQNiGN4RO6P4WTL1FjI2.RhSGuyhQRjHPCwXutz.', 'Super User', '997852332V', 'no.1,Colomo 01,Sri Lanka', '012-0000000', 'superadmin01@gmail.com', 6.9378, 79.8437, 'super_admin', '1,7,8,6,10,5,11,2,9,4', 0),
+(2, 'Tony', '$2y$10$8mL.0Wtkrp9oOCqgIfS0QuEqGrx4SMhxqL7yOczTFUL7Ols4FCOD2', 'Tony Stark', '993530328V', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266278', 'ironman00@gmail.com', 80.4239, 8.31559, 'customer', '1,8,7,6,5,10,11,2,4,9', 0),
+(3, 'Steve', '$2y$10$rctFBzKAARnZCTzmveP8Fu5sB3M.Jq4PK880fsk.BjK3BcHJgIqyG', 'Steve Rogers', '997942332V', 'no.1,Jaya Mawatha', '070-3806687', 'captainamerica@gmail.com', 79.8939, 6.8719, 'customer', '10,11,6,1,8,9,4,5,7,2', 0),
+(4, 'Thor', '$2y$10$wZbNP7c93Sm.cyveMWM1Fe7q0p6cjhlTwLnoplPDyP183vdl0qVv.', 'Thor Odinson', '991892354V', 'no.2,Kandy Rd,Kurunegala', '071-4290810', 'thorodinson@gmail.com', 80.4448, 7.41605, 'customer', '1,8,6,7,5,10,11,2,4,9', 0),
+(5, 'Peter', '$2y$10$yr2bkLYWbi5q9gHLoXs3K.ySBPB0klSsLuad8pxW0FvgFtsQ0dA5.', 'Peter Parker', '990861552V', 'No.6,Nadun Uyana,Matara', '076-2675516', 'peterparker@gmail.com', 80.5763, 5.94935, 'customer', '4,9,11,5,10,2,6,8,7,1', 0);
 
 --
 -- Indexes for dumped tables
@@ -295,7 +307,7 @@ ALTER TABLE `usertable`
 -- AUTO_INCREMENT for table `applicationtable`
 --
 ALTER TABLE `applicationtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `itemtable`
@@ -325,7 +337,7 @@ ALTER TABLE `ordertable`
 -- AUTO_INCREMENT for table `pharmacytable`
 --
 ALTER TABLE `pharmacytable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `prefilledformtable`
