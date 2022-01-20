@@ -48,7 +48,7 @@
             <?php foreach($this->prescriptions as $key=>$entry) {?>
                 <tr>
                     <td><?= $entry[0]->name?></td>
-                    <td><a href="<?=SROOT?><?=$entry[1]->prescription?>" download='<?=$entry[1]->prescription?>'><?= ltrim($entry[1]->prescription,'uploads/prescriptions/')?></a></td>
+                    <td><a href="<?=SROOT?><?=$entry[1]->prescription?>" download='<?= $entry[1]->prescription?>'><?= basename($entry[1]->prescription) ?></a></td>
                     <?php if(!$entry[1]->form_sent){?>
                     <td><a href="<?=SROOT?>PrefilledformHandler/loadSearchForm/<?=$entry[1]->pharmacy_id?>/notclear/<?=$key?>" role="button" class="btn btn-success">Prepare a form</a></td>
                     <td></td>
