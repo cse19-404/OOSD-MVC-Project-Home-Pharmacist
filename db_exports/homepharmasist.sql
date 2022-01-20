@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 11:37 AM
+-- Generation Time: Jan 20, 2022 at 11:48 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.11
 
@@ -124,6 +124,13 @@ CREATE TABLE `mediatortable` (
   `is_read` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `mediatortable`
+--
+
+INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `message_type`, `subject`, `message`, `message_ref_id`, `is_read`) VALUES
+(58, 'Thor', 'Lanka Pharmacy', 'order', 'New Order', 'A new Order is made by &quot;Thor Odinson&quot; at your pharamcy on 2022-01-20 at 04:10:12pm. You can view new order details and accept the order now.', 12, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -166,6 +173,13 @@ CREATE TABLE `ordertable` (
   `deleted` tinyint(1) NOT NULL DEFAULT 0,
   `seen` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `ordertable`
+--
+
+INSERT INTO `ordertable` (`id`, `customer_id`, `pharmacy_id`, `receiver_name`, `address`, `mobile_number`, `no_of_items`, `items`, `unit_prices`, `quantities`, `prescription`, `total`, `status`, `closed`, `deleted`, `seen`) VALUES
+(12, 4, 2, 'Thor Odinson', 'no.2,Kandy Rd,Kurunegala', '071-4290810', '1', '4', '20', '2', '', 40, 'new', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -225,6 +239,13 @@ CREATE TABLE `prefilledformtable` (
   `seen` tinyint(1) NOT NULL DEFAULT 0,
   `sent_date` date NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `prefilledformtable`
+--
+
+INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_all_item`, `no_of_items`, `itemIds`, `quantities`, `prescription`, `deleted`, `form_sent`, `seen`, `sent_date`) VALUES
+(19, 4, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/prescription01.txt', 0, 0, 0, '2022-01-20');
 
 -- --------------------------------------------------------
 
@@ -331,7 +352,7 @@ ALTER TABLE `itemtable`
 -- AUTO_INCREMENT for table `mediatortable`
 --
 ALTER TABLE `mediatortable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `offertable`
@@ -343,7 +364,7 @@ ALTER TABLE `offertable`
 -- AUTO_INCREMENT for table `ordertable`
 --
 ALTER TABLE `ordertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pharmacytable`
@@ -355,7 +376,7 @@ ALTER TABLE `pharmacytable`
 -- AUTO_INCREMENT for table `prefilledformtable`
 --
 ALTER TABLE `prefilledformtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `usertable`
