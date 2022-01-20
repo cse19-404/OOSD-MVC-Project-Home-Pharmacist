@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 11:22 AM
+-- Generation Time: Jan 20, 2022 at 11:37 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.11
 
@@ -92,8 +92,20 @@ INSERT INTO `itemtable` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `pri
 (6, 'SUSTAGEN', 'NP2239M', 'TIN', 50, 2300, 0, 1, 0),
 (7, 'URIMAX 0.4 mg', 'R2406M', 'TABLETS', 390, 8.5, 1, 3, 0),
 (8, 'GEFTIWEL 250', 'NP2043M', 'TABLETS', 589, 4.75, 1, 1, 0),
-(9, 'PANADOL', 'NP3383M', 'BOTTLE', 539, 20, 0, 1, 0),
-(10, 'Paracitamol', 'pa123', '12', 1000, 10, 1, 1, 0);
+(9, 'PANADOL', 'NP3383M', 'BOTTLE', 539, 20, 0, 3, 0),
+(11, 'Atarax 25mg', '23e', 'TABLETS', 560, 220.25, 1, 1, 0),
+(12, 'Alprax 0.25', 'NP3383Z', 'TABLETS', 600, 100, 0, 3, 0),
+(13, 'Pantop 40', 'NP223R', 'TABLETS', 700, 10.5, 1, 1, 0),
+(14, 'Sinarest', 'NP140K', 'BOTTLE', 250, 560, 1, 4, 0),
+(15, 'Diazepam', 'NP20R', 'CAPSULES', 145, 10.25, 1, 1, 0),
+(16, 'Hydrocortisone', 'NP290T', 'TABLETS', 350, 220, 0, 3, 0),
+(17, 'Phenobarbital', 'NP22Y', 'TABLETS', 500, 113.5, 0, 1, 0),
+(18, 'Pyrantel', 'NP200P', 'CARDS', 123, 564, 0, 4, 0),
+(19, 'Benzylpenicillin', 'NP289T', 'PACKET', 340, 230, 0, 4, 0),
+(20, 'Nitrofurantoin', 'NP208U', 'BOTTLE', 260, 360, 1, 1, 0),
+(21, 'Siddhalepa', 'TH908P', 'TUBES', 450, 55, 0, 2, 0),
+(22, 'Pyrazinamide', 'YU908I', 'FILM COA', 620, 22.3, 0, 1, 0),
+(23, 'Flucytosine', 'NP2090I', 'TUBES', 234, 999.5, 1, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -313,7 +325,7 @@ ALTER TABLE `applicationtable`
 -- AUTO_INCREMENT for table `itemtable`
 --
 ALTER TABLE `itemtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `mediatortable`

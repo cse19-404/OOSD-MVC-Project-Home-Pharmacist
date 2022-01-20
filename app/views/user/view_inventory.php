@@ -27,7 +27,7 @@
                     <th>Price per Unit Quantity(Rs.)</th>
                 </thread>
                 <?php
-
+                if (isset($this->items) && !empty($this->items)){
                 foreach($this->items as $row){
                     $row = (array)$row;
                     $pres = ($row['prescription_needed'] == 0) ? "No" : "Yes";
@@ -47,7 +47,8 @@
                         </form>
                     </td>
                     </tr>
-                <?php } ?>
+                <?php }
+                    } ?>
 
             </table>
         </div>
