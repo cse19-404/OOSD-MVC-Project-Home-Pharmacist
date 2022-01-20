@@ -87,16 +87,16 @@
                         ]
                     ]);
 
-                if ($validation->passed()){
-                    $this->UserModel = new User();
-                    $this->UserModel->registerNewUser($_POST);
-                    $this->UserModel->login();
+                    if ($validation->passed()){
+                        $this->UserModel = new User();
+                        $this->UserModel->registerNewUser($_POST);
+                        $this->UserModel->login();
 
-                    $this->view->render('user/dashboard');
-                }else {
-                    $this->view->displayErrors = $validation->displayErrors();
-                    $this->view->render('register/signup');
-                }
+                        $this->view->render('user/dashboard');
+                    }else {
+                        $this->view->displayErrors = $validation->displayErrors();
+                        $this->view->render('register/signup');
+                    }
                     
                 }elseif ($role === 'pharmacy') {
                     $validation->check($_POST,[
@@ -113,11 +113,11 @@
                     if ($validation->passed()){
                         $this->ApplicationModel = new Application();
                         $this->ApplicationModel->saveApplication($_POST);
+                        $this->view->msg='Application succesfully submitted';
                         $this->view->render('home/index');
-                        echo ('<h2>Application succesfully submitted</h2>');
                     }else {
                         $this->view->displayErrors = $validation->displayErrors();
-                        $this->view->render('register/signup');
+                        $this->view->render('register/pharmacyApplication');
                     }
                     
                    
