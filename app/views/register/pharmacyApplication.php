@@ -13,7 +13,7 @@
         border-radius: 15px;
         background-color: #e9e9e9ed;
         height: fit-content;
-        width: fit-content;
+        width: 40%;
         margin: auto;
         padding: 25px;
         padding-left: 30px;

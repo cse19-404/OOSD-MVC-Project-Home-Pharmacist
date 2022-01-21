@@ -162,7 +162,7 @@ class PrefilledformHandler extends Controller{
                 if ($result && !$result[0]->status){
                     $result = $result[0];
                     $itemId = $result->id;
-                    $quantity = $value;
+                    $quantity = (is_numeric($value))? $value: 0;
                     $status = $this->checkAvailability($quantity,$itemId);
                     if(isset($_SESSION['tempItemId'])){
                         if(!in_array($itemId, $_SESSION['tempItemId'])){

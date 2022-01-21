@@ -11,7 +11,7 @@
         if(delivery == 0){
             alert("Sorry! This Pharmacy Doesn\'t Support Delivery");          
         }else if(delivery != 0 && !proceed){
-            alert("Add 1 or more valied Items to Proceed..!");
+            alert("Sorry! Cannot proceed to Order");
         }
     }
     function sendCheck(empty){
