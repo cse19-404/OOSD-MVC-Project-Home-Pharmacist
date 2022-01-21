@@ -66,15 +66,22 @@ class Validate
                             }
                             break;
                         case 'valid_contact':
-                            $contact_arr=explode('-',$value);
-                            if(count($contact_arr)!==2){
-                                $this->addError(["{$display} must be in valid format (012-3456789)", $item]);
-                            }else{
-                                if(strlen($contact_arr[0])!==3 || strlen($contact_arr[1])!==7 || !is_numeric($contact_arr[0]) || !is_numeric($contact_arr[1])){
-                                    $this->addError(["{$display} must be in valid format (012-3456789)", $item]);
-                                }
+                            // $contact_arr=explode('-',$value);
+                            // if(count($contact_arr)!==2){
+                            //     $this->addError(["{$display} must be in valid format (012-3456789)", $item]);
+                            // }else{
+                            //     if(strlen($contact_arr[0])!==3 || strlen($contact_arr[1])!==7 || !is_numeric($contact_arr[0]) || !is_numeric($contact_arr[1])){
+                            //         $this->addError(["{$display} must be in valid format (012-3456789)", $item]);
+                            //     }
+                            // }
+                            if (!self::checkPhoneNo($value)){
+                                $this->addError(["{$display} can only contain 10 characters including numbers,- and spaces", $item]);
                             }
                             break;
+                        case 'valid_idNo':
+                            if (!self::checkIdNo($value)){
+                                $this->addError(["Enter a valid {$display}", $item]);
+                            }
                     }
                 }
             }
@@ -118,6 +125,34 @@ class Validate
             $this->_passed = true;
         } else {
             $this->_passed = false;
+        }
+    }
+
+    public static function checkPhoneNo($no){
+        $no = str_replace(array('-'," "),'',$no);
+
+        if (strlen($no) == 10 && is_numeric($no)) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public static function checkIdNo($no){
+        if (str_contains($no,'V') || str_contains($no,'v')){
+            $no = trim($no);
+            $no = substr($no,0,strlen($no)-1);
+            if (strlen($no) == 9 && is_numeric($no)) {
+                return true;
+            }else {
+                return false;
+            }
+        }else{
+            if (strlen($no) == 12 && is_numeric($no)) {
+                return true;
+            }else {
+                return false;
+            }
         }
     }
 

@@ -12,8 +12,8 @@
         z-index: 2;
         border-radius: 15px;
         background-color: #e9e9e9ed;
-        height: 20.5cm;
-        width: 16cm;
+        height: fit-content;
+        width: fit-content;
         margin: auto;
         padding: 25px;
         padding-left: 30px;
@@ -30,6 +30,11 @@
         <h1 class='header'>Registration Application</h1><hr><br>
 
         <div class="Appcontainer">
+                <div class='bg-danger'>
+                        <?php if(isset($this->displayErrors)) {
+                            echo $this->displayErrors;
+                        } ?>
+                </div>
             <form class="form-horizontal" action="<?=SROOT?>register/signup/pharmacy" method="post" enctype="multipart/form-data">
                 <label class="email">Email</label>
                 <input type="email" class="form-control" name="email" id="email" value="<?php echo htmlspecialchars($_POST['email'] ?? '', ENT_QUOTES); ?>" required><br><br>

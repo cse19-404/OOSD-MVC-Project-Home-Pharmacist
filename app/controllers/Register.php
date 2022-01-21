@@ -84,6 +84,14 @@
                         'longitude'=>[
                             'display'=>'Longitude',
                             'is_numeric'=>true
+                        ],
+                        'mobile_number'=>[
+                            'display'=>'Mobile Number',
+                            'valid_contact'=>true
+                        ],
+                        'nic'=>[
+                            'display'=>'NIC no',
+                            'valid_idNo'=>true
                         ]
                     ]);
 
@@ -107,6 +115,10 @@
                         'longitude'=>[
                             'display'=>'Longitude',
                             'is_numeric'=>true
+                        ],
+                        'contact_no'=>[
+                            'display'=>'Mobile Number',
+                            'valid_contact'=>true
                         ]
                     ]);
                     

@@ -11,8 +11,8 @@
         z-index: 2;
         border-radius: 15px;
         background-color: #e9e9e9ed;
-        height: 24.5cm;
-        width: 16cm;
+        height: fit-content;
+        width: fit-content;
         margin: auto;
         margin-top: 1cm;
         padding: 25px;

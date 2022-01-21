@@ -39,6 +39,18 @@
                     'username'=>[
                         'display'=>'Username',
                         'unique'=>'pharmacytable'
+                    ],
+                    'latitude'=>[
+                        'display'=>'Latitude',
+                        'is_numeric'=>true
+                    ],
+                    'longitude'=>[
+                        'display'=>'Longitude',
+                        'is_numeric'=>true
+                    ],
+                    'contact_number'=>[
+                        'display'=>'Mobile Number',
+                        'valid_contact'=>true
                     ]
                 ]);
                 if ($validation->passed()){

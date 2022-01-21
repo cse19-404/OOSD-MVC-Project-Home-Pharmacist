@@ -15,8 +15,8 @@
             z-index: 2;
             border-radius: 15px;
             background-color: #e9e9e9ed;
-            height: 15%;
-            width: 40%;
+            height: fit-content;
+            width: fit-content;
             margin: auto;
             margin-top: 2cm;
             padding: 30px;
