@@ -98,9 +98,8 @@
                     if ($validation->passed()){
                         $this->UserModel = new User();
                         $this->UserModel->registerNewUser($_POST);
-                        $this->UserModel->login();
-
-                        $this->view->render('user/dashboard');
+                        $this->view->msg='Account Succesfully Created';
+                        $this->view->render('home/index');
                     }else {
                         $this->view->displayErrors = $validation->displayErrors();
                         $this->view->render('register/signup');

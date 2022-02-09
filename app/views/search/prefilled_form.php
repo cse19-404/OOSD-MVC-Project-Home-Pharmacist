@@ -31,7 +31,7 @@
         border-radius: 15px;
         background-color: #e9e9e9ed;
         height:15%;
-        width: 45%;
+        width: 50%;
         margin: auto;
         margin-top: 2cm;
         padding: 25px;

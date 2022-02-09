@@ -59,15 +59,15 @@
                 </div>
             <?php }
             if(isset($this->mode) && ($this->mode === 'read-only') && ($this->result->message_type === 'text')){?>
-                <h2 class="header"><?= $this->result->subject?></h2>
+                <h2 class="header"><?php echo explode('-', $this->result->subject)[0]?></h2>
                 <div class="Appcontainer">
                     <div>
                         
                         <span class="spacinglabels">FROM : <?php echo $this->result->sender_username?></span><br><br>
                         <span class="spacinglabels">TO : <?php echo $this->result->receiver_username?></span><br><br><br>
                         
-                        Subject : <input class="form-control" type="text" placeholder="Subject" value=<?= $this->result->subject?> readonly><br><br>
-                        Message : <textarea class="form-control" cols="30" rows="10" placeholder="Message" value=<?= $this->result->message?> readonly></textarea><br><br>
+                        Subject : <input class="form-control" type="text" value="<?php echo explode('-', $this->result->subject)[0]?>" readonly><br><br>
+                        Message : <textarea class="form-control" cols="30" rows="10" readonly><?= $this->result->message?></textarea><br><br>
                             
                         <form action="<?=SROOT?>CustomerDashboard/replyTextMessage/<?= $this->result->id?>">
                             <input class="btn btn-info" type="submit" value="Reply">

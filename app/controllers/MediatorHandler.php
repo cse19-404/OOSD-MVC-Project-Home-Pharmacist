@@ -63,6 +63,7 @@ class MediatorHandler extends Controller{
         $this->MediatorModel = new Mediator();
         $this->MediatorModel->markAsRead($id);
         $result = $this->MediatorModel->getMessage($id)[0];
+        //dnd($result);
         $this->view->mode = 'read-only';
         $this->view->result = $result;
         $this->view->render('mediator/mailform');
