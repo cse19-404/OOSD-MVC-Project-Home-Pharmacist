@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2022 at 12:31 PM
+-- Generation Time: Feb 09, 2022 at 06:04 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -59,7 +59,8 @@ INSERT INTO `applicationtable` (`id`, `email`, `pharmacy_name`, `latitude`, `lon
 (10, 'unionpharm@gmail.com', 'Union Pharmacy', 6.03649, 80.2166, 0, 'uploads/unionpharm_evidence.txt', 'approved', 1, 'No 200, Dikwalla Rd, Galle', '091-2245455', 0),
 (11, 'libertypharm@gmail.com', 'Liberty Pharmacy', 6.91141, 79.8836, 0, 'uploads/libertypharm_evidence.txt', 'approved', 1, 'No 24, Borella Road, Colombo', '011-3422233', 0),
 (12, 'luxmypharm@gmail.com', 'Luxmy Pharmacy', 9.66564, 80.0266, 1, 'uploads/luxmypharm_evidence.txt', 'approved', 0, 'no 234, Hospital Road, Jaffna', '021-2333400', 0),
-(13, 'citymedicals@gmail.com', 'City Medicals', 6.79416, 79.9519, 1, 'uploads/citymedicals_evidence.txt', 'approved', 1, 'No 23, Kesbawa Road, Colombo', '011-1233363', 0);
+(13, 'citymedicals@gmail.com', 'City Medicals', 6.79416, 79.9519, 1, 'uploads/citymedicals_evidence.txt', 'approved', 1, 'No 23, Kesbawa Road, Colombo', '011-1233363', 0),
+(14, 'peterpharm@gmail.com', 'Peter Pharmacy', 7.2906, 80.6337, 1, 'uploads/Pharm_Details.txt', 'approved', 1, 'No.9, Colombo rd, Kandy', '081-2347865', 0);
 
 -- --------------------------------------------------------
 
@@ -103,9 +104,10 @@ INSERT INTO `itemtable` (`id`, `name`, `code`, `quantity_unit`, `quantity`, `pri
 (18, 'Pyrantel', 'NP200P', 'CARDS', 123, 564, 1, 2, 0),
 (19, 'Benzylpenicillin', 'NP289T', 'PACKET', 340, 230, 0, 4, 0),
 (20, 'Nitrofurantoin', 'NP208U', 'BOTTLE', 260, 360, 1, 3, 0),
-(21, 'Siddhalepa', 'TH908P', 'TUBES', 450, 55, 0, 1, 0),
+(21, 'Siddhalepa', 'TH908P', 'TUBES', 500, 55, 0, 1, 0),
 (22, 'Pyrazinamide', 'YU908I', 'FILM COA', 620, 22.3, 0, 4, 0),
-(23, 'Flucytosine', 'NP2090I', 'TUBES', 234, 999.5, 0, 2, 0);
+(23, 'Flucytosine', 'NP2090I', 'TUBES', 234, 999.5, 0, 2, 0),
+(24, 'Amikacin', '23ed', 'CARDS', 100, 234.5, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -136,8 +138,21 @@ INSERT INTO `mediatortable` (`id`, `sender_username`, `receiver_username`, `mess
 (62, 'Asiri Pharmacy', 'All-Users', 'seasonal offer', 'Seasonal Offer Added', 'New Seasonal Offer was added by &quot;Asiri Pharmacy&quot; on 2022-01-20 at 04:33:01pm.', 16, 0),
 (63, 'Tony', 'New Pharmacy', 'order', 'New Order', 'A new Order is made by &quot;Tony Stark&quot; at your pharamcy on 2022-01-20 at 04:37:14pm. You can view new order details and accept the order now.', 13, 0),
 (64, 'Tony', 'Lanka Pharmacy', 'order', 'New Order', 'A new Order is made by &quot;Tony Stark&quot; at your pharamcy on 2022-01-20 at 04:38:43pm. You can view new order details and accept the order now.', 14, 0),
-(65, 'New Pharmacy', 'Tony', 'order', 'Order Accepted', 'The Order you made at &quot;New Pharmacy&quot; has been accepted. Your order was confirmed on 2022-01-20 at 04:44:17pm.', 13, 0),
-(66, 'Lanka Pharmacy', 'Tony', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;Lanka Pharmacy&quot; on 2022-01-20 at 04:49:21pm for the prescription you sent on 2022-01-20.', 21, 0);
+(65, 'New Pharmacy', 'Tony', 'order', 'Order Accepted', 'The Order you made at &quot;New Pharmacy&quot; has been accepted. Your order was confirmed on 2022-01-20 at 04:44:17pm.', 13, 1),
+(66, 'Lanka Pharmacy', 'Tony', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;Lanka Pharmacy&quot; on 2022-01-20 at 04:49:21pm for the prescription you sent on 2022-01-20.', 21, 0),
+(67, 'Lanka Pharmacy', 'Thor', 'order', 'Order Accepted', 'The Order you made at &quot;Lanka Pharmacy&quot; has been accepted. Your order was confirmed on 2022-02-09 at 08:41:34pm.', 12, 0),
+(68, 'Thor', 'New Pharmacy', 'order', 'New Order', 'A new Order is made by &quot;Thor Odinson&quot; at your pharamcy on 2022-02-09 at 09:33:10pm. You can view new order details and accept the order now.', 15, 0),
+(69, 'New Pharmacy', 'Tony', 'order', 'Order Accepted', 'The Order you made at &quot;New Pharmacy&quot; has been accepted. Your order was confirmed on 2022-02-09 at 09:34:45pm.', 13, 0),
+(70, 'New Pharmacy', 'Tony', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order on 2022-02-09 at 09:36:57pm. The status of your order is &quot;preparing&quot;.', 13, 0),
+(71, 'New Pharmacy', 'Tony', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order on 2022-02-09 at 09:37:08pm. The status of your order is &quot;shipped&quot;.', 13, 0),
+(72, 'New Pharmacy', 'Tony', 'order', 'Order Status Updated', 'The Order you made at &quot;New Pharmacy&quot; has changed the status of your order on 2022-02-09 at 09:37:12pm. The status of your order is &quot;delivered&quot;.', 13, 1),
+(73, 'New Pharmacy', 'Tony', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form created and sent by &quot;New Pharmacy&quot; as for your request on 2022-02-09 at 09:43:21pm. ', 22, 0),
+(74, 'New Pharmacy', 'Tony', 'prefilled form', 'Pre-Filled Form Recieved', 'Pre-Filled Form was sent by &quot;New Pharmacy&quot; on 2022-02-09 at 09:50:23pm for the prescription you sent on 2022-02-09.', 23, 0),
+(77, 'Tony', 'New Pharmacy', 'order', 'New Order', 'A new Order is made by &quot;Tony Stark&quot; at your pharamcy on 2022-02-09 at 10:05:02pm. You can view new order details and accept the order now.', 16, 0),
+(78, 'superuser', 'Natasha', 'text', 'New update - 2022-02-09 - 10:07:35pm', 'update 2.4', 0, 1),
+(79, 'superuser', 'New Pharmacy', 'text', 'New update - 2022-02-09 - 10:07:57pm', 'update 2.5', 0, 1),
+(80, 'Thor', 'New Pharmacy', 'text', 'Get contact details - 2022-02-09 - 10:13:37pm', 'Send me your contact details', 0, 1),
+(81, 'New Pharmacy', 'Thor', 'text', 'Get contact details - 2022-02-09 - 10:13:37pm - 2022-02-09 - 10:23:37pm', 'email - newpharm@gmail.com\r\ncontact no - 011 2 109 456', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -162,10 +177,10 @@ CREATE TABLE `offertable` (
 --
 
 INSERT INTO `offertable` (`id`, `pharmacy_id`, `name`, `description`, `start_date`, `end_date`, `status`, `isexpired`, `bannerdocument`) VALUES
-(13, 1, 'PULSE25', '25% discount on your orders', '2022-01-20', '2022-01-30', 0, 0, 'uploads/25offer-banner.jpg'),
-(14, 1, 'New Year Special', 'Get 70% discount on Health and Wellness products', '2022-01-21', '2022-01-31', 0, 0, 'uploads/medicines-offers.jpg'),
-(15, 2, '2022 Special', 'Get 20% discounts on your orders', '2022-01-21', '2022-01-28', 0, 0, 'uploads/Medicine-Order-Online.jpg'),
-(16, 3, 'Allopathy Offer', 'Get up to 20 to 25% discount on all Allopathy medicines', '2022-01-19', '2022-01-25', 0, 0, 'uploads/maxresdefault.jpg');
+(13, 1, 'PULSE25', '25% discount on your orders', '2022-01-20', '2022-02-28', 0, 0, 'uploads/25offer-banner.jpg'),
+(14, 1, 'New Year Special', 'Get 70% discount on Health and Wellness products', '2022-01-21', '2022-03-31', 0, 0, 'uploads/medicines-offers.jpg'),
+(15, 2, '2022 Special', 'Get 20% discounts on your orders', '2022-01-21', '2022-03-15', 0, 0, 'uploads/Medicine-Order-Online.jpg'),
+(16, 3, 'Allopathy Offer', 'Get up to 20 to 25% discount on all Allopathy medicines', '2022-01-17', '2022-03-17', 0, 0, 'uploads/maxresdefault.jpg');
 
 -- --------------------------------------------------------
 
@@ -198,8 +213,10 @@ CREATE TABLE `ordertable` (
 
 INSERT INTO `ordertable` (`id`, `customer_id`, `pharmacy_id`, `receiver_name`, `address`, `mobile_number`, `no_of_items`, `items`, `unit_prices`, `quantities`, `prescription`, `total`, `status`, `closed`, `deleted`, `seen`) VALUES
 (12, 4, 2, 'Thor Odinson', 'no.2,Kandy Rd,Kurunegala', '071-4290810', '1', '4', '20', '2', '', 40, 'new', 0, 0, 0),
-(13, 2, 1, 'Pepper Potts', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266245', '3', '5,17,6', '15,113.5,2300', '12,25,1', '', 5318, 'seen', 0, 0, 0),
-(14, 2, 2, 'Tony Stark', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266278', '2', '4,23', '20,999.5', '12,5', '', 5238, 'new', 0, 0, 0);
+(13, 2, 1, 'Pepper Potts', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266245', '3', '5,17,6', '15,113.5,2300', '12,25,1', '', 5318, 'delivered', 0, 0, 0),
+(14, 2, 2, 'Tony Stark', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266278', '2', '4,23', '20,999.5', '12,5', '', 5238, 'new', 0, 0, 0),
+(15, 4, 1, 'Thor', 'no.2,Galagedara,Kurunegala', '071-4290234', '2', '5,17', '15,113.5', '5,40', '', 4615, 'new', 0, 0, 0),
+(16, 2, 1, 'Tony Stark', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266278', '3', '5,6,24', '15,2300,234.5', '12,1,4', '', 3418, 'new', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -237,7 +254,8 @@ INSERT INTO `pharmacytable` (`id`, `username`, `password`, `name`, `License_no`,
 (8, 'Suwasewana Pharmacy', '$2y$10$.sFhXwh9.g5ixS2g/xutCedaa4PtGp4hOd4EQ9NFFc0afO0yrVIBO', 'Suwasewana Pharmacy', '356CG', 'N0 534, Peradeniya Rd, Kandy', '0812634405', 'suwasewanapharm@gmail.com', 7.26222, 80.5928, 1, 0),
 (9, 'Union Pharmacy', '$2y$10$nQX8gqpgC3uWH30DnMnlLuRD7FqYet01v0K4aI4azVh3SeChMic3S', 'Union Pharmacy', '267C', 'No 200, Dikwalla Rd, Galle', '091-2245455', 'unionpharm@gmail.com', 6.03649, 80.2166, 0, 0),
 (10, 'Liberty Pharmacy', '$2y$10$vx2JhNpNmgIa8JywjLCxeO2GKyhS9bB0Lr/IAv2T.VI.a2uksLIcq', 'Liberty Pharmacy', '6789L', 'No 24, Borella Road, Colombo', '011-3422233', 'libertypharm@gmail.com', 6.91141, 79.8836, 0, 0),
-(11, 'City Medicals', '$2y$10$71KV1b47SMYlDFPqaBUyEOd5VnlvlazhpkFee5DKpmFVPad7BE9bC', 'City Medicals', '2345B', 'No 23, Kesbawa Road, Colombo', '011-1233363', 'citymedicals@gmail.com', 6.79416, 79.9519, 1, 0);
+(11, 'City Medicals', '$2y$10$71KV1b47SMYlDFPqaBUyEOd5VnlvlazhpkFee5DKpmFVPad7BE9bC', 'City Medicals', '2345B', 'No 23, Kesbawa Road, Colombo', '011-1233363', 'citymedicals@gmail.com', 6.79416, 79.9519, 1, 0),
+(12, 'PeterPharm', '$2y$10$3eXkUvPqpRkzqlUDjQDrPOaK8yPEWE44UMR2tTka0Bo.83E6XsZHK', 'Peter Pharmacy', '1456E', 'No.9, Colombo rd, Kandy', '081-2347865', 'peterpharm@gmail.com', 7.2906, 80.6337, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -267,7 +285,9 @@ CREATE TABLE `prefilledformtable` (
 INSERT INTO `prefilledformtable` (`id`, `customer_id`, `pharmacy_id`, `no_of_all_item`, `no_of_items`, `itemIds`, `quantities`, `prescription`, `deleted`, `form_sent`, `seen`, `sent_date`) VALUES
 (19, 4, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/prescription01.txt', 0, 0, 0, '2022-01-20'),
 (20, 2, 1, NULL, NULL, NULL, NULL, 'uploads/prescriptions/prescription.jpg', 0, 0, 0, '2022-01-20'),
-(21, 2, 2, 3, '3', '11,18,4', '21,12,20', 'uploads/prescriptions/prescription_legible_roj_17jan24.jpg', 0, 1, 0, '2022-01-20');
+(21, 2, 2, 3, '3', '11,18,4', '21,12,20', 'uploads/prescriptions/prescription_legible_roj_17jan24.jpg', 0, 1, 0, '2022-01-20'),
+(22, 2, 1, 3, '3', '5,17,6', '10,22,2', '', 0, 1, 1, '2022-02-09'),
+(23, 2, 1, 5, '4', '1,3,13,abcd,5', '1,2,20,No Such Item,3', 'uploads/prescriptions/prescription.jpg', 0, 1, 1, '2022-02-09');
 
 -- --------------------------------------------------------
 
@@ -296,11 +316,12 @@ CREATE TABLE `usertable` (
 --
 
 INSERT INTO `usertable` (`id`, `username`, `password`, `name`, `nic`, `address`, `mobile_number`, `email`, `longitude`, `latitude`, `role`, `nearbypharmacies`, `is_closed`) VALUES
-(1, 'superuser', '$2y$10$SUaVPNUh/v7iGFQNiGN4RO6P4WTL1FjI2.RhSGuyhQRjHPCwXutz.', 'Super User', '997852332V', 'no.1,Colomo 01,Sri Lanka', '012-0000000', 'superadmin01@gmail.com', 6.9378, 79.8437, 'super_admin', '1,7,8,6,10,5,11,2,9,4', 0),
-(2, 'Tony', '$2y$10$8mL.0Wtkrp9oOCqgIfS0QuEqGrx4SMhxqL7yOczTFUL7Ols4FCOD2', 'Tony Stark', '993530328V', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266278', 'ironman00@gmail.com', 80.4239, 8.31559, 'customer', '1,8,7,6,5,10,11,2,4,9', 0),
-(3, 'Steve', '$2y$10$rctFBzKAARnZCTzmveP8Fu5sB3M.Jq4PK880fsk.BjK3BcHJgIqyG', 'Steve Rogers', '997942332V', 'no.1,Jaya Mawatha', '070-3806687', 'captainamerica@gmail.com', 79.8939, 6.8719, 'customer', '10,11,6,1,8,9,4,5,7,2', 0),
-(4, 'Thor', '$2y$10$wZbNP7c93Sm.cyveMWM1Fe7q0p6cjhlTwLnoplPDyP183vdl0qVv.', 'Thor Odinson', '991892354V', 'no.2,Kandy Rd,Kurunegala', '071-4290810', 'thorodinson@gmail.com', 80.4448, 7.41605, 'customer', '1,8,6,7,5,10,11,2,4,9', 0),
-(5, 'Peter', '$2y$10$yr2bkLYWbi5q9gHLoXs3K.ySBPB0klSsLuad8pxW0FvgFtsQ0dA5.', 'Peter Parker', '990861552V', 'No.6,Nadun Uyana,Matara', '076-2675516', 'peterparker@gmail.com', 80.5763, 5.94935, 'customer', '4,9,11,5,10,2,6,8,7,1', 0);
+(1, 'superuser', '$2y$10$SUaVPNUh/v7iGFQNiGN4RO6P4WTL1FjI2.RhSGuyhQRjHPCwXutz.', 'Super User', '997852332V', 'no.1,Colomo 01,Sri Lanka', '012-0000000', 'superadmin01@gmail.com', 6.9378, 79.8437, 'super_admin', '1,12,7,8,6,10,5,11,2,9', 0),
+(2, 'Tony', '$2y$10$8mL.0Wtkrp9oOCqgIfS0QuEqGrx4SMhxqL7yOczTFUL7Ols4FCOD2', 'Tony Stark', '993530328V', 'No 2,Nuwaraeliya road, Thalawakelle', '071-1266278', 'ironman00@gmail.com', 80.4239, 8.31559, 'customer', '1,12,8,7,6,5,10,11,2,4', 0),
+(3, 'Steve', '$2y$10$rctFBzKAARnZCTzmveP8Fu5sB3M.Jq4PK880fsk.BjK3BcHJgIqyG', 'Steve Rogers', '997942332V', 'no.1,Jaya Mawatha', '070-3806687', 'captainamerica@gmail.com', 79.8939, 6.8719, 'customer', '10,11,6,1,8,12,9,4,5,7', 0),
+(4, 'Thor', '$2y$10$wZbNP7c93Sm.cyveMWM1Fe7q0p6cjhlTwLnoplPDyP183vdl0qVv.', 'Thor Odinson', '991892354V', 'no.2,Kandy Rd,Kurunegala', '071-4290810', 'thorodinson@gmail.com', 80.4448, 7.41605, 'customer', '1,8,12,6,7,5,10,11,2,4', 0),
+(5, 'Peter', '$2y$10$yr2bkLYWbi5q9gHLoXs3K.ySBPB0klSsLuad8pxW0FvgFtsQ0dA5.', 'Peter Parker', '990861552V', 'No.6,Nadun Uyana,Matara', '076-2675516', 'peterparker@gmail.com', 80.5763, 5.94935, 'customer', '4,9,11,5,10,2,6,8,12,7', 0),
+(17, 'Natasha', '$2y$10$TfwrT25i0ZeHqZfuibkI7ednucNUE/8Czy681fVdMgJ4gN1f0cYnC', 'Natasha Romanoff', '199943511980', 'No.11, Kubichchankulama, Anuradapura', '070-1236578', 'natashar@gmail.com', 80.4037, 8.3114, 'customer', '1,12,8,7,6,5,10,11,2,4', 0);
 
 --
 -- Indexes for dumped tables
@@ -362,49 +383,49 @@ ALTER TABLE `usertable`
 -- AUTO_INCREMENT for table `applicationtable`
 --
 ALTER TABLE `applicationtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `itemtable`
 --
 ALTER TABLE `itemtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `mediatortable`
 --
 ALTER TABLE `mediatortable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `offertable`
 --
 ALTER TABLE `offertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `ordertable`
 --
 ALTER TABLE `ordertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pharmacytable`
 --
 ALTER TABLE `pharmacytable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `prefilledformtable`
 --
 ALTER TABLE `prefilledformtable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `usertable`
 --
 ALTER TABLE `usertable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
